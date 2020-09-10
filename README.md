@@ -2,7 +2,7 @@
 
 * Once upon a time a little group of molecules decided to actually move through space. 
 * However, 
-* they only moved through space by using their fingers. 
+* they only moved through space with their fingers. 
 * But with those fingers they typed, 
 * more wickedly than ever before!
 * Never has such wicked typing been witnessed,
