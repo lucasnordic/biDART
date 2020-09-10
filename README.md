@@ -18,6 +18,6 @@
 * Binary Intruder's NPPO's(Non Profit Profit Organization's) Video Game Rental System was now part of our existence.
 * Welcome, "biDART".
 
-- "Hello world." Said biDART.
+- "Hello world." said biDART.
 
 * And so the tale carried on...
