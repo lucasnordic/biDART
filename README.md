@@ -1,7 +1,7 @@
 # biDART
 
-Once upon a time a little group of molecules decided to actually move through space. 
-However, 
+* Once upon a time a little group of molecules decided to actually move through space. 
+* However, 
 they only moved through space by using their fingers. 
 But with those fingers they typed, 
 more wickedly than ever before!
