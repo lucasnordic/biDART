@@ -1,6 +1,6 @@
 # biDART
 
-* Once upon a time a some molecules decided to actually move through space. 
+* Once upon a time some molecules decided to actually move through space. 
 * However, 
 * they only moved through space with their fingers. 
 * But with those fingers they typed without error,
