@@ -26,7 +26,7 @@ public class MainProgram {                                                      
                 "Exit system",
         };
 
-        int choice = MenuHandler.chooseFromMenu(input, mainMenuItems, prompt);  // Goes into the MenuHandler class. Menuhandler prints the "prompt" and "mainMenuItems"
+        int choice = MenuHandler.chooseFromMenu(input, mainMenuItems, prompt);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
                                                                                 // This should be handled in "InputHandler".
         switch (choice) {                                                       // choice has become the length of "String[] mainMenuItems".
             case 1 -> managerMenu();                                            // If user inputs 1 then we go to managerMenu method
