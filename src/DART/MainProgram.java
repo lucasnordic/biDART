@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MainProgram {                                                      // Main Program
 
     public static void main(String[] args) {
-        DART.Utilities.DartUtilities.clearConsole();                            // Clear screen...
+        // DART.Utilities.DartUtilities.clearConsole();                         // Clear screen...
         Scanner input = new Scanner(System.in);                                 // Creates a scanner that is used throughout the program
 
         mainMenu(input);                                                        // Program goes directly into the mainMenu method. The method needs the scanner(input). We can turn this into a class.
@@ -19,11 +19,16 @@ public class MainProgram {                                                      
         String prompt = "Main Menu: \nWelcome to DART,\n" +                     // This is being sent into the MenuHandler Class later.
                 "your good old game rental system. The competition has no steam to keep up ;)\n\n" +
                 "Please specify your role by entering one of the options given:";
+
         String[] mainMenuItems = {                                              // This is being sent into the MenuHandler Class later.
                 "Go to Manager menu",
                 "Go to Employee menu",
                 "Go to Customer menu",
                 "Exit system",
+                "HEllo",
+                "gfsdgsfh",
+                "gfsdgfsd",
+                "fdsfa"
         };
 
         int choice = MenuHandler.chooseFromMenu(input, mainMenuItems, prompt);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
