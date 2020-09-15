@@ -20,6 +20,7 @@ public class MainProgram {
 
     }
 
+    //  This could go into EmployeeMenu class instead.
     public static void employeeMenu (Scanner input) { // Employee menu
         String password = "";
         System.out.println("Insert password:");
