@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class InputHandler {                                                                 // This Class handles input.
 
-    public static int inputInt(Scanner input, String prompt, int min, int max) {
-        System.out.print(prompt);
+    public static int inputInt(Scanner input, int min, int max) {
+        // System.out.print(prompt);
         int inputResult = input.nextInt();
         input.nextLine();
 

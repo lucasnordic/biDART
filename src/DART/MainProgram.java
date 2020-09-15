@@ -31,7 +31,9 @@ public class MainProgram {                                                      
                 "fdsfa"
         };
 
-        int choice = MenuHandler.chooseFromMenu(input, mainMenuItems, prompt);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+        String inputPrompt = "Enter choice: ";
+
+        int choice = MenuHandler.chooseFromMenu(input, mainMenuItems, prompt, inputPrompt);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
                                                                                 // This should be handled in "InputHandler".
         switch (choice) {                                                       // choice has become the length of "String[] mainMenuItems".
             case 1 -> managerMenu();                                            // If user inputs 1 then we go to managerMenu method
