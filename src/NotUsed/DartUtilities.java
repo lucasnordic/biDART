@@ -1,4 +1,4 @@
-package DART.Utilities;
+package NotUsed;
 
 public class DartUtilities {  // clears the screen terminal. It works in an ugly way at the moment.
     public static void clearConsole() {
