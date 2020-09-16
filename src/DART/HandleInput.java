@@ -25,13 +25,11 @@ public class HandleInput {
 
     //  This method handles string input. Not being used atm.
     public static String inputString(Scanner input) {
-        System.out.println("test");
         return "";
     }
 
     //  This method handles double input. Not being used atm.
     public static double inputDouble(Scanner input, String prompt) {
-
         return 0.0;
     }
 }
