@@ -5,7 +5,7 @@ import DART.MenuItems.MenuMain;
 
 import java.util.Scanner;
 
-public class EmployeeMenu {
+public class MenuEmployee {
 
     public static void employeeMenu (Scanner input) { // Employee menu
         String password = "";
