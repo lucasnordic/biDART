@@ -5,6 +5,7 @@ public class MenuBase {
     String[] items;
     String inputPrompt;
 
+    // Constructor
     public MenuBase(String title, String inputPrompt, String[] items) {
         this.title = title;
         this.items = items;
