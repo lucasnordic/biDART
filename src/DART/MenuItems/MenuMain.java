@@ -38,7 +38,7 @@ public class MenuMain {
     public static void handleMenuChoice (Scanner input, int menuChoice ) {
         switch (menuChoice) {
             case 1 -> MenuManager.managerMenu(input);
-            case 2 -> MenuEmployee.employeeMenu(input);
+            case 2 -> EmployeeMenu.employeeMenu(input);
             case 3 -> MenuCustomer.customerMenu(input);
             case 4 -> MenuExit.exitMenu(input);
             default -> System.out.println("Please Choose a correct number: ");
