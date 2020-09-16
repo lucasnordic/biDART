@@ -2,7 +2,7 @@ package DART.MenuItems;
 
 import java.util.Scanner;
 
-public class ExitMenu {
+public class MenuExit {
 
     public static void exitMenu(Scanner input) {
 

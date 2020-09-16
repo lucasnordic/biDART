@@ -3,7 +3,7 @@ package DART;
 import java.util.Scanner;
 
 // This Class handles input.
-public class InputHandler {
+public class HandleInput {
 
     //  This method handles integer input only
     public static int inputInt(Scanner input, int min, int max) {
@@ -26,29 +26,16 @@ public class InputHandler {
         // This number is corresponding to the position of the array that stores the menu choices
         return inputResult;
     }
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Unused code below:
-/*
+    //  This method handles string input. Not being use atm.
     public static String inputString(Scanner input, String prompt) {
         System.out.println("");
         return "";
     }
 
+    //  This method handles double input. Not being use atm.
     public static double inputDouble(Scanner input, String prompt) {
 
         return 0.0;
     }
-*/
+}

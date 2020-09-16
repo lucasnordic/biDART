@@ -1,6 +1,6 @@
 
-import DART.MenuHandler;
-import DART.MenuItems.MainMenu;
+import DART.HandlePrinting;
+import DART.MenuItems.MenuMain;
 
 import java.util.Scanner;
 
@@ -25,15 +25,15 @@ public class EmployeeMenu {
             };
             String inputPrompt = "";
 
-            int choice = MenuHandler.chooseFromMenu(input, employeeMenuItems, prompt, inputPrompt);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+            int choice = HandlePrinting.chooseFromMenu(input, employeeMenuItems, prompt, inputPrompt);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
             // This should be handled in "InputHandler".
             switch (choice) {                                                       // choice has become the length of "String[] mainMenuItems".
-                case 7 -> MainMenu.mainMenu(input);                                            // If user inputs 1 then we go to managerMenu method
+                case 7 -> MenuMain.mainMenu(input);                                            // If user inputs 1 then we go to managerMenu method
                 default -> System.out.println("Please Choose a correct number: ");
             }
         } else {
             System.out.println("INVALID PASSWORD");
-            MainMenu.mainMenu(input);
+            MenuMain.mainMenu(input);
         }
     }
 

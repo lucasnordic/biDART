@@ -3,7 +3,7 @@ package DART;
 import java.util.Scanner;
 
 //  This class will handle printing out menu's
-public class MenuHandler {
+public class HandlePrinting {
 
     // this method will print out any menu and then it will send the possible choices to the InputHandler.
     public static int chooseFromMenu(Scanner input, String[] menuItems, String title, String inputPrompt) {
@@ -28,7 +28,7 @@ public class MenuHandler {
         // Here is where we send everything to the InputHandler class:
         // it will send "1", since that will be the lowest menu option choice
         // it will send the "menuItems.length", since that will be the maximum option the user can choose.
-        return InputHandler.inputInt(input, 1, menuItems.length);
+        return HandleInput.inputInt(input, 1, menuItems.length);
     }
 /*
 

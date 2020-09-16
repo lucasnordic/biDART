@@ -1,6 +1,6 @@
 package DART.UserRoles;
 
-public class Employee {
+public class RoleEmployee {
     private int id;
     private String name;
     private String address;

@@ -1,10 +1,10 @@
 package DART.MenuItems;
 
-import DART.MenuHandler;
+import DART.HandlePrinting;
 import java.util.Scanner;
 
 // This class handles the main menu.
-public class MainMenu {
+public class MenuMain {
 
     //  This method handles creating all the information the MenuHandler needs to print.
     public static void mainMenu(Scanner input) {
@@ -27,7 +27,7 @@ public class MainMenu {
         // if the user types a valid number then we go to:
         // Menuhandler and print "mainMenuItems, title, inputPrompt and we ask the user for input.
         while (menuChoice < 1 || menuChoice > mainMenuItems.length) {
-            menuChoice = MenuHandler.chooseFromMenu(input, mainMenuItems, title, inputPrompt);
+            menuChoice = HandlePrinting.chooseFromMenu(input, mainMenuItems, title, inputPrompt);
 
             //  Here we go to the method "handleMenuChoice" to check which menu we should go to.
             handleMenuChoice(input, menuChoice);
@@ -37,10 +37,10 @@ public class MainMenu {
     //  Here we check the
     public static void handleMenuChoice (Scanner input, int menuChoice ) {
         switch (menuChoice) {
-            case 1 -> ManagerMenu.managerMenu(input);
-            case 2 -> EmployeeMenu.employeeMenu(input);
-            case 3 -> CustomerMenu.customerMenu(input);
-            case 4 -> ExitMenu.exitMenu(input);
+            case 1 -> MenuManager.managerMenu(input);
+            case 2 -> MenuEmployee.employeeMenu(input);
+            case 3 -> MenuCustomer.customerMenu(input);
+            case 4 -> MenuExit.exitMenu(input);
             default -> System.out.println("Please Choose a correct number: ");
         }
     }

@@ -1,17 +1,17 @@
 package DART.MenuItems;
 
-import DART.MenuHandler;
+import DART.HandlePrinting;
 import java.util.Scanner;
 
-public class EmployeeMenu {
+public class MenuCustomer {
 
-    public static void employeeMenu(Scanner input) {
+    public static void customerMenu(Scanner input) {
 
         // I create a title, mainMenuItems, inputPrompt and a variable to store the menu choice.
-        String prompt = "Employee Screen - Type one of the options below:";
+        String title = "Customer Screen - Type one of the options below:";
         String[] mainMenuItems = {
-                "Add an employee",
-                "View all employees",
+                "Rent a game",
+                "Return a game",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -21,16 +21,16 @@ public class EmployeeMenu {
         // if the user types a valid number then we go to:
         // Menuhandler and print "mainMenuItems, title, inputPrompt and we ask the user for input.
         while (choice < 4) {
-            choice = MenuHandler.chooseFromMenu(input, mainMenuItems, prompt, inputPrompt);
+            choice = HandlePrinting.chooseFromMenu(input, mainMenuItems, title, inputPrompt);
             handleMenuChoice(input, choice);
         }
     }
 
     public static void handleMenuChoice (Scanner input, int menuChoice ) {
         switch (menuChoice) {
-            case 1 -> ManagerMenu.managerMenu(input);
-            case 2 -> EmployeeMenu.employeeMenu(input);
-            case 3 -> MainMenu.mainMenu(input);
+            case 1 -> MenuManager.managerMenu(input);
+            case 2 -> MenuEmployee.employeeMenu(input);
+            case 3 -> MenuMain.mainMenu(input);
             default -> System.out.println("Please Choose a correct number: ");
         }
     }
