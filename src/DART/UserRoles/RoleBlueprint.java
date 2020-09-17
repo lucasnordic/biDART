@@ -6,5 +6,6 @@ public class RoleBlueprint {
     private String address;
     private int birthYear;
     private double grossSalary;
+
 }
 

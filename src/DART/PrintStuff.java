@@ -1,7 +1,7 @@
 package DART;
 
 //  This class will handle printing
-public class Print {
+public class PrintStuff {
 
     // this method will print out any menu
     public static void printMenuItems(String title, String[] menuItems, String inputPrompt) {

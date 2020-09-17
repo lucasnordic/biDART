@@ -5,6 +5,24 @@ package DART;
 public class MainProgram {
 
     public static void main(String[] args) {
+
+        System.out.print("Hey dude, Please enter a number: ");
+
+        int userTypedNumber = ScannerInput.inputInt(1, 2);
+        System.out.println(userTypedNumber);
+
+
+
+
+
+
+
+
+
+
+
+
+
         mainMenu(); // Program goes directly into the mainMenu method. This is how we call a void method
     }
 
@@ -21,7 +39,7 @@ public class MainProgram {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Enter choice: ";
-        Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+        PrintStuff.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
         String[] validMenuChoice = {"M", "E", "C", "X"};    //  Valid choices for user while in main menu.
         String menuChoice;  // In "menuChoice" we store the choice the user is going to take.
@@ -49,7 +67,7 @@ public class MainProgram {
         String title = "Manager Screen - Type one of the options below:";
         String[] menuItems = { "Add an employee", "View all employees", "Return to Main Menu" };
         String inputPrompt = "Enter choice: ";
-        Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+        PrintStuff.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
@@ -80,7 +98,7 @@ public class MainProgram {
 
         if (password.equals("password123")) {
 
-            Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+            PrintStuff.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
             int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
@@ -106,7 +124,7 @@ public class MainProgram {
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = { "Rent a game", "Return a game", "Return to Main Menu" };
         String inputPrompt = "Enter choice: ";
-        Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+        PrintStuff.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
