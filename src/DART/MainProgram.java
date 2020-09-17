@@ -10,18 +10,18 @@ public class MainProgram {
 
     public static void mainMenu() { //  This method handles the main menu contents. It is void so it doesn't return anything
 
-        // Here we create the content of the menu:
+        // Here we create the content of the menu in two strings and the menu options in one string array:
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up ;)\n\n" +
                 "Please specify your role by entering one of the options given:";
-        String[] mainMenuItems = {
+        String[] menuItems = {
                 "Enter “M” for Manager",
                 "Enter “E” for Employee",
                 "Enter “C” for Customer",
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Enter choice: ";
-        Print.printMenuItems(title, mainMenuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+        Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
         String[] validMenuChoice = {"M", "E", "C", "X"};    //  Valid choices for user while in main menu.
         String menuChoice;  // In "menuChoice" we store the choice the user is going to take.
@@ -54,9 +54,9 @@ public class MainProgram {
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
-        int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+        int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // these min* and max* goes into the MenuHandler class. MenuHandler prints the "title" and "mainMenuItems"
 
-        switch (menuChoice) {   // Here we
+        switch (menuChoice) {   // Here we go to different menus based on user input.
             case 1 -> mainMenu();
             case 2 -> mainMenu();
             case 3 -> mainMenu();
@@ -64,27 +64,27 @@ public class MainProgram {
         }
     }
 
-    //  This method handles the employee menu contents.
-    public static void employeeMenu () {
+    public static void employeeMenu () {    //  This method handles the employee menu contents.
         String title = "Employee Screen - Type one of the options below:";
-        String[] employeeMenuItems = {"Register a game", "Remove a game", "Register a customer",
+        String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
                 "Remove a customer", "Show total rent profit", "View all games", "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
-        //  Here we store the max and min choice:
+
+        //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
-        int maxMenuChoice = employeeMenuItems.length;
+        int maxMenuChoice = menuItems.length;
 
         System.out.println("Insert password:");
-        String password = ScannerInput.inputString();
+        String password = ScannerInput.inputString();   // Here we call the method "inputString" from the class "ScannerInput" and we say that the password is equal to the input.
 
         if (password.equals("password123")) {
 
-            Print.printMenuItems(title, employeeMenuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+            Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
             int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
-            switch (menuChoice) {
+            switch (menuChoice) {   // Here we go to different menus based on user input.
                 case 1 -> mainMenu();
                 case 2 -> mainMenu();
                 case 3 -> mainMenu();
@@ -101,20 +101,19 @@ public class MainProgram {
         }
     }
 
-    //  This method handles the customer menu contents.
-    public static void customerMenu() {
+    public static void customerMenu() { //  This method handles the customer menu contents.
 
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = { "Rent a game", "Return a game", "Return to Main Menu" };
         String inputPrompt = "Enter choice: ";
         Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
-        //  Here we store the max and min choice:
+        //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
         int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
-        switch (menuChoice) {
+        switch (menuChoice) {  // Here we go to different menus based on user input.
             case 1 -> mainMenu();
             case 2 -> mainMenu();
             case 3 -> mainMenu();
