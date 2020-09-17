@@ -31,12 +31,12 @@ public class ScannerInput {
             System.out.print("Please enter a valid value( " + Arrays.toString(validUserInput) + " ): ");
             inputResult = input.nextLine();
         }
+        System.out.println(" ");
         return inputResult;
     }
 
     public static String inputString() {
         return input.nextLine();
-
     }
 
     //  This method handles double input. Not being used atm.

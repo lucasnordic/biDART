@@ -2,17 +2,13 @@
 // Learn how to GitHub.
 package DART;
 
-import java.util.Scanner;
-
 public class MainProgram {
 
-    // Program goes directly into the mainMenu Class.
     public static void main(String[] args) {
-        mainMenu();
+        mainMenu(); // Program goes directly into the mainMenu method.
     }
 
-    //  This method handles the main menu contents.
-    public static void mainMenu() {
+    public static void mainMenu() { //  This method handles the main menu contents.
 
         // Here we create the content of the menu:
         String title = "Main Menu - Welcome to DART,\n" +
@@ -30,10 +26,11 @@ public class MainProgram {
         String[] validMenuChoice = {"M", "E", "C", "X"};    //  Valid choices for user while in main menu.
         String menuChoice;  // In "menuChoice" we store the choice the user is going to take.
 
+        // Here we go to class "ScannerInput" and later method "inputValidString".
+        // In "inputValidString" we check so that "menuChoice" is equal to "validMenuChoice"
+        menuChoice = ScannerInput.inputValidString(validMenuChoice);
 
-        menuChoice = ScannerInput.inputValidString(validMenuChoice);  // Here we go to class "ScannerInput" which will also check so that "menuChoice" becomes equal to "validMenuChoice"
-
-        //  We check if
+        //  We direct users to a menu based on string stored in "menuChoice"
         if (menuChoice.equalsIgnoreCase("M")) {
             managerMenu();
         } else if (menuChoice.equalsIgnoreCase("E")) {
