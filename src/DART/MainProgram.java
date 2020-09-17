@@ -10,15 +10,7 @@ public class MainProgram {
 
         int userTypedNumber = ScannerInput.inputInt(1, 2);
         System.out.println(userTypedNumber);
-
-
-
-
-
-
-
-
-
+        //code here:
 
 
 
