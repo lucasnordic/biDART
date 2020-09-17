@@ -1,9 +1,10 @@
 package DART.UserRoles;
 
-public class RoleBase {
+public class RoleBlueprint {
     private int id;
     private String name;
     private String address;
     private int birthYear;
     private double grossSalary;
 }
+
