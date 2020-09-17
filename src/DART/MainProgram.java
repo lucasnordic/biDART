@@ -5,10 +5,10 @@ package DART;
 public class MainProgram {
 
     public static void main(String[] args) {
-        mainMenu(); // Program goes directly into the mainMenu method.
+        mainMenu(); // Program goes directly into the mainMenu method. This is how we call a void method
     }
 
-    public static void mainMenu() { //  This method handles the main menu contents.
+    public static void mainMenu() { //  This method handles the main menu contents. It is void so it doesn't return anything
 
         // Here we create the content of the menu:
         String title = "Main Menu - Welcome to DART,\n" +
@@ -26,38 +26,37 @@ public class MainProgram {
         String[] validMenuChoice = {"M", "E", "C", "X"};    //  Valid choices for user while in main menu.
         String menuChoice;  // In "menuChoice" we store the choice the user is going to take.
 
-        // Here we go to class "ScannerInput" and later method "inputValidString".
-        // In "inputValidString" we check so that "menuChoice" is equal to "validMenuChoice"
+        // Here we go to class "ScannerInput", method "inputValidString".
+        // In "inputValidString" we check so that "menuChoice" is equal to "validMenuChoice":
         menuChoice = ScannerInput.inputValidString(validMenuChoice);
 
-        //  We direct users to a menu based on string stored in "menuChoice"
+        //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
             managerMenu();
         } else if (menuChoice.equalsIgnoreCase("E")) {
             employeeMenu();
         } else if (menuChoice.equalsIgnoreCase("C")) {
             customerMenu();
-        } else {
+        } else {    // If the user types X we exit the program
             System.out.println("RIP");
             System.exit(0);
         }
     }
 
-    //  This method handles the manager menu contents.
-    public static void managerMenu() {
+    public static void managerMenu() {  //  This method handles the manager menu contents.
 
-        // I create a title, mainMenuItems, inputPrompt and a variable to store the menu choice.
+        // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
         String[] menuItems = { "Add an employee", "View all employees", "Return to Main Menu" };
         String inputPrompt = "Enter choice: ";
         Print.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
-        //  Here we store the max and min choice:
+        //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
         int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
-        switch (menuChoice) {
+        switch (menuChoice) {   // Here we
             case 1 -> mainMenu();
             case 2 -> mainMenu();
             case 3 -> mainMenu();
