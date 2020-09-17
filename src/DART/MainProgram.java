@@ -13,8 +13,6 @@ public class MainProgram {
         //code here:
 
 
-
-
         mainMenu(); // Program goes directly into the mainMenu method. This is how we call a void method
     }
 
