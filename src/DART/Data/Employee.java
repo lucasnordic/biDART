@@ -1,11 +1,13 @@
 package DART.Data;
 
+import DART.PrintStuff;
+import DART.ScannerInput;
 
 public class Employee {
 
-    String name;
-    int birthYear;
-    double grossSalary;
+    private String name;
+    private int birthYear;
+    private double grossSalary;
 
     public Employee(String name, int birthYear, double grossSalary) {
         this.name = name;
@@ -34,8 +36,7 @@ public class Employee {
             return 7500.0;
         }
     }
-
-
+    
     //Setters
     public void setName(String name) {
         this.name = name;
@@ -54,22 +55,25 @@ public class Employee {
     public String toString() {
         return name + " was born in " + this.getBirthYear() + " and gets " + this.getGrossSalary() + " as gross salary.";
     }
-/*
+
     public static void main(String[] args) {
-        int NumOfEmployees = 2;
-        for (int j = 0; j < NumOfEmployees ; j++) {
-            String name = InputClass.readLine("Type employee's name: ");
-            int birthYear = InputClass.readInt("Type employee's birth year: ");
-            double funds = InputClass.readDouble("Type employee's gross salary: ");
-            employee employee = new employee(name, birthYear, funds);
-            String[] allEmployees = employee.getName();
-            for(int i = 0; i < allEmployees.length; i++) {
-                System.out.println(allEmployees[i] + " ");
-
-            }
+        PrintStuff printText = new PrintStuff();
+        ScannerInput input = new ScannerInput();
+   
+        printText.printLine("Type employee's name: ");
+        String employeeName = input.inputString();
+        
+        printText.printLine("Type employee's birth year: ");
+        int employeeBirthYear = input.inputInt();
+        printText.printLine("Type employee's gross salary: ");
+        double employeeGrossSalary = input.inputDouble();
+        Employee employee = new Employee(employeeName, employeeBirthYear, employeeGrossSalary);
+        String[] allEmployees = employee.getName();
+        for(int i = 0; i < allEmployees.length; i++) {
+            System.out.println(allEmployees[i] + " ");
+    
         }
-        //System.out.println( employee.toString() );
+        
     }
- */
-}
 
+}
