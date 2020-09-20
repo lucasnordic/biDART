@@ -11,7 +11,6 @@ public class ScannerInput {
     public static int inputInt(int min, int max) {  // This method handles integer input only. It needs to have a min and max value.
         int inputResult = input.nextInt();  // Here we let the user input an integer.
         input.nextLine();
-
         // This while loop checks if user types a number between the variables "min" and "max".
         while (inputResult < min || inputResult > max) {
             System.out.print("Please enter a valid value(" + min + "-" + max + "): ");
@@ -24,7 +23,6 @@ public class ScannerInput {
     //  This method handles string input. We send "validUserInput to the method so it knows when it is done.
     public static String inputValidString(String[] validUserInput) {
         String inputResult = input.nextLine();
-
         // We need to check if user types a correct string.
         while (!Arrays.asList(validUserInput).contains(inputResult.toUpperCase())) {
             System.out.print("Please enter a valid value( " + Arrays.toString(validUserInput) + " ): ");

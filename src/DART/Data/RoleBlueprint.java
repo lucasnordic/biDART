@@ -1,4 +1,4 @@
-package DART.UserRoles;
+package DART.Data;
 
 public class RoleBlueprint {
     private int id;
