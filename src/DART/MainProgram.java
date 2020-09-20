@@ -5,14 +5,7 @@ package DART;
 public class MainProgram {
 
     public static void main(String[] args) {
-
-        // This is just a test. Will be removed.
-        System.out.print("Hey dude, Please enter a number: ");
-        int userTypedNumber = ScannerInput.inputIntMinMax(1, 2);
-        System.out.println(userTypedNumber);
-        //code here:
-
-        mainMenu(); // Program goes directly into the mainMenu method. This is how we call a void method
+        mainMenu(); // Program goes directly into the mainMenu method. This is how we call a method that is void.
     }
 
     public static void mainMenu() { //  This method handles the main menu contents. It is void so it doesn't return anything
