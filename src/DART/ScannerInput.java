@@ -8,7 +8,7 @@ public class ScannerInput {
 
     private static final Scanner input = new Scanner(System.in);    // initializes the scanner to be used everywhere in this class "ScannerInput".
 
-    public static int inputInt(int min, int max) {  // This method handles integer input only. It needs to have a min and max value.
+    public static int inputIntMinMax(int min, int max) {  // This method handles integer input only. It needs to have a min and max value.
         int inputResult = input.nextInt();  // Here we let the user input an integer.
         input.nextLine();
         // This while loop checks if user types a number between the variables "min" and "max".
@@ -36,8 +36,12 @@ public class ScannerInput {
         return input.nextLine();
     }
 
+    public int inputInt() {
+        return input.nextInt();
+    }
+
     //  This method handles double input. Not being used atm.
-    public static double inputDouble(String prompt) {
+    public static double inputDouble() {
         return 0.0;
     }
 }
