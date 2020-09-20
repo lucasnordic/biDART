@@ -61,6 +61,11 @@ public class MainProgram {
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
+        System.out.println("Insert password:");
+        String password = ScannerInput.inputString();
+        if (password.equals("admin123")) {
+
+            PrintStuff.printMenuItems(title, menuItems, inputPrompt);
         int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // these min* and max* goes into the MenuHandler class. MenuHandler prints the "title" and "mainMenuItems"
 
         switch (menuChoice) {   // Here we go to different menus based on user input.
@@ -68,6 +73,11 @@ public class MainProgram {
             case 2 -> mainMenu();
             case 3 -> mainMenu();
             default -> System.exit(0);
+        }
+    }  else {
+            System.out.println("INVALID PASSWORD");
+            System.out.println(" ");
+            mainMenu();
         }
     }
 
