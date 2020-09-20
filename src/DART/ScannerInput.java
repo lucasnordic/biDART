@@ -12,13 +12,12 @@ public class ScannerInput {
         int inputResult = input.nextInt();  // Here we let the user input an integer.
         input.nextLine();
 
-        // We need to check if user types a correct number. This while loop does that by using the variables "min" and "max".
+        // This while loop checks if user types a number between the variables "min" and "max".
         while (inputResult < min || inputResult > max) {
             System.out.print("Please enter a valid value(" + min + "-" + max + "): ");
             inputResult = input.nextInt();
             input.nextLine();
         }
-
         return inputResult;
     }
 
