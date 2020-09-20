@@ -8,11 +8,6 @@ public class ScannerInput {
 
     private static final Scanner input = new Scanner(System.in);    // initializes the scanner to be used everywhere in this class "ScannerInput".
 
-    // If you want the user to input a single integer.
-    public static int inputInt() {
-        return input.nextInt();
-    }
-
     // If you want the user to input a number between two values.
     public static int inputIntMinMax(int min, int max) {  // This method handles integer input only. It needs to have a min and max value.
         int inputResult = input.nextInt();  // Here we let the user input an integer.
@@ -43,8 +38,17 @@ public class ScannerInput {
         return inputResult;
     }
 
+    public static String inputString() {
+        return input.nextLine();
+    }
+  
+    // If you want the user to input a single integer.
+    public int inputInt() {
+        return input.nextInt();
+    }
+
     //  This method handles double input. Not being used atm.
-    public static double inputDouble(String prompt) {
-        return 0.0;
+    public static double inputDouble() {
+        return input.nextDouble();
     }
 }

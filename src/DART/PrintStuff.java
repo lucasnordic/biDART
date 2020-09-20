@@ -15,8 +15,9 @@ public class PrintStuff {
         System.out.print(inputPrompt);  // This prints the text before the user input. For example, "Enter choice: "
     }
 
-    public void printLine(String text) {
+    public static void printLine(String text) {
         System.out.println(text);
     }
+
 }
 
