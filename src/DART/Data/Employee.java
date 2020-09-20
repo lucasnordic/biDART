@@ -24,9 +24,16 @@ public class Employee {
         return this.birthYear;
     }
 
-//    public double getBonus() {
-//
-//    }
+    // will do this later
+    public double getBonus() {
+        if (birthYear < 22) {
+            return 4000.0;
+        } else if (birthYear <= 30){
+            return 6000.0;
+        } else {
+            return 7500.0;
+        }
+    }
 
 
     //Setters
@@ -42,7 +49,6 @@ public class Employee {
             anArray[i] = "";
         }
     }
-    // Test change/Edit
 
     //Return a String that represent the object.
     public String toString() {
