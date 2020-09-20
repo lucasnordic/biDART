@@ -24,7 +24,7 @@ public class Employee {
         return this.birthYear;
     }
 
-    // will do this later
+    //
     public double getBonus() {
         if (birthYear < 22) {
             return 4000.0;
