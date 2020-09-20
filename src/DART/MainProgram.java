@@ -8,7 +8,7 @@ public class MainProgram {
 
         // This is just a test. Will be removed.
         System.out.print("Hey dude, Please enter a number: ");
-        int userTypedNumber = ScannerInput.inputInt(1, 2);
+        int userTypedNumber = ScannerInput.inputIntMinMax(1, 2);
         System.out.println(userTypedNumber);
         //code here:
 
@@ -61,20 +61,22 @@ public class MainProgram {
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
+        int menuChoice = 0;
+
         System.out.println("Insert password:");
         String password = ScannerInput.inputString();
         if (password.equals("admin123")) {
-
+            
             PrintStuff.printMenuItems(title, menuItems, inputPrompt);
-        int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // these min* and max* goes into the MenuHandler class. MenuHandler prints the "title" and "mainMenuItems"
+            menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // these min* and max* goes into the MenuHandler class. MenuHandler prints the "title" and "mainMenuItems"
 
-        switch (menuChoice) {   // Here we go to different menus based on user input.
-            case 1 -> mainMenu();
-            case 2 -> mainMenu();
-            case 3 -> mainMenu();
-            default -> System.exit(0);
-        }
-    }  else {
+            switch (menuChoice) {   // Here we go to different menus based on user input.
+                case 1 -> mainMenu();
+                case 2 -> mainMenu();
+                case 3 -> mainMenu();
+                default -> System.exit(0);
+            }
+        } else {
             System.out.println("INVALID PASSWORD");
             System.out.println(" ");
             mainMenu();
@@ -99,7 +101,7 @@ public class MainProgram {
 
             PrintStuff.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
-            int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+            int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
             switch (menuChoice) {   // Here we go to different menus based on user input.
                 case 1 -> mainMenu();
@@ -128,7 +130,7 @@ public class MainProgram {
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
-        int menuChoice = ScannerInput.inputInt(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+        int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
             case 1 -> mainMenu();
