@@ -3,17 +3,21 @@ package DART.Data;
 import DART.PrintStuff;
 import DART.ScannerInput;
 
+import java.util.Arrays;
+
 public class Employee {
 
     private String name;
     private int birthYear;
     private double grossSalary;
 
+    // controller:
     public Employee(String name, int birthYear, double grossSalary) {
         this.name = name;
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
     }
+
     public String[] getName() {
         return new String[]{this.name};
     }
@@ -46,9 +50,7 @@ public class Employee {
         this.birthYear = birthYear;
     }
     private void initializeArray(String[] anArray) {
-        for(int i = 0; i < anArray.length; i++) {
-            anArray[i] = "";
-        }
+        Arrays.fill(anArray, "");
     }
 
     //Return a String that represent the object.
@@ -69,9 +71,9 @@ public class Employee {
         double employeeGrossSalary = input.inputDouble();
         Employee employee = new Employee(employeeName, employeeBirthYear, employeeGrossSalary);
         String[] allEmployees = employee.getName();
-        for(int i = 0; i < allEmployees.length; i++) {
-            System.out.println(allEmployees[i] + " ");
-    
+        for (String allEmployee : allEmployees) {
+            System.out.println(allEmployee + " ");
+
         }
         
     }
