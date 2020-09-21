@@ -58,6 +58,7 @@ public class Employee {
         return name + " was born in " + this.getBirthYear() + " and gets " + this.getGrossSalary() + " as gross salary.";
     }
 
+    // TODO: Move this to employeeMenu?
     public static void main(String[] args) {
         PrintStuff printText = new PrintStuff();
 
