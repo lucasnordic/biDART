@@ -60,22 +60,26 @@ public class Employee {
 
     public static void main(String[] args) {
         PrintStuff printText = new PrintStuff();
-        ScannerInput input = new ScannerInput();
-   
+
+        // Here we are printing text and then we are assigning a value to "employeeName".
+        // We then
         printText.printLine("Type employee's name: ");
-        String employeeName = input.inputString();
-        
+        String employeeName = ScannerInput.inputString();
+
         printText.printLine("Type employee's birth year: ");
-        int employeeBirthYear = input.inputInt();
+        int employeeBirthYear = ScannerInput.inputInt();
+
         printText.printLine("Type employee's gross salary: ");
-        double employeeGrossSalary = input.inputDouble();
+        double employeeGrossSalary = ScannerInput.inputDouble();
+
+        /*
         Employee employee = new Employee(employeeName, employeeBirthYear, employeeGrossSalary);
         String[] allEmployees = employee.getName();
         for (String allEmployee : allEmployees) {
             System.out.println(allEmployee + " ");
 
         }
-        
+        */
     }
 
 }
