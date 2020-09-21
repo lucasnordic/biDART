@@ -11,7 +11,7 @@ public class ScannerInput {
 
     // If you want the user to input a String.
     public static String inputString() {
-        return input.nextLine();
+        return input.next();
     }
 
     // If you want the user to input a single integer.

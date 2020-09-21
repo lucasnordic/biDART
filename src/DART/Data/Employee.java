@@ -34,21 +34,22 @@ public class Employee {
     public double getBonus() {
         if (birthYear < 22) {
             return 4000.0;
-        } else if (birthYear <= 30){
+        } else if (birthYear <= 30) {
             return 6000.0;
         } else {
             return 7500.0;
         }
     }
-    
+
     //Setters
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setBirthYear(int birthYear){
+    public void setBirthYear(int birthYear) {
         this.birthYear = birthYear;
     }
+
     private void initializeArray(String[] anArray) {
         Arrays.fill(anArray, "");
     }
