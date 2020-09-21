@@ -30,8 +30,23 @@ public class Menu {
 
         //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
-            managerMenu();
-        } else if (menuChoice.equalsIgnoreCase("E")) {
+
+            System.out.println("Enter a password:");
+            String managerPassword = ScannerInput.inputString();
+            if (!managerPassword.equals(managerPassword)) {
+                System.out.println("Invalid password!\n" +
+                        "Please try again.");
+            mainMenu(); // allows go back to menu
+        }
+        managerMenu();
+    }else if (menuChoice.equalsIgnoreCase("E")) {
+            System.out.println("Enter a password:");
+            String employeePassword = ScannerInput.inputString();
+            if (!employeePassword.equals(employeePassword)) {
+                System.out.println("Invalid password!\n" +
+                        "Please try again.");
+                mainMenu(); // allows go back to menu
+            }
             employeeMenu();
         } else if (menuChoice.equalsIgnoreCase("C")) {
             customerMenu();
@@ -39,6 +54,18 @@ public class Menu {
             System.out.println("RIP");
         }
     }
+
+//    if (choice.equals("M")) {
+//            System.out.println("Enter a password:");
+//            String password = scanner.next();
+//            if (!password.equals("admin1234")) {
+//                System.out.println("Invalid password!\n" +
+//                        "Please try again.");
+//
+//                menu();//allows go back to menu
+//            }
+//            menuManager();
+//        }
 
     public void managerMenu() {
         //  This method handles the manager menu contents.
@@ -53,9 +80,9 @@ public class Menu {
         int maxMenuChoice = menuItems.length;
         int menuChoice;
 
-        System.out.println("Insert password:");
-        String password = ScannerInput.inputString();
-        if (password.equals(managerPassword)) {
+//        System.out.println("Insert password:");
+//        String password = ScannerInput.inputString();
+//        if (password.equals(managerPassword)) {
 
             printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
             menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // these min* and max* goes into the MenuHandler class. MenuHandler prints the "title" and "mainMenuItems"
@@ -66,11 +93,11 @@ public class Menu {
                 case 3 -> mainMenu();
                 default -> System.exit(0);
             }
-        } else {
-            System.out.println("INVALID PASSWORD");
-            System.out.println(" ");
-            mainMenu();
-        }
+//        } else {
+//            System.out.println("INVALID PASSWORD");
+//            System.out.println(" ");
+//            mainMenu();
+//        }
     }
 
     public void employeeMenu() {    //  This method handles the employee menu contents.
@@ -84,10 +111,10 @@ public class Menu {
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
 
-        System.out.println("Insert password:");
-        String password = ScannerInput.inputString();   // Here we call the method "inputString" from the class "ScannerInput" and we say that the password is equal to the input.
-
-        if (password.equals(employeePassword)) {
+//        System.out.println("Insert password:");
+//        String password = ScannerInput.inputString();   // Here we call the method "inputString" from the class "ScannerInput" and we say that the password is equal to the input.
+//
+//        if (password.equals(employeePassword)) {
 
             printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
@@ -103,11 +130,11 @@ public class Menu {
                 case 7 -> mainMenu();
                 //default -> System.exit(0);
             }
-        } else {
-            System.out.println("INVALID PASSWORD");
-            System.out.println(" ");
-        }
-        employeeMenu();
+//        } else {
+//            System.out.println("INVALID PASSWORD");
+//            System.out.println(" ");
+//        }
+       employeeMenu();
     }
 
     public void customerMenu() { //  This method handles the customer menu contents.
