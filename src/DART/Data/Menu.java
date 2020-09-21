@@ -1,8 +1,6 @@
 package DART.Data;
 
 import DART.ScannerInput;
-import DART.Data.Game;
-import DART.Data.GameLibrary;
 
 public class Menu {
     private static final String managerPassword = "admin123";
