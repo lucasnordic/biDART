@@ -22,7 +22,6 @@ public class GameLibrary {
             biggerGame[nextPosition] = game;
             nextPosition++;
 
-
         }
     }
 
