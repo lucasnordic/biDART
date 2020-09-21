@@ -96,8 +96,8 @@ public class Menu {
             int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
             switch (menuChoice) {   // Here we go to different menus based on user input.
-                //case 1 -> menuRegisterAGame();
-                //case 2 -> menuRemoveAGame();
+                case 1 -> menuRegisterAGame();
+                case 2 -> menuRemoveAGame();
                 // case 3 -> menuRegisterACustomer();
                 //case 4 -> menuRemoveACustomer();
                 // case 5 -> menuShowTotalRentProfit();
@@ -142,7 +142,7 @@ public class Menu {
         System.out.println(" ");
         System.out.print(inputPrompt);  // This prints the text before the user input. For example, "Enter choice: "
     }
-/*
+
     private static void menuRegisterAGame() {
 
         Game game = new Game(gameLastNumber++);//creating new game, next id +1
@@ -158,5 +158,5 @@ public class Menu {
     private static int gameLastNumber = 1;
     //private Game[] games = new Game[1];//array for games
     private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
-*/
+
 }
