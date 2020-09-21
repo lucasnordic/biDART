@@ -21,11 +21,6 @@ public class ScannerInput {
         return inputResult;
     }
 
-    // If you want the user to input a String.
-    public static String inputString() {
-        return input.nextLine();
-    }
-
     //  This method handles string input. We send "validUserInput to the method so it knows when it is done.
     public static String inputValidString(String[] validUserInput) {
         String inputResult = input.nextLine();
@@ -38,6 +33,7 @@ public class ScannerInput {
         return inputResult;
     }
 
+    // If you want the user to input a String.
     public static String inputString() {
         return input.nextLine();
     }
