@@ -6,7 +6,7 @@ import DART.Data.Menu;
 import DART.Data.Game;
 import DART.Data.GameLibrary;
 
-public class MainProgram {
+public class Dart {
     /**
      * Program goes directly into the main class then creates an instance/object of the Menu class, "Menu menu = new Menu();".
      * We then go into the mainMenu, "menu.mainMenu();".
