@@ -1,8 +1,14 @@
 // https://www.youtube.com/watch?v=MoXxF3aWW8k&ab_channel=IntelliJIDEAbyJetBrains
 // Learn how to GitHub.
 package DART;
+//package DART.UserRoles;
+
+
+import DART.UserRoles.Customers;
 
 public class MainProgram {
+
+    private static Customers customerObject = new Customers();
 
     public static void main(String[] args) {
 
@@ -95,7 +101,7 @@ public class MainProgram {
             switch (menuChoice) {   // Here we go to different menus based on user input.
                 case 1 -> mainMenu();
                 case 2 -> mainMenu();
-                case 3 -> mainMenu();
+                case 3 -> customerObject.registration();
                 case 4 -> mainMenu();
                 case 5 -> mainMenu();
                 case 6 -> mainMenu();
