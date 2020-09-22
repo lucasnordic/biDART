@@ -1,10 +1,12 @@
 package DART.Data;
 
 import DART.ScannerInput;
+//import DART.Data.Employee;    // This is automatically seen as something this class has access to if it is public.
 
 public class Menu {
-    private static final String managerPassword = "admin123";
-    private static final String employeePassword = "password123";
+    private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
+    private static String managerPassword = "admin123";
+    private static String employeePassword = "password123";
     /**
      * This method handles the main menu contents. It is void so it doesn't return anything
      */
@@ -30,8 +32,23 @@ public class Menu {
 
         //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
+
+            System.out.println("Enter a password:");
+            String inputPasswordMa = ScannerInput.inputString();
+            if (!inputPasswordMa.equals(managerPassword)) {
+                System.out.println("Invalid password!\n" +
+                        "Please try again.");
+                mainMenu(); // allows go back to menu
+            }
             managerMenu();
         } else if (menuChoice.equalsIgnoreCase("E")) {
+            System.out.println("Enter a password:");
+            String inputPasswordEm = ScannerInput.inputString();
+            if (!inputPasswordEm.equals(employeePassword)) {
+                System.out.println("Invalid password!\n" +
+                        "Please try again.");
+                mainMenu(); // allows go back to menu
+            }
             employeeMenu();
         } else if (menuChoice.equalsIgnoreCase("C")) {
             customerMenu();
@@ -40,40 +57,59 @@ public class Menu {
         }
     }
 
+    //  This method handles the manager menu contents.
     public void managerMenu() {
-        //  This method handles the manager menu contents.
-        // Here we create the content of the menu
+
+        // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
         String[] menuItems = {"Add an employee", "View all employees", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
-
 
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
         int menuChoice;
 
-        System.out.println("Insert password:");
-        String password = ScannerInput.inputString();
-        if (password.equals(managerPassword)) {
+        // Here we send this content to be printed:
+        printMenuItems(title, menuItems, inputPrompt);
 
-            printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
-            menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // these min* and max* goes into the MenuHandler class. MenuHandler prints the "title" and "mainMenuItems"
+        // Here we let the user input a number between the choices available based on the size of the menuItems array:
+        menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
-            switch (menuChoice) {   // Here we go to different menus based on user input.
-                case 1 -> this.mainMenu();
-                case 2 -> mainMenu();
-                case 3 -> mainMenu();
-                default -> System.exit(0);
-            }
-        } else {
-            System.out.println("INVALID PASSWORD");
-            System.out.println(" ");
-            mainMenu();
+        // Here we go to different menus based on user input:
+        switch (menuChoice) {
+            case 1 -> addEmployeeInput();
+            case 2 -> employeeLibrary.getEmployeeList();
+            case 3 -> mainMenu();
+            default -> System.exit(0);
         }
     }
+    public void addEmployeeInput(){
 
-    public void employeeMenu() {    //  This method handles the employee menu contents.
+        System.out.print("Type employee's name: ");
+        String employeeName = ScannerInput.inputString();
+
+        System.out.print("Type employee's birth year: ");
+        int employeeBirthYear = ScannerInput.inputInt();
+
+        System.out.print("Type employee's gross salary: ");
+        double employeeGrossSalary = ScannerInput.inputDouble();
+
+        Employee newEmployee = employeeLibrary.createEmployee(
+                employeeName,
+                employeeBirthYear,
+                employeeGrossSalary
+        );
+
+        System.out.println("Do you really want to add " + newEmployee);
+    }
+    public void getEmployeeList() {
+        //System.out.println(employeeLibrary.getEmployeeList());
+    }
+
+    //  This handles the employee menu contents.
+    public void employeeMenu() {
+        //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
                 "Remove a customer", "Show total rent profit", "View all games", "Return to Main Menu",
@@ -84,30 +120,24 @@ public class Menu {
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
 
-        System.out.println("Insert password:");
-        String password = ScannerInput.inputString();   // Here we call the method "inputString" from the class "ScannerInput" and we say that the password is equal to the input.
+        // Here we send the menu content to be printed:
+        printMenuItems(title, menuItems, inputPrompt);
 
-        if (password.equals(employeePassword)) {
+        // Here we let the user input a number between the choices available based on the size of the menuItems array:
+        int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
-            printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
-
-            int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
-
-            switch (menuChoice) {   // Here we go to different menus based on user input.
-                case 1 -> menuRegisterAGame();
-                case 2 -> menuRemoveAGame();
-                // case 3 -> menuRegisterACustomer();
-                //case 4 -> menuRemoveACustomer();
-                // case 5 -> menuShowTotalRentProfit();
-                //case 6 -> menuViewAllGames();
-                case 7 -> mainMenu();
-                //default -> System.exit(0);
-            }
-        } else {
-            System.out.println("INVALID PASSWORD");
-            System.out.println(" ");
+        // Here we go to different menus based on users input.
+        switch (menuChoice) {
+            case 1 -> menuRegisterAGame();
+            case 2 -> menuRemoveAGame();
+            // case 3 -> menuRegisterACustomer();
+            //case 4 -> menuRemoveACustomer();
+            // case 5 -> menuShowTotalRentProfit();
+            //case 6 -> menuViewAllGames();
+            case 7 -> mainMenu();
+            //default -> System.exit(0);
         }
-        employeeMenu();
+
     }
 
     public void customerMenu() { //  This method handles the customer menu contents.
