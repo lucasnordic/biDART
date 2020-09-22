@@ -81,8 +81,9 @@ public class Menu {
             case 1 -> addEmployeeInput();
             case 2 -> employeeLibrary.getEmployeeList();
             case 3 -> mainMenu();
-            default -> System.exit(0);
+            //default -> managerMenu();
         }
+        managerMenu();
     }
     public void addEmployeeInput(){
 
