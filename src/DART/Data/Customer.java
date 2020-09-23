@@ -1,13 +1,25 @@
+/*
 package DART.Data;
 
+import java.util.Scanner;
+
 public class Customer {
-    private int id;
+    private long id;
     private String name;
-    private String address;
-    private int birthYear;
-    private double grossSalary;
 
-    // we need to make a constructor:
-    // RoleBlueprint ()
+    public Customer(long id) {
+        this.id = id;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter name of a customer:");
+        name = scanner.nextLine();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
-
+ */
