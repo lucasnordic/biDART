@@ -11,10 +11,12 @@ import java.util.ArrayList;
     Todo:    "Which game should be removed? ID: "
     Todo:    "2.2" - remove employee
     Todo:    "2.3"
+    Todo:    "3.0" - A game Array
+    Todo:    "4.0" - A customer Array
     Todo:    "4.1" - Create a customer
     Todo:    "4.2" - Remove a customer
-    Todo:    "5.2"
-    Todo:    "5.3"
+    Todo:    "5.2" - Can't do before 4.0 is done
+    Todo:    "5.3" - Can't do before 3.0 is done
     Todo:    "6.1"
     Todo:    "6.2"
     Todo:    "6.3"
