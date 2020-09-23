@@ -1,7 +1,6 @@
 package DART.Data;
 
 import DART.ScannerInput;
-
 import java.util.ArrayList;
 //import DART.Data.Employee;    // This is automatically seen as something this class has access to if it is public.
 
@@ -10,7 +9,7 @@ public class Menu {
     private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
     private static String managerPassword = "admin123";
     private static String employeePassword = "password123";
-    /**
+    /*
      * This method handles the main menu contents. It is void so it doesn't return anything
      */
     public void mainMenu() {
@@ -86,7 +85,7 @@ public class Menu {
             case 1 -> addEmployeeInput();
             case 2 -> showEmployeeList();
             case 3 -> mainMenu();
-            //default -> managerMenu();
+            default -> System.exit(0);
         }
         managerMenu();
     }
@@ -108,6 +107,7 @@ public class Menu {
                 employeeGrossSalary
         );
 
+        System.out.println("You added\n" + newEmployee);
         System.out.print("Add employee? ");
         String result = ScannerInput.inputValidString(new String[]{"Y","N"});
 
@@ -147,7 +147,10 @@ public class Menu {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> menuRegisterAGame();
+            case 1 -> {
+                menuRegisterAGame();
+                employeeMenu();
+            }
             case 2 -> menuRemoveAGame();
             // case 3 -> menuRegisterACustomer();
             //case 4 -> menuRemoveACustomer();
@@ -194,7 +197,7 @@ public class Menu {
 
         Game game = new Game(gameLastNumber++);//creating new game, next id +1
         gameLibrary.addGame(game);// method that allow to add games to library
-        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus());
+        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus()+"\n");
 
     }
     private static void menuRemoveAGame () {

@@ -55,7 +55,7 @@ public class Employee {
 
     //Return a String that represent the object.
     public String toString() {
-        return name + " was born in " + this.getBirthYear() + " and gets " + this.getGrossSalary() + " as gross salary.";
+        return "Employee: " + name + ".\n" + "Birth Year: " +  this.getBirthYear() + "\nGross Salary: " + this.getGrossSalary() + "\n\n";
     }
 
     // TODO: Move this to employeeMenu?
