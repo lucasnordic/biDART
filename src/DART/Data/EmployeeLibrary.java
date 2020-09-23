@@ -15,7 +15,8 @@ public class EmployeeLibrary {
     // TODO: Check for existing ID.
     public void addEmployee(Employee newEmployee) {
         employeeList.add(newEmployee);
-        System.out.println(newEmployee);
+        System.out.println("Employee was succesfully added :)");
+        System.out.println(" ");
     }
 
     // TODO: Implement, remove employeeFromList
@@ -28,8 +29,8 @@ public class EmployeeLibrary {
     }
 
     // TODO: getAllEmployees
-    public void getEmployeeList() {
-        System.out.println(employeeList.toString());
+    public ArrayList<Employee> getEmployeeList(){
+        return employeeList;
     }
 
 

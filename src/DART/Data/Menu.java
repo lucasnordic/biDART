@@ -1,10 +1,13 @@
 package DART.Data;
 
 import DART.ScannerInput;
+
+import java.util.ArrayList;
 //import DART.Data.Employee;    // This is automatically seen as something this class has access to if it is public.
 
 public class Menu {
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
+    private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
     private static String managerPassword = "admin123";
     private static String employeePassword = "password123";
     /**
@@ -35,6 +38,7 @@ public class Menu {
 
             System.out.println("Enter a password:");
             String inputPasswordMa = ScannerInput.inputString();
+            System.out.println(" ");
             if (!inputPasswordMa.equals(managerPassword)) {
                 System.out.println("Invalid password!\n" +
                         "Please try again.");
@@ -43,6 +47,7 @@ public class Menu {
             managerMenu();
         } else if (menuChoice.equalsIgnoreCase("E")) {
             System.out.println("Enter a password:");
+            System.out.println(" ");
             String inputPasswordEm = ScannerInput.inputString();
             if (!inputPasswordEm.equals(employeePassword)) {
                 System.out.println("Invalid password!\n" +
@@ -79,11 +84,13 @@ public class Menu {
         // Here we go to different menus based on user input:
         switch (menuChoice) {
             case 1 -> addEmployeeInput();
-            case 2 -> employeeLibrary.getEmployeeList();
+            case 2 -> showEmployeeList();
             case 3 -> mainMenu();
-            default -> System.exit(0);
+            //default -> managerMenu();
         }
+        managerMenu();
     }
+
     public void addEmployeeInput(){
 
         System.out.print("Type employee's name: ");
@@ -101,10 +108,22 @@ public class Menu {
                 employeeGrossSalary
         );
 
-        System.out.println("Do you really want to add " + newEmployee);
+        System.out.print("Add employee? ");
+        String result = ScannerInput.inputValidString(new String[]{"Y","N"});
+
+        if (result.equalsIgnoreCase("Y")) {
+            employeeLibrary.addEmployee(newEmployee);
+        }
     }
-    public void getEmployeeList() {
+
+    public void showEmployeeList() {
         //System.out.println(employeeLibrary.getEmployeeList());
+        ArrayList<Employee> list = employeeLibrary.getEmployeeList();
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+        System.out.println(" ");
     }
 
     //  This handles the employee menu contents.
@@ -137,7 +156,7 @@ public class Menu {
             case 7 -> mainMenu();
             //default -> System.exit(0);
         }
-
+        employeeMenu();
     }
 
     public void customerMenu() { //  This method handles the customer menu contents.
@@ -185,6 +204,4 @@ public class Menu {
     }
     private static int gameLastNumber = 1;
     //private Game[] games = new Game[1];//array for games
-    private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
-
 }
