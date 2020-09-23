@@ -8,10 +8,10 @@ import DART.Data.GameLibrary;
 import java.util.ArrayList;
 
 /*
-    Todo:    "Which game should be removed? ID: "
     Todo:    "2.2" - remove employee
-    Todo:    "2.3"
+    Todo:    "2.3" - Net salary
     Todo:    "3.0" - A game Array
+    Todo:    "3.2" - Remove a game
     Todo:    "4.0" - A customer Array
     Todo:    "4.1" - Create a customer
     Todo:    "4.2" - Remove a customer
