@@ -27,12 +27,14 @@ public class Dart {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
-        String[] validMenuChoice = {"M", "E", "C", "X"};    //  Valid choices for user while in main menu.
-        // In "menuChoice" we store the choice the user is going to take.
-        // Here we use the static method "inputValidString" in the class "ScannerInput".
-        // In "inputValidString" we check so that "menuChoice" is equal to "validMenuChoice":
+        // Here we send this content to be printed by the Class "Print"
+        printMenuItems(title, menuItems, inputPrompt);
+
+        //  Valid choices for user while in main menu.
+        String[] validMenuChoice = {"M", "E", "C", "X"};
+
+        // We store the choice the user is going to take.
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
 
         //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
@@ -90,6 +92,7 @@ public class Dart {
             case 3 -> mainMenu();
             default -> System.exit(0);
         }
+        // We go back to the same method we are in.
         managerMenu();
     }
 
