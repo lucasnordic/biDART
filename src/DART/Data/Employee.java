@@ -1,8 +1,5 @@
 package DART.Data;
 
-import DART.PrintStuff;
-import DART.userInputHandler;
-
 import java.util.Arrays;
 
 public class Employee {
@@ -57,30 +54,4 @@ public class Employee {
     public String toString() {
         return "Employee: " + name + ".\n" + "Birth Year: " +  this.getBirthYear() + "\nGross Salary: " + this.getGrossSalary() + "\n\n";
     }
-
-    // TODO: Move this to employeeMenu?
-    public static void main(String[] args) {
-        PrintStuff printText = new PrintStuff();
-
-        // Here we are printing text and then we are assigning a value to "employeeName".
-        // We then
-        printText.printLine("Type employee's name: ");
-        String employeeName = userInputHandler.inputString();
-
-        printText.printLine("Type employee's birth year: ");
-        int employeeBirthYear = userInputHandler.inputInt();
-
-        printText.printLine("Type employee's gross salary: ");
-        double employeeGrossSalary = userInputHandler.inputDouble();
-
-        /*
-        Employee employee = new Employee(employeeName, employeeBirthYear, employeeGrossSalary);
-        String[] allEmployees = employee.getName();
-        for (String allEmployee : allEmployees) {
-            System.out.println(allEmployee + " ");
-
-        }
-        */
-    }
-
 }

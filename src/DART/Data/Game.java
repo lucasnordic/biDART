@@ -1,8 +1,6 @@
 package DART.Data;
 
-import DART.ScannerInput;
-
-import java.util.Scanner;
+import DART.UserInputHandler;
 
 public class Game {
     private long id;
@@ -14,11 +12,11 @@ public class Game {
     public Game(int id) {
         this.id = id;
         System.out.println("Please enter title of a game:");
-        title = userInputHandler.inputString();
+        title = UserInputHandler.inputString();
         System.out.println("Please enter genre of a game:");
-        genre = userInputHandler.inputString();
+        genre = UserInputHandler.inputString();
         System.out.println("Please enter daily rent of a game:");
-        dailyRent = userInputHandler.inputDouble();
+        dailyRent = UserInputHandler.inputDouble();
         System.out.print("Rent status: " + rentStatus);
         System.out.println();
         System.out.println("You created a new game. Game No" + id + "!" );

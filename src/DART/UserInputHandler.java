@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 // This Class only handles input.
-public class userInputHandler {
+public class UserInputHandler {
 
     // initializes the scanner to be used everywhere in this class "ScannerInput".
     private static final Scanner input = new Scanner(System.in);
