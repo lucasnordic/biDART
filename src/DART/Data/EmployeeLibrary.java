@@ -5,9 +5,7 @@ import java.util.ArrayList;
 public class EmployeeLibrary {
     private ArrayList<Employee> employeeList = new ArrayList<>();
 
-    // TODO: Implement, add employee String name, int birthYear, double grossSalary
     public Employee createEmployee(String name, int birthYear, double grossSalary) {
-
         return new Employee(name, birthYear, grossSalary);
     }
 
@@ -20,18 +18,12 @@ public class EmployeeLibrary {
 
     // TODO: Implement, remove employeeFromList
 
-
-    // TODO: get EmployeeFromList
     public Employee getEmployeeFromList(String id) {
         // TODO: Implemet this bonkers feuture
         return null;
     }
 
-    // TODO: getAllEmployees
     public ArrayList<Employee> getEmployeeList(){
         return employeeList;
     }
-
-
-    // TODO: Implement, add Customer
 }

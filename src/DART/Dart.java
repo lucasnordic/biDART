@@ -7,6 +7,21 @@ import DART.Data.GameLibrary;
 
 import java.util.ArrayList;
 
+/*
+    Todo:    "Which game should be removed? ID: "
+    Todo:    "2.2" - remove employee
+    Todo:    "2.3"
+    Todo:    "4.1" - Create a customer
+    Todo:    "4.2" - Remove a customer
+    Todo:    "5.2"
+    Todo:    "5.3"
+    Todo:    "6.1"
+    Todo:    "6.2"
+    Todo:    "6.3"
+    Todo:    "VG feature 1: UUID for Employees, Games and Customers"
+    Todo:    "VG feature 2: Rent based on date"
+ */
+
 public class Dart {
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
     private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
