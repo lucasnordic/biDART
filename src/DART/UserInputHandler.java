@@ -6,46 +6,50 @@ import java.util.Scanner;
 // This Class only handles input.
 public class UserInputHandler {
 
-    // initializes the scanner to be used everywhere in this class "ScannerInput".
+    // initializes the scanner to be used everywhere in this class:
     private static final Scanner input = new Scanner(System.in);
 
-    // If you want the user to input a String.
+    // Input a String:
     public static String inputString() {
         return input.nextLine();
     }
 
-    // If you want the user to input a single integer.
+    // Input an integer:
     public static int inputInt() {
         return input.nextInt();
     }
 
-    //  This method handles double input. Not being used atm.
+    // Input a double:
     public static double inputDouble() {
         return input.nextDouble();
     }
 
-    // If you want the user to input a number between two values.
+    // Input an integer between a min and a max value:
     public static int inputIntMinMax(int min, int max) {  // This method handles integer input only. It needs to have a min and max value.
         int inputResult = input.nextInt();  // Here we let the user input an integer.
         input.nextLine();
-        // This while loop checks if user types a number between the variables "min" and "max".
+
+        // Checks if user types a number between the variables "min" and "max".
         while (inputResult < min || inputResult > max) {
             System.out.print("Please enter a valid value(" + min + "-" + max + "): ");
             inputResult = input.nextInt();
             input.nextLine();
         }
+
         return inputResult;
     }
 
-    //  This method handles string input. We send "validUserInput to the method so it knows when it is done.
+    //  Input a String and check with the sent array if the input is of a correct value:
     public static String inputValidString(String[] validUserInput) {
         String inputResult = input.nextLine();
-        // We need to check if user types a correct string.
+
+        // Checks if the input is part of the "validUserInput" array.
         while (!Arrays.asList(validUserInput).contains(inputResult.toUpperCase())) {
             System.out.print("Please enter a valid value( " + Arrays.toString(validUserInput) + " ): ");
             inputResult = input.nextLine();
         }
         System.out.println(" ");
+
         return inputResult;
     }
 }
