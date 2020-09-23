@@ -1,7 +1,7 @@
 package DART.Data;
 
 import DART.PrintStuff;
-import DART.ScannerInput;
+import DART.userInputHandler;
 
 import java.util.Arrays;
 
@@ -65,13 +65,13 @@ public class Employee {
         // Here we are printing text and then we are assigning a value to "employeeName".
         // We then
         printText.printLine("Type employee's name: ");
-        String employeeName = ScannerInput.inputString();
+        String employeeName = userInputHandler.inputString();
 
         printText.printLine("Type employee's birth year: ");
-        int employeeBirthYear = ScannerInput.inputInt();
+        int employeeBirthYear = userInputHandler.inputInt();
 
         printText.printLine("Type employee's gross salary: ");
-        double employeeGrossSalary = ScannerInput.inputDouble();
+        double employeeGrossSalary = userInputHandler.inputDouble();
 
         /*
         Employee employee = new Employee(employeeName, employeeBirthYear, employeeGrossSalary);

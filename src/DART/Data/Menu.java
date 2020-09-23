@@ -1,6 +1,6 @@
 package DART.Data;
 
-import DART.ScannerInput;
+import DART.userInputHandler;
 
 import java.util.ArrayList;
 //import DART.Data.Employee;    // This is automatically seen as something this class has access to if it is public.
@@ -31,13 +31,13 @@ public class Menu {
         // In "menuChoice" we store the choice the user is going to take.
         // Here we use the static method "inputValidString" in the class "ScannerInput".
         // In "inputValidString" we check so that "menuChoice" is equal to "validMenuChoice":
-        String menuChoice = ScannerInput.inputValidString(validMenuChoice);
+        String menuChoice = userInputHandler.inputValidString(validMenuChoice);
 
         //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
 
             System.out.println("Enter a password:");
-            String inputPasswordMa = ScannerInput.inputString();
+            String inputPasswordMa = userInputHandler.inputString();
             System.out.println(" ");
             if (!inputPasswordMa.equals(managerPassword)) {
                 System.out.println("Invalid password!\n" +
@@ -48,7 +48,7 @@ public class Menu {
         } else if (menuChoice.equalsIgnoreCase("E")) {
             System.out.println("Enter a password:");
             System.out.println(" ");
-            String inputPasswordEm = ScannerInput.inputString();
+            String inputPasswordEm = userInputHandler.inputString();
             if (!inputPasswordEm.equals(employeePassword)) {
                 System.out.println("Invalid password!\n" +
                         "Please try again.");
@@ -79,7 +79,7 @@ public class Menu {
         printMenuItems(title, menuItems, inputPrompt);
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        menuChoice = userInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
@@ -94,13 +94,13 @@ public class Menu {
     public void addEmployeeInput(){
 
         System.out.print("Type employee's name: ");
-        String employeeName = ScannerInput.inputString();
+        String employeeName = userInputHandler.inputString();
 
         System.out.print("Type employee's birth year: ");
-        int employeeBirthYear = ScannerInput.inputInt();
+        int employeeBirthYear = userInputHandler.inputInt();
 
         System.out.print("Type employee's gross salary: ");
-        double employeeGrossSalary = ScannerInput.inputDouble();
+        double employeeGrossSalary = userInputHandler.inputDouble();
 
         Employee newEmployee = employeeLibrary.createEmployee(
                 employeeName,
@@ -109,7 +109,7 @@ public class Menu {
         );
 
         System.out.print("Add employee? ");
-        String result = ScannerInput.inputValidString(new String[]{"Y","N"});
+        String result = userInputHandler.inputValidString(new String[]{"Y","N"});
 
         if (result.equalsIgnoreCase("Y")) {
             employeeLibrary.addEmployee(newEmployee);
@@ -143,7 +143,7 @@ public class Menu {
         printMenuItems(title, menuItems, inputPrompt);
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        int menuChoice = userInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
@@ -169,7 +169,7 @@ public class Menu {
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
-        int menuChoice = ScannerInput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+        int menuChoice = userInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
             case 1 -> mainMenu();
@@ -199,7 +199,7 @@ public class Menu {
     }
     private static void menuRemoveAGame () {
         System.out.println("Please enter a number of the game you want to remove: ");
-        int id = ScannerInput.inputInt();
+        int id = userInputHandler.inputInt();
         gameLibrary.removeAGame(id);
     }
     private static int gameLastNumber = 1;
