@@ -1,13 +1,13 @@
 package DART.Data;
 
 import DART.ScannerInput;
-//import DART.Data.Employee;    // This is automatically seen as something this class has access to if it is public.
+//import DART.Data.Employee; //This is automatically seen as something this class has access to if it is public.
 
 public class Menu {
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
     private static String managerPassword = "admin123";
     private static String employeePassword = "password123";
-    /**
+    /*
      * This method handles the main menu contents. It is void so it doesn't return anything
      */
     public void mainMenu() {
@@ -78,9 +78,15 @@ public class Menu {
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
-            case 1 -> addEmployeeInput();
-            case 2 -> employeeLibrary.getEmployeeList();
-            case 3 -> mainMenu();
+            case 1 -> { addEmployeeInput();
+            managerMenu();
+            }
+            case 2 ->{  employeeLibrary.getEmployeeList();
+            managerMenu();
+            }
+            case 3 ->{ mainMenu();
+            managerMenu();}
+
             default -> System.exit(0);
         }
     }
@@ -101,7 +107,7 @@ public class Menu {
                 employeeGrossSalary
         );
 
-        System.out.println("Do you really want to add " + newEmployee);
+       System.out.println("You added\n" + newEmployee);
     }
     public void getEmployeeList() {
         //System.out.println(employeeLibrary.getEmployeeList());
@@ -128,7 +134,10 @@ public class Menu {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> menuRegisterAGame();
+            case 1 -> {
+                menuRegisterAGame();
+                employeeMenu();
+            }
             case 2 -> menuRemoveAGame();
             // case 3 -> menuRegisterACustomer();
             //case 4 -> menuRemoveACustomer();
@@ -175,7 +184,7 @@ public class Menu {
 
         Game game = new Game(gameLastNumber++);//creating new game, next id +1
         gameLibrary.addGame(game);// method that allow to add games to library
-        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus());
+        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus()+"\n");
 
     }
     private static void menuRemoveAGame () {
