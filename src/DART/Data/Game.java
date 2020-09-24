@@ -3,7 +3,7 @@ package DART.Data;
 import DART.UserInputHandler;
 
 public class Game {
-    private long id;
+    private int id;
     private String title;
     private String genre;
     private double dailyRent;
@@ -28,7 +28,7 @@ public class Game {
 
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

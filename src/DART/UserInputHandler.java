@@ -11,48 +11,43 @@ public class UserInputHandler {
 
     // Input a String:
     public static String inputString() {
-        return input.nextLine();
+        String inputResult = input.nextLine();
+
+//        while (!input.hasNextLine()) {
+//            System.out.println("That's not a number!");
+//            input.nextLine(); // this is important!?
+//        }
+//        // inputResult = input.nextLine();
+
+        return inputResult;
     }
 
     // Input an integer:
     public static int inputInt() {
 
-        int a = input.nextInt();
-        input.nextLine();
-        return a;
+        int inputResult;
 
-  /*
-        int inputResult = input.nextInt();
-        input.nextLine();
-
-        if (input.hasNextInt()) {
-            inputResult = input.nextInt();
-            input.nextLine();
-        } else {
-            inputInt();
+        while (!input.hasNextInt()) {
+            System.out.println("That's not a number!");
+            input.nextLine(); // this is important!?
         }
-
-
-        boolean isDigit = Character.isDigit((char) inputResult);
-        while (isDigit = false) {
-            System.out.print("This is not a valid number");
-            inputResult = input.nextInt();
-            isDigit = true;
-            input.nextLine();
-        }
-
-
-
+        inputResult = input.nextInt();
 
         return inputResult;
-        */
     }
 
     // Input a double:
     public static double inputDouble() {
-        double a = input.nextDouble();
-        input.nextLine();
-        return a;
+
+        double inputResult;
+
+        while (!input.hasNextDouble()) {
+            System.out.println("That's not a number!");
+            input.nextLine(); // this is important!?
+        }
+        inputResult = input.nextDouble();
+
+        return inputResult;
     }
 
     // Input an integer between a min and a max value:
