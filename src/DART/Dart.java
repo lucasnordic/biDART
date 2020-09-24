@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class Dart {
     private Customers customers = new Customers();
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
-    private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
+    private static GameLibrary2 gameLibrary = new GameLibrary2();//creating new library for games
     private static String managerPassword = "admin123";
     private static String employeePassword = "password123";
     private static int gameLastNumber = 1;
@@ -105,14 +105,14 @@ public class Dart {
             case 1 -> addEmployeeInput();
             case 2 -> showEmployeeList();
             case 3 -> mainMenu();
-            default -> System.exit(0);
+            //default -> System.exit(0);
         }
         // We go back to the same method we are in.
         managerMenu();
     }
 
     //This method handles the sub-menu when adding an employee:
-    public void addEmployeeInput(){
+    public void addEmployeeInput() {
 
         System.out.print("Type employee's name: ");
         String employeeName = UserInputHandler.inputString();
@@ -178,9 +178,9 @@ public class Dart {
             case 3 -> customers.registration();
             //case 4 -> menuRemoveACustomer();
             // case 5 -> menuShowTotalRentProfit();
-            //case 6 -> menuViewAllGames();
+            case 6 -> gameLibrary.showAllGames();
             case 7 -> mainMenu();
-            default -> System.exit(0);
+            //default -> System.exit(0);
         }
         employeeMenu();
     }
@@ -199,17 +199,18 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> mainMenu();
-            case 2 -> mainMenu();
+            case 1 -> rentAGame();
+            case 2 -> returnAGame();
             case 3 -> mainMenu();
-            default -> System.exit(0);
+            //default -> System.exit(0);
         }
+        customerMenu();
     }
 
     //  This right here is our good old menu printer:
     private void printMenuItems(String title, String[] menuItems, String inputPrompt) {
 
-        System.out.println( title );
+        System.out.println(title);
 
         for (int i = 0; i < menuItems.length; i++) {    // This loop prints out all the menu options that are stored in the "menuItems" array.
             System.out.println((i + 1) + ". " + menuItems[i]);
@@ -222,15 +223,39 @@ public class Dart {
 
         Game game = new Game(gameLastNumber++);//creating new game, next id +1
         gameLibrary.addGame(game);// method that allow to add games to library
-        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus()+"\n");
+        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus() + "\n");
 
     }
 
-    private static void menuRemoveAGame () {
+    private static void menuRemoveAGame() {
         System.out.println("Please enter a number of the game you want to remove: ");
         int id = UserInputHandler.inputInt();
-        gameLibrary.removeAGame(id);
+        gameLibrary.removeGame(id);
     }
+
+    private static void rentAGame() {
+        gameLibrary.showAvailableGames();
+        System.out.println("Please enter game ID that you want to rent: ");
+        int gameID = UserInputHandler.inputInt();
+        gameLibrary.rentAGame(gameID);
+    }
+
+    private static void returnAGame() {
+        System.out.println("Please enter game ID that you want to return: ");
+        int gameID = UserInputHandler.inputInt();
+        Game game = gameLibrary.find(gameID);// extracting a game from library by game id
+        if (game == null) {
+            System.out.println("This game was not found!Try again!");
+            return;
+        }
+        System.out.println("Please enter the number of days in which the game was rented ");
+        int days = UserInputHandler.inputInt();
+        double dailyRent = game.getDailyRent();
+        double totalRent = dailyRent * days;
+        System.out.println("The total rent is"+ dailyRent+"*"+days+"="+totalRent);
+        game.makeGameAvailableAgain();
+    }
+
 
     //private Game[] games = new Game[1];//array for games
 }
