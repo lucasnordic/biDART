@@ -120,11 +120,15 @@ public class Dart {
         System.out.print("Type employee's birth year: ");
         int employeeBirthYear = UserInputHandler.inputInt();
 
+        System.out.print("Type employee's ID: ");
+        int employeeID = UserInputHandler.inputInt();
+
         System.out.print("Type employee's gross salary: ");
         double employeeGrossSalary = UserInputHandler.inputDouble();
 
         Employee newEmployee = employeeLibrary.createEmployee(
                 employeeName,
+                employeeID,
                 employeeBirthYear,
                 employeeGrossSalary
         );
@@ -140,11 +144,11 @@ public class Dart {
 
     // this method handles showing the employeelist and removing employees:
     public void showEmployeeList() {
-        //System.out.println(employeeLibrary.getEmployeeList());
+      System.out.println(employeeLibrary.getEmployeeList());
         ArrayList<Employee> list = employeeLibrary.getEmployeeList();
 
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
+        System.out.println(list.get(i));
         }
         System.out.println(" ");
     }
