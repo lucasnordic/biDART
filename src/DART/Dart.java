@@ -1,9 +1,6 @@
 package DART;
 
-import DART.Data.Employee;
-import DART.Data.EmployeeLibrary;
-import DART.Data.Game;
-import DART.Data.GameLibrary;
+import DART.Data.*;
 
 import java.util.ArrayList;
 
@@ -25,6 +22,7 @@ import java.util.ArrayList;
  */
 
 public class Dart {
+    private Customers customers = new Customers();
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
     private static GameLibrary gameLibrary = new GameLibrary();//creating new library for games
     private static String managerPassword = "admin123";
@@ -177,7 +175,7 @@ public class Dart {
         switch (menuChoice) {
             case 1 -> menuRegisterAGame();
             case 2 -> menuRemoveAGame();
-            // case 3 -> menuRegisterACustomer();
+            case 3 -> customers.registration();
             //case 4 -> menuRemoveACustomer();
             // case 5 -> menuShowTotalRentProfit();
             //case 6 -> menuViewAllGames();

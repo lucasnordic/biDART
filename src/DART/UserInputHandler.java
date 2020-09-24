@@ -16,6 +16,12 @@ public class UserInputHandler {
 
     // Input an integer:
     public static int inputInt() {
+
+        int a = input.nextInt();
+        input.nextLine();
+        return a;
+
+  /*
         int inputResult = input.nextInt();
         input.nextLine();
 
@@ -39,11 +45,14 @@ public class UserInputHandler {
 
 
         return inputResult;
+        */
     }
 
     // Input a double:
     public static double inputDouble() {
-        return input.nextDouble();
+        double a = input.nextDouble();
+        input.nextLine();
+        return a;
     }
 
     // Input an integer between a min and a max value:
