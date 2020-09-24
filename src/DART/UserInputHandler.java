@@ -16,7 +16,29 @@ public class UserInputHandler {
 
     // Input an integer:
     public static int inputInt() {
-        return input.nextInt();
+        int inputResult = input.nextInt();
+        input.nextLine();
+
+        if (input.hasNextInt()) {
+            inputResult = input.nextInt();
+            input.nextLine();
+        } else {
+            inputInt();
+        }
+
+
+        boolean isDigit = Character.isDigit((char) inputResult);
+        while (isDigit = false) {
+            System.out.print("This is not a valid number");
+            inputResult = input.nextInt();
+            isDigit = true;
+            input.nextLine();
+        }
+
+
+
+
+        return inputResult;
     }
 
     // Input a double:
