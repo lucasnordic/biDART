@@ -13,12 +13,6 @@ public class UserInputHandler {
     public static String inputString() {
         String inputResult = input.nextLine();
 
-//        while (!input.hasNextLine()) {
-//            System.out.println("That's not a number!");
-//            input.nextLine(); // this is important!?
-//        }
-//        // inputResult = input.nextLine();
-
         return inputResult;
     }
 
@@ -29,7 +23,7 @@ public class UserInputHandler {
 
         while (!input.hasNextInt()) {
             System.out.println("That's not a number!");
-            input.nextLine(); // this is important!?
+            input.next(); // this is important!?
         }
         inputResult = input.nextInt();
 
@@ -42,8 +36,8 @@ public class UserInputHandler {
         double inputResult;
 
         while (!input.hasNextDouble()) {
-            System.out.println("That's not a number!");
-            input.nextLine(); // this is important!?
+            System.out.print("That's not a number! Try again:");
+            input.next(); // this is important!?
         }
         inputResult = input.nextDouble();
 
