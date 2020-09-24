@@ -7,12 +7,14 @@ public class Employee {
     private String name;
     private int birthYear;
     private double grossSalary;
+    private String id;
 
     // controller:
     public Employee(String name, int birthYear, double grossSalary) {
         this.name = name;
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
+        this.id = UUIDGenerator.getNewEmployeeId();
     }
 
     public String[] getName() {
@@ -25,6 +27,10 @@ public class Employee {
 
     public int getBirthYear() {
         return this.birthYear;
+    }
+
+    public String getId() {
+        return id;
     }
 
     //
