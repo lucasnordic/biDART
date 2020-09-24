@@ -129,13 +129,14 @@ public class Dart {
                 employeeGrossSalary
         );
 
-        System.out.println("You added\n" + newEmployee);
-        System.out.print("Add employee? ");
-        String result = UserInputHandler.inputValidString(new String[]{"Y","N"});
+        System.out.println("You added: " + employeeName);
+        System.out.println(" ");
+//        System.out.print("Add employee? ");
+//        String result = UserInputHandler.inputValidString(new String[]{"Y","N"});
 
-        if (result.equalsIgnoreCase("Y")) {
-            employeeLibrary.addEmployee(newEmployee);
-        }
+//        if (result.equalsIgnoreCase("Y")) {
+//            employeeLibrary.addEmployee(newEmployee);
+//        }
     }
 
     // this method handles showing the employeelist and removing employees:
@@ -146,7 +147,9 @@ public class Dart {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }
-        System.out.println(" ");
+//        System.out.println(" ");
+        UserInputHandler.inputString();
+
     }
 
     //  This handles the employee menu contents:
