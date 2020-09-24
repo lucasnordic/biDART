@@ -1,4 +1,13 @@
 package DART.Data;
+
+
+public class CustomerLibrary {
+    public CustomerLibrary() {
+    }
+
+    public void customerLib() {
+    }
+}
 /*
 public class CustomerLibrary {
     private Customer[] customers;

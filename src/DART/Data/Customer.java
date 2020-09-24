@@ -1,25 +1,37 @@
-/*
 package DART.Data;
 
-import java.util.Scanner;
-
 public class Customer {
-    private long id;
+    private int ID;
     private String name;
 
-    public Customer(long id) {
-        this.id = id;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter name of a customer:");
-        name = scanner.nextLine();
+    Customer(int ID, String name) {
+        this.ID = ID;
+        this.name = name;
     }
 
-    public long getId() {
-        return id;
+    Customer() {
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public int getID() {
+        return this.ID;
+    }
+
+    public String setName(String name) {
+        this.name = name;
+        return this.name;
+    }
+
+    public int setID(int ID) {
+        this.ID = ID;
+        return this.ID;
+    }
+
+    public String toString() {
+        String var10000 = this.getName();
+        return var10000 + " ---> " + this.getID();
     }
 }
- */
