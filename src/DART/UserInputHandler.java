@@ -9,44 +9,27 @@ public class UserInputHandler {
     // initializes the scanner to be used everywhere in this class:
     private static final Scanner input = new Scanner(System.in);
 
-    // Input a String:
+    // If we want the user to stop and have to enter a key to continue:
+    public static void pressAnyKeyCon() {
+        input.nextLine();
+    }
+
+    // Input and return a String:
     public static String inputString() {
         String inputResult = input.nextLine();
-
         return inputResult;
     }
 
-    // Input an integer:
+    // Input and return an integer:
     public static int inputInt() {
-
-        int inputResult;
-/*
-        // Check if input is correct:
-        while (!input.hasNextInt()) {
-            System.out.print("That's not a number! Try again: ");
-            input.next(); // this is important!?
-        }
-        // once the user has input a correct value we store it in this variable:
-        */
-        inputResult = input.nextInt();
+        int inputResult = input.nextInt();
         input.nextLine();
-
         return inputResult;
     }
 
-    // Input a double:
+    // Input and return a double:
     public static double inputDouble() {
-
-        double inputResult;
-
-        // Check if input is correct:
-        while (!input.hasNextDouble()) {
-            System.out.print("That's not a number! Try again :");
-            input.next(); // this is important!?
-        }
-        // once the user has input a correct value we store it in this variable:
-        inputResult = input.nextDouble();
-
+        double inputResult = input.nextDouble();
         return inputResult;
     }
 
@@ -74,8 +57,18 @@ public class UserInputHandler {
             System.out.print("Please enter a valid value( " + Arrays.toString(validUserInput) + " ): ");
             inputResult = input.nextLine();
         }
-        System.out.println(" ");
+        //System.out.println(" ");
 
         return inputResult;
     }
 }
+
+
+/*
+// Check if input is correct:
+//        while (!input.hasNextInt()) {
+//            System.out.print("That's not a number! Try again: ");
+//            input.next(); // this is important!?
+//        }
+// once the user has input a correct value we store it in this variable:
+ */

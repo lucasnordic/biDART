@@ -1,5 +1,7 @@
 package DART.Data;
 
+import DART.UserInputHandler;
+
 import java.util.ArrayList;
 
 public class GameLibrary2 {
@@ -14,7 +16,6 @@ public class GameLibrary2 {
     public void addGame (Game game){
         games.add(game);
         System.out.println("The game has been added!");
-
     }
     public void removeGame (int id){
         for(int i =0 ; i<games.size(); i++){
@@ -30,6 +31,8 @@ public class GameLibrary2 {
         for(int i =0 ; i<games.size(); i++){
                 System.out.println(games.get(i));
         }
+        System.out.print("Press any key to continue: ");
+        UserInputHandler.pressAnyKeyCon();
     }
     public Game find (int gameId) {
         for (int i = 0; i < games.size(); i++) {
