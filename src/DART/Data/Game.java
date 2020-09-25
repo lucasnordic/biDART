@@ -47,4 +47,13 @@ public class Game {
     public String getRentStatus() {
         return rentStatus;
     }
+    public void rent (){
+        rentStatus="rented";
+    }
+    public void makeGameAvailableAgain(){ rentStatus="available";}
+
+    public String toString (){ //
+        return id + " : " + title + " (" + genre + "). " + dailyRent + "$. Status: " + rentStatus+"\n";
+    }
 }
+
