@@ -5,26 +5,26 @@ import DART.Data.*;
 import java.util.ArrayList;
 
 /*
-    Todo:    "2.2" - remove employee
-    Todo:    "2.3" - Net salary
-    Todo:    "3.0" - A game Array
-    Todo:    "3.2" - Remove a game
-    Todo:    "4.0" - A customer Array
-    Todo:    "4.1" - Create a customer
-    Todo:    "4.2" - Remove a customer
-    Todo:    "5.2" - Can't do before 4.0 is done
-    Todo:    "5.3" - Can't do before 3.0 is done
-    Todo:    "6.1"
-    Todo:    "6.2"
-    Todo:    "6.3"
-    Todo:    "VG feature 1: UUID for Employees, Games and Customers"
-    Todo:    "VG feature 2: Rent based on date"
+    Todo:                   "2.2" - remove employee
+    Todo:                   "2.3" - Net salary
+    Todo:                   "3.0" - A game Array
+    Todo:                   "3.2" - Remove a game
+    Todo:                   "4.0" - A customer Array
+    Todo:                   "4.1" - Create a customer
+    Todo:                   "4.2" - Remove a customer
+    Todo: DONE/Same as 4    "5.2" - Can't do before 4.0 is done
+    Todo: DONE/Same as 3    "5.3" - Can't do before 3.0 is done
+    Todo:                   "6.1"
+    Todo:                   "6.2"
+    Todo:                   "6.3"
+    Todo: DONE              "VG feature 1: UUID for Employees, Games and Customers"
+    Todo:                   "VG feature 2: Rent based on date"
  */
 
 public class Dart {
     private Customers customers = new Customers();
-    private EmployeeLibrary employeeLibrary = new EmployeeLibrary();
-    private static GameLibrary2 gameLibrary = new GameLibrary2();//creating new library for games
+    private EmployeeLibrary employeeLibrary = new EmployeeLibrary(); // The Library will exist as long as the Dart program is running.
+    private static GameLibrary2 gameLibrary = new GameLibrary2();  //creating new library for games
     private static String managerPassword = "admin123";
     private static String employeePassword = "password123";
     private static int gameLastNumber = 1;
