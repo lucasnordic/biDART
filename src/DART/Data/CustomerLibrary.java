@@ -1,49 +1,49 @@
 package DART.Data;
+import java.util.ArrayList;
+
 
 
 public class CustomerLibrary {
+
+
+    private ArrayList<Customer> customer;
+
     public CustomerLibrary() {
+
+        this.customer = new ArrayList<Customer>();
     }
 
-    public void customerLib() {
+    public void addCustomer(Customer a) {
+        customer.add(a);
+    }
+
+    public ArrayList<Customer> getCustomers() {
+        return customer;
+    }
+
+    public void removeCustomer(Customer a){
+        customer.remove(a);
+    }
+
+    public int getSize() {
+        int a = customer.size();
+        return a;
+    }
+
+    public String toString() {
+
+        return  "" + this.getCustomers();
+    }
+
+
+    public Customer get(int i) {
+        Customer a;
+        a = customer.get(i);
+        return a;
+    }
+
+
+    public void removeCustomer(int i) {
+        customer.remove(i);
     }
 }
-/*
-public class CustomerLibrary {
-    private Customer[] customers;
-    private int nextPosition;
-    public CustomerLibrary(){
-        this.customers=new Customer[5];
-    }
-    public void addCustomer(Customer customer) {
-        if (nextPosition< this.customers.length) {
-            customers[nextPosition] = customer;
-            nextPosition++;
-        }else {
-            Customer[] moreCustomers = new Customer[customers.length + 1];
-            for (int i = 0; i < customers.length; i++) {
-                moreCustomers[i] = customers[i];
-            }
-            this.customers = moreCustomers;
-            moreCustomers[nextPosition] = customer;
-            nextPosition++;
-        }
-
-
-
-    }
-    public void removeACustomer(int id){
-        for (int i = 0; i< customers.length;i++){
-            if (customers [i] !=null && customers[i].getId()==id){
-                customers[i]=null;
-                System.out.println("Customer is removed!");
-                return;
-            }
-        }
-        System.out.println("Customer with id #" +id+ " not found");
-    }
-
-}
- */
-
-

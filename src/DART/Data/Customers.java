@@ -1,52 +1,54 @@
 package DART.Data;
 import DART.Dart;
 import DART.UserInputHandler;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Customers {
 
+    CustomerLibrary customerList = new CustomerLibrary();
+
+
     public void registration() {
 
-        Dart dart = new Dart();
+        System.out.print("Creating a Customer. Please type the customer’s:\nID:  ");
+        int ID = UserInputHandler.inputInt();
 
-        ArrayList<Customer> allCustomers = new ArrayList();
-        int ID = 0;
-        String name = "";
+            System.out.print("Name:   ");
+            String name = UserInputHandler.inputString();
 
-        while(ID != -1) {
+            Customer customer = new Customer();
+            customer.setID(ID);
+            customer.setName(name);
 
-            System.out.println("Creating a Customer. Please type the customer’s (Insert -1 to get back to employee menu):\nID:  ");
+            customerList.addCustomer(customer);
+            System.out.println(customerList);
 
-            ID = UserInputHandler.inputInt();
+    }
 
-            if (ID > 0) {
 
-                System.out.print("Name:   ");
-                name = UserInputHandler.inputString();
 
-                Customer person = new Customer();
-                person.setID(ID);
-                person.setName(name);
+    public void cancellation() {
 
-                allCustomers.add(person);
+        customerList.getCustomers();
 
-            } else if (ID == -1) {
 
-                dart.employeeMenu();
+        System.out.println("Which customer should be removed? ID:");
+        int ID = UserInputHandler.inputInt();
 
-            } else {
+        for (int i = 0; i < customerList.getSize(); i++) {
 
-                System.out.println("Insert a valid ID.");
+            int a = (customerList.get(i)).getID();
+
+            if (a == ID) {
+
+                customerList.removeCustomer(i);
             }
         }
 
-        Iterator itr = allCustomers.iterator();
-
-        while(itr.hasNext()) {
-            System.out.println(itr.next());
-        }
+        System.out.println(customerList);
 
     }
 }
+
+
+
