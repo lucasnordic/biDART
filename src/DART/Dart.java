@@ -31,7 +31,7 @@ public class Dart {
 
     // This method handles the main menu contents:
     public void mainMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - -");
         // Here we create the content of the menu in two strings and the menu options in one string array:
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up! ;)\n\n" +
@@ -70,7 +70,7 @@ public class Dart {
 
     //  This method handles the manager menu contents:
     public void managerMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - -");
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
         String[] menuItems = {"Add an employee", "View all employees", "Return to Main Menu"};
@@ -143,7 +143,7 @@ public class Dart {
 
     //  This handles the employee menu contents:
     public void employeeMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - -");
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
@@ -177,7 +177,7 @@ public class Dart {
 
     //  This method handles the customer menu contents:
     public void customerMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - -");
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {"Rent a game", "Return a game", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
@@ -275,7 +275,7 @@ public class Dart {
     }
 
     public static void printIntroAscii() {
-        System.out.print("- - - - - - - - - - - - - - - - - -");
+        System.out.print("- - - - - - - - - - - - - - - - -");
         System.out.println("\n _     _______  ___  ______ _____ \n" +
                 "| |   (_)  _  \\/ _ \\ | ___ \\_   _|\n" +
                 "| |__  _| | | / /_\\ \\| |_/ / | |  \n" +
@@ -286,7 +286,8 @@ public class Dart {
     }
 
     private static void printOutroAscii () {
-        System.out.println("\n  ____               __  \n" +
+        System.out.println("- - - - - - - - - - - - -");
+        System.out.println("  ____               __  \n" +
                 " |  _ \\              \\ \\ \n" +
                 " | |_) |_   _  ___  (_) |\n" +
                 " |  _ <| | | |/ _ \\   | |\n" +
@@ -294,7 +295,7 @@ public class Dart {
                 " |____/ \\__, |\\___| (_) |\n" +
                 "         __/ |       /_/ \n" +
                 "        |___/            ");
-        System.out.println("- - - - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - -");
     }
 
     //private Game[] games = new Game[1];//array for games
