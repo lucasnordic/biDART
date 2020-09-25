@@ -4,7 +4,7 @@ public class Customer {
     private int ID;
     private String name;
 
-    Customer(int ID, String name) {
+    public Customer(int ID, String name) {
         this.ID = ID;
         this.name = name;
     }
@@ -34,4 +34,6 @@ public class Customer {
         String var10000 = this.getName();
         return var10000 + " ---> " + this.getID();
     }
+
+
 }

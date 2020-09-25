@@ -21,11 +21,8 @@ public class UserInputHandler {
 
         int inputResult;
 
-        while (!input.hasNextInt()) {
-            System.out.println("That's not a number!");
-            input.next(); // this is important!?
-        }
         inputResult = input.nextInt();
+        input.nextLine();
 
         return inputResult;
     }

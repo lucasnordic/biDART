@@ -154,6 +154,7 @@ public class Dart {
 
     //  This handles the employee menu contents:
     public void employeeMenu() {
+
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
@@ -176,7 +177,7 @@ public class Dart {
             case 1 -> menuRegisterAGame();
             case 2 -> menuRemoveAGame();
             case 3 -> customers.registration();
-            //case 4 -> menuRemoveACustomer();
+            case 4 -> customers.cancellation();
             // case 5 -> menuShowTotalRentProfit();
             case 6 -> gameLibrary.showAllGames();
             case 7 -> mainMenu();
