@@ -11,6 +11,11 @@ public class EmployeeLibrary {
 
     // TODO: Check for existing ID.
     public void addEmployee(Employee newEmployee) {
+//
+//        while (1 == ) {
+//
+//        }
+
         employeeList.add(newEmployee);
         System.out.println("Employee was succesfully added :)");
         System.out.println(" ");
@@ -20,6 +25,8 @@ public class EmployeeLibrary {
 
     public Employee getEmployeeFromList(String id) {
         // TODO: Implemet this bonkers feuture
+
+        // employeeList.remove()
         return null;
     }
 

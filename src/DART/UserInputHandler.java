@@ -20,7 +20,14 @@ public class UserInputHandler {
     public static int inputInt() {
 
         int inputResult;
-
+/*
+        // Check if input is correct:
+        while (!input.hasNextInt()) {
+            System.out.print("That's not a number! Try again: ");
+            input.next(); // this is important!?
+        }
+        // once the user has input a correct value we store it in this variable:
+        */
         inputResult = input.nextInt();
         input.nextLine();
 
@@ -32,10 +39,12 @@ public class UserInputHandler {
 
         double inputResult;
 
+        // Check if input is correct:
         while (!input.hasNextDouble()) {
-            System.out.print("That's not a number! Try again:");
+            System.out.print("That's not a number! Try again :");
             input.next(); // this is important!?
         }
+        // once the user has input a correct value we store it in this variable:
         inputResult = input.nextDouble();
 
         return inputResult;
@@ -60,7 +69,7 @@ public class UserInputHandler {
     public static String inputValidString(String[] validUserInput) {
         String inputResult = input.nextLine();
 
-        // Checks if the input is part of the "validUserInput" array.
+        // Checks if the input is part of the array.
         while (!Arrays.asList(validUserInput).contains(inputResult.toUpperCase())) {
             System.out.print("Please enter a valid value( " + Arrays.toString(validUserInput) + " ): ");
             inputResult = input.nextLine();

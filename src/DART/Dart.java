@@ -89,23 +89,21 @@ public class Dart {
         String[] menuItems = {"Add an employee", "View all employees", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
 
-        //  Here we store the max and min choice of the "menuItems":
-        int minMenuChoice = 1;
-        int maxMenuChoice = menuItems.length;
-        int menuChoice;
-
         // Here we send this content to be printed:
         printMenuItems(title, menuItems, inputPrompt);
 
+        //  Here we store the max and min choice of the "menuItems":
+        int minMenuChoice = 1;
+        int maxMenuChoice = menuItems.length;
+
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
             case 1 -> addEmployeeInput();
             case 2 -> showEmployeeList();
-            case 3 -> mainMenu();
-            //default -> System.exit(0);
+            case 3 -> menuRemoveEmployee();
         }
         // We go back to the same method we are in.
         managerMenu();
@@ -139,7 +137,7 @@ public class Dart {
 //        }
     }
 
-    // this method handles showing the employeelist and removing employees:
+    // this method handles showing the employeelist
     public void showEmployeeList() {
         //System.out.println(employeeLibrary.getEmployeeList());
         ArrayList<Employee> list = employeeLibrary.getEmployeeList();
@@ -149,6 +147,10 @@ public class Dart {
         }
 //        System.out.println(" ");
         UserInputHandler.inputString();
+
+    }
+
+    public void menuRemoveEmployee() {
 
     }
 
