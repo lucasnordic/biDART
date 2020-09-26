@@ -63,7 +63,7 @@ public class Dart {
         } else if (menuChoice.equalsIgnoreCase("C")) {
             customerMenu();
         } else if (menuChoice.equalsIgnoreCase("Z")) {
-            UserInputHandler.setInputStream(System.in);
+            // UserInputHandler.setInputStream(System.in);
         } else {
             printOutroAscii();
             //System.out.println("RIP");
