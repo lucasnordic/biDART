@@ -1,6 +1,7 @@
 package DART.Data;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 public class Employee {
 
@@ -14,11 +15,11 @@ public class Employee {
         this.name = name;
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
-        this.id = UUIDGenerator.getNewEmployeeId();
+        this.id = UUID.randomUUID().toString();
     }
 
-    public String[] getName() {
-        return new String[]{this.name};
+    public String getName() {
+        return name;
     }
 
     public double getGrossSalary() {
@@ -58,6 +59,6 @@ public class Employee {
 
     //Return a String that represent the object.
     public String toString() {
-        return "Employee: " + name + ".\n" + "Birth Year: " +  this.getBirthYear() + "\nGross Salary: " + this.getGrossSalary() + "\n\n";
+        return "ID: " + id + " Name: " + name + ". " + "Birth Year: " +  this.getBirthYear() + "Gross Salary: " + this.getGrossSalary() + "\n\n";
     }
 }
