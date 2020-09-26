@@ -1,8 +1,10 @@
-package DART;
+package DART.programm;
 
-import DART.Data.*;
+import DART.data.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
     Todo:                   "2.2" - remove employee
@@ -120,10 +122,10 @@ public class Dart {
 //        String result = UserInputHandler.inputValidString(new String[]{"Y","N"});
 
 //        if (result.equalsIgnoreCase("Y")) {
-            employeeLibrary.addEmployee(newEmployee);
+        employeeLibrary.addEmployee(newEmployee);
 //        }
 
-        System.out.println("You added: " + employeeName);
+        System.out.println(newEmployee);
         System.out.println(" ");
 
     }
@@ -137,39 +139,50 @@ public class Dart {
         for (Employee employee : list) {
             System.out.println(employee);
         }
-       // UserInputHandler.pressAnyKeyCon();
+        // UserInputHandler.pressAnyKeyCon();
 
     }
 
     // This method handles removing employees:
     public void menuRemoveEmployee() {
-        ArrayList<Employee> list = employeeLibrary.getEmployeeList();
-        Employee foundEmployee = null;
-
-        menuShowEmployeeList();
-
-        while (foundEmployee == null) {
-            System.out.println("Which employee should be removed? Please enter an ID or NAME: ");
-            String input = UserInputHandler.inputString();
-
-            int count = 0;
-            for (int i = 0; i < list.size() && count < 2; i++) {
-                Employee e = list.get(i);
-
-                if (e.getId().startsWith(input) || e.getName().startsWith(input)) {
-                    count++;
-                    foundEmployee = e;
-                }
-            }
-            if (count > 1) {
-                System.out.print("Not a Unique ID, try again.");
-                foundEmployee = null;
-            }
+        System.out.println("Please enter an ID of employee which should be removed: ");
+        String id = UserInputHandler.inputString();
+        Employee foundEmployee = employeeLibrary.getEmployeeFromList(id);
+        if (foundEmployee == null) {
+            System.out.println("Employee with id " + id + " is not found.");
+            return;
         }
-        System.out.print("ID found");
-        System.out.println(foundEmployee);
-    }
+        employeeLibrary.removeEmployee(id);
+        System.out.println("The employee was successfully removed!");
 
+//        ArrayList<Employee> list = employeeLibrary.getEmployeeList();
+//        Employee foundEmployee = null;
+//
+//        menuShowEmployeeList();
+
+//String input=" ";
+//        while (foundEmployee == null) {
+//            System.out.println("Which employee should be removed? Please enter an ID or NAME: ");
+//            input = UserInputHandler.inputString();
+//
+//            int count = 0;
+//            for (int i = 0; i < list.size() && count < 2; i++) {
+//                Employee e = list.get(i);
+//
+//                if (e.getId().startsWith(input) || e.getName().startsWith(input)) {
+//                    count++;
+//                    foundEmployee = e;
+//                }
+//            }
+//            if (count > 1) {
+//                System.out.print("Not a Unique ID, try again.");
+//                foundEmployee = null;
+//            }
+//        }
+//        System.out.print("“Employee with id " + input + " not found");
+//        System.out.println(foundEmployee);
+//    }
+    }
     //  This handles the employee menu contents:
     public void employeeMenu() {
         System.out.println("- - - - - - - - - - - - - - - - -");
@@ -196,7 +209,7 @@ public class Dart {
             case 2 -> menuRemoveAGame();
             case 3 -> customers.registration();
             case 4 -> customers.cancellation();
-            // case 5 -> menuShowTotalRentProfit();
+            case 5 -> menuShowTotalRentProfit();
             case 6 -> gameLibrary.showAllGames();
             case 7 -> mainMenu();
             //default -> System.exit(0);
@@ -259,8 +272,13 @@ public class Dart {
         int days = UserInputHandler.inputInt();
         double dailyRent = game.getDailyRent();
         double totalRent = dailyRent * days;
-        System.out.println("The total rent is"+ dailyRent+"*"+days+"="+totalRent);
+        System.out.println("The total rent is" + dailyRent + "*" + days + "=" + totalRent);
         game.makeGameAvailableAgain();
+        gameLibrary.storeDailyRent(totalRent);
+    }
+
+    private void menuShowTotalRentProfit(){
+        System.out.println("Today you earned: " + gameLibrary.getTotalRentProfit()+" SEK.");
     }
 
     public void passwordMenu(String menuChoice) {
@@ -311,10 +329,10 @@ public class Dart {
                 "| '_ \\| | | | |  _  ||    /  | |  \n" +
                 "| |_) | | |/ /| | | || |\\ \\  | |  \n" +
                 "|_.__/|_|___/ \\_| |_/\\_| \\_| \\_/  ");
-      // System.out.println("- - - - - - - - - - - - - - - - - -");
+        // System.out.println("- - - - - - - - - - - - - - - - - -");
     }
 
-    private static void printOutroAscii () {
+    private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("  ____               __  \n" +
                 " |  _ \\              \\ \\ \n" +

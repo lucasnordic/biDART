@@ -1,4 +1,4 @@
-package DART;
+package DART.programm;
 
 import java.util.Arrays;
 import java.util.Scanner;

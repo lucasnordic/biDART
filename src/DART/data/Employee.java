@@ -1,4 +1,4 @@
-package DART.Data;
+package DART.data;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -38,27 +38,33 @@ public class Employee {
     public double getBonus() {
         if (birthYear < 22) {
             return 4000.0;
-        } else if (birthYear <= 30){
+        } else if (birthYear <= 30) {
             return 6000.0;
         } else {
             return 7500.0;
         }
     }
-    
+
     //Setters
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setBirthYear(int birthYear){
+    public void setBirthYear(int birthYear) {
         this.birthYear = birthYear;
     }
+
     private void initializeArray(String[] anArray) {
         Arrays.fill(anArray, "");
     }
 
     //Return a String that represent the object.
     public String toString() {
-        return "ID: " + id + " Name: " + name + ". " + "Birth Year: " +  this.getBirthYear() + "Gross Salary: " + this.getGrossSalary() + "\n\n";
+        return "ID: " + id + " Name: " + name + " - " + " Birth Year: " + this.getBirthYear() + "( age: " + (2020-birthYear) + " ). Gross Salary: " + this.getGrossSalary() + " SEK.\n";
     }
+
+
+
+
+    //<ID> : <Employee Name> - <birth year> ( <age> ): <Gross Salary> SEK.
 }

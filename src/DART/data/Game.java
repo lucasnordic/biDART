@@ -1,6 +1,6 @@
-package DART.Data;
+package DART.data;
 
-import DART.UserInputHandler;
+import DART.programm.UserInputHandler;
 
 public class Game {
     private int id;
