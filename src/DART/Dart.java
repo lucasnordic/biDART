@@ -6,10 +6,7 @@ import java.util.ArrayList;
 
 /*
     Todo:                   "2.3" - Net salary?"
-    Todo:                   "Show total rent profit?" - Employee screen
-    Todo:                   "6.1"
-    Todo:                   "6.2"
-    Todo:                   "6.3"
+    Todo:                   "6.3" - "Show total rent profit?" - Employee screen
     Todo:                   "VG feature 2: Rent based on date"
  */
 
@@ -23,6 +20,7 @@ public class Dart {
 
     // This method handles the main menu contents:
     public void mainMenu() {
+        mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
         // Here we create the content of the menu in two strings and the menu options in one string array:
         String title = "Main Menu - Welcome to DART,\n" +
@@ -113,7 +111,8 @@ public class Dart {
                 employeeGrossSalary
         );
 
-            employeeLibrary.addEmployee(newEmployee);
+        // Here we add the new employee to the employee arrayList:
+        employeeLibrary.addEmployee(newEmployee);
 
         System.out.println("You added: " + newEmployee);
         System.out.println(" ");
@@ -153,12 +152,12 @@ public class Dart {
                 }
             }
             if (count > 1) {
-                System.out.print("Not a Unique ID, try again.");
+                System.out.print("Not a Unique ID, try again. ");
                 foundEmployee = null;
             }
         }
         employeeLibrary.removeEmployee(foundEmployee);
-        System.out.print("Employee removed");
+        System.out.println("Employee removed");
     }
 
     //  This handles the employee menu contents:
@@ -312,6 +311,15 @@ public class Dart {
                 "|_____|_  |___|  |_|   _|_|\n" +
                 "      |___|           |_|  ");
 //        System.out.println("- - - - - - - - - - - - -");
+    }
+
+    private void mockData() {
+        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+        employeeLibrary.addEmployee(new Employee("J-man", 0, 0));
     }
 
     //private Game[] games = new Game[1];//array for games

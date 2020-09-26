@@ -1,6 +1,7 @@
 package DART.Data;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.UUID;
 
 public class Employee {
@@ -23,7 +24,7 @@ public class Employee {
     }
 
     public double getGrossSalary() {
-        return this.grossSalary;
+        return this.grossSalary + getBonus();
     }
 
     public int getBirthYear() {
@@ -36,9 +37,10 @@ public class Employee {
 
     //
     public double getBonus() {
-        if (birthYear < 22) {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        if ((currentYear - birthYear) < 22) {
             return 4000.0;
-        } else if (birthYear <= 30){
+        } else if ((currentYear - birthYear) <= 30){
             return 6000.0;
         } else {
             return 7500.0;
