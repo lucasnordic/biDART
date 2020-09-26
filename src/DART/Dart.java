@@ -5,19 +5,11 @@ import DART.Data.*;
 import java.util.ArrayList;
 
 /*
-    Todo:                   "2.2" - remove employee
-    Todo:                   "2.3" - Net salary
-    Todo:                   "3.0" - A game Array
-    Todo:                   "3.2" - Remove a game
-    Todo:                   "4.0" - A customer Array
-    Todo:                   "4.1" - Create a customer
-    Todo:                   "4.2" - Remove a customer
-    Todo: DONE/Same as 4    "5.2" - Can't do before 4.0 is done
-    Todo: DONE/Same as 3    "5.3" - Can't do before 3.0 is done
+    Todo:                   "2.3" - Net salary?"
+    Todo:                   "Show total rent profit?" - Employee screen
     Todo:                   "6.1"
     Todo:                   "6.2"
     Todo:                   "6.3"
-    Todo: DONE              "VG feature 1: UUID for Employees, Games and Customers"
     Todo:                   "VG feature 2: Rent based on date"
  */
 
@@ -90,8 +82,12 @@ public class Dart {
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
-            case 1 -> addEmployeeInput();
-            case 2 -> menuShowEmployeeList();
+            case 1 -> menuAddEmployee();
+            case 2 -> {
+                menuShowEmployeeList();
+                System.out.print("Press any key to continue...");
+                UserInputHandler.pressAnyKeyCon();
+            }
             case 3 -> menuRemoveEmployee();
             case 4 -> mainMenu();
         }
@@ -100,7 +96,7 @@ public class Dart {
     }
 
     //This method handles the sub-menu when adding an employee:
-    public void addEmployeeInput() {
+    public void menuAddEmployee() {
 
         System.out.print("Type employee's name: ");
         String employeeName = UserInputHandler.inputString();
@@ -116,14 +112,10 @@ public class Dart {
                 employeeBirthYear,
                 employeeGrossSalary
         );
-//        System.out.print("Add employee? ");
-//        String result = UserInputHandler.inputValidString(new String[]{"Y","N"});
 
-//        if (result.equalsIgnoreCase("Y")) {
             employeeLibrary.addEmployee(newEmployee);
-//        }
 
-        System.out.println("You added: " + employeeName);
+        System.out.println("You added: " + newEmployee);
         System.out.println(" ");
 
     }
@@ -137,8 +129,6 @@ public class Dart {
         for (Employee employee : list) {
             System.out.println(employee);
         }
-       // UserInputHandler.pressAnyKeyCon();
-
     }
 
     // This method handles removing employees:
@@ -146,6 +136,7 @@ public class Dart {
         ArrayList<Employee> list = employeeLibrary.getEmployeeList();
         Employee foundEmployee = null;
 
+        System.out.println(" ");
         menuShowEmployeeList();
 
         while (foundEmployee == null) {
@@ -166,8 +157,8 @@ public class Dart {
                 foundEmployee = null;
             }
         }
-        System.out.print("ID found");
-        System.out.println(foundEmployee);
+        employeeLibrary.removeEmployee(foundEmployee);
+        System.out.print("Employee removed");
     }
 
     //  This handles the employee menu contents:
@@ -304,27 +295,23 @@ public class Dart {
     }
 
     public static void printIntroAscii() {
-        System.out.print("- - - - - - - - - - - - - - - - -");
-        System.out.println("\n _     _______  ___  ______ _____ \n" +
-                "| |   (_)  _  \\/ _ \\ | ___ \\_   _|\n" +
-                "| |__  _| | | / /_\\ \\| |_/ / | |  \n" +
-                "| '_ \\| | | | |  _  ||    /  | |  \n" +
-                "| |_) | | |/ /| | | || |\\ \\  | |  \n" +
-                "|_.__/|_|___/ \\_| |_/\\_| \\_| \\_/  ");
+//        System.out.println("- - - - - - - - - - - - - - - - -");
+        System.out.println(" _   _ ____  _____ _____ _____ \n" +
+                "| |_|_|    \\|  _  | __  |_   _|\n" +
+                "| . | |  |  |     |    -| | |  \n" +
+                "|___|_|____/|__|__|__|__| |_|  ");
       // System.out.println("- - - - - - - - - - - - - - - - - -");
     }
 
     private static void printOutroAscii () {
         System.out.println("- - - - - - - - - - - - -");
-        System.out.println("  ____               __  \n" +
-                " |  _ \\              \\ \\ \n" +
-                " | |_) |_   _  ___  (_) |\n" +
-                " |  _ <| | | |/ _ \\   | |\n" +
-                " | |_) | |_| |  __/  _| |\n" +
-                " |____/ \\__, |\\___| (_) |\n" +
-                "         __/ |       /_/ \n" +
-                "        |___/            ");
-        System.out.println("- - - - - - - - - - - - -");
+        System.out.println("                       _   \n" +
+                " _____            _   |_|_ \n" +
+                "| __  |_ _ ___   |_|    | |\n" +
+                "| __ -| | | -_|   _     | |\n" +
+                "|_____|_  |___|  |_|   _|_|\n" +
+                "      |___|           |_|  ");
+//        System.out.println("- - - - - - - - - - - - -");
     }
 
     //private Game[] games = new Game[1];//array for games

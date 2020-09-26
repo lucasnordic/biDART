@@ -16,6 +16,9 @@ public class EmployeeLibrary {
     }
 
     // TODO: Implement, remove employeeFromList
+    public void removeEmployee(Employee employee) {
+        employeeList.remove(employee);
+    }
 
     public Employee getEmployeeFromList(String id) {
         // TODO: Implemet this bonkers feuture

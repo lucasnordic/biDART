@@ -59,6 +59,6 @@ public class Employee {
 
     //Return a String that represent the object.
     public String toString() {
-        return "ID: " + id + " Name: " + name + ". " + "Birth Year: " +  this.getBirthYear() + "Gross Salary: " + this.getGrossSalary() + "\n\n";
+        return "ID: " + id + " Name: " + name + ". " + "Birth Year: " +  this.getBirthYear() + "Gross Salary: " + this.getGrossSalary();
     }
 }
