@@ -27,8 +27,8 @@ public class Employee {
         return this.grossSalary + getBonus();
     }
 
-    public int getBirthYear() {
-        return this.birthYear;
+    public int getAge() {
+        return 2020-birthYear;
     }
 
     public String getId() {
@@ -46,7 +46,7 @@ public class Employee {
             return 7500.0;
         }
     }
-    
+
     //Setters
     public void setName(String name) {
         this.name = name;
@@ -61,6 +61,6 @@ public class Employee {
 
     //Return a String that represent the object.
     public String toString() {
-        return "ID: " + id + " Name: " + name + ". " + "Birth Year: " +  this.getBirthYear() + "Gross Salary: " + this.getGrossSalary();
+        return "ID: " + id + " Name: " + name + ". " + "Age: " +  this.getAge() + " years old." + "Gross Salary: " + this.getGrossSalary();
     }
 }
