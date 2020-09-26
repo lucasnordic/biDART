@@ -9,13 +9,7 @@ public class EmployeeLibrary {
         return new Employee(name, birthYear, grossSalary);
     }
 
-    // TODO: Check for existing ID.
     public void addEmployee(Employee newEmployee) {
-//
-//        while (1 == ) {
-//
-//        }
-
         employeeList.add(newEmployee);
         System.out.println("Employee was succesfully added :)");
         System.out.println(" ");

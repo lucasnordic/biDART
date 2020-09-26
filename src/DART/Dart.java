@@ -48,7 +48,7 @@ public class Dart {
         printMenuItems(title, menuItems, inputPrompt);
 
         //  Valid choices for user while in main menu.
-        String[] validMenuChoice = {"M", "E", "C", "X"};
+        String[] validMenuChoice = {"M", "E", "C", "X", "Z"};
 
         // We store the choice the user is going to take.
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
@@ -62,6 +62,8 @@ public class Dart {
             employeeMenu();
         } else if (menuChoice.equalsIgnoreCase("C")) {
             customerMenu();
+        } else if (menuChoice.equalsIgnoreCase("Z")) {
+            UserInputHandler.setInputStream(System.in);
         } else {
             printOutroAscii();
             //System.out.println("RIP");
@@ -73,7 +75,7 @@ public class Dart {
         System.out.println("- - - - - - - - - - - - - - - - -");
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
-        String[] menuItems = {"Add an employee", "View all employees", "Return to Main Menu"};
+        String[] menuItems = {"Add an employee", "View all employees", "Remove an employee", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
 
         // Here we send this content to be printed:
@@ -89,8 +91,9 @@ public class Dart {
         // Here we go to different menus based on user input:
         switch (menuChoice) {
             case 1 -> addEmployeeInput();
-            case 2 -> showEmployeeList();
-            case 3 -> mainMenu();
+            case 2 -> menuShowEmployeeList();
+            case 3 -> menuRemoveEmployee();
+            case 4 -> mainMenu();
         }
         // We go back to the same method we are in.
         managerMenu();
@@ -113,32 +116,58 @@ public class Dart {
                 employeeBirthYear,
                 employeeGrossSalary
         );
-
-        System.out.println("You added: " + employeeName);
-        System.out.println(" ");
 //        System.out.print("Add employee? ");
 //        String result = UserInputHandler.inputValidString(new String[]{"Y","N"});
 
 //        if (result.equalsIgnoreCase("Y")) {
-//            employeeLibrary.addEmployee(newEmployee);
+            employeeLibrary.addEmployee(newEmployee);
 //        }
+
+        System.out.println("You added: " + employeeName);
+        System.out.println(" ");
+
     }
 
     // this method handles showing the employeelist
-    public void showEmployeeList() {
-        //System.out.println(employeeLibrary.getEmployeeList());
+    public void menuShowEmployeeList() {
         ArrayList<Employee> list = employeeLibrary.getEmployeeList();
 
+
+        // Prints the list of employees:
         for (Employee employee : list) {
             System.out.println(employee);
         }
-       System.out.print("Which employee should be removed? ID or NAME: ");
-        UserInputHandler.inputString();
+       // UserInputHandler.pressAnyKeyCon();
 
     }
 
+    // This method handles removing employees:
     public void menuRemoveEmployee() {
+        ArrayList<Employee> list = employeeLibrary.getEmployeeList();
+        Employee foundEmployee = null;
 
+        menuShowEmployeeList();
+
+        while (foundEmployee == null) {
+            System.out.println("Which employee should be removed? Please enter an ID or NAME: ");
+            String input = UserInputHandler.inputString();
+
+            int count = 0;
+            for (int i = 0; i < list.size() && count < 2; i++) {
+                Employee e = list.get(i);
+
+                if (e.getId().startsWith(input) || e.getName().startsWith(input)) {
+                    count++;
+                    foundEmployee = e;
+                }
+            }
+            if (count > 1) {
+                System.out.print("Not a Unique ID, try again.");
+                foundEmployee = null;
+            }
+        }
+        System.out.print("ID found");
+        System.out.println(foundEmployee);
     }
 
     //  This handles the employee menu contents:
