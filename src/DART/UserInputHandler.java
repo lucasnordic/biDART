@@ -34,6 +34,7 @@ public class UserInputHandler {
         double inputResult = input.nextDouble();
         //input.close();
 
+
         return inputResult;
     }
 
@@ -67,6 +68,7 @@ public class UserInputHandler {
         return inputResult;
     }
 
+    //
     public static void closeScanner() {
         input.close();
     }

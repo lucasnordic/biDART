@@ -1,11 +1,14 @@
 package DART.Data;
 
+import DART.Dart;
 import DART.UserInputHandler;
 
 import java.util.ArrayList;
 
 public class GameLibrary2 {
     private ArrayList<Game> games= new ArrayList<>();
+    private double totalRentProfit = 0;
+
     public void showAvailableGames(){
         for(int i =0 ; i<games.size(); i++){
             if (games.get(i).getRentStatus().equals("available")) {
@@ -13,10 +16,12 @@ public class GameLibrary2 {
             }
         }
     }
+
     public void addGame (Game game){
         games.add(game);
         System.out.println("The game has been added!");
     }
+
     public void removeGame (int id){
         for(int i =0 ; i<games.size(); i++){
             if (games.get(i).getId()==id) {
@@ -27,6 +32,7 @@ public class GameLibrary2 {
         }
         System.out.println("Game ID #" + id + "is not found");
     }
+
     public void showAllGames(){
         for(int i =0 ; i<games.size(); i++){
                 System.out.println(games.get(i));
@@ -34,6 +40,7 @@ public class GameLibrary2 {
         System.out.print("Press any key to continue: ");
         UserInputHandler.pressAnyKeyCon();
     }
+
     public Game find (int gameId) {
         for (int i = 0; i < games.size(); i++) {
             if (games.get(i).getId() == gameId) {
@@ -57,6 +64,12 @@ public class GameLibrary2 {
 
         }
         System.out.println("Game with id"+gameID+"not found");
+    }
+    public void storeDailyRent(double totalRent){
+        totalRentProfit =totalRentProfit + totalRent;
+    }
+    public void menuShowTotalRentProfit() {
+        System.out.println("Total rent profit is " + totalRentProfit);
     }
 }
 

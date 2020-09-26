@@ -5,8 +5,6 @@ import DART.Data.*;
 import java.util.ArrayList;
 
 /*
-    Todo:                   "2.3" - Net salary?"
-    Todo:                   "6.3" - "Show total rent profit?" - Employee screen
     Todo:                   "VG feature 2: Rent based on date"
  */
 
@@ -14,13 +12,13 @@ public class Dart {
     private Customers customers = new Customers();
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary(); // The Library will exist as long as the Dart program is running.
     private static GameLibrary2 gameLibrary = new GameLibrary2();  //creating new library for games
-    private static String managerPassword = "admin123";
+    private static String managerPassword = "admin1234";
     private static String employeePassword = "password123";
     private static int gameLastNumber = 1;
 
     // This method handles the main menu contents:
     public void mainMenu() {
-        mockData(); // Only for testing purposes. Added a mockData method at the bottom
+        // mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
         // Here we create the content of the menu in two strings and the menu options in one string array:
         String title = "Main Menu - Welcome to DART,\n" +
@@ -38,7 +36,7 @@ public class Dart {
         printMenuItems(title, menuItems, inputPrompt);
 
         //  Valid choices for user while in main menu.
-        String[] validMenuChoice = {"M", "E", "C", "X", "Z"};
+        String[] validMenuChoice = {"M", "E", "C", "X"};
 
         // We store the choice the user is going to take.
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
@@ -52,8 +50,6 @@ public class Dart {
             employeeMenu();
         } else if (menuChoice.equalsIgnoreCase("C")) {
             customerMenu();
-        } else if (menuChoice.equalsIgnoreCase("Z")) {
-            // UserInputHandler.setInputStream(System.in);
         } else {
             printOutroAscii();
             //System.out.println("RIP");
@@ -186,7 +182,7 @@ public class Dart {
             case 2 -> menuRemoveAGame();
             case 3 -> customers.registration();
             case 4 -> customers.cancellation();
-            // case 5 -> menuShowTotalRentProfit();
+            case 5 -> gameLibrary.menuShowTotalRentProfit();
             case 6 -> gameLibrary.showAllGames();
             case 7 -> mainMenu();
             //default -> System.exit(0);
@@ -243,7 +239,7 @@ public class Dart {
         Game game = gameLibrary.find(gameID);// extracting a game from library by game id
         if (game == null) {
             System.out.println("This game was not found!Try again!");
-            return;
+            returnAGame();
         }
         System.out.println("Please enter the number of days in which the game was rented ");
         int days = UserInputHandler.inputInt();
@@ -251,8 +247,10 @@ public class Dart {
         double totalRent = dailyRent * days;
         System.out.println("The total rent is"+ dailyRent+"*"+days+"="+totalRent);
         game.makeGameAvailableAgain();
+        gameLibrary.storeDailyRent(totalRent);
     }
 
+    // this menu checks if the password is correct and sends the user to the corresponding menu:
     public void passwordMenu(String menuChoice) {
         System.out.print("Enter a password:");
         String inputPassword = UserInputHandler.inputString();
@@ -293,6 +291,7 @@ public class Dart {
         System.out.print(inputPrompt);
     }
 
+    // Removable methods:
     public static void printIntroAscii() {
 //        System.out.println("- - - - - - - - - - - - - - - - -");
         System.out.println(" _   _ ____  _____ _____ _____ \n" +
@@ -301,7 +300,6 @@ public class Dart {
                 "|___|_|____/|__|__|__|__| |_|  ");
       // System.out.println("- - - - - - - - - - - - - - - - - -");
     }
-
     private static void printOutroAscii () {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("                       _   \n" +
@@ -312,15 +310,14 @@ public class Dart {
                 "      |___|           |_|  ");
 //        System.out.println("- - - - - - - - - - - - -");
     }
-
-    private void mockData() {
-        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
-        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
-        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
-        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
-        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
-        employeeLibrary.addEmployee(new Employee("J-man", 0, 0));
-    }
+//    private void mockData() {
+//        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+//        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+//        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+//        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+//        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+//        employeeLibrary.addEmployee(new Employee("J-man", 0, 0));
+//    }
 
     //private Game[] games = new Game[1];//array for games
 }

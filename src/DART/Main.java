@@ -9,6 +9,7 @@ public class Main {
         Dart.printIntroAscii();
         Dart dart = new Dart();
         dart.mainMenu();
+
         UserInputHandler.closeScanner();
     }
 }
