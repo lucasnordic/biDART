@@ -42,10 +42,13 @@ public class Customers {
             if (a == ID) {
 
                 customerList.removeCustomer(i);
+                System.out.println(customerList);
+            } else {
+                System.out.println("Customer's ID not found");
             }
         }
 
-        System.out.println(customerList);
+
 
     }
 }
