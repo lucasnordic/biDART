@@ -18,8 +18,9 @@ public class Dart {
 
     // This method handles the main menu contents:
     public void mainMenu() {
-        // mockData(); // Only for testing purposes. Added a mockData method at the bottom
+//        mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
+
         // Here we create the content of the menu in two strings and the menu options in one string array:
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up! ;)\n\n" +
@@ -134,11 +135,16 @@ public class Dart {
         System.out.println(" ");
         menuShowEmployeeList();
 
+        // Here we check if the user exists in the array:
         while (foundEmployee == null) {
-            System.out.println("Which employee should be removed? Please enter an ID or NAME: ");
+            System.out.print("Which employee should be removed? Please enter a correct ID or NAME (Press ´M´ to go back to menu): ");
             String input = UserInputHandler.inputString();
-
             int count = 0;
+
+            if (input.equalsIgnoreCase("M")) {
+                mainMenu();
+            }
+
             for (int i = 0; i < list.size() && count < 2; i++) {
                 Employee e = list.get(i);
 
@@ -153,7 +159,8 @@ public class Dart {
             }
         }
         employeeLibrary.removeEmployee(foundEmployee);
-        System.out.println("Employee removed");
+        System.out.print("Employee removed! Press any key to continue:");
+        UserInputHandler.pressAnyKeyCon();
     }
 
     //  This handles the employee menu contents:
@@ -321,3 +328,16 @@ public class Dart {
 
     //private Game[] games = new Game[1];//array for games
 }
+
+
+/* Simpler menuRemoveEmployee:
+//        System.out.println("Please enter an ID of employee which should be removed: ");
+//        String id = UserInputHandler.inputString();
+//        Employee foundEmployee = employeeLibrary.getEmployeeFromList(id);
+//        if (foundEmployee == null) {
+//            System.out.println("Employee with id " + id + " is not found.");
+//            return;
+//        }
+//        employeeLibrary.removeEmployee(id);
+//        System.out.println("The employee was successfully removed!");
+ */
