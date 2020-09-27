@@ -30,14 +30,13 @@ public class GameLibrary2 {
                 return;
             }
         }
-        System.out.println("Game ID # " + id + " is not found");
+        System.out.println("Game ID " + id + " is not found");
     }
 
     public void showAllGames(){
         for(int i =0 ; i<games.size(); i++){
                 System.out.println(games.get(i));
         }
-
         System.out.print("Press any key to continue: ");
         UserInputHandler.pressAnyKeyCon();
     }
@@ -55,7 +54,7 @@ public class GameLibrary2 {
         for(int i =0 ; i<games.size(); i++){
             if (games.get(i).getId()==gameID) {
                 if (games.get(i).getRentStatus().equals("rented")){
-                    System.out.println("Game with id"+gameID+" is already rented");
+                    System.out.println("Game with ID "+gameID+" is already rented");
                     return;
                 }
                 games.get(i).rent();
@@ -64,7 +63,7 @@ public class GameLibrary2 {
             }
 
         }
-        System.out.println("Game with id"+gameID+"not found");
+        System.out.println("Game with ID "+gameID+" is not found");
     }
     public void storeDailyRent(double totalRent){
         totalRentProfit =totalRentProfit + totalRent;
