@@ -30,13 +30,14 @@ public class GameLibrary2 {
                 return;
             }
         }
-        System.out.println("Game ID #" + id + "is not found");
+        System.out.println("Game ID # " + id + " is not found");
     }
 
     public void showAllGames(){
         for(int i =0 ; i<games.size(); i++){
                 System.out.println(games.get(i));
         }
+
         System.out.print("Press any key to continue: ");
         UserInputHandler.pressAnyKeyCon();
     }
