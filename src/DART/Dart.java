@@ -221,31 +221,31 @@ public class Dart {
     }
 
     private static void menuRemoveAGame() {
-        System.out.println("Please enter a number of the game you want to remove: ");
+        System.out.print("Please enter a number of the game you want to remove: ");
         int id = UserInputHandler.inputInt();
         gameLibrary.removeGame(id);
     }
 
     private static void rentAGame() {
         gameLibrary.showAvailableGames();
-        System.out.println("Please enter game ID that you want to rent: ");
+        System.out.print("Please enter game ID that you want to rent: ");
         int gameID = UserInputHandler.inputInt();
         gameLibrary.rentAGame(gameID);
     }
 
     private static void returnAGame() {
-        System.out.println("Please enter game ID that you want to return: ");
+        System.out.print("Please enter game ID that you want to return: ");
         int gameID = UserInputHandler.inputInt();
         Game game = gameLibrary.find(gameID);// extracting a game from library by game id
         if (game == null) {
             System.out.println("This game was not found!Try again!");
             returnAGame();
         }
-        System.out.println("Please enter the number of days in which the game was rented ");
+        System.out.print("Please enter the number of days in which the game was rented: ");
         int days = UserInputHandler.inputInt();
         double dailyRent = game.getDailyRent();
         double totalRent = dailyRent * days;
-        System.out.println("The total rent is"+ dailyRent+"*"+days+"="+totalRent);
+        System.out.println("The total rent is "+ dailyRent+" * "+days+" = "+totalRent);
         game.makeGameAvailableAgain();
         gameLibrary.storeDailyRent(totalRent);
     }

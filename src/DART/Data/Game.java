@@ -11,15 +11,14 @@ public class Game {
 
     public Game(int id) {
         this.id = id;
-        System.out.println("Please enter title of a game:");
+        System.out.print("Please enter title of a game: ");
         title = UserInputHandler.inputString();
-        System.out.println("Please enter genre of a game:");
+        System.out.print("Please enter genre of a game: ");
         genre = UserInputHandler.inputString();
-        System.out.println("Please enter daily rent of a game:");
+        System.out.print("Please enter daily rent of a game: ");
         dailyRent = UserInputHandler.inputDouble();
         System.out.print("Rent status: " + rentStatus);
-        System.out.println();
-        System.out.println("You created a new game. Game No" + id + "!" );
+        System.out.println("\nYou created a new game. Game ID " + id + "!" );
         //this.id=id;
 //        this.title=title;
 //        this.genre=genre;
