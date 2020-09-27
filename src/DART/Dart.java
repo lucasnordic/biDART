@@ -1,10 +1,8 @@
-package DART.programm;
+package DART;
 
 import DART.data.*;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /*
     Todo:                   "2.2" - remove employee

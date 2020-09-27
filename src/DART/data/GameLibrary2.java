@@ -1,7 +1,7 @@
 package DART.data;
 
 
-import DART.programm.UserInputHandler;
+import DART.UserInputHandler;
 import java.util.ArrayList;
 
 public class GameLibrary2 {

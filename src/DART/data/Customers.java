@@ -1,5 +1,5 @@
 package DART.data;
-import DART.programm.UserInputHandler;
+import DART.UserInputHandler;
 
 public class Customers {
 
