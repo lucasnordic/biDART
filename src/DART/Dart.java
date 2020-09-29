@@ -330,6 +330,16 @@ public class Dart {
         employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
         employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
         employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
     }
 
     //private Game[] games = new Game[1];//array for games
