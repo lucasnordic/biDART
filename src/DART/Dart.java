@@ -18,7 +18,7 @@ public class Dart {
 
     // This method handles the main menu contents:
     public void mainMenu() {
-//        mockData(); // Only for testing purposes. Added a mockData method at the bottom
+        mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
 
         // Here we create the content of the menu in two strings and the menu options in one string array:
@@ -33,13 +33,13 @@ public class Dart {
         };
         String inputPrompt = "Choose menu: ";
 
-        // Here we send this content to be printed by the Class "Print"
+        // Here we send this content to be printed by a method:
         printMenuItems(title, menuItems, inputPrompt);
 
-        //  Valid choices for user while in main menu.
+        //  Valid choices for user while in main menu:
         String[] validMenuChoice = {"M", "E", "C", "X"};
 
-        // We store the choice the user is going to take.
+        // We store the choice the user is going to take:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
 
         //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
@@ -86,7 +86,7 @@ public class Dart {
             case 3 -> menuRemoveEmployee();
             case 4 -> mainMenu();
         }
-        // We go back to the same method we are in.
+        // This is not nececcary?
         managerMenu();
     }
 
@@ -102,6 +102,7 @@ public class Dart {
         System.out.print("Type employee's gross salary: ");
         double employeeGrossSalary = UserInputHandler.inputDouble();
 
+        // Here we create a new employee:
         Employee newEmployee = employeeLibrary.createEmployee(
                 employeeName,
                 employeeBirthYear,
@@ -116,7 +117,7 @@ public class Dart {
 
     }
 
-    // this method handles showing the employeelist
+    // this method handles showing the employeelist:
     public void menuShowEmployeeList() {
         ArrayList<Employee> list = employeeLibrary.getEmployeeList();
 
@@ -145,19 +146,27 @@ public class Dart {
                 mainMenu();
             }
 
+            // Here we check if the ID is actually a unique ID.
+            // On the first run we go through the loop to find the first ID, similar to the users input.
             for (int i = 0; i < list.size() && count < 2; i++) {
-                Employee e = list.get(i);
+                Employee currentEmployee = list.get(i);
 
-                if (e.getId().startsWith(input) || e.getName().startsWith(input)) {
+                // When we find an ID, we increase the count by "1" and continue checking the Array of Employees:
+                if (currentEmployee.getId().startsWith(input) || currentEmployee.getName().startsWith(input)) {
                     count++;
-                    foundEmployee = e;
+                    foundEmployee = currentEmployee;
                 }
             }
+
+            // If the count is greater then one that means we have found more than two ID's matching the users input.
+            // Then we reset foundEmployee and we stay in the loop:
             if (count > 1) {
-                System.out.print("Not a Unique ID, try again. ");
+                System.out.println("Not a Unique ID, try again. ");
                 foundEmployee = null;
             }
         }
+
+        // If we leave the last loop and the count is only "1" by the end, then we remove the "foundEmployee":
         employeeLibrary.removeEmployee(foundEmployee);
         System.out.print("Employee removed! Press any key to continue:");
         UserInputHandler.pressAnyKeyCon();
@@ -280,9 +289,7 @@ public class Dart {
             } else {
                 employeeMenu();
             }
-
         }
-
     }
 
     //  This right here is our good old menu printer:
@@ -317,14 +324,13 @@ public class Dart {
                 "      |___|           |_|  ");
 //        System.out.println("- - - - - - - - - - - - -");
     }
-//    private void mockData() {
-//        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
-//        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
-//        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
-//        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
-//        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
-//        employeeLibrary.addEmployee(new Employee("J-man", 0, 0));
-//    }
+    private void mockData() {
+        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+    }
 
     //private Game[] games = new Game[1];//array for games
 }

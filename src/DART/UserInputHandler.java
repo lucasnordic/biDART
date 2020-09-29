@@ -40,7 +40,7 @@ public class UserInputHandler {
 
     // Input an integer between a min and a max value:
     public static int inputIntMinMax(int min, int max) {
-        int inputResult = input.nextInt();  // Here we let the user input an integer.
+        int inputResult = input.nextInt();
         input.nextLine();
 
         // Checks if user types a number between the variables "min" and "max".
@@ -56,12 +56,12 @@ public class UserInputHandler {
     }
 
     //  Input a String and check with the sent array if the input is of a correct value:
-    public static String inputValidString(String[] validUserInput) {
+    public static String inputValidString(String[] validValueChoices) {
         String inputResult = input.nextLine();
 
-        // Checks if the input is part of the array.
-        while (!Arrays.asList(validUserInput).contains(inputResult.toUpperCase())) {
-            System.out.print("Please enter a valid value( " + Arrays.toString(validUserInput) + " ): ");
+        // Checks if the input is part of the array of validValues.
+        while (!Arrays.asList(validValueChoices).contains(inputResult.toUpperCase())) {
+            System.out.print("Please enter a valid value( " + Arrays.toString(validValueChoices) + " ): ");
             inputResult = input.nextLine();
         }
 
