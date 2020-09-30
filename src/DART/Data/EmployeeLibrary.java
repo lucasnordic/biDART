@@ -15,16 +15,8 @@ public class EmployeeLibrary {
         System.out.println(" ");
     }
 
-    // TODO: Implement, remove employeeFromList
     public void removeEmployee(Employee employee) {
         employeeList.remove(employee);
-    }
-
-    public Employee getEmployeeFromList(String id) {
-        // TODO: Implemet this bonkers feuture
-
-        // employeeList.remove()
-        return null;
     }
 
     public ArrayList<Employee> getEmployeeList(){
