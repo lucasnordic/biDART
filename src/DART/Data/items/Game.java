@@ -1,18 +1,17 @@
-package DART.Data;
+package DART.Data.items;
 
+import DART.Data.items.parent.grandparent.Item;
 import DART.UserInputHandler;
 
-public class Game {
-    private int id;
-    private String title;
+public class Game extends Item {
     private String genre;
     private double dailyRent;
     private String rentStatus = "available";
 
-    public Game(int id) {
-        this.id = id;
+    public Game(int id, String name) {
+        super(name);
         System.out.print("Please enter title of a game: ");
-        title = UserInputHandler.inputString();
+        name = UserInputHandler.inputString();
         System.out.print("Please enter genre of a game: ");
         genre = UserInputHandler.inputString();
         System.out.print("Please enter daily rent of a game: ");
@@ -27,12 +26,8 @@ public class Game {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public String getGenre() {
@@ -46,13 +41,17 @@ public class Game {
     public String getRentStatus() {
         return rentStatus;
     }
+
     public void rent (){
         rentStatus="rented";
     }
+
     public void makeGameAvailableAgain(){ rentStatus="available";}
 
+
+
     public String toString (){ //
-        return id + " : " + title + " (" + genre + "). " + dailyRent + "$. Status: " + rentStatus+"\n";
+        return getId() + " : " + name + " (" + genre + "). " + dailyRent + "$. Status: " + rentStatus+"\n";
     }
 }
 

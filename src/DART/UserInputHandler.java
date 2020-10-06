@@ -43,14 +43,12 @@ public class UserInputHandler {
         int inputResult = input.nextInt();
         input.nextLine();
 
-        // Checks if user types a number between the variables "min" and "max".
+        // Checks if user types a number between the variables "min" and "max":
         while (inputResult < min || inputResult > max) {
             System.out.print("Please enter a valid value(" + min + "-" + max + "): ");
             inputResult = input.nextInt();
             input.nextLine();
         }
-
-        //input.close();
 
         return inputResult;
     }
@@ -68,23 +66,8 @@ public class UserInputHandler {
         return inputResult;
     }
 
-    //
+    //  We call this when we want to close the scanner:
     public static void closeScanner() {
         input.close();
     }
-
-//    public static void debugData() {
-//        String text = new Scanner(String.class.getResourceAsStream("test.txt"), "UTF-8").next();
-//    }
-
 }
-
-
-/*
-// Check if input is correct:
-//        while (!input.hasNextInt()) {
-//            System.out.print("That's not a number! Try again: ");
-//            input.next(); // this is important!?
-//        }
-// once the user has input a correct value we store it in this variable:
- */
