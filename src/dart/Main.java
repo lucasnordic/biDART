@@ -4,13 +4,12 @@ import dart.menus.MainMenu;
 
 /**
 </www.Dart.com>
+ This only class only leads the user into the Main Menu
  */
 public class Main {
     public static void main(String[] args) {
-        // We make an instance of Mainmenu, which is connected to everything Dart does:
+
         MainMenu mainMenu = new MainMenu();
         mainMenu.mainMenu();
-
-
     }
 }
