@@ -1,9 +1,7 @@
-package DART.Data;
+package dart.data;
 
-import DART.Data.items.Customer;
-import DART.MainMenu;
-import DART.UserInputHandler;
-import com.sun.tools.javac.Main;
+import dart.data.items.parent.Customer;
+import dart.UserInputOutput;
 
 import java.util.ArrayList;
 
@@ -16,10 +14,10 @@ public class CustomerController {
 
     public void registerCustomer() {
         System.out.print("Please enter a username: ");
-        String name = UserInputHandler.inputString();
+        String name = UserInputOutput.inputString();
 
         System.out.print("Please enter the password you want to use: ");
-        String password = UserInputHandler.inputString();
+        String password = UserInputOutput.inputString();
     }
 
     public void addCustomer() {
@@ -34,16 +32,13 @@ public class CustomerController {
         Customer newCustomer = null;
         do {
             System.out.print("Do you want to upgrade your membership type(type yes or no): ");
-            String yesNo = UserInputHandler.inputString();
-            while (!yesNo.equalsIgnoreCase("yes") || !yesNo.equalsIgnoreCase("no"))
-                if (yesNo.equalsIgnoreCase("yes")) {
+            String[] validChoices = {"yes", "no"};
+            String yesNo = UserInputOutput.inputValidString(validChoices);
+            switch (yesNo) {
+                case "yes" -> registerCustomer();
+                case "no" -> registerCustomer();
+            }
 
-                } else if (yesNo.equalsIgnoreCase("no")) {
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.mainMenu();
-                } else {
-                    System.out.print("Please enter a correct answer(type yes or no): ");
-                }
         }while(newCustomer == null);
     }
 

@@ -1,10 +1,10 @@
-package DART.Other;
+package dart.other;
 
-import DART.Data.EmployeeController;
-import DART.Data.items.parent.Employee;
+import dart.data.EmployeeController;
+import dart.data.items.Employee;
 
 public class FunStuff {
-    EmployeeController employeeController;
+    public EmployeeController employeeController;
 
     // Removable methods:
     public static void printIntroAscii() {

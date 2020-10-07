@@ -1,7 +1,7 @@
 
-package DART.Data.items;
+package dart.data.items;
 
-import DART.Data.items.parent.Song;
+import dart.data.items.parent.Song;
 
 public class Album extends Song {
 

@@ -1,11 +1,14 @@
-package DART;
+package dart;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 // This Class only handles input.
-public class UserInputHandler {
+public class UserInputOutput {
 
+    /*
+        Here -we only Deal with Input:
+     */
     // We create a variable, "input", of type Scanner
     private static final Scanner input = new Scanner(System.in);
 
@@ -69,5 +72,22 @@ public class UserInputHandler {
     //  We call this when we want to close the scanner:
     public static void closeScanner() {
         input.close();
+    }
+
+
+    /*
+        Here -we only Deal with Output/Printing:
+     */
+    //  This Is where we handle printing menu's so they come out the same:
+    public static void printMenuItems(String title, String[] menuItems, String inputPrompt) {
+
+        System.out.println(title);
+
+        // This loop prints out all the menu options that are stored in the "menuItems" array.
+        for (int i = 0; i < menuItems.length; i++) {
+            System.out.println((i + 1) + ". " + menuItems[i]);
+        }
+        System.out.println(" ");
+        System.out.print(inputPrompt);
     }
 }

@@ -1,11 +1,11 @@
-package DART.Data.items;
+package dart.data.items;
 
-import DART.Data.items.parent.Employee;
+import dart.data.items.parent.Customer;
 
 public class CustomerSilver extends Customer {
 
     public CustomerSilver(String name) {
-        super(name);
+        super(name, "Silver");
     }
 
     @Override

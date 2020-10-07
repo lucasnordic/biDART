@@ -1,10 +1,8 @@
-package DART;
+package dart;
 
-import DART.Data.*;
-import DART.Data.items.parent.Employee;
-import DART.Data.items.Game;
-import DART.Data.items.Manager;
-import DART.Other.FunStuff;
+import dart.data.*;
+import dart.data.items.Employee;
+import dart.other.FunStuff;
 
 import java.util.ArrayList;
 
@@ -23,6 +21,7 @@ public class MainMenu {
 
     // This method handles the main menu contents:
     public void mainMenu() {
+        FunStuff.printIntroAscii();
 //        funStuff.mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
 
@@ -39,13 +38,13 @@ public class MainMenu {
         String inputPrompt = "Choose menu: ";
 
         // Here we send this content to be printed by a method:
-        printMenuItems(title, menuItems, inputPrompt);
+        UserInputOutput.printMenuItems(title, menuItems, inputPrompt);
 
         //  Valid choices for user while in main menu:
         String[] validMenuChoice = {"M", "E", "C", "X"};
 
         // We store the choice the user is going to take:
-        String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
+        String menuChoice = UserInputOutput.inputValidString(validMenuChoice);
 
         //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
@@ -77,14 +76,14 @@ public class MainMenu {
         String inputPrompt = "Enter choice: ";
 
         // Here we send this content to be printed:
-        printMenuItems(title, menuItems, inputPrompt);
+        UserInputOutput.printMenuItems(title, menuItems, inputPrompt);
 
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        int menuChoice = UserInputOutput.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
@@ -92,7 +91,7 @@ public class MainMenu {
             case 2 -> {
                 menuShowEmployeeList();
                 System.out.print("Press any key to continue...");
-                UserInputHandler.pressAnyKeyCon();
+                UserInputOutput.pressAnyKeyCon();
             }
             case 3 -> menuRemoveEmployee();
             case 4 -> menuViewNetSalary();
@@ -106,13 +105,13 @@ public class MainMenu {
     public void menuAddEmployee() {
 
         System.out.print("Type employee's name: ");
-        String employeeName = UserInputHandler.inputString();
+        String employeeName = UserInputOutput.inputString();
 
         System.out.print("Type employee's birth year: ");
-        int employeeBirthYear = UserInputHandler.inputInt();
+        int employeeBirthYear = UserInputOutput.inputInt();
 
         System.out.print("Type employee's gross salary: ");
-        double employeeGrossSalary = UserInputHandler.inputDouble();
+        double employeeGrossSalary = UserInputOutput.inputDouble();
 
         // Here we create a new employee:
         Employee newEmployee = new Employee(
@@ -151,7 +150,7 @@ public class MainMenu {
         // Here we check if the user exists in the array:
         while (foundEmployee == null) {
             System.out.print("Which employee should be removed? Please enter a correct ID or NAME (Press ´M´ to go back to menu): ");
-            String input = UserInputHandler.inputString();
+            String input = UserInputOutput.inputString();
             int count = 0;
 
             if (input.equalsIgnoreCase("M")) {
@@ -181,13 +180,13 @@ public class MainMenu {
         // If we leave the last loop and the count is only "1" by the end, then we remove the "foundEmployee":
         employeeLibrary.removeEmployee(foundEmployee);
         System.out.print("Employee removed! Press any key to continue:");
-        UserInputHandler.pressAnyKeyCon();
+        UserInputOutput.pressAnyKeyCon();
     }
 
     public void menuViewNetSalary() {
         System.out.println("The Net salary for all employees are: " + employeeLibrary.getNetSalary() + " SEK.");
         System.out.print("Press any key to continue: ");
-        UserInputHandler.pressAnyKeyCon();
+        UserInputOutput.pressAnyKeyCon();
     }
 
     //  This handles the employee menu contents:
@@ -205,10 +204,10 @@ public class MainMenu {
         int maxMenuChoice = menuItems.length;
 
         // Here we send the menu content to be printed:
-        printMenuItems(title, menuItems, inputPrompt);
+        UserInputOutput.printMenuItems(title, menuItems, inputPrompt);
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        int menuChoice = UserInputOutput.inputIntMinMax(minMenuChoice, maxMenuChoice);
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
@@ -230,12 +229,12 @@ public class MainMenu {
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {"Rent a game", "Return a game", "Change Membership" ,"Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+        UserInputOutput.printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
         int maxMenuChoice = menuItems.length;
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
+        int menuChoice = UserInputOutput.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
 //            case 1 -> rentAGame();
@@ -292,13 +291,13 @@ public class MainMenu {
     // this menu checks if the password is correct and sends the user to the corresponding menu:
     public void passwordMenu(String menuChoice) {
         System.out.print("Enter a password:");
-        String inputPassword = UserInputHandler.inputString();
+        String inputPassword = UserInputOutput.inputString();
 
         if (menuChoice.equalsIgnoreCase("M")) {
             if (!inputPassword.equals(managerPassword)) {
                 System.out.print("Invalid password! ");
                 System.out.print("Press any key to continue: ");
-                UserInputHandler.pressAnyKeyCon();
+                UserInputOutput.pressAnyKeyCon();
                 mainMenu(); // allows go back to menu
             } else {
                 managerMenu();
@@ -307,7 +306,7 @@ public class MainMenu {
             if (!inputPassword.equals(employeePassword)) {
                 System.out.print("Invalid password! ");
                 System.out.print("Press any key to continue: ");
-                UserInputHandler.pressAnyKeyCon();
+                UserInputOutput.pressAnyKeyCon();
                 mainMenu(); // allows go back to menu
             } else {
                 employeeMenu();
@@ -315,16 +314,5 @@ public class MainMenu {
         }
     }
 
-    //  This right here is our good old menu printer:
-    private void printMenuItems(String title, String[] menuItems, String inputPrompt) {
 
-        System.out.println(title);
-
-        // This loop prints out all the menu options that are stored in the "menuItems" array.
-        for (int i = 0; i < menuItems.length; i++) {
-            System.out.println((i + 1) + ". " + menuItems[i]);
-        }
-        System.out.println(" ");
-        System.out.print(inputPrompt);
-    }
 }

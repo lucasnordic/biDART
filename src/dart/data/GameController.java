@@ -1,7 +1,7 @@
-package DART.Data;
+package dart.data;
 
-import DART.Data.items.Game;
-import DART.UserInputHandler;
+import dart.data.items.Game;
+import dart.UserInputOutput;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class GameController {
                 System.out.println(games.get(i));
         }
         System.out.print("Press any key to continue: ");
-        UserInputHandler.pressAnyKeyCon();
+        UserInputOutput.pressAnyKeyCon();
     }
 
 //    public Game find (int gameId) {

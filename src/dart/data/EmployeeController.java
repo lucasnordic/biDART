@@ -1,6 +1,6 @@
-package DART.Data;
+package dart.data;
 
-import DART.Data.items.parent.Employee;
+import dart.data.items.Employee;
 import java.util.ArrayList;
 
 public class EmployeeController {
