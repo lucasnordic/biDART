@@ -1,4 +1,4 @@
-package DART.Data;
+/* package DART.Data;
 
 import DART.UserInputHandler;
 
@@ -55,4 +55,6 @@ public class Game {
         return id + " : " + title + " (" + genre + "). " + dailyRent + "$. Status: " + rentStatus+"\n";
     }
 }
+
+ */
 
