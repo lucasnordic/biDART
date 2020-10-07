@@ -1,23 +1,16 @@
 package dart.data.items;
 
-import dart.data.items.grandparent.Item;
-import dart.InputOutput;
+import dart.data.items.parent.Item;
+import dart.UserInputHandler;
 
 public class Game extends Item {
     private String genre;
     private double dailyRent;
     private String rentStatus = "available";
 
-    public Game(int id, String name) {
+    public Game(String title, String genre, ) {
         super(name);
-        System.out.print("Please enter title of a game: ");
-        name = InputOutput.inputString();
-        System.out.print("Please enter genre of a game: ");
-        genre = InputOutput.inputString();
-        System.out.print("Please enter daily rent of a game: ");
-        dailyRent = InputOutput.inputDouble();
-        System.out.print("Rent status: " + rentStatus);
-        System.out.println("\nYou created a new game. Game ID " + id + "!" );
+
         //this.id=id;
 //        this.title=title;
 //        this.genre=genre;
@@ -46,9 +39,9 @@ public class Game extends Item {
         rentStatus="rented";
     }
 
-    public void makeGameAvailableAgain(){ rentStatus="available";}
-
-
+    public void makeGameAvailableAgain(){
+        rentStatus="available";
+    }
 
     public String toString (){ //
         return getId() + " : " + name + " (" + genre + "). " + dailyRent + "$. Status: " + rentStatus+"\n";

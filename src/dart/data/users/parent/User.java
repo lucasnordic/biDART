@@ -2,7 +2,7 @@ package dart.data.users.parent;
 
 import java.util.UUID;
 
-public class User {
+public abstract class User {
 
     private String id;
     protected  String name;
@@ -27,11 +27,4 @@ public class User {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

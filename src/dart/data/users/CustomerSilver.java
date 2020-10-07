@@ -8,6 +8,6 @@ public class CustomerSilver extends Customer {
 
     @Override
     public void calculateDiscount() {
-        super.calculateDiscount();
+        getDiscount() * 0.90;
     }
 }

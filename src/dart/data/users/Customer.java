@@ -14,7 +14,7 @@ public class Customer extends User {
     }
 
     // Getters and setters:
-    public int getDiscount(Customer customer) {
+    public int getDiscount() {
         return discount;
     }
 

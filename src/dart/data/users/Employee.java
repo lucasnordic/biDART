@@ -7,11 +7,10 @@ import java.util.Calendar;
 public class Employee extends User {
     private int birthYear;
     private double grossSalary;
-    private static String password = "password123";
 
     // Constructor:
     public Employee(String name, int birthYear, double grossSalary) {
-        super(name, password);
+        super(name);
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
     }

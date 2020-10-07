@@ -1,8 +1,8 @@
-package dart.data.items.grandparent;
+package dart.data.items.parent;
 
 import java.util.UUID;
 
-public class Item {
+public abstract class Item {
 
     private String id;
     protected  String name;

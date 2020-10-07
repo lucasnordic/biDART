@@ -1,8 +1,8 @@
-package dart.data.items.parent;
+package dart.data.items;
 
-import dart.data.items.grandparent.Item;
+import dart.data.items.parent.Item;
 
-public class Song extends Item {
+public class SongAlbum extends Item {
 
     private String artist;
     private int releaseYear;
@@ -10,7 +10,7 @@ public class Song extends Item {
     private boolean rentStatus;
 
     // controller:
-    public Song(String name, String artist, int releaseYear, double dailyRent) {
+    public SongAlbum(String name, String artist, int releaseYear, double dailyRent) {
         super(name);
         this.artist = artist;
         this.releaseYear = releaseYear;

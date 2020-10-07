@@ -3,7 +3,7 @@ package dart.data;
 import dart.data.users.Employee;
 import java.util.ArrayList;
 
-public class EmployeeController {
+public class EmployeesController {
 
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private double netSalary;
@@ -36,4 +36,6 @@ public class EmployeeController {
             }
         }
     }
+
+
 }

@@ -7,13 +7,18 @@ import java.util.Scanner;
     This class only handles Input.
  */
 
-public class InputOutput {
+public class UserInputHandler {
+
+    /*
+        Here we only deal with Input:
+     */
 
     // We create a variable, "input", of type Scanner
     private static final Scanner input = new Scanner(System.in);
 
     // If we want the user to stop and have to enter a key to continue:
     public static void pressAnyKeyCon() {
+        System.out.print("Press any key to continue: ");
         input.nextLine();
     }
 
@@ -35,8 +40,6 @@ public class InputOutput {
     // Input and return a double:
     public static double inputDouble() {
         double inputResult = input.nextDouble();
-        //input.close();
-
 
         return inputResult;
     }
@@ -76,7 +79,7 @@ public class InputOutput {
 
 
     /*
-        Here -we only Deal with Output/Printing:
+        Here we only deal with Output/Printing:
      */
 
     // This loop prints out all the menu options that are stored in the "menuItems" array.
