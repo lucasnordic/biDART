@@ -1,11 +1,12 @@
-package dart.data.items;
+package dart.data.users;
 import dart.data.CustomerController;
-import dart.data.items.parent.Customer;
-import dart.UserInputOutput;
+import dart.InputOutput;
 
 public class Manager extends Employee {
+    private static String password = "admin1234";
+
     public Manager(String name, int birthYear, double grossSalary) {
-        super(name, birthYear, grossSalary);
+        super(name, birthYear, grossSalary, password);
     }
 
 
@@ -16,7 +17,7 @@ public class Manager extends Employee {
     public void registration() {
 
         System.out.print("Creating a Customer. Please type the customer’s:\nName: ");
-        String name = UserInputOutput.inputString();
+        String name = InputOutput.inputString();
 
         Customer customer = new Customer(name, "regular");
         customer.setName(name);
@@ -32,7 +33,7 @@ public class Manager extends Employee {
         customerList.getCustomers();
 
         System.out.println("Which customer should be removed? ID:");
-        int ID = UserInputOutput.inputInt();
+        int ID = InputOutput.inputInt();
 
 //        for (int i = 0; i < customerList.getSize(); i++) {
 //

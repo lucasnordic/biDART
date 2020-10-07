@@ -1,6 +1,6 @@
 package dart.data.items.parent;
 
-import dart.data.items.parent.grandparent.Item;
+import dart.data.items.grandparent.Item;
 
 public class Song extends Item {
 

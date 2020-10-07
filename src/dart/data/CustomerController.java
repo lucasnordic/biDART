@@ -1,7 +1,7 @@
 package dart.data;
 
-import dart.data.items.parent.Customer;
-import dart.UserInputOutput;
+import dart.data.users.Customer;
+import dart.InputOutput;
 
 import java.util.ArrayList;
 
@@ -12,20 +12,21 @@ public class CustomerController {
         this.customerList = new ArrayList<>();
     }
 
+    // Getters and setters:
+    public ArrayList<Customer> getCustomers() {
+        return customerList;
+    }
+
     public void registerCustomer() {
         System.out.print("Please enter a username: ");
-        String name = UserInputOutput.inputString();
+        String name = InputOutput.inputString();
 
         System.out.print("Please enter the password you want to use: ");
-        String password = UserInputOutput.inputString();
+        String password = InputOutput.inputString();
     }
 
     public void addCustomer() {
 
-    }
-
-    public ArrayList<Customer> getCustomers() {
-        return customerList;
     }
 
     public void customerMembership() {
@@ -33,7 +34,7 @@ public class CustomerController {
         do {
             System.out.print("Do you want to upgrade your membership type(type yes or no): ");
             String[] validChoices = {"yes", "no"};
-            String yesNo = UserInputOutput.inputValidString(validChoices);
+            String yesNo = InputOutput.inputValidString(validChoices);
             switch (yesNo) {
                 case "yes" -> registerCustomer();
                 case "no" -> registerCustomer();

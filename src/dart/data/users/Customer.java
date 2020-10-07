@@ -1,8 +1,8 @@
-package dart.data.items.parent;
+package dart.data.users;
 
-import dart.data.items.parent.grandparent.Item;
+import dart.data.users.parent.User;
 
-public class Customer extends Item {
+public class Customer extends User {
 
     private int discount;
     private String membershipType;

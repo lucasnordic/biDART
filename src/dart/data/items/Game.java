@@ -1,7 +1,7 @@
 package dart.data.items;
 
-import dart.data.items.parent.grandparent.Item;
-import dart.UserInputOutput;
+import dart.data.items.grandparent.Item;
+import dart.InputOutput;
 
 public class Game extends Item {
     private String genre;
@@ -11,11 +11,11 @@ public class Game extends Item {
     public Game(int id, String name) {
         super(name);
         System.out.print("Please enter title of a game: ");
-        name = UserInputOutput.inputString();
+        name = InputOutput.inputString();
         System.out.print("Please enter genre of a game: ");
-        genre = UserInputOutput.inputString();
+        genre = InputOutput.inputString();
         System.out.print("Please enter daily rent of a game: ");
-        dailyRent = UserInputOutput.inputDouble();
+        dailyRent = InputOutput.inputDouble();
         System.out.print("Rent status: " + rentStatus);
         System.out.println("\nYou created a new game. Game ID " + id + "!" );
         //this.id=id;

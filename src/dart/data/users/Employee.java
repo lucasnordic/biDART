@@ -1,52 +1,49 @@
-package dart.data.items;
+package dart.data.users;
 
-import dart.data.items.parent.grandparent.Item;
+import dart.data.users.parent.User;
 
 import java.util.Calendar;
 
-public class Employee extends Item {
+public class Employee extends User {
     private int birthYear;
     private double grossSalary;
-    private int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    private static String password = "password123";
 
     // Constructor:
     public Employee(String name, int birthYear, double grossSalary) {
-        super(name);
+        super(name, password);
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
     }
 
+
+    // Setters and Getters:
     public int getBirthYear() {
         return birthYear;
     }
 
-    public String getName() {
-        return name;
+    public void setBirthYear (int birthYear){
+        this.birthYear = birthYear;
     }
 
     public double getGrossSalary() {
         return this.grossSalary + getBonus();
     }
 
+    public void setGrossSalary(double grossSalary) {
+        this.grossSalary = grossSalary;
+    }
+
     public int getAge() {
-        return currentYear - birthYear;
+        return Calendar.getInstance().get(Calendar.YEAR) - birthYear;
     }
 
-//    public void setName (String name){
-//        this.name = name;
-//    }
-
-
-
-    public void setBirthYear (int birthYear){
-        this.birthYear = birthYear;
-    }
 
     // Methods:
     public double getBonus() {
-        if ((currentYear - birthYear) < 22) {
+        if (getAge()< 22) {
             return 4000.0;
-        } else if ((currentYear - birthYear) <= 30) {
+        } else if (getAge() <= 30) {
             return 6000.0;
         } else {
             return 7500.0;

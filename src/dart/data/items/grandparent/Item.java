@@ -1,4 +1,4 @@
-package dart.data.items.parent.grandparent;
+package dart.data.items.grandparent;
 
 import java.util.UUID;
 
@@ -23,5 +23,13 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

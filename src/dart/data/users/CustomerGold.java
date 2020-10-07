@@ -1,6 +1,4 @@
-package dart.data.items;
-
-import dart.data.items.parent.Customer;
+package dart.data.users;
 
 public class CustomerGold extends Customer {
 

@@ -1,7 +1,7 @@
 package dart.data;
 
 import dart.data.items.Game;
-import dart.UserInputOutput;
+import dart.InputOutput;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class GameController {
                 System.out.println(games.get(i));
         }
         System.out.print("Press any key to continue: ");
-        UserInputOutput.pressAnyKeyCon();
+        InputOutput.pressAnyKeyCon();
     }
 
 //    public Game find (int gameId) {
