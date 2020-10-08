@@ -1,4 +1,4 @@
-package DART.Data;
+package DART.Data.users;
 
 public class Customer {
     private int ID;

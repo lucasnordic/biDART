@@ -1,4 +1,6 @@
-package DART.Data;
+package DART.Data.items;
+
+import DART.Data.items.item.RentedObject;
 
 public class Song extends RentedObject {
 

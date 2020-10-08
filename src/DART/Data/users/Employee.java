@@ -1,4 +1,4 @@
-package DART.Data;
+package DART.Data.users;
 
 import java.util.Arrays;
 import java.util.Calendar;

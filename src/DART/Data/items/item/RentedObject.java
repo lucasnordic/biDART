@@ -1,4 +1,4 @@
-package DART.Data;
+package DART.Data.items.item;
 
 public class RentedObject {
 

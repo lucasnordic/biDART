@@ -1,4 +1,6 @@
-package DART.Data;
+package DART.Data.controllers;
+import DART.Data.users.Customer;
+
 import java.util.ArrayList;
 
 

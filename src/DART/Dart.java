@@ -1,6 +1,9 @@
 package DART;
 
-import DART.Data.*;
+import DART.Data.users.Employee;
+import DART.Data.controllers.Customers;
+import DART.Data.controllers.EmployeeLibrary;
+import DART.Data.controllers.ItemController;
 
 import java.util.ArrayList;
 
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 
 public class Dart {
 
-    private  RentProcess rentProcess = new RentProcess();
+    private ItemController rentProcess = new ItemController();
     private Customers customers = new Customers();
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary(); // The Library will exist as long as the Dart program is running.
     //private static GameLibrary2 gameLibrary = new GameLibrary2();  //creating new library for games
@@ -196,13 +199,13 @@ public class Dart {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> rentProcess.menuRegisterAGame();
+            case 1 -> rentProcess.registerAGame();
             case 2 -> rentProcess.menuRemoveAGame();
             case 3 -> customers.registration();
             case 4 -> customers.cancellation();
             case 5 -> rentProcess.addSong();
             case 6 -> rentProcess.deleteSong();
-            case 7 -> rentProcess.menuShowTotalRentProfit();
+            case 7 -> rentProcess.showTotalRentProfit();
             case 8 -> rentProcess.showAllGames();
             case 9 -> mainMenu();
             //default -> System.exit(0);

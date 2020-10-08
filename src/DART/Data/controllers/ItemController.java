@@ -1,10 +1,13 @@
-package DART.Data;
+package DART.Data.controllers;
 
+import DART.Data.items.MGame;
+import DART.Data.items.Song;
+import DART.Data.items.item.RentedObject;
 import DART.UserInputHandler;
 
 import java.util.ArrayList;
 
-public class RentProcess {
+public class ItemController {
 
     ArrayList <RentedObject> dartProducts = new ArrayList<>();
 
@@ -98,10 +101,7 @@ public class RentProcess {
         System.out.println(dartProducts);
     }
 
-
-
-
-    public void menuRegisterAGame() {
+    public void registerAGame() {
 
         RentedObject game = new MGame();
 
@@ -185,7 +185,7 @@ public class RentProcess {
         System.out.println(dartProducts);
     }
 
-    public void menuShowTotalRentProfit() {
+    public void showTotalRentProfit() {
         // didnt get this part from previous code!!
     }     //HHHHHEEEEYY FIX THIS pls!!!
 

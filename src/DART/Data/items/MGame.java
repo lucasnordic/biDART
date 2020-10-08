@@ -1,6 +1,6 @@
-package DART.Data;
+package DART.Data.items;
 
-import java.util.ArrayList;
+import DART.Data.items.item.RentedObject;
 
 public class MGame extends RentedObject {
 
