@@ -1,4 +1,6 @@
-package DART.Data.items;
+package DART;
+
+import DART.Item;
 
 public class Song extends Item {
 

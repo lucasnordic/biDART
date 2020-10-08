@@ -1,4 +1,4 @@
-package DART.Data.items;
+package DART;
 
 public class Game extends Item {
 
