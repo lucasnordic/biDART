@@ -86,8 +86,6 @@ public class Dart {
         managerMenu();
     }
 
-    //This method handles the sub-menu when adding an employee:
-
     //  This handles the employee menu contents:
     public void employeeMenu() {
         System.out.println("- - - - - - - - - - - - - - - - -");
@@ -223,19 +221,4 @@ public class Dart {
         employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
         employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
     }*/
-
-    //private Game[] games = new Game[1];//array for games
 }
-
-
-/* Simpler menuRemoveEmployee:
-//        System.out.println("Please enter an ID of employee which should be removed: ");
-//        String id = UserInputHandler.inputString();
-//        Employee foundEmployee = employeeLibrary.getEmployeeFromList(id);
-//        if (foundEmployee == null) {
-//            System.out.println("Employee with id " + id + " is not found.");
-//            return;
-//        }
-//        employeeLibrary.removeEmployee(id);
-//        System.out.println("The employee was successfully removed!");
- */
