@@ -1,8 +1,6 @@
 package DART.Data.items;
 
-import DART.Data.items.item.RentedObject;
-
-public class Song extends RentedObject {
+public class Song extends Item {
 
     //New added attributes:
 

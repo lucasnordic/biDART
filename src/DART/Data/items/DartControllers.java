@@ -1,15 +1,55 @@
-package DART.Data.controllers;
+package DART.Data.items;
 
-import DART.Data.items.Game;
-import DART.Data.items.Song;
-import DART.Data.items.Item;
+import DART.Data.users.Customer;
 import DART.UserInputHandler;
 
 import java.util.ArrayList;
 
-public class ItemController {
+public class DartControllers {
 
-    ArrayList <Item> dartProducts = new ArrayList<>();
+    ArrayList<Customer> customerList = new ArrayList<>();
+    ArrayList<Item> dartProducts = new ArrayList<>();
+
+    public void registration() {
+
+        System.out.print("Creating a Customer. Please type the customer’s:\nID:  ");
+        int ID = UserInputHandler.inputInt();
+
+        System.out.print("Name:   ");
+        String name = UserInputHandler.inputString();
+
+        Customer customer = new Customer();
+        customer.setID(ID);
+        customer.setName(name);
+
+        customerList.add(customer);
+        System.out.println(customerList);
+
+    }
+
+    public void cancellation() {
+
+        customerList.getCustomers();
+
+        System.out.println("Which customer should be removed? ID:");
+        int ID = UserInputHandler.inputInt();
+
+        for (int i = 0; i < customerList.size(); i++) {
+
+            int a = (customerList.get(i)).getID();
+
+            if (a == ID) {
+
+                customerList.removeCustomer(i);
+                System.out.println(customerList);
+            } else {
+                System.out.println("Customer's ID not found");
+            }
+        }
+
+
+    }
+
 
     // Must Use UUID for IDs later!!!
 
@@ -49,7 +89,7 @@ public class ItemController {
         System.out.println("Please enter the ID of the song which you wish to delete:");
         int ID = UserInputHandler.inputInt();
 
-        for (int i = 0; i < dartProducts.size(); i++){
+        for (int i = 0; i < dartProducts.size(); i++) {
 
             Item song = dartProducts.get(i);
             int songID = song.getID();
@@ -67,12 +107,12 @@ public class ItemController {
         System.out.println("Insert the ID of the song you wish to rent:");
         int receivedID = UserInputHandler.inputInt();
 
-        for(int i = 0; i < dartProducts.size(); i++) {
+        for (int i = 0; i < dartProducts.size(); i++) {
 
             Item song = dartProducts.get(i);
             int songID = song.getID();
 
-            if( receivedID == songID ) {
+            if (receivedID == songID) {
 
                 Item foundSong = dartProducts.get(i);
                 foundSong.rent();
@@ -88,12 +128,12 @@ public class ItemController {
         System.out.println("Insert the ID of the song you wish to return:");
         int inputID = UserInputHandler.inputInt();
 
-        for(int i = 0; i < dartProducts.size(); i++) {
+        for (int i = 0; i < dartProducts.size(); i++) {
 
             Item song = dartProducts.get(i);
             int songID = song.getID();
 
-            if( inputID == songID ) {
+            if (inputID == songID) {
                 song.returnObject();
             }
         }
@@ -142,7 +182,7 @@ public class ItemController {
     public void rentAGame() {
 
         //gameLibrary.showAvailableGames();
-        for(int i = 0; i < dartProducts.size(); i++) {
+        for (int i = 0; i < dartProducts.size(); i++) {
 
             Game game = (Game) dartProducts.get(i);
             String gameStatus = game.getRentStatus();
@@ -150,7 +190,6 @@ public class ItemController {
                 System.out.println(game);
             }
         }
-
         System.out.print("Please enter game ID that you want to rent: ");
         int gameID = UserInputHandler.inputInt();
         for (int i = 0; i < dartProducts.size(); i++) {
@@ -172,12 +211,12 @@ public class ItemController {
         System.out.println("Insert the ID of the game you wish to return:");
         int inputID = UserInputHandler.inputInt();
 
-        for(int i = 0; i < dartProducts.size(); i++) {
+        for (int i = 0; i < dartProducts.size(); i++) {
 
             Item game = dartProducts.get(i);
             int songID = game.getID();
 
-            if( inputID == songID ) {
+            if (inputID == songID) {
                 game.returnObject();
             }
         }
@@ -189,8 +228,8 @@ public class ItemController {
         // didnt get this part from previous code!!
     }     //HHHHHEEEEYY FIX THIS pls!!!
 
-    public void showAllGames(){
-        for(int i =0 ; i<dartProducts.size(); i++) {
+    public void showAllGames() {
+        for (int i = 0; i < dartProducts.size(); i++) {
 
             if (dartProducts.get(i) instanceof Game) {
                 System.out.println(dartProducts.get(i));
@@ -199,5 +238,6 @@ public class ItemController {
         System.out.print("Press any key to continue: ");
         UserInputHandler.pressAnyKeyCon();
     }
-
 }
+
+

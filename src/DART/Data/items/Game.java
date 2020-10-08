@@ -1,18 +1,16 @@
 package DART.Data.items;
 
-import DART.Data.items.item.RentedObject;
-
-public class MGame extends RentedObject {
+public class Game extends Item {
 
     private String genre;
 
-    public MGame(int ID, String title, double dailyRent, String rentStatus, String genre) {
+    public Game(int ID, String title, double dailyRent, String rentStatus, String genre) {
 
         super();
         this.genre = genre;
     }
 
-    public MGame() {}
+    public Game() {}
 
     public String getGenre() { return this.genre; }
     public void setGenre( String genre) { this.genre = genre; }

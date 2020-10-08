@@ -1,6 +1,6 @@
-package DART.Data.items.item;
+package DART.Data.items;
 
-public class RentedObject {
+public class Item {
 
     //Mutual attributes of all rented Objects:
 
@@ -11,7 +11,7 @@ public class RentedObject {
 
     //Constructor:
 
-    public RentedObject(int ID, String title, double dailyRent, String rentStatus) {
+    public Item(int ID, String title, double dailyRent, String rentStatus) {
 
         this.ID = ID;
         this.title = title;
@@ -20,7 +20,7 @@ public class RentedObject {
 
     }
 
-    public RentedObject() {}
+    public Item() {}
 
     //Getters & setters:
 
