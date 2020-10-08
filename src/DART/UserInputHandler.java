@@ -6,6 +6,7 @@ import java.util.Scanner;
 // This Class only handles input.
 public class UserInputHandler {
 
+
     // We create a variable, "input", of type Scanner
     private static final Scanner input = new Scanner(System.in);
 
