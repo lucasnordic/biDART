@@ -1,23 +1,33 @@
-package dart;
+package DART;
+
+import DART.Data.*;
+import DART.Data.ProductLibrary;
+
+import java.util.ArrayList;
 
 /*
     Todo:                   "VG feature 2: Rent based on date"
  */
 
-import dart.items.ItemController;
-import dart.users.UserController;
-
 public class Dart {
-
-    private ItemController dartProducts = new ItemController();
-    private UserController dartUsers = new UserController();
+    private Customers customers = new Customers();
+    private Employee employee = new Employee();
+    private EmployeeLibrary employeeLibrary = new EmployeeLibrary(); // The Library will exist as long as the Dart program is running.
+    // private GameLibrary2 gameLibrary = new GameLibrary2();  //creating new library for games
+    //private SongAlbumLibrary songAlbumLibrary = new SongAlbumLibrary();
+    private ProductLibrary productLibrary = new ProductLibrary();
+    private DART.Data.Product product = new DART.Data.Product();
     private static String managerPassword = "admin1234";
     private static String employeePassword = "password123";
-    private static int gameLastNumber = 1;
+//    private static String gameLastNumber = 0;
+//    private static int songAlbumLastNumber = 0;
+//    private final RegularMembership silverRegularMembership = new RegularMembership("Silver", 10.0, 1, 3);
+//    private final RegularMembership goldRegularMembership = new RegularMembership("Gold", 15.0, 2, 5);
+//    private final RegularMembership platinumRegularMembership = new RegularMembership("Platinum", 25.0, 3, 7);
 
     // This method handles the main menu contents:
     public void mainMenu() {
-        //mockData(); // Only for testing purposes. Added a mockData method at the bottom
+        // mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
 
         // Here we create the content of the menu in two strings and the menu options in one string array:
@@ -61,7 +71,7 @@ public class Dart {
         System.out.println("- - - - - - - - - - - - - - - - -");
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
-        String[] menuItems = {"Add an employee", "View all employees", "Remove an employee", "Return to Main Menu"};
+        String[] menuItems = {"Add an employee", "View all employees", "Remove an employee", "Get net salary", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
 
         // Here we send this content to be printed:
@@ -76,17 +86,100 @@ public class Dart {
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
-            case 1 -> dartUsers.addEmployee();
+            case 1 -> menuAddEmployee();
             case 2 -> {
-                dartUsers.showEmployee();
+                menuShowEmployeeList();
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> dartUsers.menuRemoveEmployee();
-            case 4 -> mainMenu();
+            case 3 -> menuRemoveEmployee();
+            case 4 -> employee.getNetSalary();
+            case 5 -> mainMenu();
         }
         // This is not nececcary?
         managerMenu();
+    }
+
+    //This method handles the sub-menu when adding an employee:
+    public void menuAddEmployee() {
+
+        System.out.print("Type employee's name: ");
+        String employeeName = UserInputHandler.inputString();
+
+        System.out.print("Type employee's birth year: ");
+        int employeeBirthYear = UserInputHandler.inputInt();
+
+        System.out.print("Type employee's gross salary: ");
+        double employeeGrossSalary = UserInputHandler.inputDouble();
+
+        // Here we create a new employee:
+        Employee newEmployee = employeeLibrary.createEmployee(
+                employeeName,
+                employeeBirthYear,
+                employeeGrossSalary
+        );
+
+        // Here we add the new employee to the employee arrayList:
+        employeeLibrary.addEmployee(newEmployee);
+
+        System.out.println("You added: " + newEmployee);
+        System.out.println(" ");
+
+    }
+
+    // this method handles showing the employeelist:
+    public void menuShowEmployeeList() {
+        ArrayList<Employee> list = employeeLibrary.getEmployeeList();
+
+
+        // Prints the list of employees:
+        for (Employee employee : list) {
+            System.out.println(employee);
+        }
+    }
+
+    // This method handles removing employees:
+    public void menuRemoveEmployee() {
+        ArrayList<Employee> list = employeeLibrary.getEmployeeList();
+        Employee foundEmployee = null;
+
+        System.out.println(" ");
+        menuShowEmployeeList();
+
+        // Here we check if the user exists in the array:
+        while (foundEmployee == null) {
+            System.out.print("Which employee should be removed? Please enter a correct ID or NAME (Press ´M´ to go back to menu): ");
+            String input = UserInputHandler.inputString();
+            int count = 0;
+
+            if (input.equalsIgnoreCase("M")) {
+                mainMenu();
+            }
+
+            // Here we check if the ID is actually a unique ID.
+            // On the first run we go through the loop to find the first ID, similar to the users input.
+            for (int i = 0; i < list.size() && count < 2; i++) {
+                Employee currentEmployee = list.get(i);
+
+                // When we find an ID, we increase the count by "1" and continue checking the Array of Employees:
+                if (currentEmployee.getId().startsWith(input) || currentEmployee.getName().startsWith(input)) {
+                    count++;
+                    foundEmployee = currentEmployee;
+                }
+            }
+
+            // If the count is greater then one that means we have found more than two ID's matching the users input.
+            // Then we reset foundEmployee and we stay in the loop:
+            if (count > 1) {
+                System.out.println("Not a Unique ID, try again. ");
+                foundEmployee = null;
+            }
+        }
+
+        // If we leave the last loop and the count is only "1" by the end, then we remove the "foundEmployee":
+        employeeLibrary.removeEmployee(foundEmployee);
+        System.out.print("Employee removed! Press any key to continue:");
+        UserInputHandler.pressAnyKeyCon();
     }
 
     //  This handles the employee menu contents:
@@ -95,7 +188,7 @@ public class Dart {
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
-                "Remove a customer", "Add a song album", "Remove a song album", "Show total rent profit", "View all games", "Return to Main Menu",
+                "Remove a customer", "Show total rent profit", "Add a Song Album", "Remove a Song Album", "View all products", "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
 
@@ -111,14 +204,14 @@ public class Dart {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> dartProducts.registerAGame();
-            case 2 -> dartProducts.menuRemoveAGame();
-            case 3 -> dartUsers.registration();
-            case 4 -> dartUsers.cancellation();
-            case 5 -> dartProducts.addSong();
-            case 6 -> dartProducts.deleteSong();
-            case 7 -> dartProducts.showTotalRentProfit();
-            case 8 -> dartProducts.showAllGames();
+            case 1 -> menuRegisterAGame();
+            case 2 -> menuRemoveAGame();
+            case 3 -> customers.registration();
+            case 4 -> customers.cancellation();
+            case 5 -> product.menuShowTotalRentProfit();
+            case 6 -> menuAddASongAlbum();
+            case 7 -> menuRemoveASongAlbum();
+            case 8 -> productLibrary.showAllGames();
             case 9 -> mainMenu();
             //default -> System.exit(0);
         }
@@ -129,7 +222,7 @@ public class Dart {
     public void customerMenu() {
         System.out.println("- - - - - - - - - - - - - - - - -");
         String title = "Customer Screen - Type one of the options below:";
-        String[] menuItems = {"Rent a game", "Return a game", "Rent a song album", "Return a songalbum", "Return to Main Menu"};
+        String[] menuItems = {"Rent a game", "Return a game", "Rent a Song Album", "Return a Song Album", "Change Membership", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
@@ -139,14 +232,117 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> dartProducts.rentAGame();
-            case 2 -> dartProducts.returnAGame();
-            case 3 -> dartProducts.rentSong();
-            case 4 -> dartProducts.returnSong();
-            case 5 -> mainMenu();
+            case 1 -> menuRentAGame();
+            case 2 -> menuReturnAGame();
+            case 3 -> menuRentASongAlbum();
+            case 4 -> menuReturnASongAlbum();
+            // case 5 -> menuChangeMembership();
+            case 6 -> mainMenu();
             //default -> System.exit(0);
         }
         customerMenu();
+    }
+
+
+    private void menuRegisterAGame() {
+        System.out.print("Please enter title of a game: ");
+        String title = UserInputHandler.inputString();
+        System.out.print("Please enter genre of a game: ");
+        String genre = UserInputHandler.inputString();
+        System.out.print("Please enter daily rent of a game: ");
+        double dailyRent = UserInputHandler.inputDouble();
+        DART.Data.Game game = new DART.Data.Game(title, dailyRent, genre);
+        productLibrary.addProduct(game);
+        System.out.println(game.toString());
+    }
+
+    //typing id, calling a method remove game from library
+    private void menuRemoveAGame() {
+        productLibrary.showAllGames();
+        System.out.print("Please enter an ID of the game you want to remove: ");
+        String id = UserInputHandler.inputString();
+        productLibrary.removeProduct(id);
+    }
+
+    private void menuRentAGame() {
+        // productLibrary.showAvailable();
+        System.out.print("Please enter game ID that you want to rent: ");
+        String id = UserInputHandler.inputString();
+        productLibrary.rentProduct(id);
+    }
+
+    private void menuReturnAGame() {
+        System.out.print("Please enter game ID that you want to return: ");
+        String id = UserInputHandler.inputString();
+        DART.Data.Game game = (DART.Data.Game) productLibrary.find(id);// extracting a game from library by game id
+        if (game == null) {
+            System.out.println("This game was not found!Try again!");
+            menuReturnAGame();
+        }
+        System.out.print("Please enter the number of days in which the game was rented: ");
+        int days = UserInputHandler.inputInt();
+        double dailyRent = game.getDailyRent();
+        double totalRent = dailyRent * days;
+        System.out.println("The total rent is " + dailyRent + " * " + days + " = " + totalRent);
+        game.makeAvailableAgain();
+        product.storeDailyRent(totalRent);
+        System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N now: ");
+        String input = UserInputHandler.inputString();
+        if (input.equalsIgnoreCase("Y")) {
+            productLibrary.menuGiveARating(id);
+        }
+        if (input.equalsIgnoreCase("N")) {
+            customerMenu();
+        } else {
+            System.out.println("Invalid input!Please try again.");
+            menuReturnAGame();
+        }
+    }
+
+    private void menuReturnASongAlbum() {
+        System.out.print("Please enter song album ID that you want to return: ");
+        String id = UserInputHandler.inputString();
+        DART.Data.SongAlbum album = (DART.Data.SongAlbum) productLibrary.find(id);// extracting a game from library by game id
+        if (album == null) {
+            System.out.println("This game was not found!Try again!");
+            menuReturnASongAlbum();
+        }
+        System.out.print("Please enter the number of days in which the game was rented: ");
+        int days = UserInputHandler.inputInt();
+        double dailyRent = album.getDailyRent();
+        double totalRent = dailyRent * days;
+        System.out.println("The total rent is " + dailyRent + " * " + days + " = " + totalRent);
+        album.makeAvailableAgain();
+        product.storeDailyRent(totalRent);
+    }
+
+    public void menuAddASongAlbum() {
+        System.out.print("Please enter a title of a song album: ");
+        String title = UserInputHandler.inputString();
+        System.out.print("Please enter an artist: ");
+        String artist = UserInputHandler.inputString();
+        System.out.print("Please enter a year of a release: ");
+        int year = UserInputHandler.inputInt();
+        System.out.print("Please enter a rent per day: ");
+        double dailyRent = UserInputHandler.inputDouble();
+        DART.Data.SongAlbum album = new DART.Data.SongAlbum( title, dailyRent, artist, year);
+        productLibrary.addProduct(album);
+        System.out.println(album.toString());
+    }
+
+    public void menuRemoveASongAlbum() {
+        productLibrary.showAllAlbums();
+        System.out.print("Please enter a number of the song album you want to remove: ");
+        String id = UserInputHandler.inputString();
+        productLibrary.removeProduct(id);
+    }
+
+    public void menuRentASongAlbum() {
+        productLibrary.showAvailableAlbums();
+        System.out.println("Please enter song album ID that you want to rent: ");
+        String id = UserInputHandler.inputString();
+        productLibrary.rentProduct(id);
+
     }
 
     // this menu checks if the password is correct and sends the user to the corresponding menu:
@@ -195,9 +391,10 @@ public class Dart {
                 "| |_|_|    \\|  _  | __  |_   _|\n" +
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
-      // System.out.println("- - - - - - - - - - - - - - - - - -");
+        // System.out.println("- - - - - - - - - - - - - - - - - -");
     }
-    private static void printOutroAscii () {
+
+    private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("                       _   \n" +
                 " _____            _   |_|_ \n" +
@@ -207,11 +404,37 @@ public class Dart {
                 "      |___|           |_|  ");
 //        System.out.println("- - - - - - - - - - - - -");
     }
-    /*private void mockData() {
+
+    private void mockData() {
         employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
         employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
         employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
         employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
         employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
-    }*/
+        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
+        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
+        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
+        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
+        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
+    }
 }
+//private Game[] games = new Game[1];//array for games
+
+
+
+/* Simpler menuRemoveEmployee:
+//        System.out.println("Please enter an ID of employee which should be removed: ");
+//        String id = UserInputHandler.inputString();
+//        Employee foundEmployee = employeeLibrary.getEmployeeFromList(id);
+//        if (foundEmployee == null) {
+//            System.out.println("Employee with id " + id + " is not found.");
+//            return;
+//        }
+//        employeeLibrary.removeEmployee(id);
+//        System.out.println("The employee was successfully removed!");
+ */
