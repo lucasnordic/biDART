@@ -32,7 +32,7 @@ public class UserInputHandler {
     // Input and return a double:
     public static double inputDouble() {
         double inputResult = input.nextDouble();
-        //input.close();
+        input.nextLine();
 
 
         return inputResult;

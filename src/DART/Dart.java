@@ -1,6 +1,9 @@
 package DART;
 
-import DART.Data.*;
+import DART.Data.users.Employee;
+import DART.Data.controllers.Customers;
+import DART.Data.controllers.EmployeeLibrary;
+import DART.Data.controllers.ItemController;
 
 import java.util.ArrayList;
 
@@ -9,16 +12,18 @@ import java.util.ArrayList;
  */
 
 public class Dart {
+
+    private ItemController rentProcess = new ItemController();
     private Customers customers = new Customers();
     private EmployeeLibrary employeeLibrary = new EmployeeLibrary(); // The Library will exist as long as the Dart program is running.
-    private static GameLibrary2 gameLibrary = new GameLibrary2();  //creating new library for games
+    //private static GameLibrary2 gameLibrary = new GameLibrary2();  //creating new library for games
     private static String managerPassword = "admin1234";
     private static String employeePassword = "password123";
     private static int gameLastNumber = 1;
 
     // This method handles the main menu contents:
     public void mainMenu() {
-        mockData(); // Only for testing purposes. Added a mockData method at the bottom
+        //mockData(); // Only for testing purposes. Added a mockData method at the bottom
         System.out.println("- - - - - - - - - - - - - - - - -");
 
         // Here we create the content of the menu in two strings and the menu options in one string array:
@@ -178,7 +183,7 @@ public class Dart {
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
-                "Remove a customer", "Show total rent profit", "View all games", "Return to Main Menu",
+                "Remove a customer", "Add a song album", "Remove a song album", "Show total rent profit", "View all games", "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
 
@@ -194,13 +199,15 @@ public class Dart {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> menuRegisterAGame();
-            case 2 -> menuRemoveAGame();
+            case 1 -> rentProcess.registerAGame();
+            case 2 -> rentProcess.menuRemoveAGame();
             case 3 -> customers.registration();
             case 4 -> customers.cancellation();
-            case 5 -> gameLibrary.menuShowTotalRentProfit();
-            case 6 -> gameLibrary.showAllGames();
-            case 7 -> mainMenu();
+            case 5 -> rentProcess.addSong();
+            case 6 -> rentProcess.deleteSong();
+            case 7 -> rentProcess.showTotalRentProfit();
+            case 8 -> rentProcess.showAllGames();
+            case 9 -> mainMenu();
             //default -> System.exit(0);
         }
         employeeMenu();
@@ -210,7 +217,7 @@ public class Dart {
     public void customerMenu() {
         System.out.println("- - - - - - - - - - - - - - - - -");
         String title = "Customer Screen - Type one of the options below:";
-        String[] menuItems = {"Rent a game", "Return a game", "Return to Main Menu"};
+        String[] menuItems = {"Rent a game", "Return a game", "Rent a song album", "Return a songalbum", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
@@ -220,51 +227,16 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> rentAGame();
-            case 2 -> returnAGame();
-            case 3 -> mainMenu();
+            case 1 -> rentProcess.rentAGame();
+            case 2 -> rentProcess.returnAGame();
+            case 3 -> rentProcess.rentSong();
+            case 4 -> rentProcess.returnSong();
+            case 5 -> mainMenu();
             //default -> System.exit(0);
         }
         customerMenu();
     }
 
-    private static void menuRegisterAGame() {
-
-        Game game = new Game(gameLastNumber++);//creating new game, next id +1
-        gameLibrary.addGame(game);// method that allow to add games to library
-        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus() + "\n");
-
-    }
-
-    private static void menuRemoveAGame() {
-        System.out.print("Please enter a number of the game you want to remove: ");
-        int id = UserInputHandler.inputInt();
-        gameLibrary.removeGame(id);
-    }
-
-    private static void rentAGame() {
-        gameLibrary.showAvailableGames();
-        System.out.print("Please enter game ID that you want to rent: ");
-        int gameID = UserInputHandler.inputInt();
-        gameLibrary.rentAGame(gameID);
-    }
-
-    private static void returnAGame() {
-        System.out.print("Please enter game ID that you want to return: ");
-        int gameID = UserInputHandler.inputInt();
-        Game game = gameLibrary.find(gameID);// extracting a game from library by game id
-        if (game == null) {
-            System.out.println("This game was not found!Try again!");
-            returnAGame();
-        }
-        System.out.print("Please enter the number of days in which the game was rented: ");
-        int days = UserInputHandler.inputInt();
-        double dailyRent = game.getDailyRent();
-        double totalRent = dailyRent * days;
-        System.out.println("The total rent is "+ dailyRent+" * "+days+" = "+totalRent);
-        game.makeGameAvailableAgain();
-        gameLibrary.storeDailyRent(totalRent);
-    }
 
     // this menu checks if the password is correct and sends the user to the corresponding menu:
     public void passwordMenu(String menuChoice) {
@@ -324,7 +296,7 @@ public class Dart {
                 "      |___|           |_|  ");
 //        System.out.println("- - - - - - - - - - - - -");
     }
-    private void mockData() {
+    /*private void mockData() {
         employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
         employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
         employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
@@ -340,7 +312,7 @@ public class Dart {
         employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
         employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
         employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
-    }
+    }*/
 
     //private Game[] games = new Game[1];//array for games
 }

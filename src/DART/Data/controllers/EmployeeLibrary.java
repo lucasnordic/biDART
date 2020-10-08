@@ -1,4 +1,6 @@
-package DART.Data;
+package DART.Data.controllers;
+
+import DART.Data.users.Employee;
 
 import java.util.ArrayList;
 

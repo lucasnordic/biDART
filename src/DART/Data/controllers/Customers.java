@@ -1,7 +1,6 @@
-package DART.Data;
-import DART.Dart;
+package DART.Data.controllers;
+import DART.Data.users.Customer;
 import DART.UserInputHandler;
-import java.util.ArrayList;
 
 public class Customers {
 
