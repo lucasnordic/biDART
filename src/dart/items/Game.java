@@ -1,4 +1,4 @@
-package DART;
+package dart.items;
 
 public class Game extends Item {
 

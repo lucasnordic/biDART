@@ -1,11 +1,10 @@
-package DART;
+package dart;
 /**
 </www.Dart.com>
  */
 public class Main {
 
     public static void main(String[] args) {
-
         Dart.printIntroAscii();
 
         // "new Dart();" is an object, all methods of "Dart" class go inside this new instantiation.

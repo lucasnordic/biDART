@@ -1,6 +1,4 @@
-package DART;
-
-import DART.Item;
+package dart.items;
 
 public class Song extends Item {
 
