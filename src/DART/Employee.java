@@ -1,4 +1,4 @@
-package DART.Data.users;
+package DART;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -22,6 +22,8 @@ public class Employee {
         this.netSalary = 0;
     }
 
+    public Employee () {}
+
     public String getName() {
         return name;
     }
@@ -29,6 +31,8 @@ public class Employee {
     public double getGrossSalary() {
         return this.grossSalary + getBonus();
     }
+
+    public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
 
     public int getAge() {
         return 2020 - birthYear;
