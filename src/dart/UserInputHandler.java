@@ -1,5 +1,7 @@
 package dart;
 
+import dart.menus.MenuManager;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -8,13 +10,15 @@ import java.util.Scanner;
  */
 
 public class UserInputHandler {
+    private static final Scanner input = new Scanner(System.in);
+    private static String managerPassword = "admin1234";
+    private static String employeePassword = "password123";
+
+
 
     /*
         Here we only deal with Input:
      */
-
-    // We create a variable, "input", of type Scanner
-    private static final Scanner input = new Scanner(System.in);
 
     // If we want the user to stop and have to enter a key to continue:
     public static void pressAnyKeyCon() {
@@ -82,10 +86,5 @@ public class UserInputHandler {
         Here we only deal with Output/Printing:
      */
 
-    // This loop prints out all the menu options that are stored in the "menuItems" array.
-    public static void printMenuItems(String[] menuItems) {
-        for (int i = 0; i < menuItems.length; i++) {
-            System.out.println((i + 1) + ". " + menuItems[i]);
-        }
-    }
+
 }

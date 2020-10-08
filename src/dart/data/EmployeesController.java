@@ -1,10 +1,13 @@
 package dart.data;
 
+import dart.UserInputHandler;
+import dart.data.users.Customer;
 import dart.data.users.Employee;
 import java.util.ArrayList;
 
 public class EmployeesController {
 
+    ArrayList <Customer> customers = new ArrayList<Customer>();
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private double netSalary;
 
@@ -36,6 +39,19 @@ public class EmployeesController {
             }
         }
     }
+void mainRun() {
+    //E,M,C,X
+    //1,2,
+    //
+    // }
 
+    String name = UserInputHandler.inputString();
+    String membershipType =UserInputHandler.inputString();
+    Customer c = new Customer(name, membershipType);
+    Employee e = new Employee();
+    e.addCustomer(c,customers);
+
+
+}
 
 }

@@ -2,12 +2,17 @@ package dart.data.users;
 
 import dart.data.users.parent.User;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Employee extends User {
     private int birthYear;
     private double grossSalary;
 
+    public Employee(){
+        super();
+
+    }
     // Constructor:
     public Employee(String name, int birthYear, double grossSalary) {
         super(name);
@@ -52,4 +57,17 @@ public class Employee extends User {
     public String toString () {
         return getId() + " : " + name + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
     }
+
+    public void addCustomer(Customer c, ArrayList<Customer> customers){
+        customers.add(c);
+        System.out.println("The customer is added");
+    }            /*
+    addCisustomer
+            addSongAlbum
+    removeGame
+                    removeCustomer
+    removeAlbum
+                            viewAllGames
+    viewAllCustomers
+                                    viewAllAlbums*/
 }

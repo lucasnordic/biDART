@@ -1,5 +1,6 @@
 package dart.menus;
 
+import dart.DartStore;
 import dart.UserInputHandler;
 import dart.data.GamesController;
 import dart.data.items.Game;
@@ -10,31 +11,9 @@ import dart.data.items.Game;
 
 public class MenuCustomer {
 
-    private MainMenu mainMenu;
+    private DartStore mainMenu;
 
-    public void customerMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - -");
-        System.out.println("Customer Screen - Type one of the options below:");
-        String[] menuItems = {
-            "Rent a game",
-            "Return a game",
-            "Change Membership",
-            "Return to Main Menu"
-        };
-        UserInputHandler.printMenuItems(menuItems);
-        System.out.print("Enter choice: ");
 
-        int minMenuChoice = 1; //  Here we store the max and min choice based on "menuItems":
-        int maxMenuChoice = menuItems.length;
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
-
-        switch (menuChoice) { // Here we go to different menus based on user input.
-            case 1 -> rentAGame();
-            case 2 -> returnAGame();
-            case 3 -> menuChangeMembership();
-            case 4 -> mainMenu.mainMenu();
-        }
-    }
 
     /*
         Sub Menu's:

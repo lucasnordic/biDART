@@ -27,6 +27,11 @@ public class Customer extends User {
         discount = 0;
     }
 
+    @Override
+    public String getName(String test, String best) {
+        return null;
+    }
+
     public String toString() {
         String var10000 = name;
         return var10000 + " ---> " + getId();

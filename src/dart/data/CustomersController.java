@@ -25,10 +25,6 @@ public class CustomersController {
         String password = UserInputHandler.inputString();
     }
 
-    public void addCustomer() {
-
-    }
-
     public void customerMembership() {
         Customer newCustomer = null;
         do {

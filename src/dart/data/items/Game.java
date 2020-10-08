@@ -8,14 +8,11 @@ public class Game extends Item {
     private double dailyRent;
     private String rentStatus = "available";
 
-    public Game(String title, String genre, ) {
+    public Game(String name, String genre, double dailyRent) {
         super(name);
-
-        //this.id=id;
-//        this.title=title;
-//        this.genre=genre;
-//        this.dailyRent=dailyRent;
-//        this.rentStatus=rentStatus;
+        this.genre = genre;
+        this.dailyRent = dailyRent;
+        this.rentStatus = rentStatus;
 
     }
 

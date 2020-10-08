@@ -1,5 +1,6 @@
 package dart.menus;
 
+import dart.DartStore;
 import dart.UserInputHandler;
 import dart.data.users.Employee;
 
@@ -11,33 +12,9 @@ import java.util.ArrayList;
 
 public class MenuManager {
 
-    private MainMenu mainMenu;
+    private DartStore mainMenu;
 
-    //  This method handles the manager menu contents:
-    public void managerMenu() {
-        System.out.println("Manager Screen - Type one of the options below:");
-        String[] menuItems = {
-                "Add an employee",
-                "View all employees",
-                "Remove an employee",
-                "View Net Salary",
-                "Return to Main Menu"
-        };
-        UserInputHandler.printMenuItems(menuItems); // Here we send this content to be printed
-        System.out.print("Enter choice: ");
 
-        int minMenuChoice = 1;
-        int maxMenuChoice = menuItems.length;
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice); // Here we let the user input a number between a min and max value
-
-        switch (menuChoice) { // Here we go to different menus based on user input.
-            case 1 -> menuAddEmployee();
-            case 2 -> menuShowEmployeeList();
-            case 3 -> menuRemoveEmployee();
-            case 4 -> menuViewNetSalary();
-            case 5 -> mainMenu.mainMenu();
-        }
-    }
 
     //This method handles the sub-menu when adding an employee:
     public void menuAddEmployee() {
