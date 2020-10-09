@@ -31,6 +31,6 @@ public class SongAlbum extends Item {
     public String toString() {
         return  super.getID() + ": " + super.getTitle() + " by " + this.artist +
                 ". Released in " + this.releaseYear + ". Price: " + super.getDailyRent() +
-                " SEK. Status: " + super.getRentStatus() + "\n"; }
+                " SEK. Status: " + super.getRentStatus() + super.toString(); }
 
 }

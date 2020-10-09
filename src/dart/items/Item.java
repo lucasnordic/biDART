@@ -1,7 +1,5 @@
 package dart.items;
 
-import java.util.UUID;
-
 public class Item {
 
     /**
@@ -12,6 +10,9 @@ public class Item {
     private String title;
     private double dailyRent;
     private String rentStatus = "available";
+    private double totalRentProfit;
+    private ArrayList<Value> rating = new ArrayList<>();
+
 
     /**
      *  Constructor:
@@ -47,8 +48,43 @@ public class Item {
      *  Methods:
      */
 
-    protected void rent (){
-        rentStatus="rented";
+    protected void rent() {
+        rentStatus = "rented";
     }
-    protected void returnObject() { rentStatus="available";}
+
+    protected void makeAvailableAgain() {
+        rentStatus = "available";
+    }
+
+    //here we add rating to arraylist of Values
+    public void addValue(Value value) {
+        rating.add(value);
+
+    }
+
+    public double findAverageRating() {
+        double averageRating = 0;
+        int totalRating = 0;
+        for (Value value : rating) {
+            totalRating = value.getUserRating() + totalRating;
+        }
+        averageRating = (double) totalRating / rating.size(); //(double) allows to convert int Userrating into doubles
+        return averageRating;
+    }
+
+    public void storeDailyRent(double totalRent) {
+        totalRentProfit = (totalRentProfit + totalRent);
+    }
+
+    public void menuShowTotalRentProfit() {
+        System.out.println("Total rent profit is " + totalRentProfit);
+    }
+
+    public String toString() {
+        String review = ""; //empty String for further use adding all reviews
+        for (Value value : rating) {
+            review = review + value;
+        }
+        return review;
+    }
 }

@@ -42,7 +42,7 @@ public class User {
         this.name = name;
     }
 
-    public String getName() {
+    public String getName(String name) {
         return name;
     }
 

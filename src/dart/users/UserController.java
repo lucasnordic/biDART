@@ -1,5 +1,6 @@
 package dart.users;
 
+import dart.Dart;
 import dart.UserInputHandler;
 
 import java.util.ArrayList;
