@@ -70,6 +70,6 @@ public class Employee extends User {
 
     @Override
     public String toString () {
-        return getId() + " : " + name + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
+        return getId() + " : " + getName() + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
     }
 }

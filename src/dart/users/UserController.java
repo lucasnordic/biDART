@@ -1,6 +1,5 @@
 package dart.users;
 
-import dart.Dart;
 import dart.UserInputHandler;
 
 import java.util.ArrayList;
@@ -15,15 +14,13 @@ public class UserController {
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
 
+    public UserController() {
+        mockData();
+    }
+
     /**
      * These methods are related to Customers:
      */
-
-
-
-    public ArrayList<Customer> getCustomers() {
-        return customerList;
-    }
 
     public void registration() {
 
@@ -33,12 +30,16 @@ public class UserController {
         System.out.print("Please enter the password you want to use: ");
         String password = UserInputHandler.inputString();
 
-        Customer customer = new Customer();
+        User customer = new Customer();
         customer.setName(name);
+        customer.setPassword(password);
 
-        customerList.add(customer);
-        System.out.println(customerList);
+        userList.add(customer);
+        System.out.println(userList.toString());
+    }
 
+    public void addCustomer(Customer customer){
+        userList.add(customer);
     }
 
 //    public void cancellation() {
@@ -98,16 +99,15 @@ public class UserController {
         System.out.print("Type employee's gross salary: ");
         double employeeGrossSalary = UserInputHandler.inputDouble();
 
-        Employee newEmployee = new Employee(
+        User newEmployee = new Employee(
                 employeeName,
                 "password123",
                 employeeBirthYear,
                 employeeGrossSalary
         );
-        employeeList.add(newEmployee);
+        userList.add(newEmployee);
 
         System.out.println("You added: " + newEmployee);
-        System.out.println(" ");
     }
 
     public void addEmployee(Employee employee){
@@ -116,8 +116,6 @@ public class UserController {
 
     public void RemoveEmployee() {
 
-        Dart dart = new Dart();
-
         Employee foundEmployee = null;
 
         System.out.println(" ");
@@ -125,13 +123,9 @@ public class UserController {
 
         // Here we check if the user exists in the array:
         while (foundEmployee == null) {
-            System.out.print("Which employee should be removed? Please enter a correct ID or NAME (Press ´M´ to go back to menu): ");
+            System.out.print("Which employee should be removed? Please enter a correct ID or NAME: ");
             String input = UserInputHandler.inputString();
             int count = 0;
-
-            if (input.equalsIgnoreCase("M")) {
-                dart.mainMenu();
-            }
 
             // Here we check if the ID is actually a unique ID.
             // On the first run we go through the loop to find the first ID, similar to the users input.
@@ -173,6 +167,53 @@ public class UserController {
         }
 
         return netSalary;
+    }
+
+    /**
+     * Here we check if a user exists:
+     */
+
+    public boolean checkIfUserExists(String name, String password) {
+        boolean userFound = false;
+
+        for (int i = 0; i < userList.size(); i++) {
+            User user = userList.get(i);
+
+            if (user instanceof Customer) {
+                if (user.getName().equals(name)) {
+                    if (user.getPassword().equals(password)) {
+                        userFound = true;
+                    }
+                }
+            } else if (user instanceof Employee) {
+                if (user.getName().equals(name)) {
+                    if(user.getPassword().equals(password)) {
+                        userFound = true;
+                    }
+                }
+            } else {
+                userFound = false;
+            }
+        }
+        return userFound;
+    }
+
+    /**
+     * This is just "test" data:
+     */
+
+    public void mockData() {
+//        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+//        addEmployee(new Employee("Lucas","koko", 1990, 100.0));
+//        addEmployee(new Employee("Maryam","koko", 1930, 1000.0));
+//        addEmployee(new Employee("Deba","koko", 309, 10000.0));
+//        addEmployee(new Employee("Olga","koko", 1769, 100000.0));
+
+        addCustomer(new Customer("lucas", "123"));
+        addCustomer(new Customer("maryam", "234"));
+        addCustomer(new Customer("deba", "345"));
+        addCustomer(new Customer("anwar", "456"));
+        addCustomer(new Customer("olga", "567"));
     }
 }
 

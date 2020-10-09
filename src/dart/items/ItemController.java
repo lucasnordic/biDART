@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ItemController {
     private double totalRentProfit = 0;
-    ArrayList <Item> dartProducts = new ArrayList<>();
+    private ArrayList <Item> dartProducts = new ArrayList<>();
 
     /**
      * Song Item:
