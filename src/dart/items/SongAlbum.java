@@ -1,6 +1,6 @@
 package dart.items;
 
-public class Song extends Item {
+public class SongAlbum extends Item {
 
     //New added attributes:
 
@@ -9,14 +9,14 @@ public class Song extends Item {
 
     //Constructor:
 
-    public Song(int ID, String title, double dailyRent, String rentStatus, String artist, int releaseYear) {
+    public SongAlbum(int ID, String title, double dailyRent, String rentStatus, String artist, int releaseYear) {
 
         super();
         this.artist = artist;
         this.releaseYear = releaseYear;
     }
 
-    public Song() {}
+    public SongAlbum() {}
 
     //Getters & setters:
 

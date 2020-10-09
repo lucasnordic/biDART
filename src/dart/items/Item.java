@@ -1,40 +1,51 @@
 package dart.items;
 
+import java.util.UUID;
+
 public class Item {
 
-    //Mutual attributes of all rented Objects:
+    /**
+     *  Mutual attributes of all rented Objects:
+     */
 
-    private int ID;
+    private String ID;
     private String title;
     private double dailyRent;
     private String rentStatus = "available";
 
-    //Constructor:
+    /**
+     *  Constructor:
+     */
 
-    public Item(int ID, String title, double dailyRent, String rentStatus) {
+    public Item(String title, double dailyRent, String rentStatus) {
 
-        this.ID = ID;
+        this.ID = UUID.randomUUID().toString();
         this.title = title;
         this.dailyRent = dailyRent;
         this.rentStatus = rentStatus;
 
     }
 
-    public Item() {}
+    public Item() {
 
-    //Getters & setters:
+    }
 
-    protected int getID() { return this.ID; }
+    /**
+     *  Getters and Setters:
+     */
+
+    protected String getID() { return this.ID; }
     protected String getTitle() { return this.title; }
     protected double getDailyRent() { return this.dailyRent; }
     protected String getRentStatus() { return this.rentStatus; }
 
-    protected void setID(int ID) { this.ID = ID; }
     protected void setTitle(String title) { this.title = title; }
     protected void setDailyRent(double dailyRent) { this.dailyRent = dailyRent; }
     protected void setRentStatus(String rentStatus) { this.rentStatus = rentStatus; }
 
-    //Methods:
+    /**
+     *  Methods:
+     */
 
     protected void rent (){
         rentStatus="rented";

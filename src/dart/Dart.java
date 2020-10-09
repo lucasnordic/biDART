@@ -9,8 +9,8 @@ import dart.users.UserController;
 
 public class Dart {
 
-    private final ItemController dartProducts = new ItemController();
-    private final UserController dartUsers = new UserController();
+    private ItemController dartProducts = new ItemController();
+    private UserController dartUsers = new UserController();
 
     // This method handles the main menu contents:
     public void mainMenu() {
@@ -76,7 +76,7 @@ public class Dart {
         switch (menuChoice) {
             case 1 -> dartUsers.addEmployee();
             case 2 -> {
-                dartUsers.showEmployee();
+                dartUsers.showEmployeeList();
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
@@ -110,9 +110,9 @@ public class Dart {
         // Here we go to different menus based on users input.
         switch (menuChoice) {
             case 1 -> dartProducts.registerAGame();
-            case 2 -> dartProducts.menuRemoveAGame();
+            case 2 -> dartProducts.RemoveAGame();
             case 3 -> dartUsers.registration();
-            case 4 -> dartUsers.cancellation();
+//            case 4 -> dartUsers.cancellation();
             case 5 -> dartProducts.addSong();
             case 6 -> dartProducts.deleteSong();
             case 7 -> dartProducts.showTotalRentProfit();
@@ -207,11 +207,4 @@ public class Dart {
                 "      |___|           |_|  ");
 //        System.out.println("- - - - - - - - - - - - -");
     }
-    /*private void mockData() {
-        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
-        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
-        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
-        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
-        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
-    }*/
 }

@@ -11,23 +11,29 @@ import java.util.ArrayList;
 
 public class UserController {
 
-    ArrayList<Customer> customerList = new ArrayList<>();
-    ArrayList <Employee> employeeList = new ArrayList();
+    private ArrayList<Customer> customerList = new ArrayList<>();
+    private ArrayList<Employee> employeeList = new ArrayList<>();
+    private ArrayList<User> userList = new ArrayList<>();
 
     /**
      * These methods are related to Customers:
      */
 
+
+
+    public ArrayList<Customer> getCustomers() {
+        return customerList;
+    }
+
     public void registration() {
 
-        System.out.print("Creating a Customer. Please type the customer’s:\nID:  ");
-        int ID = UserInputHandler.inputInt();
-
-        System.out.print("Name:   ");
+        System.out.print("Please enter a username: ");
         String name = UserInputHandler.inputString();
 
+        System.out.print("Please enter the password you want to use: ");
+        String password = UserInputHandler.inputString();
+
         Customer customer = new Customer();
-        customer.setID(ID);
         customer.setName(name);
 
         customerList.add(customer);
@@ -35,30 +41,51 @@ public class UserController {
 
     }
 
-    public void cancellation() {
+//    public void cancellation() {
+//
+//        System.out.println("Which customer should be removed? ID:");
+//        int ID = UserInputHandler.inputInt();
+//
+//        for (int i = 0; i < customerList.size(); i++) {
+//
+//            int a = (customerList.get(i)).getId();
+//
+//            if (a == ID) {
+//
+//                customerList.remove(i);
+//                System.out.println(customerList);
+//            } else {
+//                System.out.println("Customer's ID not found");
+//            }
+//        }
+//    }
 
-        System.out.println("Which customer should be removed? ID:");
-        int ID = UserInputHandler.inputInt();
-
-        for (int i = 0; i < customerList.size(); i++) {
-
-            int a = (customerList.get(i)).getID();
-
-            if (a == ID) {
-
-                customerList.remove(i);
-                System.out.println(customerList);
-            } else {
-                System.out.println("Customer's ID not found");
-            }
-        }
-
-
-    }
+//    public void customerMembership() {
+//        Customer newCustomer = null;
+//        do {
+//            System.out.print("Do you want to upgrade your membership type(type yes or no): ");
+//            String[] validChoices = {"yes", "no"};
+//            String yesNo = UserInputHandler.inputValidString(validChoices);
+//            switch (yesNo) {
+//                case "yes" -> registerCustomer();
+//                case "no" -> registerCustomer();
+//            }
+//
+//        }while(newCustomer == null);
+//    }
 
     /**
      * These methods are related to Employees:
      */
+
+    // Prints the list of employees:
+    public void showEmployeeList() {
+        for (User user : userList) {
+            if (user instanceof Employee){
+                System.out.println(user);
+            }
+        }
+    }
 
     public void addEmployee() {
 
@@ -71,20 +98,20 @@ public class UserController {
         System.out.print("Type employee's gross salary: ");
         double employeeGrossSalary = UserInputHandler.inputDouble();
 
-        Employee newEmployee = new Employee(employeeName, "password123", employeeBirthYear, employeeGrossSalary);
+        Employee newEmployee = new Employee(
+                employeeName,
+                "password123",
+                employeeBirthYear,
+                employeeGrossSalary
+        );
         employeeList.add(newEmployee);
 
         System.out.println("You added: " + newEmployee);
         System.out.println(" ");
-
     }
 
-    public void showEmployee() {
-
-        // Prints the list of employees:
-        for (Employee employee : employeeList) {
-            System.out.println(employee);
-        }
+    public void addEmployee(Employee employee){
+        userList.add(employee);
     }
 
     public void RemoveEmployee() {
@@ -94,7 +121,7 @@ public class UserController {
         Employee foundEmployee = null;
 
         System.out.println(" ");
-        showEmployee();
+        showEmployeeList();
 
         // Here we check if the user exists in the array:
         while (foundEmployee == null) {
@@ -132,18 +159,20 @@ public class UserController {
         UserInputHandler.pressAnyKeyCon();
     }
 
-    public double getNetSalary() {
+    public double calculateNetSalary() {
 
         double netSalary = 0;
         Employee employee = new Employee();
 
         if (employee.getGrossSalary() * 12 < 100000) {
-            return netSalary = employee.getGrossSalary() * 12;
+            netSalary = employee.getGrossSalary() * 12;
         } else if (employee.getGrossSalary() * 12 >= 100000) {
-            return netSalary = (employee.getGrossSalary() * 12) * 0.70;
+            netSalary = (employee.getGrossSalary() * 12) * 0.70;
         } else {
-            return netSalary + employee.getGrossSalary();
+            netSalary =+ employee.getGrossSalary();
         }
+
+        return netSalary;
     }
 }
 

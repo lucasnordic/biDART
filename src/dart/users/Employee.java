@@ -12,11 +12,14 @@ import java.util.UUID;
 
 public class Employee extends User {
 
+    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
     private int birthYear;
     private double grossSalary;
-    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
-    // controller:
+    /**
+     *  Constructors here. We can choose to create an empty Employee or if we want to send create an employee with attributes:
+     */
+
     public Employee(String name, String password, int birthYear, double grossSalary) {
         super(name, password);
         this.birthYear = birthYear;
@@ -27,15 +30,25 @@ public class Employee extends User {
         super();
     }
 
-    public String getName() {
-        return name;
+    /**
+     *  Getters and setters:
+     */
+
+    public int getBirthYear() {
+        return birthYear;
+    }
+    public void setBirthYear ( int birthYear){
+        this.birthYear = birthYear;
     }
 
     public double getGrossSalary() {
         return this.grossSalary + getBonus();
     }
-
     public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
+
+    /**
+     *  Methods:
+     */
 
     public int getAge() {
         return currentYear - birthYear;
@@ -51,27 +64,12 @@ public class Employee extends User {
         }
     }
 
-    //Setters
-    public void setName (String name){
-        this.name = name;
-    }
-
-    public void setBirthYear ( int birthYear){
-        this.birthYear = birthYear;
-    }
-
-    @Override
-    public String getName(String name) {
-        return name;
-    }
+    /**
+     *  Override:
+     */
 
     @Override
     public String toString () {
         return getId() + " : " + name + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
     }
 }
-
-// Old:
-//     private void initializeArray (String[]anArray){
-//        Arrays.fill(anArray, "");
-//    }
