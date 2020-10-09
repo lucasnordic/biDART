@@ -10,7 +10,7 @@ public class User {
 
     private String id;
     protected String name;
-    protected String password;
+    private String password;
 
     /**
      *  Constructor:
@@ -40,5 +40,13 @@ public class User {
 
     public String getName(String name) {
         return name;
+    }
+
+    public void getPassword(String password) {
+        this.password= password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

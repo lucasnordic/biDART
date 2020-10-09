@@ -26,9 +26,13 @@ public class UserController {
         System.out.print("Name:   ");
         String name = UserInputHandler.inputString();
 
+        System.out.println("Password: ");
+        String password = UserInputHandler.inputString();
+
         Customer customer = new Customer();
         customer.setID(ID);
         customer.setName(name);
+
 
         customerList.add(customer);
         System.out.println(customerList);

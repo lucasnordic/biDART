@@ -9,8 +9,8 @@ import dart.users.UserController;
 
 public class Dart {
 
-    private final ItemController dartProducts = new ItemController();
-    private final UserController dartUsers = new UserController();
+    private final ItemController itemController = new ItemController();
+    private final UserController userController = new UserController();
 
     // This method handles the main menu contents:
     public void mainMenu() {
@@ -74,13 +74,13 @@ public class Dart {
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
-            case 1 -> dartUsers.addEmployee();
+            case 1 -> userController.addEmployee();
             case 2 -> {
-                dartUsers.showEmployee();
+                userController.showEmployee();
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> dartUsers.RemoveEmployee();
+            case 3 -> userController.RemoveEmployee();
             case 4 -> mainMenu();
         }
         // This is not nececcary?
@@ -109,16 +109,17 @@ public class Dart {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> dartProducts.registerAGame();
-            case 2 -> dartProducts.menuRemoveAGame();
-            case 3 -> dartUsers.registration();
-            case 4 -> dartUsers.cancellation();
-            case 5 -> dartProducts.addSong();
-            case 6 -> dartProducts.deleteSong();
-            case 7 -> dartProducts.showTotalRentProfit();
-            case 8 -> dartProducts.showAllGames();
+            case 1 -> itemController.registerAGame();
+            case 2 -> itemController.menuRemoveAGame();
+            case 3 -> userController.registration();
+            case 4 -> userController.cancellation();
+            case 5 -> itemController.addSong();
+            case 6 -> itemController.deleteSong();
+            case 7 -> itemController.showTotalDailyRent();
+            case 8 -> itemController.showAllGames();
             case 9 -> mainMenu();
             //default -> System.exit(0);
+            default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
         employeeMenu();
     }
@@ -137,10 +138,12 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> dartProducts.rentAGame();
-            case 2 -> dartProducts.returnAGame();
-            case 3 -> dartProducts.rentSong();
-            case 4 -> dartProducts.returnSong();
+            case 1 -> itemController.rentAGame();
+            case 2 -> itemController.returnItem();
+            case 3 -> itemController.rentSong();
+            case 4 -> itemController.returnItem();
+//            case 5 -> itemController.findGame();
+//            case 6 -> itemController.findSong();
             case 5 -> mainMenu();
             //default -> System.exit(0);
         }
@@ -195,9 +198,10 @@ public class Dart {
                 "| |_|_|    \\|  _  | __  |_   _|\n" +
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
-      // System.out.println("- - - - - - - - - - - - - - - - - -");
+        // System.out.println("- - - - - - - - - - - - - - - - - -");
     }
-    private static void printOutroAscii () {
+
+    private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("                       _   \n" +
                 " _____            _   |_|_ \n" +
