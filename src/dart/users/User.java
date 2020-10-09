@@ -9,7 +9,7 @@ import java.util.UUID;
 public class User {
 
     private String id;
-    private String name;
+    protected String name;
     private String password;
 
     /**
@@ -30,10 +30,6 @@ public class User {
      *  Getters and Setters:
      */
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public final String getId() {
         return id;
     }
@@ -42,11 +38,15 @@ public class User {
         this.name = name;
     }
 
-    public String getName() {
+    public String getName(String name) {
         return name;
     }
 
-    public String getPassword() {
-        return password;
+    public void getPassword(String password) {
+        this.password= password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
