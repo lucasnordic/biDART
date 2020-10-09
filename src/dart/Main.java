@@ -6,13 +6,8 @@ package dart;
 public class Main {
 
     public static void main(String[] args) {
-
-//        TESTDATA testdata = new TESTDATA();
-//        testdata.mockData();
-
         Dart dart = new Dart();
+        Dart.printIntroAscii();
         dart.mainMenu();
-
-        UserInputHandler.closeScanner();  // We go into the class that has the scanner and close it.
     }
 }

@@ -1,10 +1,6 @@
 package dart.users;
 
-import dart.UserInputHandler;
-
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.UUID;
 
 /**
  * This class handles the Employee and methods related:
@@ -42,7 +38,7 @@ public class Employee extends User {
     }
 
     public double getGrossSalary() {
-        return this.grossSalary + getBonus();
+        return this.grossSalary + calculateBonus();
     }
     public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
 
@@ -50,11 +46,11 @@ public class Employee extends User {
      *  Methods:
      */
 
-    public int getAge() {
+    public int calculateAge() {
         return currentYear - birthYear;
     }
 
-    public double getBonus() {
+    public double calculateBonus() {
         if ((currentYear - birthYear) < 22) {
             return 4000.0;
         } else if ((currentYear - birthYear) <= 30) {
@@ -70,6 +66,6 @@ public class Employee extends User {
 
     @Override
     public String toString () {
-        return getId() + " : " + getName() + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
+        return getId() + " : " + getName() + " - " + birthYear + " (" + calculateAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
     }
 }

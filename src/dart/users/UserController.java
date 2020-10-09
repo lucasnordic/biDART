@@ -203,11 +203,11 @@ public class UserController {
      */
 
     public void mockData() {
-//        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-//        addEmployee(new Employee("Lucas","koko", 1990, 100.0));
-//        addEmployee(new Employee("Maryam","koko", 1930, 1000.0));
-//        addEmployee(new Employee("Deba","koko", 309, 10000.0));
-//        addEmployee(new Employee("Olga","koko", 1769, 100000.0));
+        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+        addEmployee(new Employee("Lucas","koko", 1990, 100.0));
+        addEmployee(new Employee("Maryam","koko", 1930, 1000.0));
+        addEmployee(new Employee("Deba","koko", 309, 10000.0));
+        addEmployee(new Employee("Olga","koko", 1769, 100000.0));
 
         addCustomer(new Customer("lucas", "123"));
         addCustomer(new Customer("maryam", "234"));

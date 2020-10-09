@@ -17,7 +17,7 @@ public class Dart {
      */
 
     public void mainMenu() {
-        Dart.printIntroAscii();
+
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up! ;)\n\n" +
                 "Please specify your role by entering one of the options given:";
@@ -30,26 +30,23 @@ public class Dart {
         String inputPrompt = "Choose menu: ";
         printMenuItems(title, subMenus, inputPrompt);
 
-        //  Valid choices for user while in main menu:
-        String[] validMenuChoice = {"M", "E", "C", "X"};
+        String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
+        String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
 
-        // We store the choice the user is going to take:
-        String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
-
-        //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
-            passwordCheck(menuChoice);
+            loginCheck(menuChoice); // if the input is "M" then we send user to the login menu
         } else if (menuChoice.equalsIgnoreCase("E")) {
-            passwordCheck(menuChoice);
+            loginCheck(menuChoice);
         } else if (menuChoice.equalsIgnoreCase("C")) {
-            passwordCheck(menuChoice);
+            loginCheck(menuChoice);
         } else {
             printOutroAscii();
+            UserInputHandler.closeScanner();  // We go into the class that has the scanner and close it.
             //System.out.println("RIP");
         }
     }
 
-    public void passwordCheck(String menuChoice) {
+    public void loginCheck(String menuChoice) {
 
         if (menuChoice.equalsIgnoreCase("M")) {
 
