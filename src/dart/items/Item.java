@@ -1,5 +1,7 @@
 package dart.items;
 
+import java.util.UUID;
+
 public class Item {
 
     /**
@@ -11,7 +13,7 @@ public class Item {
     private double dailyRent;
     private String rentStatus = "available";
     private double totalRentProfit;
-    private ArrayList<Value> rating = new ArrayList<>();
+//    private ArrayList<Value> rating = new ArrayList<>();
 
 
     /**
@@ -55,7 +57,7 @@ public class Item {
     protected void makeAvailableAgain() {
         rentStatus = "available";
     }
-
+/*
     //here we add rating to arraylist of Values
     public void addValue(Value value) {
         rating.add(value);
@@ -87,4 +89,8 @@ public class Item {
         }
         return review;
     }
+
+ */
 }
+
+

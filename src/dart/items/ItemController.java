@@ -76,7 +76,7 @@ public class ItemController {
             }
         }
     }
-
+/*
     public void returnSong() {
 
         System.out.println("Insert the ID of the song you wish to return:");
@@ -94,6 +94,7 @@ public class ItemController {
         System.out.println(dartProducts);
     }
 
+ */
     /**
      *  Game Item:
      */
@@ -127,6 +128,7 @@ public class ItemController {
         dartProducts.remove(id);
     }
 
+    /*
     public void rentAGame() {
 
         //gameLibrary.showAvailableGames();
@@ -143,7 +145,7 @@ public class ItemController {
         String gameID = UserInputHandler.inputString();
         for (Item dartProduct : dartProducts) {
 
-            if (dartProducts.get(i).getID() == gameID) {
+            if (dartProducts.get(i).getID().equals()) {
 
                 if (dartProduct.getRentStatus().equals("rented")) {
                     System.out.println("Game with ID " + gameID + " is already rented");
@@ -154,7 +156,10 @@ public class ItemController {
             }
         }
     }
+     */
 
+
+/*
     public void returnItem() {
 
         System.out.println("Insert the ID of the item you wish to return:");
@@ -163,7 +168,7 @@ public class ItemController {
         for (int i = 0; i < dartProducts.size(); i++) {
 
             Item item = dartProducts.get(i);
-            int id = item.getID();
+            String id = item.getID();
 
             if (inputID == id) {
                 //  item.returnObject();
@@ -189,11 +194,11 @@ public class ItemController {
             System.out.println("This ID not found");
         }
     }
-
+ */
     public void showTotalRentProfit() {
         System.out.println("Total rent profit is " + totalRentProfit);
     }
-
+/*
     public void showAllGames() {
         for (Item item : dartProducts) {
 
@@ -206,6 +211,7 @@ public class ItemController {
 
     }
 
+ */
     public double dartDailyRent() {
         double totalRentProfit = 0;
         for (Item item : dartProducts) {
