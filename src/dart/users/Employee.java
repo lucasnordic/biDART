@@ -1,6 +1,10 @@
 package dart.users;
 
+import dart.UserInputHandler;
+
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.UUID;
 
 /**
  * This class handles the Employee and methods related:
@@ -8,14 +12,11 @@ import java.util.Calendar;
 
 public class Employee extends User {
 
-    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
     private int birthYear;
     private double grossSalary;
+    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
-    /**
-     *  Constructors here. We can choose to create an empty Employee or if we want to send create an employee with attributes:
-     */
-
+    // controller:
     public Employee(String name, String password, int birthYear, double grossSalary) {
         super(name, password);
         this.birthYear = birthYear;
@@ -26,31 +27,21 @@ public class Employee extends User {
         super();
     }
 
-    /**
-     *  Getters and setters:
-     */
-
-    public int getBirthYear() {
-        return birthYear;
-    }
-    public void setBirthYear ( int birthYear){
-        this.birthYear = birthYear;
+    public String getName() {
+        return name;
     }
 
     public double getGrossSalary() {
-        return this.grossSalary + calculateBonus();
+        return this.grossSalary + getBonus();
     }
+
     public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
 
-    /**
-     *  Methods:
-     */
-
-    public int calculateAge() {
+    public int getAge() {
         return currentYear - birthYear;
     }
 
-    public double calculateBonus() {
+    public double getBonus() {
         if ((currentYear - birthYear) < 22) {
             return 4000.0;
         } else if ((currentYear - birthYear) <= 30) {
@@ -60,12 +51,27 @@ public class Employee extends User {
         }
     }
 
-    /**
-     *  Override:
-     */
+    //Setters
+    public void setName (String name){
+        this.name = name;
+    }
+
+    public void setBirthYear ( int birthYear){
+        this.birthYear = birthYear;
+    }
+
+    @Override
+    public String getName(String name) {
+        return name;
+    }
 
     @Override
     public String toString () {
-        return getId() + " : " + getName() + " - " + birthYear + " (" + calculateAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
+        return getId() + " : " + name + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
     }
 }
+
+// Old:
+//     private void initializeArray (String[]anArray){
+//        Arrays.fill(anArray, "");
+//    }

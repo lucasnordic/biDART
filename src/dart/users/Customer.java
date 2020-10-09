@@ -1,67 +1,39 @@
 package dart.users;
 
-/**
- * This class handles a single customer and the methods required:
- */
+public class Customer {
+    private int ID;
+    private String name;
 
-public class Customer extends User{
-
-    private double discount;
-    private String membershipType;
-    private int maxAllowedRent;
-    private int credit;
-    private String password;
-
-    /**
-     * Constructors:
-     */
-
-    public Customer(String name, String password) {
-        super(name, password);
-        this.discount = 0;
-        this.membershipType = "regular";
-        this.maxAllowedRent = 1;
-        this.credit = 0;
-        this.password = password;
+    public Customer(int ID, String name) {
+        this.ID = ID;
+        this.name = name;
     }
 
-    public Customer() {
+    Customer() {
     }
 
-    /**
-     * Getters and setters:
-     */
-
-    public double getDiscount() {
-        return discount;
+    public String getName() {
+        return this.name;
     }
 
-    public String getMembershipType() {
-        return this.membershipType;
+    public int getID() {
+        return this.ID;
     }
 
-    public void setMembershipType(String membershipType) {
-        this.membershipType = membershipType;
+    public String setName(String name) {
+        this.name = name;
+        return this.name;
     }
 
-    /**
-     * Methods:
-     */
+    public int setID(int ID) {
+        this.ID = ID;
+        return this.ID;
+    }
 
-    // TODO: calculate discount
-//    public void calculateDiscount() {
-//        getDiscount() * 0.90;
-//    }
-
-    /**
-     * Override:
-     */
-
-    //@Override
-//    public String toString() {
-//        String var10000 = getName();
-//        return var10000 + " ---> " + this.getID();
-//    }
+    public String toString() {
+        String var10000 = this.getName();
+        return var10000 + " ---> " + this.getID();
+    }
 
 
 }

@@ -17,4 +17,7 @@ public class Game extends Item {
     public String toString (){
         return super.getID() + " : " + super.getTitle() + " (" + this.genre + "). " + super.getDailyRent() + "$. Status: " + super.getRentStatus()+ super.toString();
     }
+
+
+
 }

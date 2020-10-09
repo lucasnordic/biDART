@@ -1,28 +1,24 @@
 package dart.items;
 
-import java.util.UUID;
+import java.util.ArrayList;
 
 public class Item {
 
-    /**
-     *  Mutual attributes of all rented Objects:
-     */
+    //Mutual attributes of all rented Objects:
 
-    private String ID;
+    private int ID;
     private String title;
     private double dailyRent;
     private String rentStatus = "available";
     private double totalRentProfit;
-//    private ArrayList<Value> rating = new ArrayList<>();
+    private ArrayList<Value> rating = new ArrayList<>();
 
 
-    /**
-     *  Constructor:
-     */
+    //Constructor:
 
-    public Item(String title, double dailyRent, String rentStatus) {
+    public Item(int ID, String title, double dailyRent, String rentStatus) {
 
-        this.ID = UUID.randomUUID().toString();
+        this.ID = ID;
         this.title = title;
         this.dailyRent = dailyRent;
         this.rentStatus = rentStatus;
@@ -30,25 +26,43 @@ public class Item {
     }
 
     public Item() {
-
     }
 
-    /**
-     *  Getters and Setters:
-     */
+    //Getters & setters:
 
-    protected String getID() { return this.ID; }
-    protected String getTitle() { return this.title; }
-    protected double getDailyRent() { return this.dailyRent; }
-    protected String getRentStatus() { return this.rentStatus; }
+    protected int getID() {
+        return this.ID;
+    }
 
-    protected void setTitle(String title) { this.title = title; }
-    protected void setDailyRent(double dailyRent) { this.dailyRent = dailyRent; }
-    protected void setRentStatus(String rentStatus) { this.rentStatus = rentStatus; }
+    protected String getTitle() {
+        return this.title;
+    }
 
-    /**
-     *  Methods:
-     */
+    protected double getDailyRent() {
+        return this.dailyRent;
+    }
+
+    protected String getRentStatus() {
+        return this.rentStatus;
+    }
+
+    protected void setID(int ID) {
+        this.ID = ID;
+    }
+
+    protected void setTitle(String title) {
+        this.title = title;
+    }
+
+    protected void setDailyRent(double dailyRent) {
+        this.dailyRent = dailyRent;
+    }
+
+    protected void setRentStatus(String rentStatus) {
+        this.rentStatus = rentStatus;
+    }
+
+    //Methods:
 
     protected void rent() {
         rentStatus = "rented";
@@ -57,7 +71,7 @@ public class Item {
     protected void makeAvailableAgain() {
         rentStatus = "available";
     }
-/*
+
     //here we add rating to arraylist of Values
     public void addValue(Value value) {
         rating.add(value);
@@ -89,8 +103,4 @@ public class Item {
         }
         return review;
     }
-
- */
 }
-
-

@@ -3,18 +3,11 @@ package dart;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/**
- *  This class only handles Input.
- */
-
+// This Class only handles input.
 public class UserInputHandler {
 
     // We create a variable, "input", of type Scanner
     private static final Scanner input = new Scanner(System.in);
-
-    /**
-     * Here we have simple methods for handling different input:
-     */
 
     // If we want the user to stop and have to enter a key to continue:
     public static void pressAnyKeyCon() {
@@ -41,12 +34,9 @@ public class UserInputHandler {
         double inputResult = input.nextDouble();
         input.nextLine();
 
+
         return inputResult;
     }
-
-    /**
-     *  Here we have more involved methods for checking correct input:
-     */
 
     // Input an integer between a min and a max value:
     public static int inputIntMinMax(int min, int max) {
@@ -78,11 +68,23 @@ public class UserInputHandler {
         return inputResult;
     }
 
-    /**
-     *  When we want to close the Scanner we call this method. It's only needed once when the program shuts down:
-     */
-
+    //
     public static void closeScanner() {
         input.close();
     }
+
+//    public static void debugData() {
+//        String text = new Scanner(String.class.getResourceAsStream("test.txt"), "UTF-8").next();
+//    }
+
 }
+
+
+/*
+// Check if input is correct:
+//        while (!input.hasNextInt()) {
+//            System.out.print("That's not a number! Try again: ");
+//            input.next(); // this is important!?
+//        }
+// once the user has input a correct value we store it in this variable:
+ */
