@@ -1,28 +1,31 @@
 package dart.users;
 
+import dart.UserInputHandler;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.UUID;
 
-public class Employee {
+/**
+ * This class handles the Employee and methods related:
+ */
 
-    private String name;
+public class Employee extends User {
+
     private int birthYear;
     private double grossSalary;
-    private String id;
-    private int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-    private double netSalary;
+    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
     // controller:
-    public Employee(String name, int birthYear, double grossSalary) {
-        this.name = name;
+    public Employee(String name, String password, int birthYear, double grossSalary) {
+        super(name, password);
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
-        this.id = UUID.randomUUID().toString();
-        this.netSalary = 0;
     }
 
-    public Employee () {}
+    public Employee() {
+        super();
+    }
 
     public String getName() {
         return name;
@@ -35,14 +38,9 @@ public class Employee {
     public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
 
     public int getAge() {
-        return 2020 - birthYear;
+        return currentYear - birthYear;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    //
     public double getBonus() {
         if ((currentYear - birthYear) < 22) {
             return 4000.0;
@@ -50,15 +48,6 @@ public class Employee {
             return 6000.0;
         } else {
             return 7500.0;
-        }
-    }
-
-    public void getNetSalary() {
-        if (getGrossSalary() * 12 < 100000) {
-            netSalary = getGrossSalary() * 12;
-        }
-        if (getGrossSalary() * 12 >= 100000) {
-            netSalary = (getGrossSalary() * 12) * 0.70;
         }
     }
 
@@ -70,13 +59,19 @@ public class Employee {
     public void setBirthYear ( int birthYear){
         this.birthYear = birthYear;
     }
-    private void initializeArray (String[]anArray){
-        Arrays.fill(anArray, "");
+
+    @Override
+    public String getName(String name) {
+        return name;
     }
 
-    //Return a String that represent the object.
+    @Override
     public String toString () {
-        return id + " : " + name + " - " + birthYear + " (" + (currentYear - birthYear) + ")" + " : " + this.getGrossSalary() + " SEK.";
+        return getId() + " : " + name + " - " + birthYear + " (" + getAge() + ")" + " : " + this.getGrossSalary() + " SEK.";
     }
 }
 
+// Old:
+//     private void initializeArray (String[]anArray){
+//        Arrays.fill(anArray, "");
+//    }

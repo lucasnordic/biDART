@@ -9,15 +9,13 @@ import dart.users.UserController;
 
 public class Dart {
 
-    private ItemController dartProducts = new ItemController();
-    private UserController dartUsers = new UserController();
-    private static String managerPassword = "admin1234";
-    private static String employeePassword = "password123";
-    private static int gameLastNumber = 1;
+    private final ItemController dartProducts = new ItemController();
+    private final UserController dartUsers = new UserController();
 
     // This method handles the main menu contents:
     public void mainMenu() {
         //mockData(); // Only for testing purposes. Added a mockData method at the bottom
+        Dart.printIntroAscii();
         System.out.println("- - - - - - - - - - - - - - - - -");
 
         // Here we create the content of the menu in two strings and the menu options in one string array:
@@ -82,7 +80,7 @@ public class Dart {
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> dartUsers.menuRemoveEmployee();
+            case 3 -> dartUsers.RemoveEmployee();
             case 4 -> mainMenu();
         }
         // This is not nececcary?
@@ -155,6 +153,7 @@ public class Dart {
         String inputPassword = UserInputHandler.inputString();
 
         if (menuChoice.equalsIgnoreCase("M")) {
+            String managerPassword = "admin1234";
             if (!inputPassword.equals(managerPassword)) {
                 System.out.print("Invalid password! ");
                 System.out.print("Press any key to continue: ");
@@ -164,6 +163,7 @@ public class Dart {
                 managerMenu();
             }
         } else if (menuChoice.equalsIgnoreCase("E")) {
+            String employeePassword = "password123";
             if (!inputPassword.equals(employeePassword)) {
                 System.out.print("Invalid password! ");
                 System.out.print("Press any key to continue: ");

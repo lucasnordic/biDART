@@ -5,13 +5,18 @@ import dart.UserInputHandler;
 
 import java.util.ArrayList;
 
+/**
+ * This class handles all Users and the methods required.
+ */
+
 public class UserController {
 
     ArrayList<Customer> customerList = new ArrayList<>();
     ArrayList <Employee> employeeList = new ArrayList();
 
-
-    // These methods are related to Customers:
+    /**
+     * These methods are related to Customers:
+     */
 
     public void registration() {
 
@@ -51,27 +56,22 @@ public class UserController {
 
     }
 
-
-    // These methods are related to employees:
+    /**
+     * These methods are related to Employees:
+     */
 
     public void addEmployee() {
 
-        // Here we create a new employee:
-        Employee newEmployee = new Employee();
-
         System.out.print("Type employee's name: ");
         String employeeName = UserInputHandler.inputString();
-        newEmployee.setName( employeeName);
 
         System.out.print("Type employee's birth year: ");
         int employeeBirthYear = UserInputHandler.inputInt();
-        newEmployee.setBirthYear( employeeBirthYear);
 
         System.out.print("Type employee's gross salary: ");
         double employeeGrossSalary = UserInputHandler.inputDouble();
-        newEmployee.setGrossSalary( employeeGrossSalary);
 
-        // Here we add the new employee to the employee arrayList:
+        Employee newEmployee = new Employee(employeeName, "password123", employeeBirthYear, employeeGrossSalary);
         employeeList.add(newEmployee);
 
         System.out.println("You added: " + newEmployee);
@@ -87,7 +87,7 @@ public class UserController {
         }
     }
 
-    public void menuRemoveEmployee() {
+    public void RemoveEmployee() {
 
         Dart dart = new Dart();
 
@@ -132,6 +132,19 @@ public class UserController {
         UserInputHandler.pressAnyKeyCon();
     }
 
+    public double getNetSalary() {
+
+        double netSalary = 0;
+        Employee employee = new Employee();
+
+        if (employee.getGrossSalary() * 12 < 100000) {
+            return netSalary = employee.getGrossSalary() * 12;
+        } else if (employee.getGrossSalary() * 12 >= 100000) {
+            return netSalary = (employee.getGrossSalary() * 12) * 0.70;
+        } else {
+            return netSalary + employee.getGrossSalary();
+        }
+    }
 }
 
 
