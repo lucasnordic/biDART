@@ -1,6 +1,6 @@
 package dart.users;
 
-import dart.UserInputHandler;
+import dart.tools.UserInputHandler;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +12,22 @@ public class UserController {
     private ArrayList<Customer> customerList = new ArrayList<>();
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
+    private User currentUser;
 
     public UserController() {
         mockData();
+    }
+
+    /**
+     * This controls the logged in user:
+     */
+
+    public String getCurrentUserId() {
+        return currentUser.getId();
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     /**
@@ -37,8 +50,31 @@ public class UserController {
         System.out.println(userList.toString());
     }
 
+    public void cancellation() {
+
+        System.out.println("Which customer should be removed? ID:");
+        String ID = UserInputHandler.inputString();
+
+        for (int i = 0; i < customerList.size(); i++) {
+
+            String a = (customerList.get(i)).getId();
+
+            if (a.equals(ID)) {
+
+                customerList.remove(i);
+                System.out.println(customerList);
+            } else {
+                System.out.println("Customer's ID not found");
+            }
+        }
+    }
+
     public void addCustomer(Customer customer){
         userList.add(customer);
+    }
+
+    public void requestMembership() {
+        System.out.println("");
     }
 
 //    public void cancellation() {
@@ -114,7 +150,7 @@ public class UserController {
         userList.add(employee);
     }
 
-    public void RemoveEmployee() {
+    public void removeEmployee() {
 
         Employee foundEmployee = null;
 
@@ -186,7 +222,6 @@ public class UserController {
                 index++;
             }
         }
-
         return userFound;
     }
 
@@ -231,6 +266,8 @@ public class UserController {
         addCustomer(new Customer("deba", "345"));
         addCustomer(new Customer("anwar", "456"));
         addCustomer(new Customer("olga", "567"));
+
+
     }
 }
 
