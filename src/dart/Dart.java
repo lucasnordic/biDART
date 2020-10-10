@@ -9,54 +9,105 @@ import dart.users.UserController;
 
 public class Dart {
 
-    private final ItemController dartProducts = new ItemController();
-    private final UserController dartUsers = new UserController();
+    private ItemController itemController = new ItemController();
+    private UserController userController = new UserController();
 
-    // This method handles the main menu contents:
+    /**
+     * This is where the user first lands:
+     */
+
     public void mainMenu() {
-        //mockData(); // Only for testing purposes. Added a mockData method at the bottom
-        Dart.printIntroAscii();
-        System.out.println("- - - - - - - - - - - - - - - - -");
 
-        // Here we create the content of the menu in two strings and the menu options in one string array:
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up! ;)\n\n" +
                 "Please specify your role by entering one of the options given:";
-        String[] menuItems = {
+        String[] subMenus = {
                 "Enter “M” for Manager",
                 "Enter “E” for Employee",
                 "Enter “C” for Customer",
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
+        printMenuItems(title, subMenus, inputPrompt);
 
-        // Here we send this content to be printed by a method:
-        printMenuItems(title, menuItems, inputPrompt);
+        String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
+        String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
 
-        //  Valid choices for user while in main menu:
-        String[] validMenuChoice = {"M", "E", "C", "X"};
-
-        // We store the choice the user is going to take:
-        String menuChoice = UserInputHandler.inputValidString(validMenuChoice);
-
-        //  Once the user types a correct input we direct users to a menu based on what is stored in "menuChoice":
         if (menuChoice.equalsIgnoreCase("M")) {
-            passwordMenu(menuChoice);
-            managerMenu();
+            loginCheck(menuChoice); // if the input is "M" then we send user to the login menu
         } else if (menuChoice.equalsIgnoreCase("E")) {
-            passwordMenu(menuChoice);
-            employeeMenu();
+            loginCheck(menuChoice);
         } else if (menuChoice.equalsIgnoreCase("C")) {
-            customerMenu();
+            loginCheck(menuChoice);
         } else {
             printOutroAscii();
+            UserInputHandler.closeScanner();  // We go into the class that has the scanner and close it.
             //System.out.println("RIP");
         }
     }
 
+    public void loginCheck(String menuChoice) {
+
+        if (menuChoice.equalsIgnoreCase("M")) {
+
+            String managerPassword = "admin1234";
+            System.out.print("Enter a password:");
+            String inputPassword = UserInputHandler.inputString();
+
+            if (!inputPassword.equals(managerPassword)) {
+                System.out.print("Invalid password! ");
+                System.out.print("Press any key to continue: ");
+                UserInputHandler.pressAnyKeyCon();
+
+                mainMenu(); // allows go back to menu
+            } else {
+                menuManager();
+            }
+
+        } else if (menuChoice.equalsIgnoreCase("E")) {
+
+            String employeePassword = "password123";
+            System.out.print("Enter a password:");
+            String inputPassword = UserInputHandler.inputString();
+
+            if (!inputPassword.equals(employeePassword)) {
+                System.out.print("Invalid password! ");
+                System.out.print("Press any key to continue: ");
+                UserInputHandler.pressAnyKeyCon();
+
+                mainMenu(); // allows go back to menu
+            } else {
+                menuEmployee();
+            }
+
+        } else if (menuChoice.equalsIgnoreCase("C")) {
+
+            System.out.print("Please enter your username: ");
+            String userName = UserInputHandler.inputString();
+
+            System.out.print("Enter a password: ");
+            String inputPassword = UserInputHandler.inputString();
+
+            boolean userFound = userController.checkIfUserExists(userName, inputPassword);
+
+            if (!userFound) {
+                System.out.print("Invalid password! ");
+                System.out.print("Press any key to continue: ");
+                UserInputHandler.pressAnyKeyCon();
+                mainMenu(); // allows go back to menu
+            } else {
+                menuCustomer();
+            }
+
+        }
+    }
+
+    /**
+     * Once the user has entered the correct password the user will get access to these menu's:
+     */
+
     //  This method handles the manager menu contents:
-    public void managerMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - -");
+    public void menuManager() {
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
         String[] menuItems = {"Add an employee", "View all employees", "Remove an employee", "Return to Main Menu"};
@@ -74,22 +125,21 @@ public class Dart {
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
-            case 1 -> dartUsers.addEmployee();
+            case 1 -> userController.addEmployee();
             case 2 -> {
-                dartUsers.showEmployee();
+                userController.showEmployeeList();
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> dartUsers.RemoveEmployee();
+            case 3 -> userController.RemoveEmployee();
             case 4 -> mainMenu();
         }
         // This is not nececcary?
-        managerMenu();
+        menuManager();
     }
 
     //  This handles the employee menu contents:
-    public void employeeMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - -");
+    public void menuEmployee() {
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
@@ -109,23 +159,23 @@ public class Dart {
 
         // Here we go to different menus based on users input.
         switch (menuChoice) {
-            case 1 -> dartProducts.registerAGame();
-            case 2 -> dartProducts.menuRemoveAGame();
-            case 3 -> dartUsers.registration();
-            case 4 -> dartUsers.cancellation();
-            case 5 -> dartProducts.addSong();
-            case 6 -> dartProducts.deleteSong();
-            case 7 -> dartProducts.showTotalRentProfit();
-            case 8 -> dartProducts.showAllGames();
+            case 1 -> itemController.registerAGame();
+            case 2 -> itemController.RemoveAGame();
+            case 3 -> userController.registration();
+//            case 4 -> dartUsers.cancellation();
+            case 5 -> itemController.addSong();
+            case 6 -> itemController.deleteSong();
+            case 7 -> itemController.showTotalRentProfit();
+//            case 8 -> itemController.showAllGames();
             case 9 -> mainMenu();
             //default -> System.exit(0);
+            default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
-        employeeMenu();
+        menuEmployee();
     }
 
     //  This method handles the customer menu contents:
-    public void customerMenu() {
-        System.out.println("- - - - - - - - - - - - - - - - -");
+    public void menuCustomer() {
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {"Rent a game", "Return a game", "Rent a song album", "Return a songalbum", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
@@ -137,67 +187,46 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> dartProducts.rentAGame();
-            case 2 -> dartProducts.returnAGame();
-            case 3 -> dartProducts.rentSong();
-            case 4 -> dartProducts.returnSong();
+//            case 1 -> itemController.rentAGame();
+//            case 2 -> itemController.returnItem();
+//            case 3 -> itemController.rentSong();
+//            case 4 -> itemController.returnItem();
+//            case 5 -> itemController.findGame();
+//            case 6 -> itemController.findSong();
             case 5 -> mainMenu();
             //default -> System.exit(0);
         }
-        customerMenu();
+        menuCustomer();
     }
 
-    // this menu checks if the password is correct and sends the user to the corresponding menu:
-    public void passwordMenu(String menuChoice) {
-        System.out.print("Enter a password:");
-        String inputPassword = UserInputHandler.inputString();
 
-        if (menuChoice.equalsIgnoreCase("M")) {
-            String managerPassword = "admin1234";
-            if (!inputPassword.equals(managerPassword)) {
-                System.out.print("Invalid password! ");
-                System.out.print("Press any key to continue: ");
-                UserInputHandler.pressAnyKeyCon();
-                mainMenu(); // allows go back to menu
-            } else {
-                managerMenu();
-            }
-        } else if (menuChoice.equalsIgnoreCase("E")) {
-            String employeePassword = "password123";
-            if (!inputPassword.equals(employeePassword)) {
-                System.out.print("Invalid password! ");
-                System.out.print("Press any key to continue: ");
-                UserInputHandler.pressAnyKeyCon();
-                mainMenu(); // allows go back to menu
-            } else {
-                employeeMenu();
-            }
-        }
-    }
+    /**
+     * These methods handle printing certain parts related to menu's:
+     */
 
-    //  This right here is our good old menu printer:
-    private void printMenuItems(String title, String[] menuItems, String inputPrompt) {
-
+    private void printMenuItems(String title, String[] subMenus, String inputPrompt) {
+        System.out.println("- - - - - - - - - - - - - - - - -");
         System.out.println(title);
 
         // This loop prints out all the menu options that are stored in the "menuItems" array.
-        for (int i = 0; i < menuItems.length; i++) {
-            System.out.println((i + 1) + ". " + menuItems[i]);
+        for (int i = 0; i < subMenus.length; i++) {
+            System.out.println( (i + 1) + ". " + subMenus[i]);
         }
+//        for (String subMenu : subMenus) {
+//            System.out.println(subMenu);
+//        }
+
         System.out.println(" ");
         System.out.print(inputPrompt);
     }
-
-    // Removable methods:
     public static void printIntroAscii() {
-//        System.out.println("- - - - - - - - - - - - - - - - -");
         System.out.println(" _   _ ____  _____ _____ _____ \n" +
                 "| |_|_|    \\|  _  | __  |_   _|\n" +
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
-      // System.out.println("- - - - - - - - - - - - - - - - - -");
     }
-    private static void printOutroAscii () {
+
+    private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("                       _   \n" +
                 " _____            _   |_|_ \n" +
@@ -205,13 +234,5 @@ public class Dart {
                 "| __ -| | | -_|   _     | |\n" +
                 "|_____|_  |___|  |_|   _|_|\n" +
                 "      |___|           |_|  ");
-//        System.out.println("- - - - - - - - - - - - -");
     }
-    /*private void mockData() {
-        employeeLibrary.addEmployee(new Employee("Anwar", 2010, 10));
-        employeeLibrary.addEmployee(new Employee("Lucas", 1990, 100));
-        employeeLibrary.addEmployee(new Employee("Maryam", 1930, 1000));
-        employeeLibrary.addEmployee(new Employee("Deba", 309, 10000));
-        employeeLibrary.addEmployee(new Employee("Olga", 1769, 100000));
-    }*/
 }
