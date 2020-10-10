@@ -10,7 +10,6 @@ public class MessageController {
 
     public ArrayList<Message> getMessageListForUser(User user) {
         ArrayList<Message> userMessages = new ArrayList<>();
-
         for (int i = 0; i < messageList.size(); i++) {
             Message message = messageList.get(i);
 
@@ -20,7 +19,6 @@ public class MessageController {
                 userMessages.add(message);
             }
         }
-
         return userMessages;
     }
 
@@ -44,7 +42,7 @@ public class MessageController {
         while(messageFound == null && index < messageList.size()) {
             Message message = messageList.get(index);
 
-            if (message.getId().equals(messageId)) {
+            if (message.getMessageId().equals(messageId)) {
                 messageFound = message;
             } else {
                 index++;

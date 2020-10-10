@@ -3,10 +3,10 @@ package dart.tools;
 import java.util.UUID;
 
 public class Message {
-    private String messageFrom;
+    private String messageFrom; //
     private String messageTo;   // If message to null then all employees.
     private String message;     // If message == upgrade then user wants an upgrade
-    private final String id = UUID.randomUUID().toString();
+    private final String messageId = UUID.randomUUID().toString();
 
     public Message(String messageFrom, String messageTo, String message) {
         this.messageFrom = messageFrom;
@@ -30,7 +30,7 @@ public class Message {
         return message;
     }
 
-    public String getId() {
-        return id;
+    public String getMessageId() {
+        return messageId;
     }
 }

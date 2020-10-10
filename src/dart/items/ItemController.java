@@ -11,6 +11,10 @@ public class ItemController {
 
     // Must Use UUID for IDs later!!!
 
+    public ItemController () {
+        mockData();
+    }
+
     public void addSong() {
 //        System.out.println("Please insert the following information:\nSong album ID:");
 //        int ID = UserInputHandler.inputInt();
@@ -32,6 +36,10 @@ public class ItemController {
 
         System.out.println(song.toString());
 
+    }
+
+    public void addSong(Song song) {
+        dartProducts.add(song);
     }
 
 
@@ -320,8 +328,6 @@ public class ItemController {
                 }
             }
         }
-
-
     }
 
     public void findSong(int year) {
@@ -333,8 +339,6 @@ public class ItemController {
                 }
             }
         }
-
-
     }
 
 //    public void findGame() {
@@ -395,5 +399,12 @@ public class ItemController {
 //        }
 //    }
 
-
+    public void mockData() {
+        Song song1= new Song("Title", 60, "Leelo", 1993);
+        Song song2= new Song("Title", 60, "Leelo", 1993);
+        Song song3= new Song("Title", 60, "Leelo", 1993);
+        addSong(song1);
+        addSong(song2);
+        addSong(song3);
+    }
 }

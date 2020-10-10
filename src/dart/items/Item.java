@@ -73,7 +73,6 @@ public class Item {
     //here we add rating to arraylist of Values
     public void addValue(Value value) {
         rating.add(value);
-
     }
 
     public double findAverageRating() {
