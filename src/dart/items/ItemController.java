@@ -114,15 +114,16 @@ public class ItemController {
             if (dartProducts.get(i).getID().equals(id)) {
                 if (dartProducts.get(i).getRentStatus().equals("rented")) {
                     System.out.println("Product ID" + id + " is already rented");
-                    return;
+                  //  return;
                 }
                 if (dartProducts.get(i).getRentStatus().equals("available")) {
                     dartProducts.get(i).rent();
                     System.out.println("Yay! Rented!");
-                    return;
+                    //return;
                 }
                 System.out.println("Product with ID " + id + " not found");
             }
+            return;
         }
     }
 
