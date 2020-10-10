@@ -35,73 +35,68 @@ public class Dart {
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
 
-        if (menuChoice.equalsIgnoreCase("M")) {
-            loginCheck(menuChoice); // if the input is "M" then we send user to the login menu
-        } else if (menuChoice.equalsIgnoreCase("E")) {
-            loginCheck(menuChoice);
-        } else if (menuChoice.equalsIgnoreCase("C")) {
-            loginCheck(menuChoice);
-        } else {
-            printOutroAscii();
-            UserInputHandler.closeScanner();  // We go into the class that has the scanner and close it.
-            //System.out.println("RIP");
+        switch (menuChoice.toUpperCase()) {
+            case "M" -> loginCheckManager();
+            case "E" -> loginCheckManager();
+            case "C" -> loginCheckManager();
+            default -> {
+                printOutroAscii();
+                UserInputHandler.closeScanner();  // We go into the class that has the scanner and close it.
+                //System.out.println("RIP");
+            }
         }
     }
 
-    public void loginCheck(String menuChoice) {
+    public void loginCheckManager(){
+        String managerPassword = "admin1234";
 
-        if (menuChoice.equalsIgnoreCase("M")) {
+        System.out.print("Enter a password:");
+        String inputPassword = UserInputHandler.inputString();
 
-            String managerPassword = "admin1234";
-            System.out.print("Enter a password:");
-            String inputPassword = UserInputHandler.inputString();
+        if (!inputPassword.equals(managerPassword)) {
+            System.out.print("Invalid password! ");
+            System.out.print("Press any key to continue: ");
+            UserInputHandler.pressAnyKeyCon();
 
-            if (!inputPassword.equals(managerPassword)) {
-                System.out.print("Invalid password! ");
-                System.out.print("Press any key to continue: ");
-                UserInputHandler.pressAnyKeyCon();
+            mainMenu(); // allows go back to menu
+        } else {
+            menuManager();
+        }
+    }
+    public void loginCheckEmployee(){
+        String employeePassword = "password123";
 
-                mainMenu(); // allows go back to menu
-            } else {
-                menuManager();
-            }
+        System.out.print("Enter a password:");
+        String inputPassword = UserInputHandler.inputString();
 
-        } else if (menuChoice.equalsIgnoreCase("E")) {
+        if (!inputPassword.equals(employeePassword)) {
+            System.out.print("Invalid password! ");
+            System.out.print("Press any key to continue: ");
+            UserInputHandler.pressAnyKeyCon();
 
-            String employeePassword = "password123";
-            System.out.print("Enter a password:");
-            String inputPassword = UserInputHandler.inputString();
+            mainMenu(); // allows go back to menu
+        } else {
+            menuEmployee();
+        }
+    }
+    public void loginCheckCustomer() {
+        System.out.print("Please enter your username: ");
+        String userName = UserInputHandler.inputString();
 
-            if (!inputPassword.equals(employeePassword)) {
-                System.out.print("Invalid password! ");
-                System.out.print("Press any key to continue: ");
-                UserInputHandler.pressAnyKeyCon();
-
-                mainMenu(); // allows go back to menu
-            } else {
-                menuEmployee();
-            }
-
-        } else if (menuChoice.equalsIgnoreCase("C")) {
-
-            System.out.print("Please enter your username: ");
-            String userName = UserInputHandler.inputString();
-
-            System.out.print("Enter a password: ");
-            String inputPassword = UserInputHandler.inputString();
+        System.out.print("Enter a password: ");
+        String inputPassword = UserInputHandler.inputString();
 
 //            boolean userFound = userController.checkIfUserExists(userName, inputPassword);
 
-            User user = userController.getUserWithNameAndPassword(userName, inputPassword);
+        User user = userController.getUserWithNameAndPassword(userName, inputPassword);
 
-            if (user instanceof Customer) {
-                menuCustomer();
-            } else {
-                System.out.print("Invalid user! ");
-                System.out.print("Press any key to go back to Main Menu: ");
-                UserInputHandler.pressAnyKeyCon();
-                mainMenu(); // allows go back to menu
-            }
+        if (user instanceof Customer) {
+            menuCustomer();
+        } else {
+            System.out.print("Invalid user! ");
+            System.out.print("Press any key to go back to Main Menu: ");
+            UserInputHandler.pressAnyKeyCon();
+            mainMenu(); // allows go back to menu
         }
     }
 
