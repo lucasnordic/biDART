@@ -9,14 +9,13 @@ public class Song extends Item {
 
     //Constructor:
 
-    public Song(int ID, String title, double dailyRent, String rentStatus, String artist, int releaseYear) {
+    public Song( String title, double dailyRent, String artist, int releaseYear) {
 
-        super();
+        super(title,dailyRent);
         this.artist = artist;
         this.releaseYear = releaseYear;
     }
 
-    public Song() {}
 
     //Getters & setters:
 
@@ -29,8 +28,10 @@ public class Song extends Item {
     //Methods:
 
     public String toString() {
+     //   return super.toString()+ " by " + this.artist + ". Released in " + this.releaseYear + ".";
         return  super.getID() + ": " + super.getTitle() + " by " + this.artist +
                 ". Released in " + this.releaseYear + ". Price: " + super.getDailyRent() +
-                " SEK. Status: " + super.getRentStatus() + super.toString(); }
+                " SEK. Status: " + super.getRentStatus() + super.toString();
+               }
 
 }
