@@ -257,10 +257,11 @@ public class Dart {
     private void sendMessage(){
 
         userController.showEmployeeList();
-        System.out.println("");
+        System.out.println("Please enter the recipients ID: ");
+        String id = UserInputHandler.inputString();
+
+        System.out.println("Write your message: ");
         String message = UserInputHandler.inputString();
-
-
     }
 
     /**
