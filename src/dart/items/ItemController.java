@@ -59,26 +59,26 @@ public class ItemController {
         }
     }
 
-    public void rentSong() {
-
-        System.out.println("Insert the ID of the song you wish to rent:");
-        int receivedID = UserInputHandler.inputInt();
-
-        for (int i = 0; i < dartProducts.size(); i++) {
-
-            Item song = dartProducts.get(i);
-            int songID = song.getID();
-
-            if (receivedID == songID) {
-
-                Item foundSong = dartProducts.get(i);
-                foundSong.rent();
-
-                System.out.println(dartProducts);
-
-            }
-        }
-    }
+//    public void rentSong() {
+//
+//        System.out.println("Insert the ID of the song you wish to rent:");
+//        int receivedID = UserInputHandler.inputInt();
+//
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//
+//            Item song = dartProducts.get(i);
+//            int songID = song.getID();
+//
+//            if (receivedID == songID) {
+//
+//                Item foundSong = dartProducts.get(i);
+//                foundSong.rent();
+//
+//                System.out.println(dartProducts);
+//
+//            }
+//        }
+//    }
 
 //    public void returnSong() {
 //
@@ -135,33 +135,33 @@ public class ItemController {
         dartProducts.remove(id);
     }
 
-    public void rentAGame() {
-
-        //gameLibrary.showAvailableGames();
-        for (int i = 0; i < dartProducts.size(); i++) {
-
-            Game game = (Game) dartProducts.get(i);
-            String gameStatus = game.getRentStatus();
-            if (gameStatus.equalsIgnoreCase("available")) {
-                System.out.println(game);
-            }
-        }
-
-        System.out.print("Please enter game ID that you want to rent: ");
-        int gameID = UserInputHandler.inputInt();
-        for (int i = 0; i < dartProducts.size(); i++) {
-
-            if (dartProducts.get(i).getID() == gameID) {
-
-                if (dartProducts.get(i).getRentStatus().equals("rented")) {
-                    System.out.println("Game with ID " + gameID + " is already rented");
-                }
-                dartProducts.get(i).rent();
-                System.out.println("The game has been rented!");
-                return;
-            }
-        }
-    }
+//    public void rentAGame() {
+//
+//        //gameLibrary.showAvailableGames();
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//
+//            Game game = (Game) dartProducts.get(i);
+//            String gameStatus = game.getRentStatus();
+//            if (gameStatus.equalsIgnoreCase("available")) {
+//                System.out.println(game);
+//            }
+//        }
+//
+//        System.out.print("Please enter game ID that you want to rent: ");
+//        int gameID = UserInputHandler.inputInt();
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//
+//            if (dartProducts.get(i).getID() == gameID) {
+//
+//                if (dartProducts.get(i).getRentStatus().equals("rented")) {
+//                    System.out.println("Game with ID " + gameID + " is already rented");
+//                }
+//                dartProducts.get(i).rent();
+//                System.out.println("The game has been rented!");
+//                return;
+//            }
+//        }
+//    }
 //
 //    public void returnAGame() {
 //
@@ -216,6 +216,25 @@ public class ItemController {
             System.out.println("This ID not found");
         }
     }
+
+    public void rentItem() {
+        System.out.println("Please insert the ID of the item you wish to rent: ");
+        String itemId = UserInputHandler.inputString();
+        for(int i = 0; i < dartProducts.size(); i++) {
+            Item foundItem = dartProducts.get(i);
+            if (itemId.equals(foundItem.getID())) {
+                foundItem.rent();
+            }
+        }
+    }
+
+    public void customerRentItem(int rentNumber){
+        for(int i = 0; i < (rentNumber + 1); i++) {
+            rentItem();
+        }
+    }
+
+
 
 
     public void showAllGames() {

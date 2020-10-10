@@ -6,43 +6,54 @@ package dart.users;
 
 public class Customer extends User{
 
-
-    private int maxAllowedRent;
-
-
     /**
-     * Constructors:
+     * Attributes
      */
 
-    public Customer(String name, String password, int maxAllowedRent) {
+    private static final double discount = 0;
+    private static final int maxAllowedRent = 1;
+    private static final int additionalCredit = 0;
+    private int credit;
+
+    /**
+     * Constructor
+     */
+
+    public Customer(String name, String id) {
         super();
-        this.maxAllowedRent = 1;
+        this.credit = 0;
     }
 
-    public Customer() {
-    }
+    public Customer() {}
 
     /**
-     * Getters and setters:
+     * Getters and setters
      */
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
 
     public int getMaxAllowedRent() {
         return maxAllowedRent;
     }
 
-    public void setMaxAllowedRent(int maxAllowedRent) {
-        this.maxAllowedRent = maxAllowedRent;
-    }
+
 
     /**
-     * Override:
+     * Methods
      */
 
-    @Override
-    public String toString() {
-        String var10000 = getName();
-        return var10000 + " ---> " + super.getId();
+    public double calculatePrice (double price) {
+        return (1 - this.discount) * price;
     }
 
-
+    public void addCredit() {
+        int newCredit = this.credit + additionalCredit;
+        this.setCredit(newCredit);
+    }
 }

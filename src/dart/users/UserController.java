@@ -1,6 +1,8 @@
 package dart.users;
 
 import dart.UserInputHandler;
+import dart.items.ItemController;
+
 import java.util.ArrayList;
 
 /**
@@ -13,9 +15,9 @@ public class UserController {
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
 
-    public UserController() {
-        mockData();
-    }
+//    public  UserController() {
+//        mockData();
+//    }
 
     /**
      * These methods are related to Customers:
@@ -40,6 +42,46 @@ public class UserController {
     public void addCustomer(Customer customer){
         userList.add(customer);
     }
+
+    public void rentProcess() {
+        ItemController itemcontroller = new ItemController();
+
+        System.out.println("Please insert your ID:");
+        String inputId = UserInputHandler.inputString();
+
+        for(int i = 0; i < customerList.size(); i++) {
+            String foundId = customerList.get(i).getId();
+
+            if(inputId.equals(foundId)) {
+                Customer foundCustomer = customerList.get(i);
+                    int rentNumber = foundCustomer.getMaxAllowedRent();
+                    itemcontroller.customerRentItem(rentNumber);
+                    foundCustomer.addCredit();
+
+            }
+
+
+        }
+    }
+
+    public void returnProcess() {
+        ItemController itemController = new ItemController();
+        System.out.println("Please insert your ID:");
+        String inputId = UserInputHandler.inputString();
+
+        for (int i = 0; i < customerList.size(); i++) {
+            String foundId = customerList.get(i).getId();
+
+             if(inputId.equals(foundId)) {
+                Customer foundCustomer = customerList.get(i);
+                int customerCredit = foundCustomer.getCredit();
+                if (customerCredit < 5) {
+                    itemController.returnItem();
+                }
+             }
+        }
+    }
+
 
 //    public void cancellation() {
 //

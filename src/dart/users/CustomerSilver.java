@@ -2,57 +2,15 @@ package dart.users;
 
 public class CustomerSilver extends Customer {
 
-    private int credit;
-    private int maxAllowedRent;
-    private double discount;
+    private static final double discount = 0.1;
+    private static final int maxAllowedRent = 3;
+    private static final int additionalCredit = 1;
 
 
-    public CustomerSilver(String name, String password, int credit) {
+    public CustomerSilver(String name, String id) {
         super();
-        this.credit = credit;
-        this.maxAllowedRent = 3;
-        this.discount = 0.1;
     }
-
 
     public CustomerSilver() {
-    }
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public int getMaxAllowedRent() {
-        return maxAllowedRent;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
-
-    public void setMaxAllowedRent(int numberOfRent) {
-        this.maxAllowedRent = numberOfRent;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
-    }
-
-
-
-    public double calculatePrice(double price) {
-        double rent = price * (1 - this.discount);
-        return rent;
-    }
-
-
-    public void addCredit(int credit) {
-        int silverCredit = 1;
-        int newCredit = credit + silverCredit;
-        this.setCredit(newCredit);
     }
 }
