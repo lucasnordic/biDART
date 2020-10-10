@@ -34,7 +34,7 @@ public class UserController {
         customer.setPassword(password);
 
         userList.add(customer);
-        System.out.println(userList.toString());
+        System.out.println(customer.toString());
     }
 
     public void addCustomer(Customer customer){
