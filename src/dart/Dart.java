@@ -160,14 +160,18 @@ public class Dart {
         // Here we go to different menus based on users input.
         switch (menuChoice) {
             case 1 -> itemController.registerAGame();
-            case 2 -> itemController.RemoveAGame();
+            case 2 -> itemController.menuRemoveAGame();
             case 3 -> userController.registration();
-//            case 4 -> dartUsers.cancellation();
+           // case 4 -> itemController.cancelation();
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
-            case 7 -> itemController.showTotalRentProfit();
-//            case 8 -> itemController.showAllGames();
+            case 7 -> itemController.showTotalDailyRent();
+            case 8 -> itemController.showAllGames();
             case 9 -> mainMenu();
+
+
+
+
             //default -> System.exit(0);
             default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
@@ -187,10 +191,10 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-//            case 1 -> itemController.rentAGame();
-//            case 2 -> itemController.returnItem();
-//            case 3 -> itemController.rentSong();
-//            case 4 -> itemController.returnItem();
+            case 1 -> itemController.rentAGame();
+            case 2 -> itemController.returnItem();
+            case 3 -> itemController.rentSong();
+            case 4 -> itemController.returnItem();
 //            case 5 -> itemController.findGame();
 //            case 6 -> itemController.findSong();
             case 5 -> mainMenu();
