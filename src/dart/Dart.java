@@ -5,7 +5,9 @@ package dart;
  */
 
 import dart.items.ItemController;
+import dart.tools.UserInputHandler;
 import dart.users.Customer;
+import dart.tools.MessageController;
 import dart.users.User;
 import dart.users.UserController;
 
@@ -13,6 +15,7 @@ public class Dart {
 
     private ItemController itemController = new ItemController();
     private UserController userController = new UserController();
+    private MessageController messageController = new MessageController();
 
     /**
      * This is where the user first lands:
@@ -60,6 +63,7 @@ public class Dart {
 
             mainMenu(); // allows go back to menu
         } else {
+            userController.setCurrentUser(null);
             menuManager();
         }
     }
@@ -76,6 +80,7 @@ public class Dart {
 
             mainMenu(); // allows go back to menu
         } else {
+            userController.setCurrentUser(null);
             menuEmployee();
         }
     }
@@ -91,6 +96,7 @@ public class Dart {
         User user = userController.getUserWithNameAndPassword(userName, inputPassword);
 
         if (user instanceof Customer) {
+            userController.setCurrentUser(user);
             menuCustomer();
         } else {
             System.out.print("Invalid user! ");
@@ -108,7 +114,12 @@ public class Dart {
     public void menuManager () {
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
-        String[] menuItems = {"Add an employee", "View all employees", "Remove an employee", "Return to Main Menu"};
+        String[] menuItems = {
+                "Add an employee",
+                "View all employees",
+                "Remove an employee",
+                "Return to Main Menu"
+        };
         String inputPrompt = "Enter choice: ";
 
         // Here we send this content to be printed:
@@ -129,7 +140,7 @@ public class Dart {
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> userController.RemoveEmployee();
+            case 3 -> userController.removeEmployee();
             case 4 -> mainMenu();
         }
         // This is not nececcary?
@@ -140,8 +151,17 @@ public class Dart {
     public void menuEmployee () {
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
-        String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
-                "Remove a customer", "Add a song album", "Remove a song album", "Show total rent profit", "View all games", "Return to Main Menu",
+        String[] menuItems = {
+                "Register a game",
+                "Remove a game",
+                "Register a customer",
+                "Remove a customer",
+                "Add a song album",
+                "Remove a song album",
+                "Show total rent profit",
+                "View all games",
+                "Upgrade requests",
+                "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
 
@@ -165,11 +185,8 @@ public class Dart {
             case 6 -> itemController.deleteSong();
             case 7 -> itemController.showTotalDailyRent();
             case 8 -> itemController.showAllGames();
-            case 9 -> mainMenu();
-
-
-
-
+//            case 9 -> menuUpgradeCustomer();
+            case 10 -> mainMenu();
             //default -> System.exit(0);
             default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
@@ -179,7 +196,14 @@ public class Dart {
     //  This method handles the customer menu contents:
     public void menuCustomer () {
         String title = "Customer Screen - Type one of the options below:";
-        String[] menuItems = {"Rent a game", "Return a game", "Rent a song album", "Return a songalbum", "Return to Main Menu"};
+        String[] menuItems = {
+                "Rent a game",
+                "Return a game",
+                "Rent a song album",
+                "Return a songalbum",
+                "Request membership upgrade",
+                "Return to Main Menu"
+        };
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
 
@@ -195,11 +219,28 @@ public class Dart {
             case 4 -> itemController.returnItem();
 //            case 5 -> itemController.findGame();
 //            case 6 -> itemController.findSong();
-            case 5 -> mainMenu();
+            case 5 -> messageController.addMessageToList("upgrade", userController.getCurrentUserId(), null);
+            case 6 -> mainMenu();
             //default -> System.exit(0);
         }
         menuCustomer();
     }
+
+    /**
+     * Sub menu's of Employee menu:
+     */
+
+//    public void menuUpgradeCustomer() {
+//        // loop all messages with upgrades:
+//        // for every message print index +
+//        // print menu
+//        // 1. deny upgrade
+//        // 2. accept upgrade
+//        // 3. return to main menu
+//        switch () {
+//            case 1 ->
+//        }
+//    }
 
 
     /**

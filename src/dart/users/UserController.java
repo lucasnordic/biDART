@@ -1,6 +1,6 @@
 package dart.users;
 
-import dart.UserInputHandler;
+import dart.tools.UserInputHandler;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +12,22 @@ public class UserController {
     private ArrayList<Customer> customerList = new ArrayList<>();
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
+    private User currentUser;
 
     public UserController() {
         mockData();
+    }
+
+    /**
+     * This controls the logged in user:
+     */
+
+    public String getCurrentUserId() {
+        return currentUser.getId();
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     /**
@@ -39,6 +52,49 @@ public class UserController {
 
     public void addCustomer(Customer customer){
         userList.add(customer);
+    }
+
+    public void removeCustomer() {
+
+        Employee foundEmployee = null;
+
+        System.out.println(" ");
+        showEmployeeList();
+
+        // Here we check if the user exists in the array:
+        while (foundEmployee == null) {
+            System.out.print("Which employee should be removed? Please enter a correct ID or NAME: ");
+            String input = UserInputHandler.inputString();
+            int count = 0;
+
+            // Here we check if the ID is actually a unique ID.
+            // On the first run we go through the loop to find the first ID, similar to the users input.
+            for (int i = 0; i < employeeList.size() && count < 2; i++) {
+                Employee currentEmployee = employeeList.get(i);
+
+                // When we find an ID, we increase the count by "1" and continue checking the Array of Employees:
+                if (currentEmployee.getId().startsWith(input) || currentEmployee.getName().startsWith(input)) {
+                    count++;
+                    foundEmployee = currentEmployee;
+                }
+            }
+
+            // If the count is greater then one that means we have found more than two ID's matching the users input.
+            // Then we reset foundEmployee and we stay in the loop:
+            if (count > 1) {
+                System.out.println("Not a Unique ID, try again. ");
+                foundEmployee = null;
+            }
+        }
+
+        // If we leave the last loop and the count is only "1" by the end, then we remove the "foundEmployee":
+        employeeList.remove(foundEmployee);
+        System.out.print("Employee removed! Press any key to continue:");
+        UserInputHandler.pressAnyKeyCon();
+    }
+
+    public void requestMembership() {
+        System.out.println("");
     }
 
 //    public void cancellation() {
@@ -114,7 +170,7 @@ public class UserController {
         userList.add(employee);
     }
 
-    public void RemoveEmployee() {
+    public void removeEmployee() {
 
         Employee foundEmployee = null;
 
@@ -186,7 +242,6 @@ public class UserController {
                 index++;
             }
         }
-
         return userFound;
     }
 
@@ -231,6 +286,8 @@ public class UserController {
         addCustomer(new Customer("deba", "345"));
         addCustomer(new Customer("anwar", "456"));
         addCustomer(new Customer("olga", "567"));
+
+
     }
 }
 

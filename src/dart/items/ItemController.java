@@ -1,6 +1,6 @@
 package dart.items;
 
-import dart.UserInputHandler;
+import dart.tools.UserInputHandler;
 
 import java.util.ArrayList;
 
