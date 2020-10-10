@@ -16,7 +16,6 @@ public class Song extends Item {
         this.releaseYear = releaseYear;
     }
 
-
     //Getters & setters:
 
     protected String getArtist() { return this.artist; }

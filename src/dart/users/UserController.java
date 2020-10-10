@@ -47,7 +47,7 @@ public class UserController {
         customer.setPassword(password);
 
         userList.add(customer);
-        System.out.println(userList.toString());
+        System.out.println(customer.toString());
     }
 
     public void cancellation() {
@@ -266,8 +266,6 @@ public class UserController {
         addCustomer(new Customer("deba", "345"));
         addCustomer(new Customer("anwar", "456"));
         addCustomer(new Customer("olga", "567"));
-
-
     }
 }
 

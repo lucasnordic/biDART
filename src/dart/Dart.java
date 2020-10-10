@@ -5,6 +5,7 @@ package dart;
  */
 
 import dart.items.ItemController;
+import dart.tools.Message;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
 import dart.tools.MessageController;
@@ -201,6 +202,7 @@ public class Dart {
                 "Return a game",
                 "Rent a song album",
                 "Return a songalbum",
+                "Message center",
                 "Request membership upgrade",
                 "Return to Main Menu"
         };
@@ -219,12 +221,47 @@ public class Dart {
             case 4 -> itemController.returnItem();
 //            case 5 -> itemController.findGame();
 //            case 6 -> itemController.findSong();
-            case 5 -> messageController.addMessageToList("upgrade", userController.getCurrentUserId(), null);
-            case 6 -> mainMenu();
+            case 5 -> messageCenterMenu();
+            case 6 -> messageController.addMessageToList("upgrade", userController.getCurrentUserId(), null);
+            case 7 -> mainMenu();
             //default -> System.exit(0);
            // default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
         menuCustomer();
+    }
+
+    private void messageCenterMenu() {
+
+        String title = "Message center - Type one of the options below:";
+        String[] menuItems = {
+                "View inbox",
+                "Send a message"
+        };
+        String inputPrompt = "Enter choice: ";
+        printMenuItems(title, menuItems, inputPrompt);
+
+        //  Here we store the max and min choice based on "menuItems":
+        int minMenuChoice = 1;
+        int maxMenuChoice = menuItems.length;
+        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
+
+        switch (menuChoice) {
+            case 1 -> receiveMessage();
+            case 2 -> sendMessage();
+        }
+    }
+
+    private void receiveMessage(){
+
+    }
+    private void sendMessage(){
+
+        userController.showEmployeeList();
+        System.out.println("Please enter the recipients ID: ");
+        String id = UserInputHandler.inputString();
+
+        System.out.println("Write your message: ");
+        String message = UserInputHandler.inputString();
     }
 
     /**
