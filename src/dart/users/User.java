@@ -8,21 +8,16 @@ import java.util.UUID;
 
 public class User {
 
-    private String id;
+    private final String id = UUID.randomUUID().toString();
     private String name;
     private String password;
 
-    /**
-     *  Constructor:
-     */
-
     public User(String name, String password) {
-        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.password = password;
     }
 
-    public User() {
+    public User (){
 
     }
 
@@ -30,12 +25,15 @@ public class User {
      *  Getters and Setters:
      */
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public final String getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setName(String name) {
@@ -46,7 +44,5 @@ public class User {
         return name;
     }
 
-    public String getPassword() {
-        return password;
-    }
+
 }

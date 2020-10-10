@@ -1,12 +1,13 @@
 package dart.items;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Item {
 
     //Mutual attributes of all rented Objects:
 
-    private int ID;
+    private UUID id;
     private String title;
     private double dailyRent;
     private String rentStatus = "available";
@@ -16,12 +17,11 @@ public class Item {
 
     //Constructor:
 
-    public Item(int ID, String title, double dailyRent, String rentStatus) {
+    public Item( String title, double dailyRent) {
 
-        this.ID = ID;
+        this.id = UUID.randomUUID();
         this.title = title;
         this.dailyRent = dailyRent;
-        this.rentStatus = rentStatus;
 
     }
 
@@ -30,9 +30,7 @@ public class Item {
 
     //Getters & setters:
 
-    protected int getID() {
-        return this.ID;
-    }
+    protected UUID getID() {return this.id; }
 
     protected String getTitle() {
         return this.title;
@@ -46,8 +44,8 @@ public class Item {
         return this.rentStatus;
     }
 
-    protected void setID(int ID) {
-        this.ID = ID;
+    protected void setID(UUID ID) {
+        this.id = ID;
     }
 
     protected void setTitle(String title) {
@@ -97,10 +95,18 @@ public class Item {
     }
 
     public String toString() {
-        String review = " "; //empty String for further use adding all reviews
+        String review = ".\nReviews: "; //empty String for further use adding all reviews
         for (Value value : rating) {
-            review = review + value;
+            review = review + " "+value;
+
         }
-        return review;
+        return review+"\nAverage user rating: "+findAverageRating();
+//        return ID + ": " + title + ". Price: " + dailyRent + " SEK. Status: " + rentStatus +
+//                "\nAverage user rating: "+findAverageRating()+"\nReviews:\n"+review+"";
+
     }
-}
+
+
+    }
+
+
