@@ -50,47 +50,27 @@ public class UserController {
         System.out.println(userList.toString());
     }
 
-    public void addCustomer(Customer customer){
-        userList.add(customer);
-    }
+    public void cancellation() {
 
-    public void removeCustomer() {
+        System.out.println("Which customer should be removed? ID:");
+        String ID = UserInputHandler.inputString();
 
-        Employee foundEmployee = null;
+        for (int i = 0; i < customerList.size(); i++) {
 
-        System.out.println(" ");
-        showEmployeeList();
+            String a = (customerList.get(i)).getId();
 
-        // Here we check if the user exists in the array:
-        while (foundEmployee == null) {
-            System.out.print("Which employee should be removed? Please enter a correct ID or NAME: ");
-            String input = UserInputHandler.inputString();
-            int count = 0;
+            if (a.equals(ID)) {
 
-            // Here we check if the ID is actually a unique ID.
-            // On the first run we go through the loop to find the first ID, similar to the users input.
-            for (int i = 0; i < employeeList.size() && count < 2; i++) {
-                Employee currentEmployee = employeeList.get(i);
-
-                // When we find an ID, we increase the count by "1" and continue checking the Array of Employees:
-                if (currentEmployee.getId().startsWith(input) || currentEmployee.getName().startsWith(input)) {
-                    count++;
-                    foundEmployee = currentEmployee;
-                }
-            }
-
-            // If the count is greater then one that means we have found more than two ID's matching the users input.
-            // Then we reset foundEmployee and we stay in the loop:
-            if (count > 1) {
-                System.out.println("Not a Unique ID, try again. ");
-                foundEmployee = null;
+                customerList.remove(i);
+                System.out.println(customerList);
+            } else {
+                System.out.println("Customer's ID not found");
             }
         }
+    }
 
-        // If we leave the last loop and the count is only "1" by the end, then we remove the "foundEmployee":
-        employeeList.remove(foundEmployee);
-        System.out.print("Employee removed! Press any key to continue:");
-        UserInputHandler.pressAnyKeyCon();
+    public void addCustomer(Customer customer){
+        userList.add(customer);
     }
 
     public void requestMembership() {

@@ -180,7 +180,7 @@ public class Dart {
             case 1 -> itemController.registerAGame();
             case 2 -> itemController.menuRemoveAGame();
             case 3 -> userController.registration();
-           // case 4 -> itemController.cancelation();
+            case 4 -> userController.cancellation();
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
             case 7 -> itemController.showTotalDailyRent();
