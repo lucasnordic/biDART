@@ -108,7 +108,8 @@ public class UserController {
         );
         userList.add(newEmployee);
 
-        System.out.println("You added: " + newEmployee);
+        System.out.println("You added: " + newEmployee.toString());
+
     }
 
     public void addEmployee(Employee employee){
