@@ -5,6 +5,8 @@ package dart;
  */
 
 import dart.items.ItemController;
+import dart.users.Customer;
+import dart.users.User;
 import dart.users.UserController;
 
 public class Dart {
@@ -88,17 +90,18 @@ public class Dart {
             System.out.print("Enter a password: ");
             String inputPassword = UserInputHandler.inputString();
 
-            boolean userFound = userController.checkIfUserExists(userName, inputPassword);
+//            boolean userFound = userController.checkIfUserExists(userName, inputPassword);
 
-            if (!userFound) {
-                System.out.print("Invalid password! ");
-                System.out.print("Press any key to continue: ");
+            User user = userController.getUserWithNameAndPassword(userName, inputPassword);
+
+            if (user instanceof Customer) {
+                menuCustomer();
+            } else {
+                System.out.print("Invalid user! ");
+                System.out.print("Press any key to go back to Main Menu: ");
                 UserInputHandler.pressAnyKeyCon();
                 mainMenu(); // allows go back to menu
-            } else {
-                menuCustomer();
             }
-
         }
     }
 
@@ -107,7 +110,7 @@ public class Dart {
      */
 
     //  This method handles the manager menu contents:
-    public void menuManager() {
+    public void menuManager () {
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
         String[] menuItems = {"Add an employee", "View all employees", "Remove an employee", "Return to Main Menu"};
@@ -139,7 +142,7 @@ public class Dart {
     }
 
     //  This handles the employee menu contents:
-    public void menuEmployee() {
+    public void menuEmployee () {
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
         String[] menuItems = {"Register a game", "Remove a game", "Register a customer",
@@ -175,7 +178,7 @@ public class Dart {
     }
 
     //  This method handles the customer menu contents:
-    public void menuCustomer() {
+    public void menuCustomer () {
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {"Rent a game", "Return a game", "Rent a song album", "Return a songalbum", "Return to Main Menu"};
         String inputPrompt = "Enter choice: ";
@@ -204,13 +207,13 @@ public class Dart {
      * These methods handle printing certain parts related to menu's:
      */
 
-    private void printMenuItems(String title, String[] subMenus, String inputPrompt) {
+    private void printMenuItems (String title, String[]subMenus, String inputPrompt){
         System.out.println("- - - - - - - - - - - - - - - - -");
         System.out.println(title);
 
         // This loop prints out all the menu options that are stored in the "menuItems" array.
         for (int i = 0; i < subMenus.length; i++) {
-            System.out.println( (i + 1) + ". " + subMenus[i]);
+            System.out.println((i + 1) + ". " + subMenus[i]);
         }
 //        for (String subMenu : subMenus) {
 //            System.out.println(subMenu);
@@ -219,14 +222,14 @@ public class Dart {
         System.out.println(" ");
         System.out.print(inputPrompt);
     }
-    public static void printIntroAscii() {
+    public static void printIntroAscii () {
         System.out.println(" _   _ ____  _____ _____ _____ \n" +
                 "| |_|_|    \\|  _  | __  |_   _|\n" +
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
     }
 
-    private static void printOutroAscii() {
+    private static void printOutroAscii () {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("                       _   \n" +
                 " _____            _   |_|_ \n" +

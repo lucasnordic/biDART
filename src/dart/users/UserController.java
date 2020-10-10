@@ -1,8 +1,6 @@
 package dart.users;
 
-import dart.Dart;
 import dart.UserInputHandler;
-
 import java.util.ArrayList;
 
 /**
@@ -174,6 +172,23 @@ public class UserController {
     /**
      * Here we check if a user exists:
      */
+
+    public User getUserWithNameAndPassword(String name, String password) {
+        User userFound = null;
+        int index = 0;
+
+        while(userFound == null && index < userList.size()) {
+            User user = userList.get(index);
+
+            if (user.getName().equals(name) && user.getPassword().equals(password)) {
+                userFound = user;
+            } else {
+                index++;
+            }
+        }
+
+        return userFound;
+    }
 
     public boolean checkIfUserExists(String name, String password) {
         boolean userFound = false;
