@@ -37,8 +37,8 @@ public class Dart {
 
         switch (menuChoice.toUpperCase()) {
             case "M" -> loginCheckManager();
-            case "E" -> loginCheckManager();
-            case "C" -> loginCheckManager();
+            case "E" -> loginCheckEmployee();
+            case "C" -> loginCheckCustomer();
             default -> {
                 printOutroAscii();
                 UserInputHandler.closeScanner();  // We go into the class that has the scanner and close it.
