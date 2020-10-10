@@ -23,10 +23,10 @@ public class UserController {
 
     public void registration() {
 
-        System.out.print("Please enter a username: ");
+        System.out.print("Please enter the Customers username: ");
         String name = UserInputHandler.inputString();
 
-        System.out.print("Please enter the password you want to use: ");
+        System.out.print("Please enter a password for the Customer: ");
         String password = UserInputHandler.inputString();
 
         User customer = new Customer();

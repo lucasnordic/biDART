@@ -10,7 +10,6 @@ public class Customer extends User{
     private String membershipType;
     private int maxAllowedRent;
     private int credit;
-    private String password;
 
     /**
      * Constructors:
@@ -22,7 +21,6 @@ public class Customer extends User{
         this.membershipType = "regular";
         this.maxAllowedRent = 1;
         this.credit = 0;
-        this.password = password;
     }
 
     public Customer() {
