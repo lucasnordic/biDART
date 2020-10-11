@@ -2,6 +2,7 @@ package dart.items;
 
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
+import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
 
@@ -383,6 +384,16 @@ public class ItemController {
         }
     }
 
+    public void addGame(Game game){
+        dartProducts.add(game);
+    }
+
+    public void mockData() {
+
+//        Item item = new Item();
+//        item.setTitle("hehe");
+//        item.setDailyRent();
+    }
 //    public void findGame() {
 //        for (Item item : dartProducts) {
 //            if (item instanceof Game) {
