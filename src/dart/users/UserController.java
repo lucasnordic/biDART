@@ -1,5 +1,6 @@
 package dart.users;
 
+import dart.items.Item;
 import dart.items.ItemController;
 import dart.tools.UserInputHandler;
 
@@ -21,7 +22,7 @@ public class UserController {
         mockData();
     }
 
-  
+
     /**
      * This controls the logged in user:
      */
@@ -34,7 +35,12 @@ public class UserController {
         this.currentUser = currentUser;
     }
 
-  
+    public User getCurrentUser() { return this.currentUser; }
+
+
+
+
+
     /**
      * These methods are related to Customers:
      */
@@ -78,15 +84,17 @@ public class UserController {
         userList.add(customer);
     }
 
-    public Customer customerTeleporter(String Id) {
-        for(int i = 0; i < userList.size(); i++) {
-            String foundId = userList.get(i).getId();
-            if (Id.equals(foundId)){
-                return (Customer) userList.get(i);
-            }
+    public void renting() {
+        ItemController itemController = new ItemController();
+
+        Customer customer = (Customer) currentUser;
+        int maxAllowedRent = customer.getMaxAllowedRent();
+        for (int i = 0; i < maxAllowedRent; i++) {
+            itemController.rentItem();
+            customer.addCredit();
         }
-        return null;
     }
+
 
     public void requestMembership() {
         System.out.println("");
@@ -221,7 +229,7 @@ public class UserController {
         return netSalary;
     }
 
-  
+
     /**
      * Here we check if a user exists:
      */

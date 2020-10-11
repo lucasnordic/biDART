@@ -1,7 +1,9 @@
 package dart.items;
 
 import dart.tools.UserInputHandler;
+import dart.users.Customer;
 import dart.users.User;
+import dart.users.UserController;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -131,6 +133,7 @@ public class ItemController {
 //        if (input.equals("1")){
 //
 //        }
+
         showAllAvailable();
         System.out.print("Please enter ID of the item that you want to rent: ");
         String id = UserInputHandler.inputString();
@@ -242,6 +245,10 @@ public class ItemController {
 
     public void returnItem() {
 //        showAllAvailable();
+        UserController userController = new UserController();
+        Customer customer = (Customer) userController.getCurrentUser();
+        int credit = customer.getCredit();
+
         showAll();
         System.out.println("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
@@ -251,15 +258,24 @@ public class ItemController {
             Item item = dartProducts.get(i);
             String id = item.getID().toString();
 
+            if ( credit < 5){
+
             if (inputID.equals(id)) {
                 //  item.returnObject();
                 System.out.print("Please enter the number of days in which the game was rented: ");
                 int days = UserInputHandler.inputInt();
                 double dailyRent = item.getDailyRent();
+                double finalDailyRent = customer.calculatePrice(dailyRent);
                 double totalRent = dailyRent * days;
-                System.out.println("The total rent is " + dailyRent + " * " + days + " = " + totalRent);
+                double finalTotalRent = customer.calculatePrice(totalRent);
+                System.out.println("The total rent is " + finalDailyRent + " * " + days + " = " + finalTotalRent);
                 item.makeAvailableAgain();
-                item.storeDailyRent(totalRent);
+                item.storeDailyRent(finalTotalRent);
+            } else {
+                System.out.println("The total rent is 0. ");
+                customer.setCredit(credit - 5);
+                item.makeAvailableAgain();
+            }
                 System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N now: ");
                 String input = UserInputHandler.inputString();
                 if (input.equalsIgnoreCase("Y")) {
