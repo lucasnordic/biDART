@@ -201,7 +201,9 @@ public class Dart {
                 "Rent a game",
                 "Return a game",
                 "Rent a song album",
-                "Return a songalbum",
+                "Return a song album",
+                "Search for game or song album",
+                "Sort all items be average user rating",
                 "Message center",
                 "Request membership upgrade",
                 "Return to Main Menu"
@@ -219,15 +221,37 @@ public class Dart {
             case 2 -> itemController.returnItem();
             case 3 -> itemController.rentItem();
             case 4 -> itemController.returnItem();
-//            case 5 -> itemController.findGame();
-//            case 6 -> itemController.findSong();
-            case 5 -> messageCenterMenu();
-            case 6 -> messageController.addMessageToList("upgrade", userController.getCurrentUserId(), null);
-            case 7 -> mainMenu();
+            case 5 -> findItem();
+            case 6 -> itemController.sortByAverageRating();
+            case 7 -> messageCenterMenu();
+            case 8 -> messageController.addMessageToList("upgrade", userController.getCurrentUserId(), null);
+            case 9 -> mainMenu();
             //default -> System.exit(0);
            // default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
         menuCustomer();
+    }
+
+
+
+
+    public void findItem() {
+        System.out.print("Please enter S for song album search or G for game search: ");
+        String input = UserInputHandler.inputString();
+        if (input.equals("S")) {
+            System.out.print("Please enter the year of a song album: ");
+            int year =UserInputHandler.inputInt();
+           itemController.findSong(year);
+        }
+        else if(input.equals("G")){
+            System.out.print("Please enter the genre od a game:  ");
+            String genre =UserInputHandler.inputString();
+            itemController.findGame(genre);
+        }
+        else {
+            System.out.println("Invalid input! Please try again.");
+            return;
+        }
     }
 
     private void messageCenterMenu() {
@@ -253,6 +277,7 @@ public class Dart {
 
     private void receiveMessage(){
 
+
     }
     private void sendMessage(){
 
@@ -262,6 +287,7 @@ public class Dart {
 
         System.out.println("Write your message: ");
         String message = UserInputHandler.inputString();
+        messageController.addMessageToList(message, userController.getCurrentUserId(), id);
     }
 
     /**

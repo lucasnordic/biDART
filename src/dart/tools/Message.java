@@ -7,13 +7,18 @@ public class Message {
     private String messageToId;   // If message to null then all employees.
     private String message;     // If message == upgrade then user wants an upgrade
     private final String messageId = UUID.randomUUID().toString();
-    private String rentStatus = "available";
+    private String messageStatus = "unread";
+    private boolean isRead;
 
     public Message(String message, String messageFromId, String messageToId) {
         this.messageFromId = messageFromId;
         this.messageToId = messageToId;
         this.message = message;
     }
+    public boolean isRead(){
+        return isRead;
+    }
+
 
     /**
      *  Getters and setters:
@@ -34,4 +39,5 @@ public class Message {
     public String getMessageId() {
         return messageId;
     }
+
 }

@@ -61,6 +61,10 @@ public class Customer extends User{
         return this.creditBank =+ 0;
     }
 
+    public String toString (){
+        return super.getId().toString()+" : "+ super.getName();
+    }
+
     /**
      * Override:
      */
