@@ -2,8 +2,10 @@ package dart.users;
 
 import dart.UserInputHandler;
 import dart.items.ItemController;
+import dart.tools.UserInputHandler;
 
 import java.util.ArrayList;
+
 
 /**
  * This class handles all Users and the methods required.
@@ -14,21 +16,36 @@ public class UserController {
     private ArrayList<Customer> customerList = new ArrayList<>();
     private ArrayList<Employee> employeeList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
+    private User currentUser;
 
 //    public  UserController() {
 //        mockData();
 //    }
 
+  
+    /**
+     * This controls the logged in user:
+     */
+
+    public String getCurrentUserId() {
+        return currentUser.getId();
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+  
     /**
      * These methods are related to Customers:
      */
 
     public void registration() {
 
-        System.out.print("Please enter a username: ");
+        System.out.print("Please enter the Customers username: ");
         String name = UserInputHandler.inputString();
 
-        System.out.print("Please enter the password you want to use: ");
+        System.out.print("Please enter a password for the Customer: ");
         String password = UserInputHandler.inputString();
 
         User customer = new Customer();
@@ -36,7 +53,26 @@ public class UserController {
         customer.setPassword(password);
 
         userList.add(customer);
-        System.out.println(userList.toString());
+        System.out.println(customer.toString());
+    }
+
+    public void cancellation() {
+
+        System.out.println("Which customer should be removed? ID:");
+        String ID = UserInputHandler.inputString();
+
+        for (int i = 0; i < customerList.size(); i++) {
+
+            String a = (customerList.get(i)).getId();
+
+            if (a.equals(ID)) {
+
+                customerList.remove(i);
+                System.out.println(customerList);
+            } else {
+                System.out.println("Customer's ID not found");
+            }
+        }
     }
 
     public void addCustomer(Customer customer){
@@ -68,7 +104,6 @@ public class UserController {
         }
     }
 
-
     public Customer customerTeleporter(String Id) {
         for(int i = 0; i < userList.size(); i++) {
             String foundId = userList.get(i).getId();
@@ -79,6 +114,9 @@ public class UserController {
         return null;
     }
 
+    public void requestMembership() {
+        System.out.println("");
+    }
 
 
 //    public void cancellation() {
@@ -154,7 +192,7 @@ public class UserController {
         userList.add(employee);
     }
 
-    public void RemoveEmployee() {
+    public void removeEmployee() {
 
         Employee foundEmployee = null;
 
@@ -209,6 +247,7 @@ public class UserController {
         return netSalary;
     }
 
+  
     /**
      * Here we check if a user exists:
      */
@@ -226,7 +265,6 @@ public class UserController {
                 index++;
             }
         }
-
         return userFound;
     }
 

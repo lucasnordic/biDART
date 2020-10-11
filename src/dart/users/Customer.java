@@ -1,11 +1,13 @@
 package dart.users;
 
+
 /**
  * This class handles a single customer and the methods required:
  */
 
 public class Customer extends User{
 
+  
     /**
      * Attributes
      */
@@ -15,6 +17,7 @@ public class Customer extends User{
     private static final int additionalCredit = 0;
     private int credit;
 
+  
     /**
      * Constructor
      */
@@ -25,6 +28,7 @@ public class Customer extends User{
     }
 
     public Customer() {}
+
 
     /**
      * Getters and setters
@@ -40,10 +44,8 @@ public class Customer extends User{
 
     public int getMaxAllowedRent() {
         return this.maxAllowedRent;
-    }
 
-
-
+      
     /**
      * Methods
      */

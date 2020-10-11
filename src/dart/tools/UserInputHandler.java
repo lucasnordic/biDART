@@ -1,4 +1,4 @@
-package dart;
+package dart.tools;
 
 import java.util.Arrays;
 import java.util.Scanner;

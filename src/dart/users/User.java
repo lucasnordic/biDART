@@ -12,29 +12,33 @@ public abstract class User {
     private String name;
     private String password;
 
-    public User(String name, String password) {
-    }
-
-    public User() {
-
-    }
-
+  
     /**
      *  Constructor:
      */
+  
+    public User(String name, String password) {
 
+    }
+
+    public User (){
+
+    }
 
 
     /**
      *  Getters and Setters:
      */
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public final String getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setName(String name) {
@@ -43,9 +47,5 @@ public abstract class User {
 
     public String getName() {
         return name;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }

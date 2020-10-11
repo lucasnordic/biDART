@@ -13,6 +13,11 @@ public class CustomerSilver extends Customer {
 
     public CustomerSilver() {
     }
+  
+  
+    /**
+     *  Override:
+     */
 
     @Override
     public int getMaxAllowedRent() {
@@ -29,4 +34,3 @@ public class CustomerSilver extends Customer {
         int newCredit = super.getCredit() + this.additionalCredit;
         this.setCredit(newCredit);
     }
-}
