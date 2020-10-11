@@ -5,7 +5,6 @@ package dart;
  */
 
 import dart.items.ItemController;
-import dart.tools.Message;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
 import dart.tools.MessageController;
@@ -119,6 +118,7 @@ public class Dart {
                 "Add an employee",
                 "View all employees",
                 "Remove an employee",
+                "Calculate Net Salary",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -141,11 +141,17 @@ public class Dart {
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> userController.removeEmployee();
-            case 4 -> mainMenu();
+            case 3 -> userController.removeUser();
+            case 4 -> menuShowNetSalary();
+            case 5 -> mainMenu();
         }
-        // This is not nececcary?
         menuManager();
+    }
+
+    public void menuShowNetSalary() {
+        System.out.println("The total net salary of all employees are " + userController.calculateNetSalary());
+        System.out.print("Press any key to continue...");
+        UserInputHandler.pressAnyKeyCon();
     }
 
     //  This handles the employee menu contents:

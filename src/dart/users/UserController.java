@@ -166,56 +166,59 @@ public class UserController {
         userList.add(employee);
     }
 
-    public void removeEmployee() {
+    public void removeUser() {
 
-        Employee foundEmployee = null;
+        User user = null;
 
         System.out.println(" ");
         showEmployeeList();
 
         // Here we check if the user exists in the array:
-        while (foundEmployee == null) {
-            System.out.print("Which employee should be removed? Please enter a correct ID or NAME: ");
+        while (user == null) {
+            System.out.print("Which user should be removed? Please enter a correct ID or NAME: ");
             String input = UserInputHandler.inputString();
-            int count = 0;
+            int foundUsers = 0;
 
             // Here we check if the ID is actually a unique ID.
             // On the first run we go through the loop to find the first ID, similar to the users input.
-            for (int i = 0; i < employeeList.size() && count < 2; i++) {
-                Employee currentEmployee = employeeList.get(i);
+            for (int i = 0; i < userList.size() && foundUsers < 2; i++) {
+                User currentUser = userList.get(i);
 
-                // When we find an ID, we increase the count by "1" and continue checking the Array of Employees:
-                if (currentEmployee.getId().startsWith(input) || currentEmployee.getName().startsWith(input)) {
-                    count++;
-                    foundEmployee = currentEmployee;
+                // When we find an ID, we increase the foundUsers by "1" and continue checking the Array of Employees:
+                if (currentUser.getId().startsWith(input) && currentUser instanceof Employee || currentUser.getName().startsWith(input)) {
+                    foundUsers++;
+                    user = currentUser;
                 }
             }
 
-            // If the count is greater then one that means we have found more than two ID's matching the users input.
-            // Then we reset foundEmployee and we stay in the loop:
-            if (count > 1) {
+            // If the foundUsers is greater then one that means we have found more than two ID's matching the users input.
+            // Then we reset user and we stay in the loop:
+            if (foundUsers > 1) {
                 System.out.println("Not a Unique ID, try again. ");
-                foundEmployee = null;
+                user = null;
             }
         }
 
-        // If we leave the last loop and the count is only "1" by the end, then we remove the "foundEmployee":
-        employeeList.remove(foundEmployee);
+        // If we leave the last loop and the count is only "1" by the end, then we remove the "user":
+        userList.remove(user);
         System.out.print("Employee removed! Press any key to continue:");
         UserInputHandler.pressAnyKeyCon();
     }
 
     public double calculateNetSalary() {
-
         double netSalary = 0;
-        Employee employee = new Employee();
 
-        if (employee.getGrossSalary() * 12 < 100000) {
-            netSalary = employee.getGrossSalary() * 12;
-        } else if (employee.getGrossSalary() * 12 >= 100000) {
-            netSalary = (employee.getGrossSalary() * 12) * 0.70;
-        } else {
-            netSalary =+ employee.getGrossSalary();
+        for (User user : userList) {
+            if (user instanceof Employee) {
+                if (((Employee) user).getGrossSalary() * 12 < 100000) {
+                    netSalary = ((Employee) user).getGrossSalary() * 12;
+                } else if (((Employee) user).getGrossSalary() * 12 >= 100000) {
+                    netSalary = (((Employee) user).getGrossSalary() * 12) * 0.70;
+                } else {
+                    netSalary =+ ((Employee) user).getGrossSalary();
+                }
+
+            }
         }
 
         return netSalary;
@@ -273,16 +276,16 @@ public class UserController {
 
     public void mockData() {
         addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-        addEmployee(new Employee("Lucas","koko", 1990, 100.0));
-        addEmployee(new Employee("Maryam","koko", 1930, 1000.0));
-        addEmployee(new Employee("Deba","koko", 309, 10000.0));
-        addEmployee(new Employee("Olga","koko", 1769, 100000.0));
+        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
+        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
+        addEmployee(new Employee("Deba","koko", 309, 10.0));
+        addEmployee(new Employee("Olga","koko", 1769, 10.0));
 
         addCustomer(new Customer("lucas", "123"));
-        addCustomer(new Customer("maryam", "234"));
-        addCustomer(new Customer("deba", "345"));
-        addCustomer(new Customer("anwar", "456"));
-        addCustomer(new Customer("olga", "567"));
+//        userController.addCustomer(new Customer("maryam", "234"));
+//        userController.addCustomer(new Customer("deba", "345"));
+//        userController.addCustomer(new Customer("anwar", "456"));
+//        addCustomer(new Customer("olga", "567"));
     }
 }
 
