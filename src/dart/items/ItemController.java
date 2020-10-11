@@ -17,7 +17,7 @@ public class ItemController {
     // Must Use UUID for IDs later!!!
 
     public ItemController() {
-//        mockData();
+        mockData();
     }
 
     public void sortByAverageRating() {
