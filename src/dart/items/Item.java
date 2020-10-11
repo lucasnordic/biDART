@@ -94,9 +94,9 @@ public class Item {
     }
 
     public String toString() {
-        String review = ".\nReviews: "; //empty String for further use adding all reviews
+        String review = ".\nReviews: \n"; //empty String for further use adding all reviews
         for (Value value : rating) {
-            review = review + " "+value;
+            review = review+" "+ value +";\n";
 
         }
         return review+"\nAverage user rating: "+findAverageRating();
