@@ -13,10 +13,10 @@ public class CustomerSilver extends Customer {
 
     public CustomerSilver() {
     }
-  
-  
+
+
     /**
-     *  Override:
+     * Override:
      */
 
     @Override
@@ -26,7 +26,7 @@ public class CustomerSilver extends Customer {
 
     @Override
     public double calculatePrice(double price) {
-        return ( 1- this.discount) * price;
+        return (1 - this.discount) * price;
     }
 
     @Override
@@ -34,3 +34,4 @@ public class CustomerSilver extends Customer {
         int newCredit = super.getCredit() + this.additionalCredit;
         this.setCredit(newCredit);
     }
+}

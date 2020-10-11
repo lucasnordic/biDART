@@ -160,7 +160,7 @@ public class Dart {
                 "Add a song album",
                 "Remove a song album",
                 "Show total rent profit",
-                "View all games",
+                "View all items",
                 "Upgrade requests",
                 "Return to Main Menu",
         };
@@ -185,7 +185,7 @@ public class Dart {
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
             case 7 -> itemController.showTotalDailyRent();
-            case 8 -> itemController.showAllGames();
+            case 8 -> itemController.showAll();
 //            case 9 -> menuUpgradeCustomer();
             case 10 -> mainMenu();
             //default -> System.exit(0);
@@ -217,9 +217,9 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> userController.rentProcess();
+            case 1 -> itemController.rentItem();
             case 2 -> itemController.returnItem();
-            case 3 -> userController.rentProcess();
+            case 3 -> itemController.rentItem();
             case 4 -> itemController.returnItem();
             case 5 -> findItem();
             case 6 -> itemController.sortByAverageRating();
@@ -231,8 +231,6 @@ public class Dart {
         }
         menuCustomer();
     }
-
-
 
 
     public void findItem() {
@@ -276,7 +274,6 @@ public class Dart {
     }
 
     private void receiveMessage(){
-
 
     }
     private void sendMessage(){

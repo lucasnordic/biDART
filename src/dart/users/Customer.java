@@ -22,8 +22,8 @@ public class Customer extends User{
      * Constructor
      */
 
-    public Customer(String name, String id) {
-        super();
+    public Customer(String name, String password) {
+        super(name, password);
         this.credit = 0;
     }
 
@@ -44,6 +44,7 @@ public class Customer extends User{
 
     public int getMaxAllowedRent() {
         return this.maxAllowedRent;
+    }
 
       
     /**

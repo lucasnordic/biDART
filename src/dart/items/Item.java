@@ -18,7 +18,6 @@ public class Item {
     //Constructor:
 
     public Item( String title, double dailyRent) {
-
         this.id = UUID.randomUUID();
         this.title = title;
         this.dailyRent = dailyRent;
@@ -96,7 +95,7 @@ public class Item {
     public String toString() {
         String review = ".\nReviews: \n"; //empty String for further use adding all reviews
         for (Value value : rating) {
-            review = review+" "+ value +";\n";
+            review = review + " "+ value + ";\n";
 
         }
         return review+"\nAverage user rating: "+findAverageRating();

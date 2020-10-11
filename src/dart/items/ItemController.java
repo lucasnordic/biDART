@@ -1,7 +1,5 @@
 package dart.items;
 
-import dart.users.Customer;
-import dart.users.UserController;
 import dart.tools.UserInputHandler;
 import dart.users.User;
 
@@ -10,13 +8,13 @@ import java.util.UUID;
 
 public class ItemController {
 
-   private ArrayList<Item> dartProducts = new ArrayList<>();
-   private ArrayList<String> historyList = new ArrayList<>();
+    private ArrayList<Item> dartProducts = new ArrayList<>();
+    private ArrayList<String> historyList = new ArrayList<>();
 
     // Must Use UUID for IDs later!!!
 
     public ItemController() {
-        mockData();
+//        mockData();
     }
 
     public void sortByAverageRating() {
@@ -125,6 +123,33 @@ public class ItemController {
 //        }
 //    }
 
+
+    public void rentItem() {
+//        System.out.println("Please enter 1 for games and 2 for song albums: ");
+//        String input = UserInputHandler.inputString();
+//        String
+//        if (input.equals("1")){
+//
+//        }
+        showAllAvailable();
+        System.out.print("Please enter ID of the item that you want to rent: ");
+        String id = UserInputHandler.inputString();
+        for (int i = 0; i < dartProducts.size(); i++) {
+            if (dartProducts.get(i).getID().toString().equals(id)) {
+                if (dartProducts.get(i).getRentStatus().equals("rented")) {
+                    System.out.println("Product ID" + id + " is already rented");
+                    //  return;
+                }
+                if (dartProducts.get(i).getRentStatus().equals("available")) {
+                    dartProducts.get(i).rent();
+                    System.out.println("Yay! Rented!");
+                    return;
+                }
+            }
+        }
+        System.out.println("Product with ID " + id + " not found");
+    }
+
 //    public void returnSong() {
 //
 //        System.out.println("Insert the ID of the song you wish to return:");
@@ -143,72 +168,7 @@ public class ItemController {
 //        System.out.println(dartProducts);
 //    }
 
-    public void registerAGame() {
-
-        Item game = new Game();
-
-        System.out.println("Please insert the following information:\nGame ID:");
-        int ID = UserInputHandler.inputInt();
-        game.setID(ID);
-
-        System.out.println("Title: ");
-        String title = UserInputHandler.inputString();
-        game.setTitle(title);
-
-        System.out.println("Daily rent: ");
-        double rent = UserInputHandler.inputDouble();
-        game.setDailyRent(rent);
-
-        System.out.println("genre: ");
-        String genre = UserInputHandler.inputString();
-        ((Game) game).setGenre(genre);
-
-        dartProducts.add(game);
-
-        System.out.println(game.toString());
-
-       /* Game game = new Game(gameLastNumber++);//creating new game, next id +1
-        gameLibrary.addGame(game);// method that allow to add games to library
-        System.out.println(gameLastNumber - 1 + " : " + game.getTitle() + " (" + game.getGenre() + "). " + game.getDailyRent() + "$. Status: " + game.getRentStatus() + "\n");
-        */
-
-    }
-
-    public void menuRemoveAGame() {
-        System.out.print("Please enter a number of the game you want to remove: ");
-        int id = UserInputHandler.inputInt();
-        dartProducts.remove(id);
-    }
-
-//    public void rentAGame() {
-//
-//        //gameLibrary.showAvailableGames();
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//
-//            Game game = (Game) dartProducts.get(i);
-//            String gameStatus = game.getRentStatus();
-//            if (gameStatus.equalsIgnoreCase("available")) {
-//                System.out.println(game);
-//            }
-//        }
-//
-//        System.out.print("Please enter game ID that you want to rent: ");
-//        int gameID = UserInputHandler.inputInt();
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//
-//            if (dartProducts.get(i).getID() == gameID) {
-//
-//                if (dartProducts.get(i).getRentStatus().equals("rented")) {
-//                    System.out.println("Game with ID " + gameID + " is already rented");
-//                }
-//                dartProducts.get(i).rent();
-//                System.out.println("The game has been rented!");
-//                return;
-//            }
-//        }
-//    }
-//
-
+    //
 //    public void returnAGame() {
 //
 //        System.out.println("Insert the ID of the game you wish to return:");
@@ -228,21 +188,12 @@ public class ItemController {
 //        System.out.println(dartProducts);
 //    }
 
-  //TODO: What is this doing here :P?:
-        UserController userController = new UserController();
 
-        System.out.println("Please enter your ID:");
-        String inputId = UserInputHandler.inputString();
-        Customer customer = userController.customerTeleporter(inputId);
-
-        int credit = customer.getCredit();
-
-
- //   public void menuRemoveAGame() {
- //       System.out.print("Please enter a number of the game you want to remove: ");
- //       int id = UserInputHandler.inputInt();
- //       dartProducts.remove(id);
- //   }
+    public void menuRemoveAGame() {
+        System.out.print("Please enter a number of the game you want to remove: ");
+        int id = UserInputHandler.inputInt();
+        dartProducts.remove(id);
+    }
 
 //    public void rentAGame() {
 //
@@ -290,7 +241,8 @@ public class ItemController {
 
 
     public void returnItem() {
-        showAllAvailable();
+//        showAllAvailable();
+        showAll();
         System.out.println("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
 
@@ -301,22 +253,13 @@ public class ItemController {
 
             if (inputID.equals(id)) {
                 //  item.returnObject();
-                if (credit < 5) {
-                    System.out.print("Please enter the number of days in which the game was rented: ");
-                    int days = UserInputHandler.inputInt();
-                    double dailyRent = item.getDailyRent();
-                    double dailyPrice = customer.calculatePrice(dailyRent);
-                    double totalRent = dailyRent * days;
-                    double totalPrice = customer.calculatePrice(totalRent);
-                    System.out.println("The total rent is " + dailyPrice + " * " + days + " = " + totalPrice);
-                    item.makeAvailableAgain();
-                    item.storeDailyRent(totalRent);
-                } else {
-                    customer.setCredit(credit - 5);
-                    System.out.println("The total rent is 0.");
-                    item.makeAvailableAgain();
-                    item.storeDailyRent(0.0);
-                }
+                System.out.print("Please enter the number of days in which the game was rented: ");
+                int days = UserInputHandler.inputInt();
+                double dailyRent = item.getDailyRent();
+                double totalRent = dailyRent * days;
+                System.out.println("The total rent is " + dailyRent + " * " + days + " = " + totalRent);
+                item.makeAvailableAgain();
+                item.storeDailyRent(totalRent);
                 System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N now: ");
                 String input = UserInputHandler.inputString();
                 if (input.equalsIgnoreCase("Y")) {
@@ -334,31 +277,11 @@ public class ItemController {
         System.out.println("This ID not found");
     }
 
-public void showAll(){
-    for (Item item : dartProducts) {
+    public void showAll(){
+        for (Item item : dartProducts) {
             System.out.println(item);
         }
-}
-
-    public void rentItem() {
-        System.out.println("Please insert the ID of the item you wish to rent: ");
-        int itemId = UserInputHandler.inputInt();
-        for(int i = 0; i < dartProducts.size(); i++) {
-            Item foundItem = dartProducts.get(i);
-            if (itemId == foundItem.getID()) {
-                foundItem.rent();
-            }
-        }
     }
-
-    public void customerRentItem(int rentNumber){
-        for(int i = 0; i < rentNumber ; i++) {
-            rentItem();
-        }
-    }
-
-
-
 
     public void showAllGames() {
         for (Item item : dartProducts) {
@@ -416,7 +339,7 @@ public void showAll(){
     }
 
     public void showTotalDailyRent() {
-        System.out.println("Total daily rent" +/* itemController.*/dartDailyRent());
+        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
     }
 
 
@@ -502,13 +425,13 @@ public void showAll(){
 //        }
 //    }
 
-    public void mockData() {
-        Song song1 = new Song("Title", 60, "Leelo", 1993);
-        Song song2 = new Song("Title", 60, "Leelo", 1993);
-        Song song3 = new Song("Title", 60, "Leelo", 1993);
-
-        addSong(song1);
-        addSong(song2);
-        addSong(song3);
-    }
+//    public void mockData() {
+//        Song song1 = new Song("Title", 60, "Leelo", 1993);
+//        Song song2 = new Song("Title", 60, "Leelo", 1993);
+//        Song song3 = new Song("Title", 60, "Leelo", 1993);
+//
+//        addSong(song1);
+//        addSong(song2);
+//        addSong(song3);
+//    }
 }
