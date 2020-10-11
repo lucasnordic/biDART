@@ -5,9 +5,11 @@ package dart;
  */
 
 import dart.items.ItemController;
+import dart.tools.Message;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
 import dart.tools.MessageController;
+import dart.users.CustomerSilver;
 import dart.users.User;
 import dart.users.UserController;
 
@@ -279,7 +281,6 @@ public class Dart {
             case 2 -> sendMessage();
         }
     }
-
     private void receiveMessage(){
 
     }
@@ -298,17 +299,22 @@ public class Dart {
      * Sub menu's of Employee menu:
      */
 
-//    public void menuUpgradeCustomer() {
-//        // loop all messages with upgrades:
-//        // for every message print index +
-//        // print menu
-//        // 1. deny upgrade
-//        // 2. accept upgrade
-//        // 3. return to main menu
+    public void menuUpgradeCustomer() {
+
+        User user = userController.getCurrentUser();
+        messageController.getMessageListForUser(user);
+
+        Customer customer = new CustomerSilver();
+        // loop all messages with upgrades:
+        // for every message print index +
+        // print menu
+        // 1. deny upgrade
+        // 2. accept upgrade
+        // 3. return to main menu
 //        switch () {
 //            case 1 ->
 //        }
-//    }
+    }
 
 
     /**

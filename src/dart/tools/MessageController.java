@@ -28,7 +28,7 @@ public class MessageController {
 
         System.out.print(
                 "Message sent!\n" +
-                "Press any key to go back to your Customer Screen: "
+                "Press any key to go back... "
         );
         UserInputHandler.pressAnyKeyCon();
 
