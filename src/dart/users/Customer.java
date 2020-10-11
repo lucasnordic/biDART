@@ -39,7 +39,7 @@ public class Customer extends User{
     }
 
     public int getMaxAllowedRent() {
-        return maxAllowedRent;
+        return this.maxAllowedRent;
     }
 
 
@@ -53,7 +53,11 @@ public class Customer extends User{
     }
 
     public void addCredit() {
-        int newCredit = this.credit + additionalCredit;
+        int newCredit = this.credit + this.additionalCredit;
         this.setCredit(newCredit);
+    }
+
+    public String toString() {
+        return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";
     }
 }

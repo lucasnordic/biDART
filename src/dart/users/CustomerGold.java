@@ -12,4 +12,20 @@ public class CustomerGold extends CustomerSilver {
 
     public CustomerGold() {
     }
+
+    @Override
+    public int getMaxAllowedRent() {
+        return this.maxAllowedRent;
+    }
+
+    @Override
+    public double calculatePrice(double price) {
+        return ( 1- this.discount) * price;
+    }
+
+    @Override
+    public void addCredit() {
+        int newCredit = super.getCredit() + this.additionalCredit;
+        this.setCredit(newCredit);
+    }
 }

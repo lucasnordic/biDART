@@ -49,14 +49,18 @@ public class UserController {
         System.out.println("Please insert your ID:");
         String inputId = UserInputHandler.inputString();
 
-        for(int i = 0; i < customerList.size(); i++) {
-            String foundId = customerList.get(i).getId();
+        for(int i = 0; i < userList.size(); i++) {
+            String foundId = userList.get(i).getId();
 
             if(inputId.equals(foundId)) {
-                Customer foundCustomer = customerList.get(i);
-                    int rentNumber = foundCustomer.getMaxAllowedRent();
+                User foundCustomer = userList.get(i);
+
+                if(foundCustomer instanceof Customer) {
+                    int rentNumber = ((Customer) foundCustomer).getMaxAllowedRent();
                     itemcontroller.customerRentItem(rentNumber);
-                    foundCustomer.addCredit();
+                    ((Customer) foundCustomer).addCredit();
+                    System.out.println(userList);
+                }
 
             }
 
@@ -64,23 +68,17 @@ public class UserController {
         }
     }
 
-    public void returnProcess() {
-        ItemController itemController = new ItemController();
-        System.out.println("Please insert your ID:");
-        String inputId = UserInputHandler.inputString();
 
-        for (int i = 0; i < customerList.size(); i++) {
-            String foundId = customerList.get(i).getId();
-
-             if(inputId.equals(foundId)) {
-                Customer foundCustomer = customerList.get(i);
-                int customerCredit = foundCustomer.getCredit();
-                if (customerCredit < 5) {
-                    itemController.returnItem();
-                }
-             }
+    public Customer customerTeleporter(String Id) {
+        for(int i = 0; i < userList.size(); i++) {
+            String foundId = userList.get(i).getId();
+            if (Id.equals(foundId)){
+                return (Customer) userList.get(i);
+            }
         }
+        return null;
     }
+
 
 
 //    public void cancellation() {
@@ -261,19 +259,19 @@ public class UserController {
      * This is just "test" data:
      */
 
-    public void mockData() {
-        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-        addEmployee(new Employee("Lucas","koko", 1990, 100.0));
-        addEmployee(new Employee("Maryam","koko", 1930, 1000.0));
-        addEmployee(new Employee("Deba","koko", 309, 10000.0));
-        addEmployee(new Employee("Olga","koko", 1769, 100000.0));
-
-        addCustomer(new Customer("lucas", "123"));
-        addCustomer(new Customer("maryam", "234"));
-        addCustomer(new Customer("deba", "345"));
-        addCustomer(new Customer("anwar", "456"));
-        addCustomer(new Customer("olga", "567"));
-    }
+//    public void mockData() {
+//        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+//        addEmployee(new Employee("Lucas","koko", 1990, 100.0));
+//        addEmployee(new Employee("Maryam","koko", 1930, 1000.0));
+//        addEmployee(new Employee("Deba","koko", 309, 10000.0));
+//        addEmployee(new Employee("Olga","koko", 1769, 100000.0));
+//
+//        addCustomer(new Customer("lucas", "123"));
+//        addCustomer(new Customer("maryam", "234"));
+//        addCustomer(new Customer("deba", "345"));
+//        addCustomer(new Customer("anwar", "456"));
+//        addCustomer(new Customer("olga", "567"));
+//    }
 }
 
 

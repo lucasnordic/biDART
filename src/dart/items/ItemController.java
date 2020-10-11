@@ -1,6 +1,8 @@
 package dart.items;
 
 import dart.UserInputHandler;
+import dart.users.Customer;
+import dart.users.UserController;
 
 import java.util.ArrayList;
 
@@ -184,6 +186,14 @@ public class ItemController {
 
     public void returnItem() {
 
+        UserController userController = new UserController();
+
+        System.out.println("Please enter your ID:");
+        String inputId = UserInputHandler.inputString();
+        Customer customer = userController.customerTeleporter(inputId);
+
+        int credit = customer.getCredit();
+
         System.out.println("Insert the ID of the item you wish to return:");
         int inputID = UserInputHandler.inputInt();
 
@@ -194,13 +204,22 @@ public class ItemController {
 
             if (inputID == id) {
                 //  item.returnObject();
-                System.out.print("Please enter the number of days in which the game was rented: ");
-                int days = UserInputHandler.inputInt();
-                double dailyRent = item.getDailyRent();
-                double totalRent = dailyRent * days;
-                System.out.println("The total rent is " + dailyRent + " * " + days + " = " + totalRent);
-                item.makeAvailableAgain();
-                item.storeDailyRent(totalRent);
+                if (credit < 5) {
+                    System.out.print("Please enter the number of days in which the game was rented: ");
+                    int days = UserInputHandler.inputInt();
+                    double dailyRent = item.getDailyRent();
+                    double dailyPrice = customer.calculatePrice(dailyRent);
+                    double totalRent = dailyRent * days;
+                    double totalPrice = customer.calculatePrice(totalRent);
+                    System.out.println("The total rent is " + dailyPrice + " * " + days + " = " + totalPrice);
+                    item.makeAvailableAgain();
+                    item.storeDailyRent(totalRent);
+                } else {
+                    customer.setCredit(credit - 5);
+                    System.out.println("The total rent is 0.");
+                    item.makeAvailableAgain();
+                    item.storeDailyRent(0.0);
+                }
                 System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N now: ");
                 String input = UserInputHandler.inputString();
                 if (input.equalsIgnoreCase("Y")) {
@@ -217,19 +236,20 @@ public class ItemController {
         }
     }
 
+
     public void rentItem() {
         System.out.println("Please insert the ID of the item you wish to rent: ");
-        String itemId = UserInputHandler.inputString();
+        int itemId = UserInputHandler.inputInt();
         for(int i = 0; i < dartProducts.size(); i++) {
             Item foundItem = dartProducts.get(i);
-            if (itemId.equals(foundItem.getID())) {
+            if (itemId == foundItem.getID()) {
                 foundItem.rent();
             }
         }
     }
 
     public void customerRentItem(int rentNumber){
-        for(int i = 0; i < (rentNumber + 1); i++) {
+        for(int i = 0; i < rentNumber ; i++) {
             rentItem();
         }
     }
