@@ -225,7 +225,6 @@ public class UserController {
                 } else {
                     netSalary =+ ((Employee) user).getGrossSalary();
                 }
-
             }
         }
 
