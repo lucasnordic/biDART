@@ -40,4 +40,15 @@ public class Message {
         return messageId;
     }
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "messageFromId='" + messageFromId + '\'' +
+                ", messageToId='" + messageToId + '\'' +
+                ", message='" + message + '\'' +
+                ", messageId='" + messageId + '\'' +
+                ", messageStatus='" + messageStatus + '\'' +
+                ", isRead=" + isRead +
+                '}';
+    }
 }
