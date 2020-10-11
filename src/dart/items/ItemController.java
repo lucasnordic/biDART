@@ -193,9 +193,11 @@ public class ItemController {
 //    }
 
 
-    public void menuRemoveAGame() {
-        System.out.print("Please enter a number of the game you want to remove: ");
-        int id = UserInputHandler.inputInt();
+    public void removeAGame() {
+        System.out.print("Please enter the ID of the game you want to remove: ");
+        String id = UserInputHandler.inputString();
+        System.out.print("Game is removed! Press any key to continue...");
+        UserInputHandler.pressAnyKeyCon();
         dartProducts.remove(id);
     }
 
@@ -261,22 +263,23 @@ public class ItemController {
 
             if ( credit < 5){
 
-            if (inputID.equals(id)) {
-                //  item.returnObject();
-                System.out.print("Please enter the number of days in which the game was rented: ");
-                int days = UserInputHandler.inputInt();
-                double dailyRent = item.getDailyRent();
-                double finalDailyRent = customer.calculatePrice(dailyRent);
-                double totalRent = dailyRent * days;
-                double finalTotalRent = customer.calculatePrice(totalRent);
-                System.out.println("The total rent is " + finalDailyRent + " * " + days + " = " + finalTotalRent);
-                item.makeAvailableAgain();
-                item.storeDailyRent(finalTotalRent);
-            } else {
+                if (inputID.equals(id)) {
+                    //  item.returnObject();
+                    System.out.print("Please enter the number of days in which the game was rented: ");
+                    int days = UserInputHandler.inputInt();
+                    double dailyRent = item.getDailyRent();
+                    double finalDailyRent = customer.calculatePrice(dailyRent);
+                    double totalRent = dailyRent * days;
+                    double finalTotalRent = customer.calculatePrice(totalRent);
+                    System.out.println("The total rent is " + finalDailyRent + " * " + days + " = " + finalTotalRent);
+                    item.makeAvailableAgain();
+                    item.storeDailyRent(finalTotalRent);
+                } else {
                 System.out.println("The total rent is 0. ");
                 customer.setCredit(credit - 5);
                 item.makeAvailableAgain();
-            }
+                }
+
                 System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N now: ");
                 String input = UserInputHandler.inputString();
                 if (input.equalsIgnoreCase("Y")) {

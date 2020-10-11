@@ -148,6 +148,7 @@ public class Dart {
         menuManager();
     }
 
+    // This menu shows net salary:
     public void menuShowNetSalary() {
         System.out.println("The total net salary of all employees are " + userController.calculateNetSalary());
         System.out.print("Press any key to continue...");
@@ -185,7 +186,7 @@ public class Dart {
         // Here we go to different menus based on users input.
         switch (menuChoice) {
             case 1 -> itemController.registerAGame();
-            case 2 -> itemController.menuRemoveAGame();
+            case 2 -> itemController.removeAGame();
             case 3 -> userController.registration();
             case 4 -> userController.cancellation();
             case 5 -> itemController.addSong();
