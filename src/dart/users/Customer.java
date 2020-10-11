@@ -1,71 +1,65 @@
 package dart.users;
 
+
 /**
  * This class handles a single customer and the methods required:
  */
 
 public class Customer extends User{
 
-//    private String membershipType;
-    private int maxAllowedRent;
-    private double discount;
+  
+    /**
+     * Attributes
+     */
+
+    private static final double discount = 0;
+    private static final int maxAllowedRent = 1;
+    private static final int additionalCredit = 0;
     private int credit;
-    private int creditBank;
 
+  
     /**
-     * Constructors:
+     * Constructor
      */
 
-    public Customer(String name, String password) {
-        super(name, password);
-        this.maxAllowedRent = 1;
-    }
-
-    public Customer() {
+    public Customer(String name, String id) {
         super();
+        this.credit = 0;
     }
+
+    public Customer() {}
+
 
     /**
-     * Getters and setters:
+     * Getters and setters
      */
-
-    public int getMaxAllowedRent() {
-        return maxAllowedRent;
-    }
-
-    public double getDiscount() {
-        return discount = 0.0;
-    }
 
     public int getCredit() {
-        return credit = 0;
+        return credit;
     }
 
-    public int getCreditBank() {
-        return creditBank = 0;
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
-    public void setCreditBank(int creditBank) {
-        this.creditBank = creditBank;
-    }
+    public int getMaxAllowedRent() {
+        return this.maxAllowedRent;
 
+      
     /**
-     * Methods:
+     * Methods
      */
 
-    public double calculateDiscount(double price) {
-        return getDiscount();
+    public double calculatePrice (double price) {
+        return (1 - this.discount) * price;
     }
 
-    public double storeCreditToBank(double credit) {
-        return this.creditBank =+ 0;
+    public void addCredit() {
+        int newCredit = this.credit + this.additionalCredit;
+        this.setCredit(newCredit);
     }
 
-    public String toString (){
-        return super.getId().toString()+" : "+ super.getName();
+    public String toString() {
+        return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";
     }
-
-    /**
-     * Override:
-     */
 }

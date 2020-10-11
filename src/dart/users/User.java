@@ -6,20 +6,25 @@ import java.util.UUID;
  * This class is only a blueprint for sub-classes Employee, Customer etc.
  */
 
-public class User {
+public abstract class User {
 
     private final String id = UUID.randomUUID().toString();
     private String name;
     private String password;
 
+  
+    /**
+     *  Constructor:
+     */
+  
     public User(String name, String password) {
-        this.name = name;
-        this.password = password;
+
     }
 
     public User (){
 
     }
+
 
     /**
      *  Getters and Setters:
@@ -43,8 +48,4 @@ public class User {
     public String getName() {
         return name;
     }
-
-
-
-
 }

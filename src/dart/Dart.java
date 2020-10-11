@@ -217,9 +217,9 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> itemController.rentItem();
+            case 1 -> userController.rentProcess();
             case 2 -> itemController.returnItem();
-            case 3 -> itemController.rentItem();
+            case 3 -> userController.rentProcess();
             case 4 -> itemController.returnItem();
             case 5 -> findItem();
             case 6 -> itemController.sortByAverageRating();

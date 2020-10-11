@@ -2,38 +2,35 @@ package dart.users;
 
 public class CustomerSilver extends Customer {
 
+    private static final double discount = 0.1;
+    private static final int maxAllowedRent = 3;
+    private static final int additionalCredit = 1;
+
+
+    public CustomerSilver(String name, String id) {
+        super();
+    }
+
+    public CustomerSilver() {
+    }
+  
+  
     /**
-     *
+     *  Override:
      */
 
-    private double discount;
-    private int credit;
-
-    public CustomerSilver(String name, String password) {
-        super(name, password);
-        discount = 0.10;
-        credit = 1;
+    @Override
+    public int getMaxAllowedRent() {
+        return this.maxAllowedRent;
     }
 
-    /**
-     *  Getters and Setters:
-     */
-
-    public double getDiscount() {
-        return discount;
+    @Override
+    public double calculatePrice(double price) {
+        return ( 1- this.discount) * price;
     }
 
-    public int getCredit() {
-        return credit;
+    @Override
+    public void addCredit() {
+        int newCredit = super.getCredit() + this.additionalCredit;
+        this.setCredit(newCredit);
     }
-
-    //    public String getMembershipType() {
-//        return this.membershipType;
-//    }
-//
-//    public void setMembershipType(String membershipType) {
-//        this.membershipType = membershipType;
-//    }
-
-
-}
