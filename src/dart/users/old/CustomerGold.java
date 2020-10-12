@@ -25,7 +25,7 @@ public class CustomerGold extends CustomerSilver {
 
     @Override
     public void addCredit() {
-        int newCredit = super.getCredit() + this.additionalCredit;
+        int newCredit = this.getCredit() + this.additionalCredit;
         this.setCredit(newCredit);
     }
 }

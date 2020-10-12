@@ -234,7 +234,7 @@ public class Dart {
         switch (menuChoice) {  // Here we go to different menus based on user input.
             case 1 -> userController.renting();
             case 2 -> itemController.returnItem();
-            case 3 -> itemController.rentItem();
+            case 3 -> userController.renting();
             case 4 -> itemController.returnItem();
             case 5 -> findItem();
             case 6 -> itemController.sortByAverageRating();
