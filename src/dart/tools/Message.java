@@ -7,7 +7,7 @@ public class Message {
     private String messageToId;   // If message to null then all employees.
     private String message;     // If message == upgrade then user wants an upgrade
     private final String messageId = UUID.randomUUID().toString();
-    private String messageStatus = "unread";
+    // private String messageStatus = "unread"; //this is the same with boolean
     private boolean isRead;
 
     public Message(String message, String messageFromId, String messageToId) {
@@ -15,13 +15,18 @@ public class Message {
         this.messageToId = messageToId;
         this.message = message;
     }
-    public boolean isRead(){
+
+    public boolean isRead() {
         return isRead;
     }
 
+    public void setRead() {
+        isRead = true;
+    }// this changes status of message
+
 
     /**
-     *  Getters and setters:
+     * Getters and setters:
      */
 
     public String getMessageFrom() {
@@ -42,13 +47,13 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
-                "messageFromId='" + messageFromId + '\'' +
-                ", messageToId='" + messageToId + '\'' +
-                ", message='" + message + '\'' +
-                ", messageId='" + messageId + '\'' +
-                ", messageStatus='" + messageStatus + '\'' +
-                ", isRead=" + isRead +
-                '}';
+        return "New message!\n" +
+                "Message ID: " + messageId + "\n" +
+                "From : " + messageFromId + "\n" +
+                "To : '" + messageToId + "\n" +
+                "" + message + "\n" +
+                "Status:" + "(" + (isRead ? "read" : "unread ") + ")\"\\n\"";//boolean that change read to unread and back
+
+        //", messageStatus='" + messageStatus + '\'' +;
     }
 }

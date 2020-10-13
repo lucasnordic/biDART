@@ -105,36 +105,9 @@ public class ItemController {
         }
     }
 
-//    public void rentSong() {
-//
-//        System.out.println("Insert the ID of the song you wish to rent:");
-//        int receivedID = UserInputHandler.inputInt();
-//
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//
-//            Item song = dartProducts.get(i);
-//            int songID = song.getID();
-//
-//            if (receivedID == songID) {
-//
-//                Item foundSong = dartProducts.get(i);
-//                foundSong.rent();
-//
-//                System.out.println(dartProducts);
-//
-//            }
-//        }
-//    }
 
 
     public void rentItem() {
-//        System.out.println("Please enter 1 for games and 2 for song albums: ");
-//        String input = UserInputHandler.inputString();
-//        String
-//        if (input.equals("1")){
-//
-//        }
-
         showAllAvailable();
         System.out.print("Please enter ID of the item that you want to rent: ");
         String id = UserInputHandler.inputString();
@@ -154,43 +127,7 @@ public class ItemController {
         System.out.println("Product with ID " + id + " not found");
     }
 
-//    public void returnSong() {
-//
-//        System.out.println("Insert the ID of the song you wish to return:");
-//        int inputID = UserInputHandler.inputInt();
-//
-//        for(int i = 0; i < dartProducts.size(); i++) {
-//
-//            Item song = dartProducts.get(i);
-//            int songID = song.getID();
-//
-//            if( inputID == songID ) {
-//                song.returnObject();
-//            }
-//        }
-//
-//        System.out.println(dartProducts);
-//    }
 
-    //
-//    public void returnAGame() {
-//
-//        System.out.println("Insert the ID of the game you wish to return:");
-//        int inputID = UserInputHandler.inputInt();
-//
-//        for(int i = 0; i < dartProducts.size(); i++) {
-//
-//            Item game = dartProducts.get(i);
-//            int songID = game.getID();
-//
-//            if( inputID == songID ) {
-//                game.returnObject();
-//            }
-//
-//        }
-//
-//        System.out.println(dartProducts);
-//    }
 
 
     public void removeAGame() {
@@ -201,56 +138,13 @@ public class ItemController {
         dartProducts.remove(id);
     }
 
-//    public void rentAGame() {
-//
-//        //gameLibrary.showAvailableGames();
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//
-//            Game game = (Game) dartProducts.get(i);
-//            String gameStatus = game.getRentStatus();
-//            if (gameStatus.equalsIgnoreCase("available")) {
-//                System.out.println(game);
-//            }
-//        }
-
-    //        System.out.print("Please enter game ID that you want to rent: ");
-//        int gameID = UserInputHandler.inputInt();
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//
-//            if (dartProducts.get(i).getID() == gameID) {
-//
-//                if (dartProducts.get(i).getRentStatus().equals("rented")) {
-//                    System.out.println("Game with ID " + gameID + " is already rented");
-//                }
-//                dartProducts.get(i).rent();
-//                System.out.println("The game has been rented!");
-//                return;
-//            }
-//        }
-//    }
-//    public void rentProduct(String id) {
-//        for (int i = 0; i < products.size(); i++) {
-//            if (products.get(i).getId().toString().equals(id)) {
-//                if (products.get(i).getRentStatus().equals("rented")) {
-//                    System.out.println("Product ID" + id + " is already rented");
-//                    return;
-//                }
-//                if (products.get(i).getRentStatus().equals("available")) {
-//                    products.get(i).rent();
-//                    System.out.println("Yay! Rented!");
-//                    return;
-//                }
-//                System.out.println("Product with ID " + id + " not found");
-//            }
-//        }
-//    }
-
 
     public void returnItem() {
 //        showAllAvailable();
         UserController userController = new UserController();
         Customer customer = (Customer) userController.getCurrentUser();
         int credit = customer.getCredit();
+        System.out.println("credit :"+credit);
 
         showAll();
         System.out.println("Insert the ID of the item you wish to return:");
@@ -279,7 +173,6 @@ public class ItemController {
                 customer.setCredit(credit - 5);
                 item.makeAvailableAgain();
                 }
-
                 System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N now: ");
                 String input = UserInputHandler.inputString();
                 if (input.equalsIgnoreCase("Y")) {
@@ -397,6 +290,110 @@ public class ItemController {
 //        item.setTitle("hehe");
 //        item.setDailyRent();
     }
+
+//    public void rentAGame() {
+//
+//        //gameLibrary.showAvailableGames();
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//
+//            Game game = (Game) dartProducts.get(i);
+//            String gameStatus = game.getRentStatus();
+//            if (gameStatus.equalsIgnoreCase("available")) {
+//                System.out.println(game);
+//            }
+//        }
+
+    //        System.out.print("Please enter game ID that you want to rent: ");
+//        int gameID = UserInputHandler.inputInt();
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//
+//            if (dartProducts.get(i).getID() == gameID) {
+//
+//                if (dartProducts.get(i).getRentStatus().equals("rented")) {
+//                    System.out.println("Game with ID " + gameID + " is already rented");
+//                }
+//                dartProducts.get(i).rent();
+//                System.out.println("The game has been rented!");
+//                return;
+//            }
+//        }
+//    }
+//    public void rentProduct(String id) {
+//        for (int i = 0; i < products.size(); i++) {
+//            if (products.get(i).getId().toString().equals(id)) {
+//                if (products.get(i).getRentStatus().equals("rented")) {
+//                    System.out.println("Product ID" + id + " is already rented");
+//                    return;
+//                }
+//                if (products.get(i).getRentStatus().equals("available")) {
+//                    products.get(i).rent();
+//                    System.out.println("Yay! Rented!");
+//                    return;
+//                }
+//                System.out.println("Product with ID " + id + " not found");
+//            }
+//        }
+//    }
+
+
+    //    public void rentSong() {
+//
+//        System.out.println("Insert the ID of the song you wish to rent:");
+//        int receivedID = UserInputHandler.inputInt();
+//
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//
+//            Item song = dartProducts.get(i);
+//            int songID = song.getID();
+//
+//            if (receivedID == songID) {
+//
+//                Item foundSong = dartProducts.get(i);
+//                foundSong.rent();
+//
+//                System.out.println(dartProducts);
+//
+//            }
+//        }
+//    }
+    //    public void returnSong() {
+//
+//        System.out.println("Insert the ID of the song you wish to return:");
+//        int inputID = UserInputHandler.inputInt();
+//
+//        for(int i = 0; i < dartProducts.size(); i++) {
+//
+//            Item song = dartProducts.get(i);
+//            int songID = song.getID();
+//
+//            if( inputID == songID ) {
+//                song.returnObject();
+//            }
+//        }
+//
+//        System.out.println(dartProducts);
+//    }
+
+    //
+//    public void returnAGame() {
+//
+//        System.out.println("Insert the ID of the game you wish to return:");
+//        int inputID = UserInputHandler.inputInt();
+//
+//        for(int i = 0; i < dartProducts.size(); i++) {
+//
+//            Item game = dartProducts.get(i);
+//            int songID = game.getID();
+//
+//            if( inputID == songID ) {
+//                game.returnObject();
+//            }
+//
+//        }
+//
+//        System.out.println(dartProducts);
+//    }
+
 //    public void findGame() {
 //        for (Item item : dartProducts) {
 //            if (item instanceof Game) {
