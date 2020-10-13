@@ -143,6 +143,15 @@ public class UserController {
         }
     }
 
+
+    public void showCustomerList() {
+        for (User user : userList) {
+            if (user instanceof Customer){
+                System.out.println(user);
+            }
+        }
+    }
+
     public void addEmployee() {
 
         System.out.print("Type employee's name: ");

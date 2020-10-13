@@ -35,6 +35,22 @@ public class MessageController {
         return newMessage;
     }
 
+    public void removeMessage(int choice){
+        messageList.remove(choice);
+        System.out.println("The message you wanted to remove has been deleted.");
+//        for (Message message: messageList) {
+//            if (message.getMessageId().equals(choice)){
+//                messageList.remove(message);
+//                System.out.println("The message you wanted to remove has been deleted.");
+//                return;
+//            }
+//        }
+
+    }
+
+
+
+
     public Message removeMessageFromList(String messageId) {
         Message messageFound = null;
         int index = 0;
@@ -44,6 +60,7 @@ public class MessageController {
 
             if (message.getMessageId().equals(messageId)) {
                 messageFound = message;
+
             } else {
                 index++;
             }

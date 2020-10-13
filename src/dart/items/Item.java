@@ -21,7 +21,6 @@ public class Item {
         this.id = UUID.randomUUID();
         this.title = title;
         this.dailyRent = dailyRent;
-
     }
 
     public Item() {
