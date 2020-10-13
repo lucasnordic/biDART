@@ -31,6 +31,10 @@ public class UserController {
         return currentUser.getId();
     }
 
+    public String getCurrentUserName() {
+        return currentUser.getName();
+    }
+
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
@@ -64,10 +68,9 @@ public class UserController {
 
         for (int i = 0; i < customerList.size(); i++) {
 
-            String a = (customerList.get(i)).getId();
+            String customerId = (customerList.get(i)).getId();
 
-            if (a.equals(ID)) {
-
+            if (customerId.equals(ID)) {
                 customerList.remove(i);
                 System.out.println(customerList);
             } else {
@@ -143,11 +146,18 @@ public class UserController {
         }
     }
 
-
     public void showCustomerList() {
         for (User user : userList) {
             if (user instanceof Customer){
                 System.out.println(user);
+            }
+        }
+    }
+
+    public void showCustomerListNameId() {
+        for (User user : userList) {
+            if (user instanceof Customer){
+                System.out.println(user.getName() + " : " + user.getId());
             }
         }
     }
@@ -257,6 +267,8 @@ public class UserController {
         return userFound;
     }
 
+    // old method:
+/*
     public boolean checkIfUserExists(String name, String password) {
         boolean userFound = false;
 
@@ -281,9 +293,10 @@ public class UserController {
         }
         return userFound;
     }
+ */
 
     /**
-     * This is just "test" data:
+     * This is "test" data:
      */
 
     public void mockData() {
@@ -294,10 +307,10 @@ public class UserController {
         addEmployee(new Employee("Olga","koko", 1769, 10.0));
 
         addCustomer(new Customer("lucas", "123"));
-//        userController.addCustomer(new Customer("maryam", "234"));
-//        userController.addCustomer(new Customer("deba", "345"));
-//        userController.addCustomer(new Customer("anwar", "456"));
-//        addCustomer(new Customer("olga", "567"));
+        addCustomer(new Customer("maryam", "234"));
+        addCustomer(new Customer("deba", "345"));
+        addCustomer(new Customer("anwar", "456"));
+        addCustomer(new Customer("olga", "567"));
     }
 }
 
