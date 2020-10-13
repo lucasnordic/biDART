@@ -1,29 +1,30 @@
 package dart.tools;
 
+import dart.users.Customer;
 import dart.users.Employee;
 import dart.users.User;
 
 import java.util.ArrayList;
 
 public class MessageController {
-    ArrayList<Message> messageList = new ArrayList<>();
+    private ArrayList<Message> messageList = new ArrayList<>();
 
     public ArrayList<Message> getMessageListForUser(User user) {
         ArrayList<Message> userMessages = new ArrayList<>();
         for (int i = 0; i < messageList.size(); i++) {
             Message message = messageList.get(i);
 
-            if (message.getMessageTo().equals(user.getId())) {
+            if (user instanceof Employee && message.getMessageTo() == null) {
                 userMessages.add(message);
-            } else if(user instanceof Employee && message.getMessageTo() == null){
+            } else if( user instanceof Customer && message.getMessageTo().equals(user.getId())){
                 userMessages.add(message);
             }
         }
         return userMessages;
     }
 
-    public Message addMessageToList(String message, String messageFromId, String messageToUserId) {
-        Message newMessage = new Message(message, messageFromId, messageToUserId);
+    public Message addMessageToList(String message, String name, String messageFromId, String messageToUserId) {
+        Message newMessage = new Message(message, name, messageFromId, messageToUserId);
         messageList.add(newMessage);
 
         System.out.print(
@@ -45,11 +46,7 @@ public class MessageController {
 //                return;
 //            }
 //        }
-
     }
-
-
-
 
     public Message removeMessageFromList(String messageId) {
         Message messageFound = null;
@@ -59,8 +56,10 @@ public class MessageController {
             Message message = messageList.get(index);
 
             if (message.getMessageId().equals(messageId)) {
-                messageFound = message;
-
+//                messageFound = message
+                messageList.remove(index);
+                System.out.print("Message was removed! Press any key to go back: ");
+                UserInputHandler.pressAnyKeyCon();
             } else {
                 index++;
             }

@@ -7,11 +7,9 @@ package dart;
 import dart.items.ItemController;
 import dart.tools.Message;
 import dart.tools.UserInputHandler;
-import dart.users.Customer;
+import dart.users.*;
 import dart.tools.MessageController;
-import dart.users.CustomerSilver;
-import dart.users.User;
-import dart.users.UserController;
+//import dart.view.ViewManager;
 
 import java.util.ArrayList;
 
@@ -20,6 +18,7 @@ public class Dart {
     private ItemController itemController = new ItemController();
     private UserController userController = new UserController();
     private MessageController messageController = new MessageController();
+//    private ViewManager viewManager;
 
     /**
      * This is where the user first lands:
@@ -37,7 +36,7 @@ public class Dart {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
-        printMenuItems(title, subMenus, inputPrompt);
+        printMenuItems(title, subMenus, inputPrompt, "yes");
 
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
@@ -130,7 +129,7 @@ public class Dart {
         String inputPrompt = "Enter choice: ";
 
         // Here we send this content to be printed:
-        printMenuItems(title, menuItems, inputPrompt);
+        printMenuItems(title, menuItems, inputPrompt, "yes");
 
         //  Here we store the max and min choice of the "menuItems":
         int minMenuChoice = 1;
@@ -174,7 +173,7 @@ public class Dart {
                 "Remove a song album",
                 "Show total rent profit",
                 "View all items",
-                "Upgrade requests",
+                "View Upgrade requests",
                 "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
@@ -184,7 +183,7 @@ public class Dart {
         int maxMenuChoice = menuItems.length;
 
         // Here we send the menu content to be printed:
-        printMenuItems(title, menuItems, inputPrompt);
+        printMenuItems(title, menuItems, inputPrompt, "yes");
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
@@ -218,11 +217,10 @@ public class Dart {
                 "Search for game or song album",
                 "Sort all items be average user rating",
                 "Message center",
-                "Request membership upgrade",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt);    // Here we send this content to be printed by the Class "Print"
+        printMenuItems(title, menuItems, inputPrompt, "yes");    // Here we send this content to be printed by the Class "Print"
 
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
@@ -237,8 +235,7 @@ public class Dart {
             case 5 -> findItem();
             case 6 -> itemController.sortByAverageRating();
             case 7 -> messageCenterMenu();
-            case 8 -> messageController.addMessageToList("upgrade", userController.getCurrentUserId(), null);
-            case 9 -> mainMenu();
+            case 8 -> mainMenu();
             //default -> System.exit(0);
             // default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
@@ -269,20 +266,21 @@ public class Dart {
         String[] menuItems = {
                 "View inbox",
                 "Send a message",
-                "Remove message"
+                "Remove message",
+                "Send a membership upgrade request"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt);
+        printMenuItems(title, menuItems, inputPrompt, "yes");
 
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
-        int maxMenuChoice = menuItems.length;
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, menuItems.length);
 
         switch (menuChoice) {
             case 1 -> receiveMessage();
             case 2 -> sendMessage();
             case 3 -> removeMessage();
+            case 4 -> messageController.addMessageToList("upgrade", userController.getCurrentUserName(), userController.getCurrentUserId(), null);
         }
     }
 
@@ -292,30 +290,31 @@ public class Dart {
         for (Message message : messages) {
             System.out.println(message);
             message.setRead();
-
         }
     }
 
     private void sendMessage() {
 
-        userController.showCustomerList();// fixed here to show all customers
-        System.out.println("Please enter the recipients ID: ");
+        System.out.println("Here is a list of all Customers: ");
+        userController.showCustomerListNameId();// fixed here to show all customers Names and Id only
+        System.out.print("Please enter the recipients ID: ");
         String id = UserInputHandler.inputString();
-
-        System.out.println("Write your message: ");
+        System.out.print("Write your message: ");
         String message = UserInputHandler.inputString();
-        messageController.addMessageToList(message, userController.getCurrentUserId(), id);
+
+        messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id);
     }
 
     private void removeMessage() {
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
+
         for (int i = 0; i < messages.size(); i++) {
             System.out.println(i + 1 + " " + messages.get(i));//shown all messages as a numbered list.
         }
         System.out.println("Please choose a number of message that should be removed: ");
         int choice = UserInputHandler.inputInt()-1;// indexes are smaller by one step
-        messageController.removeMessage(choice);
 
+        messageController.removeMessage(choice);
     }
 
     /**
@@ -323,20 +322,34 @@ public class Dart {
      */
 
     public void menuUpgradeCustomer() {
+        Employee employee = new Employee();
+        ArrayList<Message> messages = messageController.getMessageListForUser(employee);
 
-        User user = userController.getCurrentUser();
-        messageController.getMessageListForUser(user);
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(i + 1 + " " + messages.get(i));//shown all messages as a numbered list.
+        }
 
-        Customer customer = new CustomerSilver();
-        // loop all messages with upgrades:
-        // for every message print index +
-        // print menu
-        // 1. deny upgrade
-        // 2. accept upgrade
-        // 3. return to main menu
-//        switch () {
-//            case 1 ->
-//        }
+        String title = "What would you like to do:";
+        String[] menuItems = {
+                "Deny upgrade",
+                "Accept upgrade",
+                "Return to main menu"
+        };
+        String inputPrompt = "Enter choice: ";
+        printMenuItems(title, menuItems, inputPrompt, "no");
+
+        //  Here we store the max and min choice based on "menuItems":
+        int minMenuChoice = 1;
+        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, menuItems.length);
+
+        System.out.print("Enter the Id of the message you want removed: ");
+        String messageId = UserInputHandler.inputString();
+
+        switch (menuChoice) {
+            case 1 -> messageController.removeMessageFromList(messageId);
+//            case 2 -> userController.
+            case 3 -> mainMenu();
+        }
     }
 
 
@@ -344,8 +357,10 @@ public class Dart {
      * These methods handle printing certain parts related to menu's:
      */
 
-    private void printMenuItems(String title, String[] subMenus, String inputPrompt) {
-        System.out.println("- - - - - - - - - - - - - - - - -");
+    private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
+        if (line.equalsIgnoreCase("yes")){
+            System.out.println("- - - - - - - - - - - - - - - - -");
+        }
         System.out.println(title);
 
         // This loop prints out all the menu options that are stored in the "menuItems" array.
