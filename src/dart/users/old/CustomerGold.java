@@ -1,13 +1,13 @@
-package dart.users;
+package dart.users.old;
 
 public class CustomerGold extends CustomerSilver {
 
-    private static final double discount = 0.15;
-    private static final int maxAllowedRent = 5;
-    private static final int additionalCredit = 2;
+    private static double discount = 0.15;
+    private static int maxAllowedRent = 5;
+    private static int additionalCredit = 2;
 
-    public CustomerGold(String name, String id) {
-        super();
+    public CustomerGold(String name, String password) {
+        super(name, password);
     }
 
     public CustomerGold() {
@@ -20,7 +20,7 @@ public class CustomerGold extends CustomerSilver {
 
     @Override
     public double calculatePrice(double price) {
-        return ( 1- this.discount) * price;
+        return ( 1 - this.discount) * price;
     }
 
     @Override

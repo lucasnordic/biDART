@@ -9,6 +9,7 @@ import dart.tools.Message;
 import dart.tools.UserInputHandler;
 import dart.users.*;
 import dart.tools.MessageController;
+import dart.membership.Membership;
 //import dart.view.ViewManager;
 
 import java.util.ArrayList;
@@ -146,7 +147,7 @@ public class Dart {
                 System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
-            case 3 -> userController.removeUser();
+            case 3 -> userController.removeEmployee();
             case 4 -> menuShowNetSalary();
             case 5 -> mainMenu();
         }
@@ -208,6 +209,9 @@ public class Dart {
 
     //  This method handles the customer menu contents:
     public void menuCustomer() {
+        // TODO: Print out the current users membership type.
+//        Customer customer = (Customer) userController.getCurrentUser().;
+//        System.out.println(userController.getCurrentUser());
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {
                 "Rent a game",
@@ -242,7 +246,6 @@ public class Dart {
         menuCustomer();
     }
 
-
     public void findItem() {
         System.out.print("Please enter S for song album search or G for game search: ");
         String input = UserInputHandler.inputString();
@@ -261,7 +264,6 @@ public class Dart {
     }
 
     private void messageCenterMenu() {
-
         String title = "Message center - Type one of the options below:";
         String[] menuItems = {
                 "View inbox",
@@ -325,8 +327,9 @@ public class Dart {
         Employee employee = new Employee();
         ArrayList<Message> messages = messageController.getMessageListForUser(employee);
 
+        //shown all messages as a numbered list.
         for (int i = 0; i < messages.size(); i++) {
-            System.out.println(i + 1 + " " + messages.get(i));//shown all messages as a numbered list.
+            System.out.println(i + 1 + " " + messages.get(i));
         }
 
         String title = "What would you like to do:";
@@ -337,18 +340,52 @@ public class Dart {
         };
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt, "no");
+        // TODO: I have to check if no upgrade
 
-        //  Here we store the max and min choice based on "menuItems":
-        int minMenuChoice = 1;
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, menuItems.length);
+        //  Here we store the max and min choice based on "menuItems" size:
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
 
-        System.out.print("Enter the Id of the message you want removed: ");
-        String messageId = UserInputHandler.inputString();
+        if (menuChoice == 1) {
+            System.out.print("Enter the ID of the customer you want to Deny: ");
+        } else {
+            System.out.print("Enter the ID of the customer you want to Accept: ");
+        }
 
-        switch (menuChoice) {
-            case 1 -> messageController.removeMessageFromList(messageId);
-//            case 2 -> userController.
-            case 3 -> mainMenu();
+        String customerId = UserInputHandler.inputString();
+        System.out.println(" ");    // printing an empty line
+
+        Customer customer = (Customer) userController.getUserWithId(customerId);
+        // TODO: main menu or employee menu??
+        if (customer != null) {
+            switch (menuChoice) {
+                case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
+                case 2 -> menuManageCustomerUpgrade(customer);
+                case 3 -> mainMenu();
+            }
+        } else {
+            System.out.println("Could not find Customer with ID: " + customerId);
+            System.out.print("Press any key to go to Main Menu: ");
+            UserInputHandler.pressAnyKeyCon();
+        }
+        mainMenu();
+    }
+
+    public void menuManageCustomerUpgrade(Customer customer){
+        Membership membership = customer.getMembership();
+
+        // TODO Use enum???
+        if (membership.getMembershipClass().equals("Platinum")) {
+            System.out.println("Customer is already Platinum!");
+
+            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
+        } else {
+            membership = customer.membershipUpgrade();
+            System.out.println(
+                "User is upgraded to " + membership.getMembershipClass() + ".\n"
+//                "Press any key to go back: "
+            );
+
+            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
         }
     }
 

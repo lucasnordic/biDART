@@ -1,13 +1,13 @@
-package dart.users;
+package dart.users.old;
 
 public class CustomerPlatinum extends CustomerGold {
 
-    private static final double discount = 0.25;
-    private static final int maxAllowedRent = 7;
-    private static final int additionalCredit = 3;
+    private static double discount = 0.25;
+    private static int maxAllowedRent = 7;
+    private static int additionalCredit = 3;
 
-    public CustomerPlatinum(String name, String id) {
-        super();
+    public CustomerPlatinum(String name, String password) {
+        super(name, password);
     }
 
     public CustomerPlatinum() {

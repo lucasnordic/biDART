@@ -1,15 +1,17 @@
-package dart.users;
+package dart.users.old;
+
+import dart.users.Customer;
 
 public class CustomerSilver extends Customer {
 
-    private static final double discount = 0.1;
-    private static final int maxAllowedRent = 3;
-    private static final int additionalCredit = 1;
+    private static double discount = 0.1;
+    private static int maxAllowedRent = 3;
+    private static int additionalCredit = 1;
 //    private String type;
 
 
-    public CustomerSilver(Customer customer) {
-        super();
+    public CustomerSilver(String name, String password) {
+        super(name, password);
 //        this.type = type;
     }
 

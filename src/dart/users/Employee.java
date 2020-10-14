@@ -11,6 +11,7 @@ public class Employee extends User {
     private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
     private int birthYear;
     private double grossSalary;
+    private String type = "Employee";
 
     /**
      *  Constructors here. We can choose to create an empty Employee or if we want to send create an employee with attributes:
@@ -41,6 +42,11 @@ public class Employee extends User {
         return this.grossSalary + calculateBonus();
     }
     public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
+
+    @Override
+    public String getType() {
+        return type;
+    }
 
     /**
      *  Methods:

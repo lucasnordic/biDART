@@ -11,6 +11,7 @@ public abstract class User {
     private final String id = UUID.randomUUID().toString();
     private String name;
     private String password;
+    private final String type = "User";
 
   
     /**
@@ -45,8 +46,13 @@ public abstract class User {
     public void setName(String name) {
         this.name = name;
     }
-
     public String getName() {
         return name;
     }
+
+    /**
+     *  Abstract:
+     */
+
+    public abstract String getType();
 }
