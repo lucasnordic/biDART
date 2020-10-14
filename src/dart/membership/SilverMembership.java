@@ -2,6 +2,7 @@ package dart.membership;
 
 public class SilverMembership implements Membership {
 
+
     /**
      * Attributes:
      * (Question, is it better to declare them like this?
@@ -14,6 +15,7 @@ public class SilverMembership implements Membership {
     private final int maxAllowedRent = 3;
     private final int additionalCredit = 1;
     private final String membershipClass = "Silver";
+
 
     /**
      * Overridden methods:
