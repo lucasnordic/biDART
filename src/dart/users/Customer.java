@@ -1,7 +1,7 @@
 package dart.users;
 
 
-import dart.membership.*;
+import dart.users.membership.*;
 
 /**
  * This class handles a single customer and the methods required:

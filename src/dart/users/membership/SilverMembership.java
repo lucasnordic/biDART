@@ -1,4 +1,4 @@
-package dart.membership;
+package dart.users.membership;
 
 public class SilverMembership implements Membership {
 
