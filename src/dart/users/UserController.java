@@ -41,6 +41,7 @@ public class UserController {
 
     public User getCurrentUser() { return this.currentUser; }
 
+
     /**
      * These methods are related to Customers:
      */

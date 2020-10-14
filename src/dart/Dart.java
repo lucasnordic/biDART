@@ -9,7 +9,7 @@ import dart.tools.Message;
 import dart.tools.UserInputHandler;
 import dart.users.*;
 import dart.tools.MessageController;
-import dart.membership.Membership;
+import dart.users.membership.Membership;
 //import dart.view.ViewManager;
 
 import java.util.ArrayList;
