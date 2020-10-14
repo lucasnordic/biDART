@@ -94,11 +94,9 @@ public class UserController {
         }
     }
 
-
     public void requestMembership() {
         System.out.println("");
     }
-
 
 //    public void cancellation() {
 //
@@ -189,7 +187,7 @@ public class UserController {
         userList.add(employee);
     }
 
-    public void removeUser() {
+    public void removeEmployee() {
 
         User user = null;
 
@@ -233,6 +231,8 @@ public class UserController {
 
         for (User user : userList) {
             if (user instanceof Employee) {
+                //TODO: Cast to single
+//                Employee employee = (Employee) user;
                 if (((Employee) user).getGrossSalary() * 12 < 100000) {
                     netSalary = ((Employee) user).getGrossSalary() * 12;
                 } else if (((Employee) user).getGrossSalary() * 12 >= 100000) {
@@ -245,6 +245,12 @@ public class UserController {
 
         return netSalary;
     }
+
+    /*
+    public void manageCustomerUpgrades(Customer customer) {
+
+    }
+     */
 
 
     /**
@@ -259,6 +265,22 @@ public class UserController {
             User user = userList.get(index);
 
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
+                userFound = user;
+            } else {
+                index++;
+            }
+        }
+        return userFound;
+    }
+
+    public User getUserWithId(String userId) {
+        User userFound = null;
+        int index = 0;
+
+        while(userFound == null && index < userList.size()) {
+            User user = userList.get(index);
+
+            if (user.getId().equals(userId)) {
                 userFound = user;
             } else {
                 index++;
@@ -295,6 +317,33 @@ public class UserController {
     }
  */
 
+    //        if (user instanceof Customer) {
+////            CustomerSilver customerSilver =
+//            System.out.println(
+//                    "User is upgraded to Silver." +
+//                    "Press any key to go back: "
+//            );
+//            UserInputHandler.pressAnyKeyCon();
+//        } else if (user instanceof CustomerSilver) {
+//            System.out.println(
+//                    "User is upgraded to Gold." +
+//                    "Press any key to go back: "
+//            );
+//            UserInputHandler.pressAnyKeyCon();
+//        } else if (user instanceof CustomerGold) {
+//            System.out.println(
+//                    "User is upgraded to Platinum" +
+//                    "Press any key to go back: "
+//            );
+//            UserInputHandler.pressAnyKeyCon();
+//        } else if (user instanceof CustomerPlatinum) {
+//            System.out.println(
+//                    "User is already Platinum!" +
+//                    "Press any key to go back: "
+//            );
+//            UserInputHandler.pressAnyKeyCon();
+//        }
+
     /**
      * This is "test" data:
      */
@@ -313,5 +362,3 @@ public class UserController {
         addCustomer(new Customer("olga", "567"));
     }
 }
-
-
