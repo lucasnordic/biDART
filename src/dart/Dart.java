@@ -16,14 +16,23 @@ import java.util.ArrayList;
 
 public class Dart {
 
+
+
+
     private ItemController itemController = new ItemController();
-    private UserController userController = new UserController();
+    public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
+    public User user = userController.getCurrentUser();
 //    private ViewManager viewManager;
+
+
+
+
 
     /**
      * This is where the user first lands:
      */
+
 
     public void mainMenu() {
 
@@ -54,6 +63,7 @@ public class Dart {
         }
     }
 
+
     public void loginCheckManager() {
         String managerPassword = "admin1234";
 
@@ -72,6 +82,7 @@ public class Dart {
         }
     }
 
+
     public void loginCheckEmployee() {
         String employeePassword = "password123";
 
@@ -89,6 +100,7 @@ public class Dart {
             menuEmployee();
         }
     }
+
 
     public void loginCheckCustomer() {
         System.out.print("Please enter your username: ");
@@ -154,6 +166,7 @@ public class Dart {
         menuManager();
     }
 
+
     // This menu shows net salary:
     public void menuShowNetSalary() {
         System.out.println("The total net salary of all employees are " + userController.calculateNetSalary());
@@ -166,7 +179,6 @@ public class Dart {
      * These methods handles the Employee menu contents:
      */
 
-    //  This handles the employee menu contents:
     public void menuEmployee() {
         //  Here we store the menu content:
         String title = "Employee Screen - Type one of the options below:";
@@ -211,6 +223,7 @@ public class Dart {
         }
         menuEmployee();
     }
+
 
     //  These menu's handles upgrading a customer:
     public void menuUpgradeCustomer() {
@@ -286,6 +299,7 @@ public class Dart {
      * These methodd handles the customer menu contents:
      */
 
+
     public void menuCustomer() {
         // TODO: Print out the current users membership type.
 //        Customer customer = (Customer) userController.getCurrentUser().;
@@ -310,10 +324,11 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> userController.renting();
-            case 2 -> itemController.returnItem();
-            case 3 -> userController.renting();
-            case 4 -> itemController.returnItem();
+
+            case 1 -> rentUserTeleport();
+            case 2 -> returnUserTeleport();
+            case 3 -> rentUserTeleport();
+            case 4 -> returnUserTeleport();
             case 5 -> findItem();
             case 6 -> sort();
             case 7 -> messageCenterMenu();
@@ -323,6 +338,19 @@ public class Dart {
         }
         menuCustomer();
     }
+
+
+    public void rentUserTeleport() {
+        User currentUser = userController.getCurrentUser();
+        itemController.rentProcess(currentUser);
+    }
+
+
+    public void returnUserTeleport() {
+        User currentUser = userController.getCurrentUser();
+        itemController.returnProcess(currentUser);
+    }
+
 
     private void sort() {
         System.out.println("Please press G for games and S for song albums: ");
@@ -355,6 +383,7 @@ public class Dart {
         }
         System.out.println("Invalid input! Please try again.");
     }
+
 
     public void findItem() {
         System.out.print("Please enter S for song album search or G for game search: ");
@@ -397,6 +426,7 @@ public class Dart {
         }
     }
 
+
     private void receiveMessage() {
         //String userID = userController.getCurrentUserId();
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
@@ -408,6 +438,7 @@ public class Dart {
         UserInputHandler.pressAnyKeyCon();
         System.out.print("Press any key to go back: ");
     }
+
 
     private void sendMessage() {
 
@@ -424,6 +455,7 @@ public class Dart {
         System.out.print("Press any key to go back: ");
     }
 
+
     private void removeMessage() {
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
 
@@ -437,12 +469,14 @@ public class Dart {
 
         UserInputHandler.pressAnyKeyCon();
         System.out.print("Press any key to go back: ");
+
     }
 
 
     /**
      * These methods handle printing certain parts related to menu's:
      */
+
 
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
         if (line.equalsIgnoreCase("yes")) {
@@ -462,12 +496,14 @@ public class Dart {
         System.out.print(inputPrompt);
     }
 
+
     public static void printIntroAscii() {
         System.out.println(" _   _ ____  _____ _____ _____ \n" +
                 "| |_|_|    \\|  _  | __  |_   _|\n" +
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
     }
+
 
     private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");

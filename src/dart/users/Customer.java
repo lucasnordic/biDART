@@ -59,6 +59,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return membership;
     }
 
+
     @Override
     public String getType() {
         return type;
@@ -68,8 +69,8 @@ public class Customer extends User /*implements Comparable<Customer>*/{
      * Methods
      */
 
-    public double calculatePrice (double price) {
-        return (1 - this.membership.getDiscount()) * price;
+    public double payablePercent () {
+        return (1 - this.membership.getDiscount());
     }
 
     public void addCredit() {

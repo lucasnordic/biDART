@@ -9,6 +9,7 @@ public class Game extends Item {
         super(title,dailyRent,releaseYear);
         this.genre = genre;
     }
+    public Game() {}
 
 
     public String getGenre() { return this.genre; }
