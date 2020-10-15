@@ -404,6 +404,9 @@ public class Dart {
             System.out.println(message);
             message.setRead();
         }
+
+        UserInputHandler.pressAnyKeyCon();
+        System.out.print("Press any key to go back: ");
     }
 
     private void sendMessage() {
@@ -416,6 +419,9 @@ public class Dart {
         String message = UserInputHandler.inputString();
 
         messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id);
+
+        UserInputHandler.pressAnyKeyCon();
+        System.out.print("Press any key to go back: ");
     }
 
     private void removeMessage() {
@@ -428,6 +434,9 @@ public class Dart {
         int choice = UserInputHandler.inputInt() - 1;// indexes are smaller by one step
 
         messageController.removeMessage(choice);
+
+        UserInputHandler.pressAnyKeyCon();
+        System.out.print("Press any key to go back: ");
     }
 
 
