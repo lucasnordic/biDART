@@ -5,10 +5,6 @@ public class GoldMembership implements Membership {
 
     /**
      * Attributes:
-     * (Question, is it better to declare them like this?
-     * I think it is better to keep the numbers upp here since,
-     * if this class were to become very long then we can still change
-     * these numbers easily.
      */
 
     private final double discount = 0.15;
