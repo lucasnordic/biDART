@@ -84,6 +84,7 @@ public class UserController {
         userList.add(customer);
     }
 
+
     public void renting() {
         ItemController itemController = new ItemController();
 

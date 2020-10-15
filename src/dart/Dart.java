@@ -312,10 +312,10 @@ public class Dart {
         switch (menuChoice) {  // Here we go to different menus based on user input.
             case 1 -> userController.renting();
             case 2 -> itemController.returnItem();
-            case 3 -> itemController.rentItem();
+            case 3 -> userController.renting();
             case 4 -> itemController.returnItem();
             case 5 -> findItem();
-            case 6 -> itemController.sortByAverageRating();
+            case 6 -> sort();
             case 7 -> messageCenterMenu();
             case 8 -> mainMenu();
             //default -> System.exit(0);
@@ -323,6 +323,39 @@ public class Dart {
         }
         menuCustomer();
     }
+
+    private void sort() {
+        System.out.println("Please press G for games and S for song albums: ");
+        String choice = UserInputHandler.inputString();
+        if (choice.equals("G")) {
+            System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
+            String choiceG = UserInputHandler.inputString();
+            if (choiceG.equals("Y")) {
+                itemController.sortByYearUsingInterfaces();
+                itemController.showAllGames();
+            }
+            if (choiceG.equals("R")) {
+                itemController.sortByAverageRatingUsingInterfaces();
+                itemController.showAllGames();
+            }
+            return;
+        }
+        if (choice.equals("S")) {
+            System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
+            String choiceS = UserInputHandler.inputString();
+            if (choiceS.equals("Y")) {
+                itemController.sortByYearUsingInterfaces();
+                itemController.showAllAlbums();
+            }
+            if (choiceS.equals("R")) {
+                itemController.sortByAverageRatingUsingInterfaces();
+                itemController.showAllAlbums();
+            }
+            return;
+        }
+        System.out.println("Invalid input! Please try again.");
+    }
+
 
     public void findItem() {
         System.out.print("Please enter S for song album search or G for game search: ");
@@ -332,7 +365,7 @@ public class Dart {
             int year = UserInputHandler.inputInt();
             itemController.findSong(year);
         } else if (input.equals("G")) {
-            System.out.print("Please enter the genre od a game:  ");
+            System.out.print("Please enter the genre of a game:  ");
             String genre = UserInputHandler.inputString();
             itemController.findGame(genre);
         } else {
@@ -393,18 +426,89 @@ public class Dart {
             System.out.println(i + 1 + " " + messages.get(i));//shown all messages as a numbered list.
         }
         System.out.println("Please choose a number of message that should be removed: ");
-        int choice = UserInputHandler.inputInt()-1;// indexes are smaller by one step
+        int choice = UserInputHandler.inputInt() - 1;// indexes are smaller by one step
 
         messageController.removeMessage(choice);
     }
 
 
     /**
+     * Sub menu's of Employee menu:
+     */
+
+    public void menuUpgradeCustomer() {
+        Employee employee = new Employee();
+        ArrayList<Message> messages = messageController.getMessageListForUser(employee);
+
+        //shown all messages as a numbered list.
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(i + 1 + " " + messages.get(i));
+        }
+
+        String title = "What would you like to do:";
+        String[] menuItems = {
+                "Deny upgrade",
+                "Accept upgrade",
+                "Return to main menu"
+        };
+        String inputPrompt = "Enter choice: ";
+        printMenuItems(title, menuItems, inputPrompt, "no");
+        // TODO: I have to check if no upgrade
+
+        //  Here we store the max and min choice based on "menuItems" size:
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
+
+        if (menuChoice == 1) {
+            System.out.print("Enter the ID of the customer you want to Deny: ");
+        } else {
+            System.out.print("Enter the ID of the customer you want to Accept: ");
+        }
+
+        String customerId = UserInputHandler.inputString();
+        System.out.println(" ");    // printing an empty line
+
+        Customer customer = (Customer) userController.getUserWithId(customerId);
+        // TODO: main menu or employee menu??
+        if (customer != null) {
+            switch (menuChoice) {
+                case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
+                case 2 -> menuManageCustomerUpgrade(customer);
+                case 3 -> mainMenu();
+            }
+        } else {
+            System.out.println("Could not find Customer with ID: " + customerId);
+            System.out.print("Press any key to go to Main Menu: ");
+            UserInputHandler.pressAnyKeyCon();
+        }
+        mainMenu();
+    }
+
+    public void menuManageCustomerUpgrade(Customer customer) {
+        Membership membership = customer.getMembership();
+
+        // TODO Use enum???
+        if (membership.getMembershipClass().equals("Platinum")) {
+            System.out.println("Customer is already Platinum!");
+
+            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
+        } else {
+            membership = customer.membershipUpgrade();
+            System.out.println(
+                    "User is upgraded to " + membership.getMembershipClass() + ".\n"
+//                "Press any key to go back: "
+            );
+
+            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
+        }
+    }
+  
+
+    /**
      * These methods handle printing certain parts related to menu's:
      */
 
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
-        if (line.equalsIgnoreCase("yes")){
+        if (line.equalsIgnoreCase("yes")) {
             System.out.println("- - - - - - - - - - - - - - - - -");
         }
         System.out.println(title);
