@@ -64,12 +64,12 @@ public class ItemController {
         System.out.print("Artist: ");
         String artist = UserInputHandler.inputString();
         //((Song) song).setArtist(artist);
-        System.out.print("Release year: ");
-        int releaseYear = UserInputHandler.inputInt();
-        //((Song) song).setReleaseYear(releaseYear);
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         //song.setDailyRent(rent);
+        System.out.print("Release year: ");
+        int releaseYear = UserInputHandler.inputInt();
+        //((Song) song).setReleaseYear(releaseYear);
         Item song = new Song(title, rent, artist, releaseYear);
         dartProducts.add(song);
 
@@ -95,7 +95,7 @@ public class ItemController {
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         // game.setDailyRent(rent);
-        System.out.println("Year released: ");
+        System.out.print("Release year: ");
         int year = UserInputHandler.inputInt();
         Item game = new Game(title,rent,year,genre);
         dartProducts.add(game);
@@ -156,9 +156,9 @@ public class ItemController {
     }
 
 
-    public void returnItem(UserController userController) {
+    public void returnItem() {
         showAllAvailable();
-//        UserController userController = new UserController();
+       UserController userController = new UserController();
         Customer customer = (Customer) userController.getCurrentUser();
         int credit = customer.getCredit();
         System.out.println("credit :"+credit);

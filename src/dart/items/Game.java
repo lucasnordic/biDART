@@ -17,6 +17,6 @@ public class Game extends Item {
        // return super.toString()+" (" + genre + ")";
         return super.getID() + " : " + super.getTitle() + " (" + this.genre + "). "+
                 "Released in " + super.getReleaseYear() + ". "+
-               + super.getDailyRent() + "SEK. Status: " + super.getRentStatus()+ super.toString();
+               + super.getDailyRent() + " SEK. Status: " + super.getRentStatus()+ super.toString();
     }
 }

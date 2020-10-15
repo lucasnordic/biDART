@@ -85,9 +85,8 @@ public class UserController {
     }
 
 
-    public void renting(ItemController itemController) {
-        // i changed here coz the line that i commented didnt call the itemcontroller, should be but didnt, put it in ()
-        //ItemController itemController = new ItemController();
+    public void renting() {
+        ItemController itemController = new ItemController();
 
         Customer customer = (Customer) currentUser;
         int maxAllowedRent = customer.getMaxAllowedRent();
