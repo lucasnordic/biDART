@@ -36,6 +36,24 @@ public class ItemController {
         showAll();
     }
 
+    public void sortByAverageRatingUsingInterfaces() {
+        Collections.sort(dartProducts, new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                return Double.compare(o2.findAverageRating(), o1.findAverageRating());
+            }
+        });
+
+    }
+
+    public void sortByYearUsingInterfaces() {
+        Collections.sort(dartProducts, new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                return o2.getReleaseYear() - o1.getReleaseYear();
+            }
+        });
+    }
 
     public void addSong() {
 //        System.out.println("Please insert the following information:\nSong album ID:");
