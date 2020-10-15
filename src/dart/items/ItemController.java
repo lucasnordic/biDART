@@ -57,6 +57,7 @@ public class ItemController {
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         //song.setDailyRent(rent);
+
         Item song = new Song(title, rent, artist, releaseYear);
         dartProducts.add(song);
 
@@ -91,17 +92,18 @@ public class ItemController {
 
     public void registerAGame() {
 
-        Item game = new Game();
+
         System.out.print("Title: ");
         String title = UserInputHandler.inputString();
-        game.setTitle(title);
+        //game.setTitle(title);
         System.out.print("Genre: ");
         String genre = UserInputHandler.inputString();
-        ((Game) game).setGenre(genre);
+        //((Game) game).setGenre(genre);
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
-        game.setDailyRent(rent);
+       // game.setDailyRent(rent);
 
+        Item game = new Game(title, rent, genre);
         dartProducts.add(game);
 
         System.out.println(game.toString());

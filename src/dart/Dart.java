@@ -20,9 +20,9 @@ public class Dart {
 
 
     private ItemController itemController = new ItemController();
-    private UserController userController = new UserController();
+    public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
-    private User user = userController.getCurrentUser();
+    public User user = userController.getCurrentUser();
 //    private ViewManager viewManager;
 
 
@@ -249,10 +249,10 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> itemController.rentProcess(user);
-            case 2 -> itemController.returnProcess(user);
-            case 3 -> itemController.rentProcess(user);
-            case 4 -> itemController.returnProcess(user);
+            case 1 -> rentUserTeleport();
+            case 2 -> returnUserTeleport();
+            case 3 -> rentUserTeleport();
+            case 4 -> returnUserTeleport();
             case 5 -> findItem();
             case 6 -> itemController.sortByAverageRating();
             case 7 -> messageCenterMenu();
@@ -261,6 +261,18 @@ public class Dart {
             // default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
         menuCustomer();
+    }
+
+
+    public void rentUserTeleport() {
+        User currentUser = userController.getCurrentUser();
+        itemController.rentProcess(currentUser);
+    }
+
+
+    public void returnUserTeleport() {
+        User currentUser = userController.getCurrentUser();
+        itemController.returnProcess(currentUser);
     }
 
 
