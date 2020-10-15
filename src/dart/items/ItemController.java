@@ -126,8 +126,6 @@ public class ItemController {
         }
     }
 
-
-
     public void rentItem() {
         showAllAvailable();
         System.out.print("Please enter ID of the item that you want to rent: ");
@@ -147,8 +145,6 @@ public class ItemController {
         }
         System.out.println("Product with ID " + id + " not found");
     }
-
-
 
 
     public void removeAGame() {
