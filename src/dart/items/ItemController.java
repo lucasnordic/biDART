@@ -179,7 +179,7 @@ public class ItemController {
 
     public Item findItem(String Id) {
         for (int i = 0; i < dartProducts.size(); i++) {
-            if (Id.equals(dartProducts.get(i).getID())) {
+            if (Id.equals(dartProducts.get(i).getID().toString())) {
                 return dartProducts.get(i);
             }
         }
