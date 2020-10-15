@@ -16,14 +16,22 @@ import java.util.ArrayList;
 
 public class Dart {
 
+
+
+
     private ItemController itemController = new ItemController();
     private UserController userController = new UserController();
     private MessageController messageController = new MessageController();
 //    private ViewManager viewManager;
 
+
+
+
+
     /**
      * This is where the user first lands:
      */
+
 
     public void mainMenu() {
 
@@ -54,6 +62,7 @@ public class Dart {
         }
     }
 
+
     public void loginCheckManager() {
         String managerPassword = "admin1234";
 
@@ -72,6 +81,7 @@ public class Dart {
         }
     }
 
+
     public void loginCheckEmployee() {
         String employeePassword = "password123";
 
@@ -89,6 +99,7 @@ public class Dart {
             menuEmployee();
         }
     }
+
 
     public void loginCheckCustomer() {
         System.out.print("Please enter your username: ");
@@ -112,9 +123,11 @@ public class Dart {
         }
     }
 
+
     /**
      * Once the user has entered the correct password the user will get access to these menu's:
      */
+
 
     //  This method handles the manager menu contents:
     public void menuManager() {
@@ -154,12 +167,14 @@ public class Dart {
         menuManager();
     }
 
+
     // This menu shows net salary:
     public void menuShowNetSalary() {
         System.out.println("The total net salary of all employees are " + userController.calculateNetSalary());
         System.out.print("Press any key to continue...");
         UserInputHandler.pressAnyKeyCon();
     }
+
 
     //  This handles the employee menu contents:
     public void menuEmployee() {
@@ -207,6 +222,7 @@ public class Dart {
         menuEmployee();
     }
 
+
     //  This method handles the customer menu contents:
     public void menuCustomer() {
         // TODO: Print out the current users membership type.
@@ -232,10 +248,10 @@ public class Dart {
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);  // Goes into the MenuHandler class. MenuHandler prints the "prompt" and "mainMenuItems"
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
-            case 1 -> userController.renting();
-            case 2 -> itemController.returnItem();
-            case 3 -> userController.renting();
-            case 4 -> itemController.returnItem();
+            case 1 -> itemController.rentProcess();
+            case 2 -> itemController.returnProcess();
+            case 3 -> itemController.rentProcess();
+            case 4 -> itemController.returnProcess();
             case 5 -> findItem();
             case 6 -> itemController.sortByAverageRating();
             case 7 -> messageCenterMenu();
@@ -245,6 +261,7 @@ public class Dart {
         }
         menuCustomer();
     }
+
 
     public void findItem() {
         System.out.print("Please enter S for song album search or G for game search: ");
@@ -262,6 +279,7 @@ public class Dart {
             return;
         }
     }
+
 
     private void messageCenterMenu() {
         String title = "Message center - Type one of the options below:";
@@ -286,6 +304,7 @@ public class Dart {
         }
     }
 
+
     private void receiveMessage() {
         //String userID = userController.getCurrentUserId();
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
@@ -294,6 +313,7 @@ public class Dart {
             message.setRead();
         }
     }
+
 
     private void sendMessage() {
 
@@ -307,6 +327,7 @@ public class Dart {
         messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id);
     }
 
+
     private void removeMessage() {
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
 
@@ -319,9 +340,11 @@ public class Dart {
         messageController.removeMessage(choice);
     }
 
+
     /**
      * Sub menu's of Employee menu:
      */
+
 
     public void menuUpgradeCustomer() {
         Employee employee = new Employee();
@@ -370,6 +393,7 @@ public class Dart {
         mainMenu();
     }
 
+
     public void menuManageCustomerUpgrade(Customer customer){
         Membership membership = customer.getMembership();
 
@@ -394,6 +418,7 @@ public class Dart {
      * These methods handle printing certain parts related to menu's:
      */
 
+
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
         if (line.equalsIgnoreCase("yes")){
             System.out.println("- - - - - - - - - - - - - - - - -");
@@ -412,12 +437,14 @@ public class Dart {
         System.out.print(inputPrompt);
     }
 
+
     public static void printIntroAscii() {
         System.out.println(" _   _ ____  _____ _____ _____ \n" +
                 "| |_|_|    \\|  _  | __  |_   _|\n" +
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
     }
+
 
     private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");

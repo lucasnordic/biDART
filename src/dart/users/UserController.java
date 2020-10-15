@@ -27,6 +27,7 @@ public class UserController {
      * This controls the logged in user:
      */
 
+
     public String getCurrentUserId() {
         return currentUser.getId();
     }
@@ -42,9 +43,11 @@ public class UserController {
     public User getCurrentUser() { return this.currentUser; }
 
 
+
     /**
      * These methods are related to Customers:
      */
+
 
     public void registration() {
 
@@ -84,20 +87,10 @@ public class UserController {
         userList.add(customer);
     }
 
-    public void renting() {
-        ItemController itemController = new ItemController();
-
-        Customer customer = (Customer) currentUser;
-        int maxAllowedRent = customer.getMaxAllowedRent();
-        for (int i = 0; i < maxAllowedRent; i++) {
-            itemController.rentItem();
-            customer.addCredit();
-        }
-    }
-
     public void requestMembership() {
         System.out.println("");
     }
+
 
 //    public void cancellation() {
 //
@@ -132,9 +125,11 @@ public class UserController {
 //        }while(newCustomer == null);
 //    }
 
+
     /**
      * These methods are related to Employees:
      */
+
 
     // Prints the list of employees:
     public void showEmployeeList() {
@@ -247,6 +242,7 @@ public class UserController {
         return netSalary;
     }
 
+
     /*
     public void manageCustomerUpgrades(Customer customer) {
 
@@ -254,9 +250,11 @@ public class UserController {
      */
 
 
+
     /**
      * Here we check if a user exists:
      */
+
 
     public User getUserWithNameAndPassword(String name, String password) {
         User userFound = null;
@@ -289,6 +287,8 @@ public class UserController {
         }
         return userFound;
     }
+
+
 
     // old method:
 /*
@@ -345,9 +345,11 @@ public class UserController {
 //            UserInputHandler.pressAnyKeyCon();
 //        }
 
+
     /**
      * This is "test" data:
      */
+
 
     public void mockData() {
         addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
