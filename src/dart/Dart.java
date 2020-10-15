@@ -327,14 +327,14 @@ public class Dart {
     private void sort() {
         System.out.println("Please press G for games and S for song albums: ");
         String choice = UserInputHandler.inputString();
-        if (choice.equals("G")) {
+        if (choice.equalsIgnoreCase("G")) {
             System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
             String choiceG = UserInputHandler.inputString();
-            if (choiceG.equals("Y")) {
+            if (choiceG.equalsIgnoreCase("Y")) {
                 itemController.sortByYearUsingInterfaces();
                 itemController.showAllGames();
             }
-            if (choiceG.equals("R")) {
+            if (choiceG.equalsIgnoreCase("R")) {
                 itemController.sortByAverageRatingUsingInterfaces();
                 itemController.showAllGames();
             }
@@ -343,11 +343,11 @@ public class Dart {
         if (choice.equals("S")) {
             System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
             String choiceS = UserInputHandler.inputString();
-            if (choiceS.equals("Y")) {
+            if (choiceS.equalsIgnoreCase("Y")) {
                 itemController.sortByYearUsingInterfaces();
                 itemController.showAllAlbums();
             }
-            if (choiceS.equals("R")) {
+            if (choiceS.equalsIgnoreCase("R")) {
                 itemController.sortByAverageRatingUsingInterfaces();
                 itemController.showAllAlbums();
             }
@@ -404,6 +404,9 @@ public class Dart {
             System.out.println(message);
             message.setRead();
         }
+
+        UserInputHandler.pressAnyKeyCon();
+        System.out.print("Press any key to go back: ");
     }
 
     private void sendMessage() {
@@ -416,6 +419,9 @@ public class Dart {
         String message = UserInputHandler.inputString();
 
         messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id);
+
+        UserInputHandler.pressAnyKeyCon();
+        System.out.print("Press any key to go back: ");
     }
 
     private void removeMessage() {
@@ -428,6 +434,9 @@ public class Dart {
         int choice = UserInputHandler.inputInt() - 1;// indexes are smaller by one step
 
         messageController.removeMessage(choice);
+
+        UserInputHandler.pressAnyKeyCon();
+        System.out.print("Press any key to go back: ");
     }
 
 

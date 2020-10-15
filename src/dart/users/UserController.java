@@ -230,18 +230,9 @@ public class UserController {
 
     public double calculateNetSalary() {
         double netSalary = 0;
-
         for (User user : userList) {
             if (user instanceof Employee) {
-                //TODO: Cast to single
-//                Employee employee = (Employee) user;
-                if (((Employee) user).getGrossSalary() * 12 < 100000) {
-                    netSalary = ((Employee) user).getGrossSalary() * 12;
-                } else if (((Employee) user).getGrossSalary() * 12 >= 100000) {
-                    netSalary = (((Employee) user).getGrossSalary() * 12) * 0.70;
-                } else {
-                    netSalary =+ ((Employee) user).getGrossSalary();
-                }
+                netSalary += ((Employee) user).getNetSalary();
             }
         }
 
