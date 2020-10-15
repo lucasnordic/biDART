@@ -7,20 +7,16 @@ import dart.users.User;
 import dart.users.UserController;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.UUID;
 
 public class ItemController {
 
-
-
-
+  
     private ArrayList<Item> dartProducts = new ArrayList<>();
     private ArrayList<String> historyList = new ArrayList<>();
-
-
-
-
-
+ 
 
     public ItemController() {
         mockData();
@@ -51,13 +47,12 @@ public class ItemController {
         System.out.print("Artist: ");
         String artist = UserInputHandler.inputString();
         //((Song) song).setArtist(artist);
-        System.out.print("Release year: ");
-        int releaseYear = UserInputHandler.inputInt();
-        //((Song) song).setReleaseYear(releaseYear);
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         //song.setDailyRent(rent);
-
+    //    System.out.print("Release year: ");
+      //  int releaseYear = UserInputHandler.inputInt();
+        //((Song) song).setReleaseYear(releaseYear);
         Item song = new Song(title, rent, artist, releaseYear);
         dartProducts.add(song);
 
@@ -102,10 +97,13 @@ public class ItemController {
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
        // game.setDailyRent(rent);
-
         Item game = new Game(title, rent, genre);
-        dartProducts.add(game);
+        // game.setDailyRent(rent);
+       // System.out.print("Release year: ");
+       // int year = UserInputHandler.inputInt();
+      //  Item game = new Game(title,rent,year,genre);
 
+        dartProducts.add(game);
         System.out.println(game.toString());
 
        /* Game game = new Game(gameLastNumber++);//creating new game, next id +1
@@ -132,7 +130,6 @@ public class ItemController {
             ((Customer) user).addCredit();
         }
     }
-
 
     public void rentItem() {
 
@@ -315,14 +312,14 @@ public class ItemController {
         for (Item item : dartProducts) {
             if (item instanceof Song) {
                 Song s = (Song) item;//turn item in song
-                if (s.getReleaseYear() == s.getReleaseYear()) {
+                if (s.getReleaseYear() == year) {
                     System.out.println(s);
                 }
             }
         }
     }
 
-
+      
     public void addGame(Game game){
         dartProducts.add(game);
     }

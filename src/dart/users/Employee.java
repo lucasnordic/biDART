@@ -12,6 +12,7 @@ public class Employee extends User {
     private int birthYear;
     private double grossSalary;
     private String type = "Employee";
+    private double netSalary;
 
     /**
      *  Constructors here. We can choose to create an empty Employee or if we want to send create an employee with attributes:
@@ -42,6 +43,16 @@ public class Employee extends User {
         return this.grossSalary + calculateBonus();
     }
     public double setGrossSalary(double grossSalary) { return this.grossSalary = grossSalary; }
+
+    public double getNetSalary() {
+        if (getGrossSalary() * 12 < 100000) {
+            netSalary =+ getGrossSalary() * 12;
+        } else if (getGrossSalary() * 12 >= 100000) {
+            netSalary =+ (getGrossSalary() * 12) * 0.70;
+        }
+
+        return netSalary;
+    }
 
     @Override
     public String getType() {

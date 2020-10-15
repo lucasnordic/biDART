@@ -25,7 +25,7 @@
 //
 //    @Override
 //    public void addCredit() {
-//        int newCredit = this.getCredit() + this.additionalCredit;
+//        int newCredit = super.getCredit() + this.additionalCredit;
 //        this.setCredit(newCredit);
 //    }
 //}
