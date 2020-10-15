@@ -83,8 +83,10 @@ public class UserController {
     public void addCustomer(Customer customer){
         userList.add(customer);
     }
-// i changed here coz the line that i commented doesnt call the itemcontroller, its creating his own
+
+
     public void renting(ItemController itemController) {
+        // i changed here coz the line that i commented didnt call the itemcontroller, should be but didnt, put it in ()
         //ItemController itemController = new ItemController();
 
         Customer customer = (Customer) currentUser;

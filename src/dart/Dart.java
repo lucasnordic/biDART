@@ -237,7 +237,7 @@ public class Dart {
             case 3 -> userController.renting(itemController);
             case 4 -> itemController.returnItem(userController);
             case 5 -> findItem();
-            case 6 -> itemController.sortByAverageRating();
+            case 6 -> sort();
             case 7 -> messageCenterMenu();
             case 8 -> mainMenu();
             //default -> System.exit(0);
@@ -245,6 +245,39 @@ public class Dart {
         }
         menuCustomer();
     }
+
+    private void sort() {
+        System.out.println("Please press G for games and S for song albums: ");
+        String choice = UserInputHandler.inputString();
+        if (choice.equals("G")) {
+            System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
+            String choiceG = UserInputHandler.inputString();
+            if (choiceG.equals("Y")) {
+                itemController.sortByYearUsingInterfaces();
+                itemController.showAllGames();
+            }
+            if (choiceG.equals("R")) {
+                itemController.sortByAverageRatingUsingInterfaces();
+                itemController.showAllGames();
+            }
+            return;
+        }
+        if (choice.equals("S")) {
+            System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
+            String choiceS = UserInputHandler.inputString();
+            if (choiceS.equals("Y")) {
+                itemController.sortByYearUsingInterfaces();
+                itemController.showAllAlbums();
+            }
+            if (choiceS.equals("R")) {
+                itemController.sortByAverageRatingUsingInterfaces();
+                itemController.showAllAlbums();
+            }
+            return;
+        }
+        System.out.println("Invalid input! Please try again.");
+    }
+
 
     public void findItem() {
         System.out.print("Please enter S for song album search or G for game search: ");
@@ -254,7 +287,7 @@ public class Dart {
             int year = UserInputHandler.inputInt();
             itemController.findSong(year);
         } else if (input.equals("G")) {
-            System.out.print("Please enter the genre od a game:  ");
+            System.out.print("Please enter the genre of a game:  ");
             String genre = UserInputHandler.inputString();
             itemController.findGame(genre);
         } else {
@@ -314,7 +347,7 @@ public class Dart {
             System.out.println(i + 1 + " " + messages.get(i));//shown all messages as a numbered list.
         }
         System.out.println("Please choose a number of message that should be removed: ");
-        int choice = UserInputHandler.inputInt()-1;// indexes are smaller by one step
+        int choice = UserInputHandler.inputInt() - 1;// indexes are smaller by one step
 
         messageController.removeMessage(choice);
     }
@@ -370,7 +403,7 @@ public class Dart {
         mainMenu();
     }
 
-    public void menuManageCustomerUpgrade(Customer customer){
+    public void menuManageCustomerUpgrade(Customer customer) {
         Membership membership = customer.getMembership();
 
         // TODO Use enum???
@@ -381,7 +414,7 @@ public class Dart {
         } else {
             membership = customer.membershipUpgrade();
             System.out.println(
-                "User is upgraded to " + membership.getMembershipClass() + ".\n"
+                    "User is upgraded to " + membership.getMembershipClass() + ".\n"
 //                "Press any key to go back: "
             );
 
@@ -395,7 +428,7 @@ public class Dart {
      */
 
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
-        if (line.equalsIgnoreCase("yes")){
+        if (line.equalsIgnoreCase("yes")) {
             System.out.println("- - - - - - - - - - - - - - - - -");
         }
         System.out.println(title);
