@@ -74,9 +74,10 @@ public class ItemController {
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         // game.setDailyRent(rent);
-        Item game = new Game(title, rent, genre);
+        System.out.println("Year released: ");
+        int year = UserInputHandler.inputInt();
+        Item game = new Game(title,rent,year,genre);
         dartProducts.add(game);
-
         System.out.println(game.toString());
 
        /* Game game = new Game(gameLastNumber++);//creating new game, next id +1
@@ -138,14 +139,13 @@ public class ItemController {
     }
 
 
-    public void returnItem() {
-//        showAllAvailable();
-        UserController userController = new UserController();
+    public void returnItem(UserController userController) {
+        showAllAvailable();
+//        UserController userController = new UserController();
         Customer customer = (Customer) userController.getCurrentUser();
         int credit = customer.getCredit();
         System.out.println("credit :"+credit);
 
-        showAll();
         System.out.println("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
 
@@ -279,9 +279,9 @@ public class ItemController {
         }
     }
 
-    public void addGame(Game game){
-        dartProducts.add(game);
-    }
+   // public void addGame(Game game){
+      //  dartProducts.add(game);
+    //}
 
     public void mockData() {
 

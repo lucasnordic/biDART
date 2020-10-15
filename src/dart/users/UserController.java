@@ -83,9 +83,9 @@ public class UserController {
     public void addCustomer(Customer customer){
         userList.add(customer);
     }
-
-    public void renting() {
-        ItemController itemController = new ItemController();
+// i changed here coz the line that i commented doesnt call the itemcontroller, its creating his own
+    public void renting(ItemController itemController) {
+        //ItemController itemController = new ItemController();
 
         Customer customer = (Customer) currentUser;
         int maxAllowedRent = customer.getMaxAllowedRent();

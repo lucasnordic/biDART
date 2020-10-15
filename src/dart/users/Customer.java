@@ -47,7 +47,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return credit;
     }
 
-    public void setCredit(int credit) {
+   public void setCredit(int credit) {
         this.credit = credit;
     }
 
@@ -76,6 +76,10 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         int newCredit = this.credit + this.membership.getAdditionalCredit();
         this.setCredit(newCredit);
     }
+    //proposition ro replace
+//    public void addCredit(){
+//        credit = this.credit +this.membership.getAdditionalCredit();
+//    }
 
     public String toString() {
         return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";

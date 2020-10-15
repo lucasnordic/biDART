@@ -10,6 +10,7 @@ public class Item {
     private UUID id;
     private String title;
     private double dailyRent;
+    private int releaseYear;
     private String rentStatus = "available";
     private double totalRentProfit;
     private ArrayList<Value> rating = new ArrayList<>();
@@ -17,16 +18,22 @@ public class Item {
 
     //Constructor:
 
-    public Item( String title, double dailyRent) {
+    public Item( String title, double dailyRent,int releaseYear) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.dailyRent = dailyRent;
+        this.releaseYear= releaseYear;
     }
 
-    public Item() {
-    }
+//    public Item() {
+//    }
 
     //Getters & setters:
+
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
 
     protected UUID getID() {return this.id; }
 
