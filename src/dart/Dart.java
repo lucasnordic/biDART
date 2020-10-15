@@ -112,11 +112,11 @@ public class Dart {
         }
     }
 
+
     /**
-     * Once the user has entered the correct password the user will get access to these menu's:
+     * These methods handles the manager menu contents:
      */
 
-    //  This method handles the manager menu contents:
     public void menuManager() {
         // Here we create the content of the menu:
         String title = "Manager Screen - Type one of the options below:";
@@ -160,6 +160,11 @@ public class Dart {
         System.out.print("Press any key to continue...");
         UserInputHandler.pressAnyKeyCon();
     }
+
+
+    /**
+     * These methods handles the Employee menu contents:
+     */
 
     //  This handles the employee menu contents:
     public void menuEmployee() {
@@ -207,7 +212,80 @@ public class Dart {
         menuEmployee();
     }
 
-    //  This method handles the customer menu contents:
+    //  These menu's handles upgrading a customer:
+    public void menuUpgradeCustomer() {
+        Employee employee = new Employee();
+        ArrayList<Message> messages = messageController.getMessageListForUser(employee);
+
+        //shown all messages as a numbered list.
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(i + 1 + " " + messages.get(i));
+        }
+
+        String title = "What would you like to do:";
+        String[] menuItems = {
+                "Deny upgrade",
+                "Accept upgrade",
+                "Return to main menu"
+        };
+        String inputPrompt = "Enter choice: ";
+        printMenuItems(title, menuItems, inputPrompt, "no");
+        // TODO: I have to check if no upgrade
+
+        //  Here we store the max and min choice based on "menuItems" size:
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
+
+        if (menuChoice == 1) {
+            System.out.print("Enter the ID of the customer you want to Deny: ");
+        } else {
+            System.out.print("Enter the ID of the customer you want to Accept: ");
+        }
+
+        String customerId = UserInputHandler.inputString();
+        System.out.println(" ");    // printing an empty line
+
+        Customer customer = (Customer) userController.getUserWithId(customerId);
+        // TODO: main menu or employee menu??
+        if (customer != null) {
+            switch (menuChoice) {
+                case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
+                case 2 -> menuManageCustomerUpgrade(customer);
+                case 3 -> mainMenu();
+            }
+        } else {
+            System.out.println("Could not find Customer with ID: " + customerId);
+            System.out.print("Press any key to go to Main Menu: ");
+            UserInputHandler.pressAnyKeyCon();
+        }
+        mainMenu();
+    }
+
+    //  This is a continuation of previous method. It checks if a user is already Platinum.
+    //  If he is not, then he will be upgraded.
+    public void menuManageCustomerUpgrade(Customer customer){
+        Membership membership = customer.getMembership();
+
+        // TODO Use enum???
+        if (membership.getMembershipClass().equals("Platinum")) {
+            System.out.println("Customer is already Platinum!");
+
+            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
+        } else {
+            membership = customer.membershipUpgrade();
+            System.out.println(
+                    "User is upgraded to " + membership.getMembershipClass() + ".\n"
+//                "Press any key to go back: "
+            );
+
+            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
+        }
+    }
+
+
+    /**
+     * These methodd handles the customer menu contents:
+     */
+
     public void menuCustomer() {
         // TODO: Print out the current users membership type.
 //        Customer customer = (Customer) userController.getCurrentUser().;
@@ -263,6 +341,7 @@ public class Dart {
         }
     }
 
+    //  This method handles all the message sending the user will have to do:
     private void messageCenterMenu() {
         String title = "Message center - Type one of the options below:";
         String[] menuItems = {
@@ -317,76 +396,6 @@ public class Dart {
         int choice = UserInputHandler.inputInt()-1;// indexes are smaller by one step
 
         messageController.removeMessage(choice);
-    }
-
-    /**
-     * Sub menu's of Employee menu:
-     */
-
-    public void menuUpgradeCustomer() {
-        Employee employee = new Employee();
-        ArrayList<Message> messages = messageController.getMessageListForUser(employee);
-
-        //shown all messages as a numbered list.
-        for (int i = 0; i < messages.size(); i++) {
-            System.out.println(i + 1 + " " + messages.get(i));
-        }
-
-        String title = "What would you like to do:";
-        String[] menuItems = {
-                "Deny upgrade",
-                "Accept upgrade",
-                "Return to main menu"
-        };
-        String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "no");
-        // TODO: I have to check if no upgrade
-
-        //  Here we store the max and min choice based on "menuItems" size:
-        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
-
-        if (menuChoice == 1) {
-            System.out.print("Enter the ID of the customer you want to Deny: ");
-        } else {
-            System.out.print("Enter the ID of the customer you want to Accept: ");
-        }
-
-        String customerId = UserInputHandler.inputString();
-        System.out.println(" ");    // printing an empty line
-
-        Customer customer = (Customer) userController.getUserWithId(customerId);
-        // TODO: main menu or employee menu??
-        if (customer != null) {
-            switch (menuChoice) {
-                case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
-                case 2 -> menuManageCustomerUpgrade(customer);
-                case 3 -> mainMenu();
-            }
-        } else {
-            System.out.println("Could not find Customer with ID: " + customerId);
-            System.out.print("Press any key to go to Main Menu: ");
-            UserInputHandler.pressAnyKeyCon();
-        }
-        mainMenu();
-    }
-
-    public void menuManageCustomerUpgrade(Customer customer){
-        Membership membership = customer.getMembership();
-
-        // TODO Use enum???
-        if (membership.getMembershipClass().equals("Platinum")) {
-            System.out.println("Customer is already Platinum!");
-
-            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
-        } else {
-            membership = customer.membershipUpgrade();
-            System.out.println(
-                "User is upgraded to " + membership.getMembershipClass() + ".\n"
-//                "Press any key to go back: "
-            );
-
-            messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
-        }
     }
 
 
