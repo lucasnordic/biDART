@@ -12,9 +12,6 @@ import java.util.UUID;
 public class ItemController {
 
 
-    UserController userController = new UserController();
-    User user = userController.getCurrentUser();
-
 
 
     private ArrayList<Item> dartProducts = new ArrayList<>();
@@ -126,7 +123,7 @@ public class ItemController {
     }
 
 
-    public void rentProcess() {
+    public void rentProcess(User user) {
         int maxAllowedRent = ((Customer) user).getMaxAllowedRent();
         for (int i = 0; i < maxAllowedRent; i++) {
             rentItem();
@@ -174,7 +171,7 @@ public class ItemController {
     }
 
 
-    public void returnProcess() {
+    public void returnProcess(User user) {
         int credit = ((Customer) user).getCredit();
 
         System.out.println("Insert the ID of the item you wish to return:");
@@ -182,7 +179,8 @@ public class ItemController {
         Item returnee = findItem(inputID);
 
         if (credit < 5) {
-            returnItem(returnee);
+            double payablePercent = ((Customer)user).payablePercent();
+            returnItem(returnee, payablePercent);
             rateItem(returnee);
         } else {
             System.out.println("The total rent is 0. ");
@@ -194,16 +192,16 @@ public class ItemController {
     }
 
 
-    public void returnItem(Item item) {
+    public void returnItem(Item item, double payablePercent) {
 
         System.out.print("Please enter the number of days in which the game was rented: ");
         int days = UserInputHandler.inputInt();
 
         double dailyRent = item.getDailyRent();
-        double finalDailyRent = ((Customer) user).calculatePrice(dailyRent);
+        double finalDailyRent = payablePercent * dailyRent;
 
         double totalRent = dailyRent * days;
-        double finalTotalRent = ((Customer) user).calculatePrice(totalRent);
+        double finalTotalRent = payablePercent * totalRent;
 
         System.out.println("The total rent is " + finalDailyRent + " * " + days + " = " + finalTotalRent);
 
