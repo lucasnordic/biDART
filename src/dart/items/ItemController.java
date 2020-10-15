@@ -13,10 +13,10 @@ import java.util.UUID;
 
 public class ItemController {
 
-  
+
     private ArrayList<Item> dartProducts = new ArrayList<>();
     private ArrayList<String> historyList = new ArrayList<>();
- 
+
 
     public ItemController() {
         mockData();
@@ -26,9 +26,9 @@ public class ItemController {
     public void sortByAverageRating() {
         for (int i = 0; i < dartProducts.size(); i++) { //firstly we search for i in array
             for (int j = i + 1; i < dartProducts.size(); i++) { //then we search for j, which stands next to  i and compare them
-                if (dartProducts.get(j).findAverageRating()>dartProducts.get(i).findAverageRating()){//compare them
+                if (dartProducts.get(j).findAverageRating() > dartProducts.get(i).findAverageRating()) {//compare them
                     Item buffer = dartProducts.get(i); //temporary value which keep the number of index should be replaced
-                    dartProducts.set(i,dartProducts.get(j)); //replace i to j
+                    dartProducts.set(i, dartProducts.get(j)); //replace i to j
                     dartProducts.set(j, buffer);//replace j to i
                 }
             }
@@ -68,8 +68,8 @@ public class ItemController {
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         //song.setDailyRent(rent);
-    //    System.out.print("Release year: ");
-      //  int releaseYear = UserInputHandler.inputInt();
+        System.out.print("Release year: ");
+        int releaseYear = UserInputHandler.inputInt();
         //((Song) song).setReleaseYear(releaseYear);
         Item song = new Song(title, rent, artist, releaseYear);
         dartProducts.add(song);
@@ -114,12 +114,12 @@ public class ItemController {
         //((Game) game).setGenre(genre);
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
-       // game.setDailyRent(rent);
-        Item game = new Game(title, rent, genre);
         // game.setDailyRent(rent);
-       // System.out.print("Release year: ");
-       // int year = UserInputHandler.inputInt();
-      //  Item game = new Game(title,rent,year,genre);
+        //Item game = new Game(title, rent, genre);
+        // game.setDailyRent(rent);
+        System.out.print("Release year: ");
+        int year = UserInputHandler.inputInt();
+        Item game = new Game(title, rent, year, genre);
 
         dartProducts.add(game);
         System.out.println(game.toString());
@@ -179,9 +179,9 @@ public class ItemController {
 
     public Item findItem(String Id) {
         for (int i = 0; i < dartProducts.size(); i++) {
-           if (Id.equals(dartProducts.get(i).getID())) {
-               return dartProducts.get(i);
-           }
+            if (Id.equals(dartProducts.get(i).getID())) {
+                return dartProducts.get(i);
+            }
         }
         System.out.println("Product with ID " + Id + " not found");
         return null;
@@ -196,7 +196,7 @@ public class ItemController {
         Item returnee = findItem(inputID);
 
         if (credit < 5) {
-            double payablePercent = ((Customer)user).payablePercent();
+            double payablePercent = ((Customer) user).payablePercent();
             returnItem(returnee, payablePercent);
             rateItem(returnee);
         } else {
@@ -241,7 +241,7 @@ public class ItemController {
     }
 
 
-    public void showAll(){
+    public void showAll() {
         for (Item item : dartProducts) {
             System.out.println(item);
         }
@@ -337,8 +337,8 @@ public class ItemController {
         }
     }
 
-      
-    public void addGame(Game game){
+
+    public void addGame(Game game) {
         dartProducts.add(game);
     }
 
