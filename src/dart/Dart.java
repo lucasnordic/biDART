@@ -1,7 +1,7 @@
 package dart;
 
 /*
-    Todo:                   "VG feature 2: Rent based on date"
+    Todo: A LOT!
  */
 
 import dart.items.ItemController;
@@ -22,9 +22,12 @@ public class Dart {
     private ItemController itemController = new ItemController();
     public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
-    public User user = userController.getCurrentUser();
 
+    public User user = userController.getCurrentUser();
 //    private ViewManager viewManager;
+//    public User user = userController.getCurrentUser();
+////    private ViewManager viewManager;
+
 
 
 
@@ -34,9 +37,7 @@ public class Dart {
      * This is where the user first lands:
      */
 
-
     public void mainMenu() {
-
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up! ;)\n\n" +
                 "Please specify your role by entering one of the options given:";
@@ -47,7 +48,7 @@ public class Dart {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
-        printMenuItems(title, subMenus, inputPrompt, "yes");
+        printMenuItems(title, subMenus, inputPrompt, "no"); // We print the menu.
 
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
@@ -403,6 +404,9 @@ public class Dart {
         }
     }
 
+    /**
+     * These methods handle the users interaction with messages:
+     */
     //  This method handles all the message sending the user will have to do:
     private void messageCenterMenu() {
         String title = "Message center - Type one of the options below:";
@@ -481,7 +485,7 @@ public class Dart {
 
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
         if (line.equalsIgnoreCase("yes")) {
-            System.out.println("- - - - - - - - - - - - - - - - -");
+            System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
         }
         System.out.println(title);
 
