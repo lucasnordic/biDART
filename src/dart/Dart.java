@@ -1,7 +1,7 @@
 package dart;
 
 /*
-    Todo:                   "VG feature 2: Rent based on date"
+    Todo: A LOT!
  */
 
 import dart.items.ItemController;
@@ -22,8 +22,8 @@ public class Dart {
     private ItemController itemController = new ItemController();
     public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
-    public User user = userController.getCurrentUser();
-//    private ViewManager viewManager;
+//    public User user = userController.getCurrentUser();
+////    private ViewManager viewManager;
 
 
 
@@ -32,7 +32,6 @@ public class Dart {
     /**
      * This is where the user first lands:
      */
-
 
     public void mainMenu() {
 

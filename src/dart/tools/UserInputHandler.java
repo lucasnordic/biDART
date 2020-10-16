@@ -54,13 +54,12 @@ public class UserInputHandler {
         input.nextLine();
 
         // Checks if user types a number between the variables "min" and "max".
+        // Loop is repeated until a correct number is entered.
         while (inputResult < min || inputResult > max) {
             System.out.print("Please enter a valid value(" + min + "-" + max + "): ");
             inputResult = input.nextInt();
             input.nextLine();
         }
-
-        //input.close();
 
         return inputResult;
     }
@@ -70,6 +69,7 @@ public class UserInputHandler {
         String inputResult = input.nextLine();
 
         // Checks if the input is part of the array of validValues.
+        // Loop is repeated as long as the String input is not equal to any valid String.
         while (!Arrays.asList(validValueChoices).contains(inputResult.toUpperCase())) {
             System.out.print("Please enter a valid value( " + Arrays.toString(validValueChoices) + " ): ");
             inputResult = input.nextLine();
