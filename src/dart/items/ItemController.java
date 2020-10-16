@@ -36,6 +36,7 @@ public class ItemController {
         showAll();
     }
 
+
     public void sortByAverageRatingUsingInterfaces() {
         Collections.sort(dartProducts, new Comparator<Item>() {
             @Override
@@ -46,6 +47,7 @@ public class ItemController {
 
     }
 
+
     public void sortByYearUsingInterfaces() {
         Collections.sort(dartProducts, new Comparator<Item>() {
             @Override
@@ -54,6 +56,7 @@ public class ItemController {
             }
         });
     }
+
 
     public void addSong() {
 //        System.out.println("Please insert the following information:\nSong album ID:");
@@ -143,6 +146,7 @@ public class ItemController {
             ((Customer) user).addCredit();
         }
     }
+
 
     public void rentItem() {
 
