@@ -22,7 +22,7 @@ public class Item {
         this.id = UUID.randomUUID();
         this.title = title;
         this.dailyRent = dailyRent;
-//        this.releaseYear= releaseYear;
+        this.releaseYear= releaseYear;
     }
 
 //    public Item() {

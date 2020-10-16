@@ -311,7 +311,7 @@ public class Dart {
                 "Rent a song album",
                 "Return a song album",
                 "Search for game or song album",
-                "Sort all items be average user rating",
+                "Sort",
                 "Message center",
                 "Return to Main Menu"
         };
