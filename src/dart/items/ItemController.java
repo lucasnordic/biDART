@@ -138,11 +138,18 @@ public class ItemController {
     }
 
 
-    public void rentProcess(User user) {
-        int maxAllowedRent = ((Customer) user).getMaxAllowedRent();
+//    public void rentProcess(User user) {
+//        int maxAllowedRent = ((Customer) user).getMaxAllowedRent();
+//        for (int i = 0; i < maxAllowedRent; i++) {
+//            rentItem();
+//            ((Customer) user).addCredit();
+//        }
+//    }
+    public void rentProcess(Customer customer) {
+        int maxAllowedRent = customer.getMaxAllowedRent();
         for (int i = 0; i < maxAllowedRent; i++) {
             rentItem();
-            ((Customer) user).addCredit();
+            customer.addCredit();
         }
     }
 
@@ -188,20 +195,23 @@ public class ItemController {
     }
 
 
-    public void returnProcess(User user) {
-        int credit = ((Customer) user).getCredit();
+    public void returnProcess(Customer customer) { //why we here didnt call just a customer
+      //  int credit = ((Customer) user).getCredit();
+        int credit = customer.getCredit();
 
         System.out.print("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
         Item returnee = findItem(inputID);
 
         if (credit < 5) {
-            double payablePercent = ((Customer) user).payablePercent();
+          //  double payablePercent = ((Customer) user).payablePercent();
+            double payablePercent = customer.payablePercent();
             returnItem(returnee, payablePercent);
             rateItem(returnee);
         } else {
             System.out.println("The total rent is 0. ");
-            ((Customer) user).setCredit(credit - 5);
+            customer.setCredit(credit - 5);
+           // ((Customer) user).setCredit(credit - 5);
             //returnee.makeAvailableAgain();
             rateItem(returnee);
         }
