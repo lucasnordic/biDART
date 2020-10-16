@@ -132,7 +132,7 @@ public class ItemController {
     public void removeAGame() {
         System.out.print("Please enter the ID of the game you want to remove: ");
         String id = UserInputHandler.inputString();
-        System.out.print("Game is removed! Press any key to continue...");
+        System.out.println("Game is removed!");
         UserInputHandler.pressAnyKeyCon();
         dartProducts.remove(id);
     }

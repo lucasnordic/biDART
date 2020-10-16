@@ -219,7 +219,7 @@ public class UserController {
 
         // If we leave the last loop and the count is only "1" by the end, then we remove the "user":
         userList.remove(user);
-        System.out.print("Employee removed! Press any key to continue:");
+        System.out.print("Employee removed! ");
         UserInputHandler.pressAnyKeyCon();
     }
 

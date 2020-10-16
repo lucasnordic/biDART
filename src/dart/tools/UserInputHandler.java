@@ -18,6 +18,7 @@ public class UserInputHandler {
 
     // If we want the user to stop and have to enter a key to continue:
     public static void pressAnyKeyCon() {
+        System.out.print("Press enter to continue: ");
         input.nextLine();
     }
 

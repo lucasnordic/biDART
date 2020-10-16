@@ -74,7 +74,6 @@ public class Dart {
 
         if (!inputPassword.equals(managerPassword)) {
             System.out.print("Invalid password! ");
-            System.out.print("Press any key to continue: ");
             UserInputHandler.pressAnyKeyCon();
 
             mainMenu(); // allows go back to menu
@@ -93,7 +92,6 @@ public class Dart {
 
         if (!inputPassword.equals(employeePassword)) {
             System.out.print("Invalid password! ");
-            System.out.print("Press any key to continue: ");
             UserInputHandler.pressAnyKeyCon();
 
             mainMenu(); // allows go back to menu
@@ -120,7 +118,6 @@ public class Dart {
             menuCustomer();
         } else {
             System.out.print("Invalid user! ");
-            System.out.print("Press any key to go back to Main Menu: ");
             UserInputHandler.pressAnyKeyCon();
             mainMenu(); // allows go back to menu
         }
@@ -158,7 +155,6 @@ public class Dart {
             case 1 -> userController.addEmployee();
             case 2 -> {
                 userController.showEmployeeList();
-                System.out.print("Press any key to continue...");
                 UserInputHandler.pressAnyKeyCon();
             }
             case 3 -> userController.removeEmployee();
@@ -172,7 +168,6 @@ public class Dart {
     // This menu shows net salary:
     public void menuShowNetSalary() {
         System.out.println("The total net salary of all employees are " + userController.calculateNetSalary());
-        System.out.print("Press any key to continue...");
         UserInputHandler.pressAnyKeyCon();
     }
 
@@ -269,7 +264,6 @@ public class Dart {
             }
         } else {
             System.out.println("Could not find Customer with ID: " + customerId);
-            System.out.print("Press any key to go to Main Menu: ");
             UserInputHandler.pressAnyKeyCon();
         }
         mainMenu();
@@ -441,7 +435,6 @@ public class Dart {
         }
 
         UserInputHandler.pressAnyKeyCon();
-        System.out.print("Press any key to go back: ");
     }
 
 
@@ -457,7 +450,6 @@ public class Dart {
         messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id);
 
         UserInputHandler.pressAnyKeyCon();
-        System.out.print("Press any key to go back: ");
     }
 
 
@@ -473,8 +465,6 @@ public class Dart {
         messageController.removeMessage(choice);
 
         UserInputHandler.pressAnyKeyCon();
-        System.out.print("Press any key to go back: ");
-
     }
 
 
