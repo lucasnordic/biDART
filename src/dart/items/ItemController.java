@@ -79,11 +79,6 @@ public class ItemController {
     }
 
 
-    public void addSong(Song song) {
-        dartProducts.add(song);
-    }
-
-
     public void deleteSong() {
 
         System.out.println("Please enter the ID of the song which you wish to delete:");
@@ -338,16 +333,29 @@ public class ItemController {
     }
 
 
+    // I added these for mockdata purposes, since they don't have any menu's.
+    // The prints should be separated from the other "addSong" and "registerAGame",
+    // but this works for now.
     public void addGame(Game game) {
         dartProducts.add(game);
+    }
+    public void addSong(Song song) {
+        dartProducts.add(song);
     }
 
 
     public void mockData() {
+        addGame(new Game("The Legend of Zelda: Link's Awakening", 5, 1998, "rpg"));
+        addGame(new Game("Skyrim", 5, 2011, "rpg"));
+        addGame(new Game("Fallout: New Vegas", 5, 2009, "rpg"));
+        addGame(new Game("Super Smash Bro's", 5, 1998, "fighting"));
+        addGame(new Game("Mario Kart", 5, 1998, "racing"));
 
-//        Item item = new Item();
-//        item.setTitle("hehe");
-//        item.setDailyRent();
+        addSong(new Song("Evening Machines", 8, "Gregory Alan Isakov", 1984));
+        addSong(new Song("The Lion's Roar", 10, "First Aid Kit", 1974));
+        addSong(new Song("Soy Pablo", 9, "Boy Pablo", 1982));
+        addSong(new Song("The Maze To Nowhere", 14, "Lorn", 2016));
+        addSong(new Song("Wandering", 3, "Yosi Horikawa", 1984));
     }
 
 //    public void rentAGame() {
