@@ -34,7 +34,6 @@ public class Dart {
      */
 
     public void mainMenu() {
-
         String title = "Main Menu - Welcome to DART,\n" +
                 "your good old game rental system. The competition has no steam to keep up! ;)\n\n" +
                 "Please specify your role by entering one of the options given:";
@@ -45,7 +44,7 @@ public class Dart {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
-        printMenuItems(title, subMenus, inputPrompt, "yes");
+        printMenuItems(title, subMenus, inputPrompt, "yes"); // We print the menu.
 
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
