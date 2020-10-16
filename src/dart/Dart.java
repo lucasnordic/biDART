@@ -44,7 +44,7 @@ public class Dart {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
-        printMenuItems(title, subMenus, inputPrompt, "yes"); // We print the menu.
+        printMenuItems(title, subMenus, inputPrompt, "no"); // We print the menu.
 
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
@@ -400,6 +400,9 @@ public class Dart {
         }
     }
 
+    /**
+     * These methods handle the users interaction with messages:
+     */
     //  This method handles all the message sending the user will have to do:
     private void messageCenterMenu() {
         String title = "Message center - Type one of the options below:";
@@ -478,7 +481,7 @@ public class Dart {
 
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
         if (line.equalsIgnoreCase("yes")) {
-            System.out.println("- - - - - - - - - - - - - - - - -");
+            System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
         }
         System.out.println(title);
 
