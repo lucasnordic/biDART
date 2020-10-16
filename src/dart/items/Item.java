@@ -1,5 +1,7 @@
 package dart.items;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -12,6 +14,8 @@ public class Item {
     private double dailyRent;
     private int releaseYear;
     private String rentStatus = "available";
+    private LocalDate dateRented;
+    private LocalDate dateReturned;
     private double totalRentProfit;
     private ArrayList<Value> rating = new ArrayList<>();
 
@@ -29,7 +33,22 @@ public class Item {
 //    }
 
     //Getters & setters:
+    public LocalDate getDateRented() {
+        return dateRented;
+    }
 
+    public void setDateRented(LocalDate dateRented) {
+        this.dateRented = dateRented;
+    }
+
+
+    public LocalDate getDateReturned() {
+        return dateReturned;
+    }
+
+    public void setDateReturned(LocalDate dateReturned) {
+        this.dateReturned = dateReturned;
+    }
 
     public int getReleaseYear() {
         return releaseYear;
@@ -71,9 +90,9 @@ public class Item {
         rentStatus = "rented";
     }
 
-    protected void makeAvailableAgain() {
-        rentStatus = "available";
-    }
+   // protected void makeAvailableAgain() {
+//        rentStatus = "available";
+//    }
 
     //here we add rating to arraylist of Values
     public void addValue(Value value) {
@@ -84,8 +103,7 @@ public class Item {
         double averageRating = 0;
         int totalRating = 0;
         for (Value value : rating) {
-            totalRating = value.getUserRating() + totalRating;
-        }
+            totalRating = value.getUserRating() + totalRating; }
         averageRating = (double) totalRating / rating.size(); //(double) allows to convert int Userrating into doubles
         return averageRating;
     }
@@ -97,6 +115,24 @@ public class Item {
     public void menuShowTotalRentProfit() {
         System.out.println("Total rent profit is " + totalRentProfit);
     }
+
+    protected void rent(LocalDate dateRented) {
+        rentStatus = "rented";
+        this.dateRented = dateRented; // date of rent is changing when item changes its status from available to rented
+    }
+    protected void makeAvailableAgain(LocalDate dateReturned) {
+        rentStatus = "available";this.dateReturned =dateReturned;
+    }
+
+//    protected void dateReturned (LocalDate dateReturned){
+//        this.dateReturned=dateReturned;
+//    }
+    public long daysBetween (){
+//        LocalDate dateBefore = dateRented;
+//        LocalDate dateAfter =dateReturned;
+        return ChronoUnit.DAYS.between(dateRented, dateReturned);
+    }
+
 
     public String toString() {
         String review = ".\nReviews: \n"; //empty String for further use adding all reviews

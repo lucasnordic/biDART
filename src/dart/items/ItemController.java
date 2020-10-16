@@ -6,6 +6,7 @@ import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -65,12 +66,12 @@ public class ItemController {
         System.out.print("Artist: ");
         String artist = UserInputHandler.inputString();
         //((Song) song).setArtist(artist);
-        System.out.print("Daily rent: ");
-        double rent = UserInputHandler.inputDouble();
-        //song.setDailyRent(rent);
         System.out.print("Release year: ");
         int releaseYear = UserInputHandler.inputInt();
         //((Song) song).setReleaseYear(releaseYear);
+        System.out.print("Daily rent: ");
+        double rent = UserInputHandler.inputDouble();
+        //song.setDailyRent(rent);
         Item song = new Song(title, rent, artist, releaseYear);
         dartProducts.add(song);
 
@@ -99,8 +100,6 @@ public class ItemController {
 
 
     public void registerAGame() {
-
-
         System.out.print("Title: ");
         String title = UserInputHandler.inputString();
         //game.setTitle(title);
@@ -145,7 +144,6 @@ public class ItemController {
     }
 
     public void rentItem() {
-
         showAllAvailable();
         System.out.print("Please enter ID of the item that you want to rent: ");
         String id = UserInputHandler.inputString();
@@ -153,7 +151,10 @@ public class ItemController {
         if (item.getRentStatus().equalsIgnoreCase("rented")) {
             System.out.println("Product ID" + id + " is already rented");
         } else {
-            item.rent();
+            System.out.print("Please enter the date the item was rented (yyyy-mm-dd): ");
+            LocalDate dateRented = LocalDate.parse(UserInputHandler.inputString());
+            //dartProducts.get(i).rent(dateRented);//sending date of rent in method rent()
+            item.rent(dateRented);
             System.out.println("Yay! Rented!");
         }
 //        for (int i = 0; i < dartProducts.size(); i++) {
@@ -186,7 +187,7 @@ public class ItemController {
     public void returnProcess(User user) {
         int credit = ((Customer) user).getCredit();
 
-        System.out.println("Insert the ID of the item you wish to return:");
+        System.out.print("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
         Item returnee = findItem(inputID);
 
@@ -197,7 +198,7 @@ public class ItemController {
         } else {
             System.out.println("The total rent is 0. ");
             ((Customer) user).setCredit(credit - 5);
-            returnee.makeAvailableAgain();
+            //returnee.makeAvailableAgain();
             rateItem(returnee);
         }
 
@@ -206,18 +207,20 @@ public class ItemController {
 
     public void returnItem(Item item, double payablePercent) {
 
-        System.out.print("Please enter the number of days in which the game was rented: ");
-        int days = UserInputHandler.inputInt();
+//        System.out.print("Please enter the number of days in which the game was rented: ");
+//        int days = UserInputHandler.inputInt();
+        System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
+        LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
+        item.makeAvailableAgain(dateReturned);
 
         double dailyRent = item.getDailyRent();
         double finalDailyRent = payablePercent * dailyRent;
 
-        double totalRent = dailyRent * days;
+        double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
 
-        System.out.println("The total rent is " + finalDailyRent + " * " + days + " = " + finalTotalRent);
-
-        item.makeAvailableAgain();
+        System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
+       // item.makeAvailableAgain(dateReturned);
         item.storeDailyRent(finalTotalRent);
     }
 
@@ -319,7 +322,6 @@ public class ItemController {
             }
         }
     }
-
 
     public void findSong(int year) {
         for (Item item : dartProducts) {
