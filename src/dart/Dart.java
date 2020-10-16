@@ -23,6 +23,7 @@ public class Dart {
     public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
     public User user = userController.getCurrentUser();
+
 //    private ViewManager viewManager;
 
 
@@ -342,13 +343,13 @@ public class Dart {
 
     public void rentUserTeleport() {
         User currentUser = userController.getCurrentUser();
-        itemController.rentProcess(currentUser);
+        itemController.rentProcess((Customer) currentUser);
     }
 
 
     public void returnUserTeleport() {
         User currentUser = userController.getCurrentUser();
-        itemController.returnProcess(currentUser);
+        itemController.returnProcess((Customer) currentUser);
     }
 
 
