@@ -120,7 +120,7 @@ public class Item {
         rentStatus = "rented";
         this.dateRented = dateRented; // date of rent is changing when item changes its status from available to rented
     }
-    protected void makeAvailableAgain(LocalDate dateReturned) {
+    public void makeAvailableAgain(LocalDate dateReturned) {
         rentStatus = "available";this.dateReturned =dateReturned;
     }
 
