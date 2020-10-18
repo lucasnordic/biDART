@@ -17,6 +17,7 @@ public class ItemController {
 
     private ArrayList<Item> dartProducts = new ArrayList<>();
     private ArrayList<String> historyList = new ArrayList<>();
+    double totalRentProfit=0;
 
 
     public ItemController() {
@@ -235,7 +236,7 @@ public class ItemController {
 
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
-        item.storeDailyRent(finalTotalRent);
+        storeDailyRent(finalTotalRent);
     }
 
 
@@ -309,7 +310,8 @@ public class ItemController {
     }
 
 
-    double totalRentProfit=0;
+
+
     public void storeDailyRent(double finalTotalRent) {
         totalRentProfit = (totalRentProfit + finalTotalRent);
     }
