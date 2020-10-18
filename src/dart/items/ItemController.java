@@ -10,10 +10,7 @@ import org.jetbrains.annotations.NotNull;
 //import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.UUID;
+import java.util.*;
 
 public class ItemController {
 
@@ -24,14 +21,6 @@ public class ItemController {
     private Transaction currentTransaction = new Transaction();
     private final int coolCredit = 5;
 
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
 
 
 
@@ -215,7 +204,7 @@ public class ItemController {
     public void returnProcess(Customer customer) { //why we here didnt call just a customer
       //  int credit = ((Customer) user).getCredit();
         int credit = customer.getCredit();
-        getCurrentTransaction().setCustomerId(customer.getId());
+        currentTransaction.setCustomerId(customer.getId());
 
         System.out.print("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
@@ -235,8 +224,8 @@ public class ItemController {
             returnee.makeAvailableAgain(dateReturned);
             customer.setCredit(credit - coolCredit);
 
-            getCurrentTransaction().setItemId(returnee.getID());
-            getCurrentTransaction().setDaysRented(returnee.daysBetween());
+            currentTransaction.setItemId(returnee.getID());
+            currentTransaction.setDaysRented(returnee.daysBetween());
 
             System.out.println("The total rent is 0. ");
             customer.setCredit(credit - coolCredit);
@@ -262,8 +251,8 @@ public class ItemController {
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
 
-        getCurrentTransaction().setDaysRented(item.daysBetween());
-        getCurrentTransaction().setItemId(item.getID());
+        currentTransaction.setDaysRented(item.daysBetween());
+        currentTransaction.setItemId(item.getID());
 
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
@@ -273,7 +262,12 @@ public class ItemController {
 
     public void transactionSetUp() {
 
-        transactions.add(currentTransaction);
+
+        Transaction potato = new Transaction();
+        potato = currentTransaction;
+        transactions.add(potato);
+
+
     }
 
 
@@ -288,10 +282,10 @@ public class ItemController {
         if (input.equalsIgnoreCase("Y")) {
             System.out.print("Please give any number between 0 and 5: ");
             int userRating = UserInputHandler.inputInt();
-            getCurrentTransaction().setRatingScore(userRating);
+            currentTransaction.setRatingScore(userRating);
             System.out.print("Please write a review: ");
             String review = UserInputHandler.inputString();
-            getCurrentTransaction().setReview(review);
+            currentTransaction.setReview(review);
             Value value = new Value(userRating, review);
             item.addValue(value);
         }
