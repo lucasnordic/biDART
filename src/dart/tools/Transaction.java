@@ -19,6 +19,10 @@ public class Transaction {
         this.review = null;
     }
 
+    public Transaction() {
+
+    }
+
 
     public String getCustomerId() {
         return customerId;
@@ -64,7 +68,7 @@ public class Transaction {
 
     public String toString() {
         if(this.ratingScore == 0) {
-            return this.customerId + ", " + this.daysRented + ", " + this.itemId + ", \n";
+            return "Customer ID: " + this.customerId + ", Renting duration: " + this.daysRented + ", Item ID: " + this.itemId + ", \n";
         } else if(this.ratingScore != 0 && this.review.equals(null)) {
             return this.customerId + ", " + this.daysRented + ", " + this.itemId + ", " + this.ratingScore + "\n";
         } else {

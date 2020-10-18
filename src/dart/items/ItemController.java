@@ -6,6 +6,7 @@ import dart.users.Customer;
 import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +20,17 @@ public class ItemController {
     private ArrayList<Item> dartProducts = new ArrayList<>();
     private ArrayList<String> historyList = new ArrayList<>();
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-    private Transaction currentTransaction;
+    private Transaction currentTransaction = new Transaction();
+
+
+    public Transaction getCurrentTransaction() {
+        return currentTransaction;
+    }
+
+    public void setCurrentTransaction(Transaction currentTransaction) {
+        this.currentTransaction = currentTransaction;
+    }
+
 
 
     public ItemController() {
@@ -202,7 +213,7 @@ public class ItemController {
     public void returnProcess(Customer customer) { //why we here didnt call just a customer
        // int credit = ((Customer) user).getCredit();
         int credit = customer.getCredit();
-        currentTransaction.setCustomerId(customer.getId());
+        getCurrentTransaction().setCustomerId(customer.getId());
 
         System.out.print("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
@@ -216,17 +227,23 @@ public class ItemController {
             rateItem(returnee);
 
         } else {
-            System.out.println("The total rent is 0. ");
+            System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
+            LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
+
+            returnee.makeAvailableAgain(dateReturned);
             customer.setCredit(credit - 5);
-//            ((Customer) user).setCredit(credit - 5);
-            // returnee.makeAvailableAgain();
+
+            getCurrentTransaction().setItemId(returnee.getID());
+            getCurrentTransaction().setDaysRented(returnee.daysBetween());
+
+            System.out.println("The total rent is 0. ");
             rateItem(returnee);
         }
 
     }
 
 
-    public void returnItem(Item item, double payablePercent) {
+    public void returnItem(@NotNull Item item, double payablePercent) {
 
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
@@ -240,8 +257,8 @@ public class ItemController {
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
 
-        currentTransaction.setDaysRented(item.daysBetween());
-        currentTransaction.setItemId(item.getID());
+        getCurrentTransaction().setDaysRented(item.daysBetween());
+        getCurrentTransaction().setItemId(item.getID());
 
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
@@ -251,8 +268,8 @@ public class ItemController {
 
     public void transactionSetUp() {
         transactions.add(currentTransaction);
-        currentTransaction.setReview(null);
-        currentTransaction.setRatingScore(0);
+        getCurrentTransaction().setReview(null);
+        getCurrentTransaction().setRatingScore(0);
     }
 
 
