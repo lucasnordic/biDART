@@ -232,13 +232,13 @@ public class ItemController {
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
 
             returnee.makeAvailableAgain(dateReturned);
-            customer.setCredit(credit - coolCredit);
+//            customer.setCredit(credit - coolCredit);
 
             getCurrentTransaction().setItemId(returnee.getID());
             getCurrentTransaction().setDaysRented(returnee.daysBetween());
 
             System.out.println("The total rent is 0. ");
-            customer.setCredit(credit - 5);
+            customer.setCredit(credit - coolCredit);
            // ((Customer) user).setCredit(credit - 5);
             //returnee.makeAvailableAgain();
             rateItem(returnee);
@@ -298,8 +298,8 @@ public class ItemController {
 
     public void transactionSetUp() {
         transactions.add(currentTransaction);
-        getCurrentTransaction().setReview(null);
-        getCurrentTransaction().setRatingScore(0);
+//        getCurrentTransaction().setReview(null);
+//        getCurrentTransaction().setRatingScore(0);
     }
 
 

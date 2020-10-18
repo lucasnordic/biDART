@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Transaction {
 
+    private UUID id;
     private String customerId;
     private Long daysRented;
     private UUID itemId;
@@ -12,6 +13,7 @@ public class Transaction {
 
 
     public Transaction(String customerId, Long daysRented, UUID itemId) {
+        this.id = UUID.randomUUID();
         this.customerId = customerId;
         this.daysRented = daysRented;
         this.itemId = itemId;
