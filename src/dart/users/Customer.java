@@ -1,6 +1,7 @@
 package dart.users;
 
 
+import dart.tools.InvalidDataInput;
 import dart.users.membership.*;
 
 /**
@@ -30,6 +31,14 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         super(name, password);
         this.credit = 0;
         this.membership = membership;
+        if (name.isEmpty() && password.isEmpty()) {
+            throw new InvalidDataInput("Invalid data. Name and password cannot be empty.");
+        }if (name.isEmpty()) {
+            throw new InvalidDataInput("Invalid data. Name cannot be empty.");
+        }
+         if (password.isEmpty()) {
+            throw new InvalidDataInput("Invalid data. Password cannot be empty.");
+        } else {}
     }
 
     public Customer(String name, String password) {
