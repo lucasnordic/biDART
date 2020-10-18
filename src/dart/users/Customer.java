@@ -36,7 +36,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         this(name, password, new RegularMembership());
     }
 
-    public Customer() {}
+//    public Customer() {}
 
 
     /**
