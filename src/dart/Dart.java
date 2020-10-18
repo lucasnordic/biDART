@@ -6,6 +6,7 @@ package dart;
 
 import dart.items.ItemController;
 import dart.tools.Message;
+import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.*;
 import dart.tools.MessageController;
@@ -136,6 +137,7 @@ public class Dart {
                 "View all employees",
                 "Remove an employee",
                 "Calculate Net Salary",
+                "View transaction",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -159,7 +161,8 @@ public class Dart {
             }
             case 3 -> userController.removeEmployee();
             case 4 -> menuShowNetSalary();
-            case 5 -> mainMenu();
+            case 5 -> itemController.showTransaction();
+            case 6 -> mainMenu();
         }
         menuManager();
     }
@@ -345,6 +348,7 @@ public class Dart {
     public void returnUserTeleport() {
         User currentUser = userController.getCurrentUser();
         itemController.returnProcess((Customer) currentUser);
+        itemController.transactionSetUp();
     }
 
 

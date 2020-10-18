@@ -1,10 +1,12 @@
 package dart.items;
 
+import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
 import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
+//import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,7 +19,19 @@ public class ItemController {
 
     private ArrayList<Item> dartProducts = new ArrayList<>();
     private ArrayList<String> historyList = new ArrayList<>();
-    double totalRentProfit=0;
+    private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private Transaction currentTransaction = new Transaction();
+    private final int coolCredit = 5;
+
+
+    public Transaction getCurrentTransaction() {
+        return currentTransaction;
+    }
+
+    public void setCurrentTransaction(Transaction currentTransaction) {
+        this.currentTransaction = currentTransaction;
+    }
+
 
 
     public ItemController() {
@@ -188,6 +202,7 @@ public class ItemController {
     public Item findItem(String Id) {
         for (int i = 0; i < dartProducts.size(); i++) {
             if (Id.equals(dartProducts.get(i).getID().toString())) {
+
                 return dartProducts.get(i);
             }
         }
@@ -199,17 +214,29 @@ public class ItemController {
     public void returnProcess(Customer customer) { //why we here didnt call just a customer
       //  int credit = ((Customer) user).getCredit();
         int credit = customer.getCredit();
+        getCurrentTransaction().setCustomerId(customer.getId());
 
         System.out.print("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
         Item returnee = findItem(inputID);
 
-        if (credit < 5) {
-          //  double payablePercent = ((Customer) user).payablePercent();
+
+        if (credit < coolCredit) {
+            // double payablePercent = ((Customer) user).payablePercent();
             double payablePercent = customer.payablePercent();
             returnItem(returnee, payablePercent);
             rateItem(returnee);
+
         } else {
+            System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
+            LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
+
+            returnee.makeAvailableAgain(dateReturned);
+            customer.setCredit(credit - coolCredit);
+
+            getCurrentTransaction().setItemId(returnee.getID());
+            getCurrentTransaction().setDaysRented(returnee.daysBetween());
+
             System.out.println("The total rent is 0. ");
             customer.setCredit(credit - 5);
            // ((Customer) user).setCredit(credit - 5);
@@ -220,7 +247,7 @@ public class ItemController {
     }
 
 
-    public void returnItem(Item item, double payablePercent) {
+    public void returnItem(@NotNull Item item, double payablePercent) {
 
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
@@ -234,9 +261,24 @@ public class ItemController {
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
 
+        getCurrentTransaction().setDaysRented(item.daysBetween());
+        getCurrentTransaction().setItemId(item.getID());
+
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
         storeDailyRent(finalTotalRent);
+    }
+
+
+    public void transactionSetUp() {
+        transactions.add(currentTransaction);
+        getCurrentTransaction().setReview(null);
+        getCurrentTransaction().setRatingScore(0);
+    }
+
+
+    public void showTransaction() {
+        System.out.println(transactions);
     }
 
 
@@ -246,8 +288,10 @@ public class ItemController {
         if (input.equalsIgnoreCase("Y")) {
             System.out.print("Please give any number between 0 and 5: ");
             int userRating = UserInputHandler.inputInt();
+            getCurrentTransaction().setRatingScore(userRating);
             System.out.print("Please write a review: ");
             String review = UserInputHandler.inputString();
+            getCurrentTransaction().setReview(review);
             Value value = new Value(userRating, review);
             item.addValue(value);
         }
@@ -310,20 +354,19 @@ public class ItemController {
     }
 
 
+    public double dartDailyRent() {
+        double totalRentProfit = 0;
+        for (Item item : dartProducts) {
+            totalRentProfit = (totalRentProfit + item.getDailyRent());
+        }
+        return totalRentProfit;//return value
 
-
-    public void storeDailyRent(double finalTotalRent) {
-        totalRentProfit = (totalRentProfit + finalTotalRent);
     }
 
-    public void menuShowTotalRentProfit() {
-        System.out.println("Total rent profit is " + totalRentProfit);
+
+    public void showTotalDailyRent() {
+        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
     }
-
-
-//    public void showTotalDailyRent() {
-//        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
-//    }
 
 
     public void findGame(String genre) {
