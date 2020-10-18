@@ -6,7 +6,7 @@ import dart.users.Customer;
 import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -212,7 +212,7 @@ public class ItemController {
 
 
     public void returnProcess(Customer customer) { //why we here didnt call just a customer
-       // int credit = ((Customer) user).getCredit();
+      //  int credit = ((Customer) user).getCredit();
         int credit = customer.getCredit();
         getCurrentTransaction().setCustomerId(customer.getId());
 
@@ -238,6 +238,9 @@ public class ItemController {
             getCurrentTransaction().setDaysRented(returnee.daysBetween());
 
             System.out.println("The total rent is 0. ");
+            customer.setCredit(credit - 5);
+           // ((Customer) user).setCredit(credit - 5);
+            //returnee.makeAvailableAgain();
             rateItem(returnee);
         }
 
@@ -263,7 +266,7 @@ public class ItemController {
 
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
-        item.storeDailyRent(finalTotalRent);
+        storeDailyRent(finalTotalRent);
     }
 
 

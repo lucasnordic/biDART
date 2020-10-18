@@ -57,9 +57,9 @@ public class UserController {
         System.out.print("Please enter a password for the Customer: ");
         String password = UserInputHandler.inputString();
 
-        User customer = new Customer();
-        customer.setName(name);
-        customer.setPassword(password);
+        User customer = new Customer(name, password);
+//        customer.setName(name);
+//        customer.setPassword(password);
 
         userList.add(customer);
         System.out.println(customer.toString());

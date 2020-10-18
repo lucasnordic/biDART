@@ -214,7 +214,7 @@ public class Dart {
             case 4 -> userController.cancellation();
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
-            case 7 -> itemController.showTotalDailyRent();
+            case 7 -> itemController.menuShowTotalRentProfit();
             case 8 -> itemController.showAll();
             case 9 -> menuUpgradeCustomer();
             case 10 -> mainMenu();
