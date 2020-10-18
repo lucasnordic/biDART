@@ -309,19 +309,19 @@ public class ItemController {
     }
 
 
-    public double dartDailyRent() {
-        double totalRentProfit = 0;
-        for (Item item : dartProducts) {
-            totalRentProfit = (totalRentProfit + item.getDailyRent());
-        }
-        return totalRentProfit;//return value
+    double totalRentProfit=0;
+    public void storeDailyRent(double finalTotalRent) {
+        totalRentProfit = (totalRentProfit + finalTotalRent);
+    }
 
+    public void menuShowTotalRentProfit() {
+        System.out.println("Total rent profit is " + totalRentProfit);
     }
 
 
-    public void showTotalDailyRent() {
-        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
-    }
+//    public void showTotalDailyRent() {
+//        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
+//    }
 
 
     public void findGame(String genre) {
