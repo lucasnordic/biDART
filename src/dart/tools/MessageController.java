@@ -28,10 +28,8 @@ public class MessageController {
         messageList.add(newMessage);
 
         System.out.print(
-                "Message sent!\n" +
-                "Press any key to go back: \n"
+                "Message sent! "
         );
-        UserInputHandler.pressAnyKeyCon();
 
         return newMessage;
     }
@@ -59,7 +57,7 @@ public class MessageController {
             if (message.getMessageId().equals(messageId)) {
 //                messageFound = message
                 messageList.remove(index);
-                System.out.print("Message was removed! Press any key to go back: ");
+                System.out.print("Message was removed! ");
                 UserInputHandler.pressAnyKeyCon();
             } else {
                 index++;
@@ -78,7 +76,7 @@ public class MessageController {
             if (message.getMessageFrom().equals(customerId)) {
 //                messageFound = message
                 messageList.remove(index);
-                System.out.print("Message was removed! Press any key to go back: ");
+                System.out.print("Message was removed! ");
                 UserInputHandler.pressAnyKeyCon();
             } else {
                 index++;

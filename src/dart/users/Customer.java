@@ -36,6 +36,10 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         this(name, password, new RegularMembership());
     }
 
+    public Customer() {
+
+    }
+
 //    public Customer() {}
 
 
@@ -47,7 +51,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return credit;
     }
 
-   public void setCredit(int credit) {
+    public void setCredit(int credit) {
         this.credit = credit;
     }
 
