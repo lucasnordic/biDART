@@ -175,6 +175,13 @@ public class Dart {
     }
 
 
+    public void menuRentHistory() {
+        /**
+         * See
+         */
+    }
+
+
     /**
      * These methods handles the Employee menu contents:
      */
@@ -348,7 +355,6 @@ public class Dart {
     public void returnUserTeleport() {
         User currentUser = userController.getCurrentUser();
         itemController.returnProcess((Customer) currentUser);
-        itemController.transactionSetUp();
     }
 
 

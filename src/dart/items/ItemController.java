@@ -247,7 +247,7 @@ public class ItemController {
     }
 
 
-    public void returnItem(@NotNull Item item, double payablePercent) {
+    public void returnItem( Item item, double payablePercent) {
 
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
@@ -267,6 +267,32 @@ public class ItemController {
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
         storeDailyRent(finalTotalRent);
+    }
+    double totalRentProfit = 0;
+    public void storeDailyRent(double finalTotalRent) {
+        totalRentProfit = (totalRentProfit + finalTotalRent);
+    }
+
+//    public double dartDailyRent() {
+//        double totalRentProfit = 0;
+//        for (Item item : dartProducts) {
+//            totalRentProfit = (totalRentProfit + item.getDailyRent());
+//        }
+//        return totalRentProfit;//return value
+//
+//    }
+//
+//
+//    public void showTotalDailyRent() {
+//        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
+//    }
+//
+
+
+
+
+    public void menuShowTotalRentProfit() {
+        System.out.println("Total rent profit is " + totalRentProfit);
     }
 
 
@@ -354,19 +380,6 @@ public class ItemController {
     }
 
 
-    public double dartDailyRent() {
-        double totalRentProfit = 0;
-        for (Item item : dartProducts) {
-            totalRentProfit = (totalRentProfit + item.getDailyRent());
-        }
-        return totalRentProfit;//return value
-
-    }
-
-
-    public void showTotalDailyRent() {
-        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
-    }
 
 
     public void findGame(String genre) {
