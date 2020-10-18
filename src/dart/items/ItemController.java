@@ -6,6 +6,7 @@ import dart.users.Customer;
 import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
+import org.jetbrains.annotations.NotNull;
 //import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
@@ -238,7 +239,7 @@ public class ItemController {
             getCurrentTransaction().setDaysRented(returnee.daysBetween());
 
             System.out.println("The total rent is 0. ");
-            customer.setCredit(credit - 5);
+            customer.setCredit(credit - coolCredit);
            // ((Customer) user).setCredit(credit - 5);
             //returnee.makeAvailableAgain();
             rateItem(returnee);
@@ -266,14 +267,13 @@ public class ItemController {
 
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
        // item.makeAvailableAgain(dateReturned);
-        storeDailyRent(finalTotalRent);
+       // Item.storeDailyRent(finalTotalRent);
     }
 
 
     public void transactionSetUp() {
+
         transactions.add(currentTransaction);
-        getCurrentTransaction().setReview(null);
-        getCurrentTransaction().setRatingScore(0);
     }
 
 
