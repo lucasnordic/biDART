@@ -70,9 +70,9 @@ public class Transaction {
         if(this.ratingScore == 0) {
             return "Customer ID: " + this.customerId + ", Renting duration: " + this.daysRented + ", Item ID: " + this.itemId + ", \n";
         } else if(this.ratingScore != 0 && this.review.equals(null)) {
-            return this.customerId + ", " + this.daysRented + ", " + this.itemId + ", " + this.ratingScore + "\n";
+            return "Customer ID: " + this.customerId + ", Renting duration: " + this.daysRented + ", Item ID: " + this.itemId + ", Item score: " + this.ratingScore + "\n";
         } else {
-            return this.customerId + ", " + this.daysRented + ", " + this.itemId + ", " + this.ratingScore + ", " + this.review + "\n";
+            return "Customer ID: " + this.customerId + ", Renting duration: " + this.daysRented + ", Item ID: " + this.itemId + ", Item score: " + this.ratingScore + ", Item review: " + this.review + "\n";
         }
 
     }

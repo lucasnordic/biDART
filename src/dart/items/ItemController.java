@@ -21,6 +21,7 @@ public class ItemController {
     private ArrayList<String> historyList = new ArrayList<>();
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private Transaction currentTransaction = new Transaction();
+    private final int coolCredit = 5;
 
 
     public Transaction getCurrentTransaction() {
@@ -220,7 +221,7 @@ public class ItemController {
         Item returnee = findItem(inputID);
 
 
-        if (credit < 5) {
+        if (credit < coolCredit) {
             // double payablePercent = ((Customer) user).payablePercent();
             double payablePercent = customer.payablePercent();
             returnItem(returnee, payablePercent);
@@ -231,7 +232,7 @@ public class ItemController {
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
 
             returnee.makeAvailableAgain(dateReturned);
-            customer.setCredit(credit - 5);
+            customer.setCredit(credit - coolCredit);
 
             getCurrentTransaction().setItemId(returnee.getID());
             getCurrentTransaction().setDaysRented(returnee.daysBetween());
@@ -284,10 +285,10 @@ public class ItemController {
         if (input.equalsIgnoreCase("Y")) {
             System.out.print("Please give any number between 0 and 5: ");
             int userRating = UserInputHandler.inputInt();
-            currentTransaction.setRatingScore(userRating);
+            getCurrentTransaction().setRatingScore(userRating);
             System.out.print("Please write a review: ");
             String review = UserInputHandler.inputString();
-            currentTransaction.setReview(review);
+            getCurrentTransaction().setReview(review);
             Value value = new Value(userRating, review);
             item.addValue(value);
         }
