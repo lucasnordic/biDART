@@ -187,7 +187,7 @@ public class ItemController {
         if (credit < coolCredit) {
             // double payablePercent = ((Customer) user).payablePercent();
             double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
-            returnItem(returnee, payablePercent);
+            returnItem(returnee, payablePercent, customer);
             rateItem(returnee,customer);
 
         } else {
@@ -211,7 +211,7 @@ public class ItemController {
     }
 
 
-    public void returnItem( Item item, double payablePercent) {
+    public void returnItem( Item item, double payablePercent, Customer customer) {
 
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
@@ -224,6 +224,7 @@ public class ItemController {
 
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
+        customer.setTotalPaidRent(finalTotalRent);
 
 //        getCurrentTransaction().setDaysRented(item.daysBetween());
 //        getCurrentTransaction().setItemId(item.getID());
@@ -430,7 +431,7 @@ public class ItemController {
 
     public void rentFrequency() {
 
-        ArrayList <Item> rentFrequency = new ArrayList<>();
+        ArrayList<Item> rentFrequency = new ArrayList<>();
         for (int i = 0; i < transactionList.size(); i++) {
             Item item = transactionList.get(i).getItem();
             rentFrequency.add(item);
@@ -451,6 +452,29 @@ public class ItemController {
         int maxValue = Collections.max(itemFrequency);
         int maxIndex = itemFrequency.indexOf(maxValue);
         System.out.println(rentFrequency.get(maxIndex));
+    }
+
+
+    public void myFavoriteCustomer() {
+        ArrayList<Customer> activeCustomers = new ArrayList<>();
+        for (int i = 0; i < transactionList.size(); i++) {
+            Customer activeCustomer = transactionList.get(i).getCustomer();
+            activeCustomers.add(activeCustomer);
+        }
+
+        for (int i = 0; i < activeCustomers.size(); i++) {
+            for (int j = i + 1; i < activeCustomers.size(); i++) {
+                if (activeCustomers.get(j).getTotalPaidRent() > activeCustomers.get(i).getTotalPaidRent()) {
+                    Customer buffer = activeCustomers.get(i);
+                    activeCustomers.set(i, activeCustomers.get(j));
+                    activeCustomers.set(j, buffer);
+                }
+            }
+        }
+
+        System.out.println(activeCustomers.get(0));
+
+
     }
 
 

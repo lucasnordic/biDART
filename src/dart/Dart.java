@@ -167,7 +167,7 @@ public class Dart {
             case 5 -> itemController.showTransaction();
             case 6 -> itemController.profitableItems();
             case 7 -> itemController.rentFrequency();
-//            case 8 -> best customer
+            case 8 -> itemController.myFavoriteCustomer();
             case 9 -> mainMenu();
         }
         menuManager();

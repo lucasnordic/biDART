@@ -20,6 +20,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
     private int credit;
     private Membership membership;
     private final String type = "Customer";
+    private double totalPaidRent;
 
   
     /**
@@ -30,6 +31,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         super(name, password);
         this.credit = 0;
         this.membership = membership;
+        this.totalPaidRent = 0.0;
     }
 
     public Customer(String name, String password) {
@@ -59,6 +61,13 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return membership;
     }
 
+    public void setTotalPaidRent(double totalPaidRent) {
+        this.totalPaidRent = totalPaidRent + this.totalPaidRent;
+    }
+
+    public double getTotalPaidRent() {
+        return totalPaidRent;
+    }
 
     @Override
     public String getType() {
