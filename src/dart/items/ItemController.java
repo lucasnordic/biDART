@@ -439,13 +439,13 @@ public class ItemController {
         ArrayList<Integer> itemFrequency = new ArrayList<>();
 
         for (int i = 0; i < rentFrequency.size(); i++) {
-            int n = 1;
+            int counter = 1;
             for (int j = i + 1; i < rentFrequency.size(); i++) {
                 if (rentFrequency.get(j).getID().equals(rentFrequency.get(i).getID())) {
                     rentFrequency.remove(j);
-                    n++ ;
+                    counter++ ;
                 }
-                itemFrequency.add(n);
+                itemFrequency.add(counter);
             }
         }
         int maxValue = Collections.max(itemFrequency);
