@@ -138,6 +138,9 @@ public class Dart {
                 "Remove an employee",
                 "Calculate Net Salary",
                 "View transaction",
+                "Most profitable items",
+                "Most popular items",
+                "Best customers",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -162,7 +165,10 @@ public class Dart {
             case 3 -> userController.removeEmployee();
             case 4 -> menuShowNetSalary();
             case 5 -> itemController.showTransaction();
-            case 6 -> mainMenu();
+            case 6 -> itemController.profitableItems();
+//            case 7 -> most popular
+//            case 8 -> best customer
+            case 9 -> mainMenu();
         }
         menuManager();
     }
@@ -348,7 +354,6 @@ public class Dart {
     public void returnUserTeleport() {
         User currentUser = userController.getCurrentUser();
         itemController.returnProcess((Customer) currentUser);
-        itemController.transactionSetUp();
     }
 
 

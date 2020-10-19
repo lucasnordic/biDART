@@ -19,7 +19,9 @@ public class Item {
     private double totalRentProfit;
     private ArrayList<Value> rating = new ArrayList<>();
 
-
+//case 6 -> most profitable
+            //case 7 -> most popular
+            //case 8 -> best customer
     //Constructor:
 
     public Item( String title, double dailyRent,int releaseYear) {
@@ -35,6 +37,14 @@ public class Item {
     //Getters & setters:
     public LocalDate getDateRented() {
         return dateRented;
+    }
+
+    public double getTotalRentProfit() {
+        return totalRentProfit;
+    }
+
+    public void setTotalRentProfit(double totalRentProfit) {
+        this.totalRentProfit = totalRentProfit;
     }
 
     public void setDateRented(LocalDate dateRented) {
