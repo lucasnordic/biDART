@@ -9,10 +9,7 @@ import dart.users.UserController;
 //import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.UUID;
+import java.util.*;
 
 public class ItemController {
 
@@ -428,6 +425,32 @@ public class ItemController {
         }
 
         System.out.println(profitableItems.get(0)); //We display the first element of the List which is he highest.
+    }
+
+
+    public void rentFrequency() {
+
+        ArrayList <Item> rentFrequency = new ArrayList<>();
+        for (int i = 0; i < transactionList.size(); i++) {
+            Item item = transactionList.get(i).getItem();
+            rentFrequency.add(item);
+        }
+
+        ArrayList<Integer> itemFrequency = new ArrayList<>();
+
+        for (int i = 0; i < rentFrequency.size(); i++) {
+            int n = 1;
+            for (int j = i + 1; i < rentFrequency.size(); i++) {
+                if (rentFrequency.get(j).getID().equals(rentFrequency.get(i).getID())) {
+                    rentFrequency.remove(j);
+                    n++ ;
+                }
+                itemFrequency.add(n);
+            }
+        }
+        int maxValue = Collections.max(itemFrequency);
+        int maxIndex = itemFrequency.indexOf(maxValue);
+        System.out.println(rentFrequency.get(maxIndex));
     }
 
 

@@ -166,7 +166,7 @@ public class Dart {
             case 4 -> menuShowNetSalary();
             case 5 -> itemController.showTransaction();
             case 6 -> itemController.profitableItems();
-//            case 7 -> most popular
+            case 7 -> itemController.rentFrequency();
 //            case 8 -> best customer
             case 9 -> mainMenu();
         }
