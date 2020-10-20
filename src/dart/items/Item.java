@@ -1,5 +1,7 @@
 package dart.items;
 
+import dart.tools.InvalidDataInput;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -29,10 +31,21 @@ public class Item {
         this.title = title;
         this.dailyRent = dailyRent;
         this.releaseYear= releaseYear;
-    }
+        if (title.isEmpty() && dailyRent < 0){
+            throw new InvalidDataInput("Invalid data. Title cannot be empty and daily rent cannot be negative.");
+        }
+        if (title.isEmpty()) {
+            throw new InvalidDataInput("Invalid data. Item name cannot be empty.");
+            //throw new InvalidDataInput("Invalid data. Item name cannot be empty.");
+        } if (dailyRent < 0) {
+            throw new InvalidDataInput("Invalid data. Item daily rent cannot be negative.");
 
-//    public Item() {
-//    }
+        }
+      else{
+        }}
+    public Item() {
+
+    }
 
     //Getters & setters:
     public LocalDate getDateRented() {

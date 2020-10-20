@@ -1,5 +1,7 @@
 package dart.users;
 
+import dart.tools.InvalidDataInput;
+
 import java.util.Calendar;
 
 /**
@@ -18,10 +20,17 @@ public class Employee extends User {
      *  Constructors here. We can choose to create an empty Employee or if we want to send create an employee with attributes:
      */
 
-    public Employee(String name, String password, int birthYear, double grossSalary) {
+    public Employee (String name, String password, int birthYear, double grossSalary) {
         super(name, password);
         this.birthYear = birthYear;
         this.grossSalary = grossSalary;
+        if (name.isEmpty() && grossSalary < 0) {
+            throw new InvalidDataInput("Invalid data. Employee's name cannot be empty and gross salary cannot be negative");
+        } if (name.isEmpty()){
+            throw new InvalidDataInput("Invalid data. Employee's name cannot be empty");
+        } if (grossSalary < 0) {
+            throw new InvalidDataInput("Invalid data. Gross salary cannot be negative.");
+        }else { }
     }
 
     public Employee() {

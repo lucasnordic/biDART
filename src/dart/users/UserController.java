@@ -2,10 +2,10 @@ package dart.users;
 
 import dart.items.Item;
 import dart.items.ItemController;
+import dart.tools.InvalidDataInput;
 import dart.tools.UserInputHandler;
 
 import java.util.ArrayList;
-
 
 /**
  * This class handles all Users and the methods required.
@@ -18,7 +18,7 @@ public class UserController {
     private ArrayList<User> userList = new ArrayList<>();
     private User currentUser;
 
-    public  UserController() {
+    public UserController() {
         mockData();
     }
 
@@ -40,7 +40,9 @@ public class UserController {
         this.currentUser = currentUser;
     }
 
-    public User getCurrentUser() { return this.currentUser; }
+    public User getCurrentUser() {
+        return this.currentUser;
+    }
 
 
     /**
@@ -48,14 +50,20 @@ public class UserController {
      */
 
 
-
     public void registration() {
 
         System.out.print("Please enter the Customers username: ");
         String name = UserInputHandler.inputString();
-
         System.out.print("Please enter a password for the Customer: ");
         String password = UserInputHandler.inputString();
+        try {
+            User customer = new Customer(name, password);
+            userList.add(customer);
+            System.out.println(customer.toString());
+        }
+        catch(InvalidDataInput e){
+            System.out.println(e.getMessage());
+        }
 
         User customer = new Customer(name, password);
 //        customer.setName(name);
@@ -63,6 +71,7 @@ public class UserController {
 
         userList.add(customer);
         System.out.println(customer.toString());
+
     }
 
     public void cancellation() {
@@ -167,16 +176,19 @@ public class UserController {
 
         System.out.print("Type employee's gross salary: ");
         double employeeGrossSalary = UserInputHandler.inputDouble();
-
+        try {
         User newEmployee = new Employee(
                 employeeName,
                 "password123",
                 employeeBirthYear,
-                employeeGrossSalary
-        );
-        userList.add(newEmployee);
+                employeeGrossSalary);
+                userList.add(newEmployee);
 
-        System.out.println("You added: " + newEmployee.toString());
+            System.out.println("You added: " + newEmployee.toString());
+
+        }catch (InvalidDataInput e){
+            System.out.println(e.getMessage());
+        }
 
     }
 

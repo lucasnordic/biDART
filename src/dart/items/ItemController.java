@@ -1,5 +1,6 @@
 package dart.items;
 
+import dart.tools.InvalidDataInput;
 import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
@@ -60,11 +61,14 @@ public class ItemController {
         System.out.print("Daily rent: ");
         double rent = UserInputHandler.inputDouble();
         //song.setDailyRent(rent);
-        Item song = new Song(title, rent, artist, releaseYear);
-        dartProducts.add(song);
+        try {
+            Item song = new Song(title, rent, artist, releaseYear);
+            dartProducts.add(song);
 
-        System.out.println(song.toString());
-
+            System.out.println(song.toString());
+        } catch (InvalidDataInput e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -101,10 +105,14 @@ public class ItemController {
         // game.setDailyRent(rent);
         System.out.print("Release year: ");
         int year = UserInputHandler.inputInt();
-        Item game = new Game(title, rent, year, genre);
+        try {
+            Item game = new Game(title, rent, year, genre);
 
-        dartProducts.add(game);
-        System.out.println(game.toString());
+            dartProducts.add(game);
+            System.out.println(game.toString());
+        } catch (InvalidDataInput e) {
+            System.out.println(e.getMessage());
+        }
 
        /* Game game = new Game(gameLastNumber++);//creating new game, next id +1
         gameLibrary.addGame(game);// method that allow to add games to library
@@ -229,11 +237,15 @@ public class ItemController {
 //        getCurrentTransaction().setDaysRented(item.daysBetween());
 //        getCurrentTransaction().setItemId(item.getID());
 
-        System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
-        // item.makeAvailableAgain(dateReturned);
+        try {System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
+       // item.makeAvailableAgain(dateReturned);
         storeDailyRent(finalTotalRent);
 //        item.storeDailyRent(finalTotalRent);
+        } catch (InvalidDataInput e){
+            System.out.println(e.getMessage());
+        }
     }
+
 
     public void storeDailyRent(double finalTotalRent) {
         totalRentProfit = (totalRentProfit + finalTotalRent);
