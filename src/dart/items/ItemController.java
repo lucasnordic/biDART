@@ -18,7 +18,6 @@ public class ItemController {
 //    private ArrayList<String> historyList = new ArrayList<>();
     private ArrayList<Transaction> transactionList = new ArrayList<>(); // We add values to this arrayList in rateItem
     double totalRentProfit = 0;
-
     private final int coolCredit = 5;
     private Item item;
     private Customer customer;
@@ -203,7 +202,9 @@ public class ItemController {
             customer.setCredit(credit - coolCredit);
             // ((Customer) user).setCredit(credit - 5);
             //returnee.makeAvailableAgain();
-            returnee.storeDailyRent(0);
+
+   //         returnee.storeDailyRent(0);
+
             rateItem(returnee,customer);
         }
 
@@ -231,9 +232,9 @@ public class ItemController {
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
         // item.makeAvailableAgain(dateReturned);
         storeDailyRent(finalTotalRent);
-        item.storeDailyRent(finalTotalRent);
+//        item.storeDailyRent(finalTotalRent);
     }
-    double totalRentProfit = 0;
+
     public void storeDailyRent(double finalTotalRent) {
         totalRentProfit = (totalRentProfit + finalTotalRent);
     }
@@ -252,11 +253,6 @@ public class ItemController {
 //        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
 //    }
 //
-
-  
-    public void menuShowTotalRentProfit() {
-        System.out.println("Total rent profit is " + totalRentProfit);
-    }
 
 
     public void rateItem(Item item, Customer customer) {
@@ -300,10 +296,7 @@ public class ItemController {
     }
 
 
-    public void storeDailyRent(double finalTotalRent) {
 
-        totalRentProfit = (totalRentProfit + finalTotalRent);
-    }
 //    public double dartDailyRent() {
 //        double totalRentProfit = 0;
 //        for (Item item : dartProducts) {
