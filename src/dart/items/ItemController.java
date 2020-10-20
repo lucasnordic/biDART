@@ -196,7 +196,6 @@ public class ItemController {
 
             returnee.makeAvailableAgain(dateReturned);
 //            customer.setCredit(credit - coolCredit);
-
 //            getCurrentTransaction().setItemId(returnee.getID());
 //            getCurrentTransaction().setDaysRented(returnee.daysBetween());
             // They shouldn't pay anything so their rent price is zero
@@ -212,7 +211,7 @@ public class ItemController {
 
 
     public void returnItem( Item item, double payablePercent, Customer customer) {
-
+      
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
         System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
@@ -234,11 +233,47 @@ public class ItemController {
         storeDailyRent(finalTotalRent);
         item.storeDailyRent(finalTotalRent);
     }
+    double totalRentProfit = 0;
+    public void storeDailyRent(double finalTotalRent) {
+        totalRentProfit = (totalRentProfit + finalTotalRent);
+    }
+
+//    public double dartDailyRent() {
+//        double totalRentProfit = 0;
+//        for (Item item : dartProducts) {
+//            totalRentProfit = (totalRentProfit + item.getDailyRent());
+//        }
+//        return totalRentProfit;//return value
+//
+//    }
+//
+//
+//    public void showTotalDailyRent() {
+//        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
+//    }
+//
+
+  
+    public void menuShowTotalRentProfit() {
+        System.out.println("Total rent profit is " + totalRentProfit);
+    }
 
 
     public void rateItem(Item item, Customer customer) {
         //We should also make a transaction here to store in the transactionList arrayList above.
         Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
+
+//    public void transactionSetUp() {
+//        transactions.add(currentTransaction);
+//        getCurrentTransaction().setReview(null);
+//        getCurrentTransaction().setRatingScore(0);
+//    }
+
+
+//    public void showTransaction() {
+//        System.out.println(transactions);
+//    }
+
 
         System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
         String input = UserInputHandler.inputString();
@@ -363,7 +398,6 @@ public class ItemController {
             }
         }
     }
-
 
 
     /**

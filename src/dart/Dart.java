@@ -181,6 +181,13 @@ public class Dart {
     }
 
 
+    public void menuRentHistory() {
+        /**
+         * See
+         */
+    }
+
+
     /**
      * These methods handles the Employee menu contents:
      */
@@ -422,15 +429,20 @@ public class Dart {
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt, "yes");
 
+        Customer customer = (Customer)userController.getCurrentUser();
+
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, menuItems.length);
-
         switch (menuChoice) {
             case 1 -> receiveMessage();
             case 2 -> sendMessage();
             case 3 -> removeMessage();
-            case 4 -> messageController.addMessageToList("upgrade", userController.getCurrentUserName(), userController.getCurrentUserId(), null);
+            case 4 -> messageController.addMessageToList(
+                    "Requesting Upgrade" + customer.getMembership(),
+                    userController.getCurrentUserName(),
+                    userController.getCurrentUserId(),
+                    null);
         }
     }
 

@@ -118,13 +118,7 @@ public class Item {
         return averageRating;
     }
 
-    public void storeDailyRent(double totalRent) {
-        totalRentProfit = (totalRentProfit + totalRent);
-    }
 
-    public void menuShowTotalRentProfit() {
-        System.out.println("Total rent profit is " + totalRentProfit);
-    }
 
     protected void rent(LocalDate dateRented) {
         rentStatus = "rented";
