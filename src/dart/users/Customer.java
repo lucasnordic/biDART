@@ -21,6 +21,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
     private int credit;
     private Membership membership;
     private final String type = "Customer";
+    private double totalPaidRent;
 
   
     /**
@@ -30,7 +31,9 @@ public class Customer extends User /*implements Comparable<Customer>*/{
     public Customer(String name, String password, Membership membership) {
         super(name, password);
         this.credit = 0;
+      this.totalPaidRent = 0.0;
         this.membership = membership;
+
         if (name.isEmpty() && password.isEmpty()) {
             throw new InvalidDataInput("Invalid data. Name and password cannot be empty.");
         }if (name.isEmpty()) {
@@ -39,13 +42,18 @@ public class Customer extends User /*implements Comparable<Customer>*/{
          if (password.isEmpty()) {
             throw new InvalidDataInput("Invalid data. Password cannot be empty.");
         } else {}
+        
     }
 
     public Customer(String name, String password) {
         this(name, password, new RegularMembership());
     }
 
-    public Customer() {}
+    public Customer() {
+
+    }
+
+//    public Customer() {}
 
 
     /**
@@ -56,7 +64,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return credit;
     }
 
-   public void setCredit(int credit) {
+    public void setCredit(int credit) {
         this.credit = credit;
     }
 
@@ -68,6 +76,13 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return membership;
     }
 
+    public void setTotalPaidRent(double totalPaidRent) {
+        this.totalPaidRent = totalPaidRent + this.totalPaidRent;
+    }
+
+    public double getTotalPaidRent() {
+        return totalPaidRent;
+    }
 
     @Override
     public String getType() {

@@ -21,7 +21,9 @@ public class Item {
     private double totalRentProfit;
     private ArrayList<Value> rating = new ArrayList<>();
 
-
+//case 6 -> most profitable
+            //case 7 -> most popular
+            //case 8 -> best customer
     //Constructor:
 
     public Item( String title, double dailyRent,int releaseYear) {
@@ -48,6 +50,14 @@ public class Item {
     //Getters & setters:
     public LocalDate getDateRented() {
         return dateRented;
+    }
+
+    public double getTotalRentProfit() {
+        return totalRentProfit;
+    }
+
+    public void setTotalRentProfit(double totalRentProfit) {
+        this.totalRentProfit = totalRentProfit;
     }
 
     public void setDateRented(LocalDate dateRented) {
@@ -121,19 +131,13 @@ public class Item {
         return averageRating;
     }
 
-    public void storeDailyRent(double totalRent) {
-        totalRentProfit = (totalRentProfit + totalRent);
-    }
 
-    public void menuShowTotalRentProfit() {
-        System.out.println("Total rent profit is " + totalRentProfit);
-    }
 
     protected void rent(LocalDate dateRented) {
         rentStatus = "rented";
         this.dateRented = dateRented; // date of rent is changing when item changes its status from available to rented
     }
-    protected void makeAvailableAgain(LocalDate dateReturned) {
+    public void makeAvailableAgain(LocalDate dateReturned) {
         rentStatus = "available";this.dateReturned =dateReturned;
     }
 

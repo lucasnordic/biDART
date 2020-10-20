@@ -6,6 +6,7 @@ package dart;
 
 import dart.items.ItemController;
 import dart.tools.Message;
+import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.*;
 import dart.tools.MessageController;
@@ -136,6 +137,10 @@ public class Dart {
                 "View all employees",
                 "Remove an employee",
                 "Calculate Net Salary",
+                "View transaction",
+                "Most profitable items",
+                "Most popular items",
+                "Best customers",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -159,7 +164,11 @@ public class Dart {
             }
             case 3 -> userController.removeEmployee();
             case 4 -> menuShowNetSalary();
-            case 5 -> mainMenu();
+            case 5 -> itemController.showTransaction();
+            case 6 -> itemController.profitableItems();
+            case 7 -> itemController.rentFrequency();
+            case 8 -> itemController.myFavoriteCustomer();
+            case 9 -> mainMenu();
         }
         menuManager();
     }
@@ -169,6 +178,13 @@ public class Dart {
     public void menuShowNetSalary() {
         System.out.println("The total net salary of all employees are " + userController.calculateNetSalary());
         UserInputHandler.pressAnyKeyCon();
+    }
+
+
+    public void menuRentHistory() {
+        /**
+         * See
+         */
     }
 
 
@@ -211,7 +227,7 @@ public class Dart {
             case 4 -> userController.cancellation();
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
-            case 7 -> itemController.showTotalDailyRent();
+           // case 7 -> itemController.menuShowTotalRentProfit();
             case 8 -> itemController.showAll();
             case 9 -> menuUpgradeCustomer();
             case 10 -> mainMenu();
@@ -413,15 +429,20 @@ public class Dart {
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt, "yes");
 
+        Customer customer = (Customer)userController.getCurrentUser();
+
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
         int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, menuItems.length);
-
         switch (menuChoice) {
             case 1 -> receiveMessage();
             case 2 -> sendMessage();
             case 3 -> removeMessage();
-            case 4 -> messageController.addMessageToList("upgrade", userController.getCurrentUserName(), userController.getCurrentUserId(), null);
+            case 4 -> messageController.addMessageToList(
+                    "Requesting Upgrade" + customer.getMembership(),
+                    userController.getCurrentUserName(),
+                    userController.getCurrentUserId(),
+                    null);
         }
     }
 
