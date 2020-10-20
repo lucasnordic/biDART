@@ -138,6 +138,9 @@ public class Dart {
                 "Remove an employee",
                 "Calculate Net Salary",
                 "View transaction",
+                "Most profitable items",
+                "Most popular items",
+                "Best customers",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -162,7 +165,10 @@ public class Dart {
             case 3 -> userController.removeEmployee();
             case 4 -> menuShowNetSalary();
             case 5 -> itemController.showTransaction();
-            case 6 -> mainMenu();
+            case 6 -> itemController.profitableItems();
+            case 7 -> itemController.rentFrequency();
+            case 8 -> itemController.myFavoriteCustomer();
+            case 9 -> mainMenu();
         }
         menuManager();
     }
@@ -221,7 +227,7 @@ public class Dart {
             case 4 -> userController.cancellation();
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
-            case 7 -> itemController.menuShowTotalRentProfit();
+           // case 7 -> itemController.menuShowTotalRentProfit();
             case 8 -> itemController.showAll();
             case 9 -> menuUpgradeCustomer();
             case 10 -> mainMenu();

@@ -9,28 +9,28 @@ import dart.users.UserController;
 //import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.UUID;
+import java.util.*;
 
 public class ItemController {
 
 
     private ArrayList<Item> dartProducts = new ArrayList<>();
-    private ArrayList<String> historyList = new ArrayList<>();
-    private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-    private Transaction currentTransaction = new Transaction();
+//    private ArrayList<String> historyList = new ArrayList<>();
+    private ArrayList<Transaction> transactionList = new ArrayList<>(); // We add values to this arrayList in rateItem
+    double totalRentProfit = 0;
+
     private final int coolCredit = 5;
+    private Item item;
+    private Customer customer;
 
 
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
+//    public Transaction getCurrentTransaction() {
+//        return currentTransaction;
+//    }
+//
+//    public void setCurrentTransaction(Transaction currentTransaction) {
+//        this.currentTransaction = currentTransaction;
+//    }
 
 
 
@@ -39,39 +39,10 @@ public class ItemController {
     }
 
 
-    public void sortByAverageRating() {
-        for (int i = 0; i < dartProducts.size(); i++) { //firstly we search for i in array
-            for (int j = i + 1; i < dartProducts.size(); i++) { //then we search for j, which stands next to  i and compare them
-                if (dartProducts.get(j).findAverageRating() > dartProducts.get(i).findAverageRating()) {//compare them
-                    Item buffer = dartProducts.get(i); //temporary value which keep the number of index should be replaced
-                    dartProducts.set(i, dartProducts.get(j)); //replace i to j
-                    dartProducts.set(j, buffer);//replace j to i
-                }
-            }
-        }
-        showAll();
-    }
 
-
-    public void sortByAverageRatingUsingInterfaces() {
-        Collections.sort(dartProducts, new Comparator<Item>() {
-            @Override
-            public int compare(Item o1, Item o2) {
-                return Double.compare(o2.findAverageRating(), o1.findAverageRating());
-            }
-        });
-
-    }
-
-
-    public void sortByYearUsingInterfaces() {
-        Collections.sort(dartProducts, new Comparator<Item>() {
-            @Override
-            public int compare(Item o1, Item o2) {
-                return o2.getReleaseYear() - o1.getReleaseYear();
-            }
-        });
-    }
+    /**
+     * Adding and deleting items
+     */
 
 
     public void addSong() {
@@ -153,7 +124,11 @@ public class ItemController {
     }
 
 
-//    public void rentProcess(User user) {
+    /**
+     * Renting and removing items
+     */
+
+    //    public void rentProcess(User user) {
 //        int maxAllowedRent = ((Customer) user).getMaxAllowedRent();
 //        for (int i = 0; i < maxAllowedRent; i++) {
 //            rentItem();
@@ -161,7 +136,7 @@ public class ItemController {
 //        }
 //    }
     public void rentProcess(Customer customer) {
-        int maxAllowedRent = customer.getMaxAllowedRent();
+        int maxAllowedRent = customer.getMaxAllowedRent(); //here we get the maximum number of items each customer is allowed to rent depending on their type of membership.
         for (int i = 0; i < maxAllowedRent; i++) {
             rentItem();
             customer.addCredit();
@@ -199,33 +174,21 @@ public class ItemController {
     }
 
 
-    public Item findItem(String Id) {
-        for (int i = 0; i < dartProducts.size(); i++) {
-            if (Id.equals(dartProducts.get(i).getID().toString())) {
-
-                return dartProducts.get(i);
-            }
-        }
-        System.out.println("Product with ID " + Id + " not found");
-        return null;
-    }
-
-
     public void returnProcess(Customer customer) { //why we here didnt call just a customer
-      //  int credit = ((Customer) user).getCredit();
+        //  int credit = ((Customer) user).getCredit();
         int credit = customer.getCredit();
-        getCurrentTransaction().setCustomerId(customer.getId());
+        //getCurrentTransaction().setCustomerId(customer.getId());
 
         System.out.print("Insert the ID of the item you wish to return:");
         String inputID = UserInputHandler.inputString();
         Item returnee = findItem(inputID);
 
-
+        // We should check if the customers credit is high enough to rent items for free
         if (credit < coolCredit) {
             // double payablePercent = ((Customer) user).payablePercent();
-            double payablePercent = customer.payablePercent();
-            returnItem(returnee, payablePercent);
-            rateItem(returnee);
+            double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
+            returnItem(returnee, payablePercent, customer);
+            rateItem(returnee,customer);
 
         } else {
             System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
@@ -233,40 +196,42 @@ public class ItemController {
 
             returnee.makeAvailableAgain(dateReturned);
 //            customer.setCredit(credit - coolCredit);
-
-            getCurrentTransaction().setItemId(returnee.getID());
-            getCurrentTransaction().setDaysRented(returnee.daysBetween());
-
+//            getCurrentTransaction().setItemId(returnee.getID());
+//            getCurrentTransaction().setDaysRented(returnee.daysBetween());
+            // They shouldn't pay anything so their rent price is zero
             System.out.println("The total rent is 0. ");
             customer.setCredit(credit - coolCredit);
-           // ((Customer) user).setCredit(credit - 5);
+            // ((Customer) user).setCredit(credit - 5);
             //returnee.makeAvailableAgain();
-            rateItem(returnee);
+            returnee.storeDailyRent(0);
+            rateItem(returnee,customer);
         }
 
     }
 
 
-    public void returnItem( Item item, double payablePercent) {
-
+    public void returnItem( Item item, double payablePercent, Customer customer) {
+      
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
         System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
         LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
         item.makeAvailableAgain(dateReturned);
 
-        double dailyRent = item.getDailyRent();
-        double finalDailyRent = payablePercent * dailyRent;
+        double dailyRent = item.getDailyRent(); //This is Item's price without discount implementation'
+        double finalDailyRent = payablePercent * dailyRent; // price after discount
 
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
+        customer.setTotalPaidRent(finalTotalRent);
 
-        getCurrentTransaction().setDaysRented(item.daysBetween());
-        getCurrentTransaction().setItemId(item.getID());
+//        getCurrentTransaction().setDaysRented(item.daysBetween());
+//        getCurrentTransaction().setItemId(item.getID());
 
         System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
-       // item.makeAvailableAgain(dateReturned);
+        // item.makeAvailableAgain(dateReturned);
         storeDailyRent(finalTotalRent);
+        item.storeDailyRent(finalTotalRent);
     }
     double totalRentProfit = 0;
     public void storeDailyRent(double finalTotalRent) {
@@ -288,41 +253,96 @@ public class ItemController {
 //    }
 //
 
-
-
-
+  
     public void menuShowTotalRentProfit() {
         System.out.println("Total rent profit is " + totalRentProfit);
     }
 
 
-    public void transactionSetUp() {
-        transactions.add(currentTransaction);
+    public void rateItem(Item item, Customer customer) {
+        //We should also make a transaction here to store in the transactionList arrayList above.
+        Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
+
+//    public void transactionSetUp() {
+//        transactions.add(currentTransaction);
 //        getCurrentTransaction().setReview(null);
 //        getCurrentTransaction().setRatingScore(0);
-    }
+//    }
 
 
-    public void showTransaction() {
-        System.out.println(transactions);
-    }
+//    public void showTransaction() {
+//        System.out.println(transactions);
+//    }
 
 
-    public void rateItem(Item item) {
         System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
         String input = UserInputHandler.inputString();
+
         if (input.equalsIgnoreCase("Y")) {
             System.out.print("Please give any number between 0 and 5: ");
             int userRating = UserInputHandler.inputInt();
-            getCurrentTransaction().setRatingScore(userRating);
+
+            //getCurrentTransaction().setRatingScore(userRating);
+            //System.out.println("Do you want to write a review? Answer Y for yes or N for no: ");
+
             System.out.print("Please write a review: ");
             String review = UserInputHandler.inputString();
-            getCurrentTransaction().setReview(review);
+
+            //getCurrentTransaction().setReview(review);
+
             Value value = new Value(userRating, review);
             item.addValue(value);
+
+            currentTransaction.setRatingScore(userRating);
+            currentTransaction.setReview(review);
         }
+        transactionList.add(currentTransaction);
     }
 
+
+    public void storeDailyRent(double finalTotalRent) {
+
+        totalRentProfit = (totalRentProfit + finalTotalRent);
+    }
+//    public double dartDailyRent() {
+//        double totalRentProfit = 0;
+//        for (Item item : dartProducts) {
+//            totalRentProfit = (totalRentProfit + item.getDailyRent());
+//        }
+//        return totalRentProfit;//return value
+//
+//    }
+//
+//
+//    public void showTotalDailyRent() {
+//        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
+//    }
+//
+
+    /**
+     * Showing methods
+     */
+
+
+    public void menuShowTotalRentProfit() {
+        System.out.println("Total rent profit is " + totalRentProfit);
+    }
+//    public void transactionSetUp() {
+//        transactions.add(currentTransaction);
+////        getCurrentTransaction().setReview(null);
+////        getCurrentTransaction().setRatingScore(0);
+//    }
+
+    public void showTransaction() {
+        System.out.println(transactionList);
+    }
+//    public void addTransaction (Item item, Customer customer){
+//        Transaction currentTransaction = new Transaction(item.getID(), customer.getId(), item.daysBetween());
+////        currentTransaction.setRatingScore(userRating);
+////        currentTransaction.setReview(review);
+//        transactionList.add(currentTransaction);
+//
+//    }
 
     public void showAll() {
         for (Item item : dartProducts) {
@@ -380,6 +400,121 @@ public class ItemController {
     }
 
 
+    /**
+     * Sort related methods
+     */
+
+
+    public void sortByAverageRating() {
+        for (int i = 0; i < dartProducts.size(); i++) { //firstly we search for i in array
+            for (int j = i + 1; i < dartProducts.size(); i++) { //then we search for j, which stands next to  i and compare them
+                if (dartProducts.get(j).findAverageRating() > dartProducts.get(i).findAverageRating()) {//compare them
+                    Item buffer = dartProducts.get(i); //temporary value which keep the number of index should be replaced
+                    dartProducts.set(i, dartProducts.get(j)); //replace i to j
+                    dartProducts.set(j, buffer);//replace j to i
+                }
+            }
+        }
+        showAll();
+    }
+
+
+    public void sortByAverageRatingUsingInterfaces() {
+        Collections.sort(dartProducts, new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                return Double.compare(o2.findAverageRating(), o1.findAverageRating());
+            }
+        });
+
+    }
+
+
+    public void sortByYearUsingInterfaces() {
+        Collections.sort(dartProducts, new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                return o2.getReleaseYear() - o1.getReleaseYear();
+            }
+        });
+    }
+
+
+    public void profitableItems() {
+
+        ArrayList <Item> profitableItems = new ArrayList<>(); // We make an arrayList and store the Items that were rented during running Dart.
+        for (int i = 0; i < transactionList.size(); i++) {
+            Item item = transactionList.get(i).getItem();
+            profitableItems.add(item);
+        }
+
+        //Then we sort the arrayList so that the item with the highest profit goes in the first position.
+        for (int i = 0; i < profitableItems.size(); i++) { //firstly we search for i in array
+            for (int j = i + 1; i < profitableItems.size(); i++) { //then we search for j, which stands next to  i and compare them
+                if (profitableItems.get(j).getTotalRentProfit() > profitableItems.get(i).getTotalRentProfit()) {//compare them
+                    Item buffer = profitableItems.get(i); //temporary value which keep the number of index should be replaced
+                    profitableItems.set(i, profitableItems.get(j)); //replace i to j
+                    profitableItems.set(j, buffer);//replace j to i
+                }
+            }
+        }
+
+        System.out.println(profitableItems.get(0)); //We display the first element of the List which is he highest.
+    }
+
+
+    public void rentFrequency() {
+
+        ArrayList<Item> rentFrequency = new ArrayList<>();
+        for (int i = 0; i < transactionList.size(); i++) {
+            Item item = transactionList.get(i).getItem();
+            rentFrequency.add(item);
+        }
+
+        ArrayList<Integer> itemFrequency = new ArrayList<>();
+
+        for (int i = 0; i < rentFrequency.size(); i++) {
+            int counter = 1;
+            for (int j = i + 1; i < rentFrequency.size(); i++) {
+                if (rentFrequency.get(j).getID().equals(rentFrequency.get(i).getID())) {
+                    rentFrequency.remove(j);
+                    counter++ ;
+                }
+                itemFrequency.add(counter);
+            }
+        }
+        int maxValue = Collections.max(itemFrequency);
+        int maxIndex = itemFrequency.indexOf(maxValue);
+        System.out.println(rentFrequency.get(maxIndex));
+    }
+
+
+    public void myFavoriteCustomer() {
+        ArrayList<Customer> activeCustomers = new ArrayList<>();
+        for (int i = 0; i < transactionList.size(); i++) {
+            Customer activeCustomer = transactionList.get(i).getCustomer();
+            activeCustomers.add(activeCustomer);
+        }
+
+        for (int i = 0; i < activeCustomers.size(); i++) {
+            for (int j = i + 1; i < activeCustomers.size(); i++) {
+                if (activeCustomers.get(j).getTotalPaidRent() > activeCustomers.get(i).getTotalPaidRent()) {
+                    Customer buffer = activeCustomers.get(i);
+                    activeCustomers.set(i, activeCustomers.get(j));
+                    activeCustomers.set(j, buffer);
+                }
+            }
+        }
+
+        System.out.println(activeCustomers.get(0));
+
+
+    }
+
+
+    /**
+     * Search methods
+     */
 
 
     public void findGame(String genre) {
@@ -395,6 +530,7 @@ public class ItemController {
         }
     }
 
+
     public void findSong(int year) {
         for (Item item : dartProducts) {
             if (item instanceof Song) {
@@ -404,6 +540,18 @@ public class ItemController {
                 }
             }
         }
+    }
+
+
+    public Item findItem(String Id) {
+        for (int i = 0; i < dartProducts.size(); i++) {
+            if (Id.equals(dartProducts.get(i).getID().toString())) {
+
+                return dartProducts.get(i);
+            }
+        }
+        System.out.println("Product with ID " + Id + " not found");
+        return null;
     }
 
 
