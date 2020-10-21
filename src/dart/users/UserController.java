@@ -245,8 +245,8 @@ public class UserController {
      */
 
     public void mockData() {
-//        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-//        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
+        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
 //        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
 //        addEmployee(new Employee("Deba","koko", 309, 10.0));
 //        addEmployee(new Employee("Olga","koko", 1769, 10.0));
