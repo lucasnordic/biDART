@@ -5,16 +5,20 @@ import java.util.UUID;
 public class Message {
     private String messageFromId; // we want to store the id from the sender.
     private String name;          // Same with name.
-    private String messageToId;   // If message to null thenmessage goes to all employees.
+    private String messageToId;   // If message to null then message goes to all employees.
     private String message;       // If message == upgrade then user wants an upgrade
     private final String messageId = UUID.randomUUID().toString();
     private boolean isRead;
+    private String type;          // personal, employee. if customer then  we check messageTo ID.
+                                  // If employee then we only check type.
+                                  // the message is for all employees.
 
-    public Message(String message, String name, String messageFromId, String messageToId) {
+    public Message(String message, String name, String messageFromId, String messageToId, String type) {
         this.messageFromId = messageFromId;
         this.name = name;
         this.messageToId = messageToId;
         this.message = message;
+        this.type = type;
     }
 
     public boolean isRead() {
@@ -44,6 +48,14 @@ public class Message {
 
     public String getMessageId() {
         return messageId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isOfType(String type) {
+        return this.type.equals(type);
     }
 
     @Override

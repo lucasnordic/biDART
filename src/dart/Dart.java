@@ -101,7 +101,6 @@ public class Dart {
 //            boolean userFound = userController.checkIfUserExists(userName, inputPassword);
 
         User user = userController.getUserWithNameAndPassword(userName, inputPassword);
-
         if (user instanceof Customer) {
             userController.setCurrentUser(user);
             menuCustomer();
@@ -132,24 +131,15 @@ public class Dart {
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
-
-        // Here we send this content to be printed:
-        printMenuItems(title, menuItems, inputPrompt, "yes");
-
-        //  Here we store the max and min choice of the "menuItems":
-        int minMenuChoice = 1;
-        int maxMenuChoice = menuItems.length;
+        printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send this content to be printed:
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
 
         // Here we go to different menus based on user input:
         switch (menuChoice) {
             case 1 -> userController.addEmployee();
-            case 2 -> {
-                userController.showEmployeeList();
-                UserInputHandler.pressAnyKeyCon();
-            }
+            case 2 -> userController.showEmployeeList();
             case 3 -> userController.removeEmployee();
             case 4 -> menuShowNetSalary();
             case 5 -> itemController.showTransaction();
@@ -419,18 +409,18 @@ public class Dart {
 
         Customer customer = (Customer)userController.getCurrentUser();
 
-        //  Here we store the max and min choice based on "menuItems":
-        int minMenuChoice = 1;
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, menuItems.length);
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
         switch (menuChoice) {
             case 1 -> receiveMessage();
             case 2 -> sendMessage();
             case 3 -> removeMessage();
             case 4 -> messageController.addMessageToList(
-                    "Requesting Upgrade" + customer.getMembership(),
+                    "Requesting upgrade from " + customer.getMembership().getMembershipClass() + " membership.",
                     userController.getCurrentUserName(),
                     userController.getCurrentUserId(),
-                    null);
+                    null,
+                    "upgrade"
+            );
         }
     }
 
@@ -439,7 +429,7 @@ public class Dart {
         //String userID = userController.getCurrentUserId();
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
         for (Message message : messages) {
-            System.out.println(message);
+            System.out.println("Text : " + message);
             message.setRead();
         }
 
@@ -456,7 +446,7 @@ public class Dart {
         System.out.print("Write your message: ");
         String message = UserInputHandler.inputString();
 
-        messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id);
+        messageController.addMessageToList(message, userController.getCurrentUserName(), userController.getCurrentUserId(), id, "personal");
 
         UserInputHandler.pressAnyKeyCon();
     }
@@ -481,7 +471,6 @@ public class Dart {
      * These methods handle printing certain parts related to menu's:
      */
 
-
     private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
         if (line.equalsIgnoreCase("yes")) {
             System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
@@ -496,10 +485,9 @@ public class Dart {
 //            System.out.println(subMenu);
 //        }
 
-        System.out.println(" ");
+        System.out.println("");
         System.out.print(inputPrompt);
     }
-
 
     public static void printIntroAscii() {
         System.out.println(" _   _ ____  _____ _____ _____ \n" +
@@ -507,8 +495,6 @@ public class Dart {
                 "| . | |  |  |     |    -| | |  \n" +
                 "|___|_|____/|__|__|__|__| |_|  ");
     }
-
-
     private static void printOutroAscii() {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("                       _   \n" +

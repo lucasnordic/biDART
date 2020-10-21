@@ -69,8 +69,8 @@ public class UserController {
     }
 
     public void cancellation() {
-
-        System.out.println("Which customer should be removed? ID:");
+        showCustomerListNameId();
+        System.out.print("Which customer should be removed? ID: ");
         String ID = UserInputHandler.inputString();
 
         for (int i = 0; i < userList.size(); i++) {
@@ -79,11 +79,12 @@ public class UserController {
 
             if (customerId.equals(ID)) {
                 userList.remove(i);
-                System.out.println(userList);
+                System.out.println("Customer is removed!");
             } else {
-                System.out.println("Customer's ID not found");
+                System.out.println("Customer's ID not found!");
             }
         }
+        UserInputHandler.pressAnyKeyCon();
     }
 
     public void addCustomer(Customer customer){
@@ -118,6 +119,7 @@ public class UserController {
                 System.out.println(user);
             }
         }
+        UserInputHandler.pressAnyKeyCon();
     }
 
     public void addEmployee() {
@@ -139,11 +141,11 @@ public class UserController {
                 userList.add(newEmployee);
 
             System.out.println("You added: " + newEmployee.toString());
+            UserInputHandler.pressAnyKeyCon();
 
         }catch (InvalidDataInput e){
             System.out.println(e.getMessage());
         }
-
     }
 
     public void addEmployee(Employee employee){
@@ -243,17 +245,17 @@ public class UserController {
      */
 
     public void mockData() {
-        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
-        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
-        addEmployee(new Employee("Deba","koko", 309, 10.0));
-        addEmployee(new Employee("Olga","koko", 1769, 10.0));
-
+//        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+//        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
+//        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
+//        addEmployee(new Employee("Deba","koko", 309, 10.0));
+//        addEmployee(new Employee("Olga","koko", 1769, 10.0));
+//
         addCustomer(new Customer("lucas", "123"));
         addCustomer(new Customer("maryam", "234"));
-        addCustomer(new Customer("deba", "345"));
-        addCustomer(new Customer("anwar", "456"));
-        addCustomer(new Customer("olga", "567"));
+//        addCustomer(new Customer("deba", "345"));
+//        addCustomer(new Customer("anwar", "456"));
+//        addCustomer(new Customer("olga", "567"));
     }
 }
 

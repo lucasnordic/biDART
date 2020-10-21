@@ -8,28 +8,29 @@ import java.util.ArrayList;
 
 public class MessageController {
     private ArrayList<Message> messageList = new ArrayList<>();
+//    private ArrayList<Message> upgradeList = new ArrayList<>();
 
     public ArrayList<Message> getMessageListForUser(User user) {
         ArrayList<Message> userMessages = new ArrayList<>();
-        for (int i = 0; i < messageList.size(); i++) {
-            Message message = messageList.get(i);
 
-            if (user instanceof Employee && message.getMessageTo() == null) {
+        for (Message message : messageList) {
+            if (message.isOfType("employee") && user instanceof Employee) {
                 userMessages.add(message);
-            } else if( user instanceof Customer && message.getMessageTo().equals(user.getId())){
-                userMessages.add(message);
+            } else if (message.isOfType("personal") && user instanceof Customer) {
+                if (message.getMessageTo().equals(user.getId())) {
+                    userMessages.add(message);
+                }
             }
         }
+
         return userMessages;
     }
 
-    public Message addMessageToList(String message, String name, String messageFromId, String messageToUserId) {
-        Message newMessage = new Message(message, name, messageFromId, messageToUserId);
+    public Message addMessageToList(String message, String name, String messageFromId, String messageToUserId, String type) {
+        Message newMessage = new Message(message, name, messageFromId, messageToUserId, type);
         messageList.add(newMessage);
 
-        System.out.print(
-                "Message sent! "
-        );
+        System.out.println("Message sent! ");
 
         return newMessage;
     }

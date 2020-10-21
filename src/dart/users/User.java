@@ -1,5 +1,8 @@
 package dart.users;
 
+import dart.tools.Message;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -12,6 +15,7 @@ public abstract class User {
     private String name;
     private String password;
     private final String type = "User";
+    private ArrayList<Message> messageList = new ArrayList<>();
 
   
     /**

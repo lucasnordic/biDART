@@ -20,6 +20,7 @@ public class UserInputHandler {
     public static void pressAnyKeyCon() {
         System.out.print("Press enter to continue: ");
         input.nextLine();
+        System.out.print("");
     }
 
     // Input and return a String:
