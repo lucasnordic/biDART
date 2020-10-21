@@ -6,7 +6,6 @@ package dart;
 
 import dart.items.ItemController;
 import dart.tools.Message;
-import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.*;
 import dart.tools.MessageController;
@@ -37,7 +36,7 @@ public class Dart {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
-        printMenuItems(title, subMenus, inputPrompt, "no"); // We print the menu.
+        printMenuItems(title, subMenus, inputPrompt, "yes"); // We print the menu.
 
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
@@ -223,7 +222,7 @@ public class Dart {
 
         //shown all messages as a numbered list.
         for (int i = 0; i < messages.size(); i++) {
-            System.out.println(i + 1 + " " + messages.get(i));
+            System.out.println(/*i + 1 + " " +*/ messages.get(i));
         }
 
         String title = "What would you like to do:";
@@ -233,7 +232,7 @@ public class Dart {
                 "Return to main menu"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "no");
+        printMenuItems(title, menuItems, inputPrompt, "yes");
         // TODO: I have to check if no upgrade
 
         //  Here we store the max and min choice based on "menuItems" size:
@@ -282,6 +281,7 @@ public class Dart {
 
             messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
         }
+        menuEmployee();
     }
 
 
@@ -402,7 +402,8 @@ public class Dart {
                 "View inbox",
                 "Send a message",
                 "Remove message",
-                "Send a membership upgrade request"
+                "Send a membership upgrade request",
+                "Go back"
         };
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt, "yes");
@@ -411,7 +412,7 @@ public class Dart {
 
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
         switch (menuChoice) {
-            case 1 -> receiveMessage();
+            case 1 -> receiveNewMessage();
             case 2 -> sendMessage();
             case 3 -> removeMessage();
             case 4 -> messageController.addMessageToList(
@@ -419,18 +420,25 @@ public class Dart {
                     userController.getCurrentUserName(),
                     userController.getCurrentUserId(),
                     null,
-                    "upgrade"
+                    "employee"
             );
+            case 5 -> menuCustomer();
         }
+        messageCenterMenu();
     }
 
-
-    private void receiveMessage() {
+    // you are getting all messages from array list of the current user who logged in.
+    // Then we check all the messages and if they are read or not and print only unread.
+    private void receiveNewMessage() {
         //String userID = userController.getCurrentUserId();
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
         for (Message message : messages) {
-            System.out.println("Text : " + message);
-            message.setRead();
+            if (!(message.getIsRead())) {
+                System.out.println(message);
+                message.setRead();
+            } else {
+                System.out.println("No new messages found!");
+            }
         }
 
         UserInputHandler.pressAnyKeyCon();
@@ -454,14 +462,14 @@ public class Dart {
 
     private void removeMessage() {
         ArrayList<Message> messages = messageController.getMessageListForUser(userController.getCurrentUser());// you are getting all messages from array list of the current user who logged in
-
-        for (int i = 0; i < messages.size(); i++) {
-            System.out.println(i + 1 + " " + messages.get(i));//shown all messages as a numbered list.
+        for (Message message : messages) {
+            System.out.println(message);//shown all messages
         }
-        System.out.println("Please choose a number of message that should be removed: ");
-        int choice = UserInputHandler.inputInt() - 1;// indexes are smaller by one step
 
-        messageController.removeMessage(choice);
+        System.out.print("Please type the ID of the message that should be removed: ");
+        String userID = UserInputHandler.inputString();
+
+        messageController.removeMessageFromListBasedOnCustomerId(userID);
 
         UserInputHandler.pressAnyKeyCon();
     }

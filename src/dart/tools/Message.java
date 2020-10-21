@@ -21,7 +21,7 @@ public class Message {
         this.type = type;
     }
 
-    public boolean isRead() {
+    public boolean getIsRead() {
         return isRead;
     }
 
@@ -60,10 +60,11 @@ public class Message {
 
     @Override
     public String toString() {
-        return "New message!\n" +
-                "From : " + name + " : " + messageFromId + "\n" +
-                "" + message + "\n";
-//                "Status:" + "(" + (isRead ? "read" : "unread ") + ")";//boolean that change read to unread and back
+        return "Message Inbox :)\n" +
+                "Status : " + "(" + (isRead ? "read" : " unread ") + ")\n" +//boolean that change read to unread and back
+                "From   : " + name + " : " + messageFromId + "\n" +
+                "Text   : " + message + "\n";
+
 
         //", messageStatus='" + messageStatus + '\'' +;
     }
