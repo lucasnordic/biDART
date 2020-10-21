@@ -17,21 +17,9 @@ import java.util.ArrayList;
 
 public class Dart {
 
-
-
-
     private ItemController itemController = new ItemController();
     public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
-
-    public User user = userController.getCurrentUser();
-//    private ViewManager viewManager;
-//    public User user = userController.getCurrentUser();
-////    private ViewManager viewManager;
-
-
-
-
 
 
     /**
@@ -531,3 +519,13 @@ public class Dart {
                 "      |___|           |_|  ");
     }
 }
+
+
+
+/*  OLD CODE:
+
+//    public User user = userController.getCurrentUser();
+
+
+
+ */
