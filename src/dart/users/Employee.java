@@ -1,8 +1,8 @@
 package dart.users;
 
 import dart.tools.InvalidDataInput;
-
 import java.util.Calendar;
+
 
 /**
  * This class handles the Employee and methods related:
@@ -15,6 +15,7 @@ public class Employee extends User {
     private double grossSalary;
     private String type = "Employee";
     private double netSalary;
+
 
     /**
      *  Constructors here. We can choose to create an empty Employee or if we want to send create an employee with attributes:
@@ -36,6 +37,7 @@ public class Employee extends User {
     public Employee() {
         super();
     }
+
 
     /**
      *  Getters and setters:
@@ -63,10 +65,6 @@ public class Employee extends User {
         return netSalary;
     }
 
-    @Override
-    public String getType() {
-        return type;
-    }
 
     /**
      *  Methods:
@@ -86,9 +84,15 @@ public class Employee extends User {
         }
     }
 
+
     /**
      *  Override:
      */
+
+    @Override
+    public String getType() {
+        return this.type;
+    }
 
     @Override
     public String toString () {

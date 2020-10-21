@@ -1,11 +1,10 @@
 package dart.users;
 
-import dart.items.Item;
-import dart.items.ItemController;
 import dart.tools.InvalidDataInput;
 import dart.tools.UserInputHandler;
 
 import java.util.ArrayList;
+
 
 /**
  * This class handles all Users and the methods required.
@@ -13,8 +12,6 @@ import java.util.ArrayList;
 
 public class UserController {
 
-    private ArrayList<Customer> customerList = new ArrayList<>();
-    private ArrayList<Employee> employeeList = new ArrayList<>();
     private ArrayList<User> userList = new ArrayList<>();
     private User currentUser;
 
@@ -26,7 +23,6 @@ public class UserController {
     /**
      * This controls the logged in user:
      */
-
 
     public String getCurrentUserId() {
         return currentUser.getId();
@@ -48,7 +44,6 @@ public class UserController {
     /**
      * These methods are related to Customers:
      */
-
 
     public void registration() {
 
@@ -79,13 +74,13 @@ public class UserController {
         System.out.println("Which customer should be removed? ID:");
         String ID = UserInputHandler.inputString();
 
-        for (int i = 0; i < customerList.size(); i++) {
+        for (int i = 0; i < userList.size(); i++) {
 
-            String customerId = (customerList.get(i)).getId();
+            String customerId = (userList.get(i)).getId();
 
             if (customerId.equals(ID)) {
-                customerList.remove(i);
-                System.out.println(customerList);
+                userList.remove(i);
+                System.out.println(userList);
             } else {
                 System.out.println("Customer's ID not found");
             }
@@ -94,60 +89,6 @@ public class UserController {
 
     public void addCustomer(Customer customer){
         userList.add(customer);
-    }
-
-  
-    public void requestMembership() {
-        System.out.println("");
-    }
-
-
-//    public void cancellation() {
-//
-//        System.out.println("Which customer should be removed? ID:");
-//        int ID = UserInputHandler.inputInt();
-//
-//        for (int i = 0; i < customerList.size(); i++) {
-//
-//            int a = (customerList.get(i)).getId();
-//
-//            if (a == ID) {
-//
-//                customerList.remove(i);
-//                System.out.println(customerList);
-//            } else {
-//                System.out.println("Customer's ID not found");
-//            }
-//        }
-//    }
-
-//    public void customerMembership() {
-//        Customer newCustomer = null;
-//        do {
-//            System.out.print("Do you want to upgrade your membership type(type yes or no): ");
-//            String[] validChoices = {"yes", "no"};
-//            String yesNo = UserInputHandler.inputValidString(validChoices);
-//            switch (yesNo) {
-//                case "yes" -> registerCustomer();
-//                case "no" -> registerCustomer();
-//            }
-//
-//        }while(newCustomer == null);
-//    }
-
-
-    /**
-     * These methods are related to Employees:
-     */
-
-
-    // Prints the list of employees:
-    public void showEmployeeList() {
-        for (User user : userList) {
-            if (user instanceof Employee){
-                System.out.println(user);
-            }
-        }
     }
 
     public void showCustomerList() {
@@ -162,6 +103,20 @@ public class UserController {
         for (User user : userList) {
             if (user instanceof Customer){
                 System.out.println(user.getName() + " : " + user.getId());
+            }
+        }
+    }
+
+
+    /**
+     * These methods are related to Employees:
+     */
+
+    // Prints the list of employees:
+    public void showEmployeeList() {
+        for (User user : userList) {
+            if (user instanceof Employee){
+                System.out.println(user);
             }
         }
     }
@@ -247,18 +202,9 @@ public class UserController {
     }
 
 
-    /*
-    public void manageCustomerUpgrades(Customer customer) {
-
-    }
-     */
-
-
-
     /**
      * Here we check if a user exists:
      */
-
 
     public User getUserWithNameAndPassword(String name, String password) {
         User userFound = null;
@@ -293,8 +239,46 @@ public class UserController {
     }
 
 
+    /**
+     * This is "test" data:
+     */
 
-    // old method:
+    public void mockData() {
+        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
+        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
+        addEmployee(new Employee("Deba","koko", 309, 10.0));
+        addEmployee(new Employee("Olga","koko", 1769, 10.0));
+
+        addCustomer(new Customer("lucas", "123"));
+        addCustomer(new Customer("maryam", "234"));
+        addCustomer(new Customer("deba", "345"));
+        addCustomer(new Customer("anwar", "456"));
+        addCustomer(new Customer("olga", "567"));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// old methods:
+
+//    private ArrayList<Customer> customerList = new ArrayList<>();
+//    private ArrayList<Employee> employeeList = new ArrayList<>();
+
 /*
     public boolean checkIfUserExists(String name, String password) {
         boolean userFound = false;
@@ -322,7 +306,7 @@ public class UserController {
     }
  */
 
-    //        if (user instanceof Customer) {
+//        if (user instanceof Customer) {
 ////            CustomerSilver customerSilver =
 //            System.out.println(
 //                    "User is upgraded to Silver." +
@@ -349,23 +333,39 @@ public class UserController {
 //            UserInputHandler.pressAnyKeyCon();
 //        }
 
+//    public void requestMembership() {
+//        System.out.println("");
+//    }
 
-    /**
-     * This is "test" data:
-     */
+//    public void cancellation() {
+//
+//        System.out.println("Which customer should be removed? ID:");
+//        int ID = UserInputHandler.inputInt();
+//
+//        for (int i = 0; i < customerList.size(); i++) {
+//
+//            int a = (customerList.get(i)).getId();
+//
+//            if (a == ID) {
+//
+//                customerList.remove(i);
+//                System.out.println(customerList);
+//            } else {
+//                System.out.println("Customer's ID not found");
+//            }
+//        }
+//    }
 
-
-    public void mockData() {
-        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
-        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
-        addEmployee(new Employee("Deba","koko", 309, 10.0));
-        addEmployee(new Employee("Olga","koko", 1769, 10.0));
-
-        addCustomer(new Customer("lucas", "123"));
-        addCustomer(new Customer("maryam", "234"));
-        addCustomer(new Customer("deba", "345"));
-        addCustomer(new Customer("anwar", "456"));
-        addCustomer(new Customer("olga", "567"));
-    }
-}
+//    public void customerMembership() {
+//        Customer newCustomer = null;
+//        do {
+//            System.out.print("Do you want to upgrade your membership type(type yes or no): ");
+//            String[] validChoices = {"yes", "no"};
+//            String yesNo = UserInputHandler.inputValidString(validChoices);
+//            switch (yesNo) {
+//                case "yes" -> registerCustomer();
+//                case "no" -> registerCustomer();
+//            }
+//
+//        }while(newCustomer == null);
+//    }

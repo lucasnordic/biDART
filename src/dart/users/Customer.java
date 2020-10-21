@@ -15,9 +15,6 @@ public class Customer extends User /*implements Comparable<Customer>*/{
      * Attributes
      */
 
-    private static double discount = 0;
-    private static int maxAllowedRent = 1;
-    private static int additionalCredit = 0;
     private int credit;
     private Membership membership;
     private final String type = "Customer";
@@ -25,13 +22,13 @@ public class Customer extends User /*implements Comparable<Customer>*/{
 
   
     /**
-     * Constructor
+     * Constructors:
      */
 
     public Customer(String name, String password, Membership membership) {
         super(name, password);
         this.credit = 0;
-      this.totalPaidRent = 0.0;
+        this.totalPaidRent = 0.0;
         this.membership = membership;
 
         if (name.isEmpty() && password.isEmpty()) {
@@ -52,8 +49,6 @@ public class Customer extends User /*implements Comparable<Customer>*/{
     public Customer() {
 
     }
-
-//    public Customer() {}
 
 
     /**
@@ -84,10 +79,6 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return totalPaidRent;
     }
 
-    @Override
-    public String getType() {
-        return type;
-    }
 
     /**
      * Methods
@@ -97,17 +88,8 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         return (1 - this.membership.getDiscount());
     }
 
-    public void addCredit() {
-        int newCredit = this.credit + this.membership.getAdditionalCredit();
-        this.setCredit(newCredit);
-    }
-    //proposition ro replace
-//    public void addCredit(){
-//        credit = this.credit +this.membership.getAdditionalCredit();
-//    }
-
-    public String toString() {
-        return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";
+    public void addCredit(){
+        credit = this.credit +this.membership.getAdditionalCredit();
     }
 
     public Membership membershipUpgrade() {
@@ -129,6 +111,29 @@ public class Customer extends User /*implements Comparable<Customer>*/{
     }
 
 
+    /**
+     * Overrides
+     */
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";
+    }
+}
+
+
+
+
+// OLD:
+//    private static double discount = 0;
+//    private static int maxAllowedRent = 1;
+//    private static int additionalCredit = 0;
+
 
 //    @Override
 //    public int compareTo(Customer anotherCustomer) {
@@ -138,4 +143,8 @@ public class Customer extends User /*implements Comparable<Customer>*/{
 //
 //        } else if(this.getTitle.equals("Gold"))
 //    }
-}
+
+//    public void addCredit() {
+//        int newCredit = this.credit + this.membership.getAdditionalCredit();
+//        this.setCredit(newCredit);
+//    }
