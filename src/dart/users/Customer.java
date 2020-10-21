@@ -46,9 +46,9 @@ public class Customer extends User /*implements Comparable<Customer>*/{
         this(name, password, new RegularMembership());
     }
 
-    public Customer() {
-
-    }
+//    public Customer() {
+//
+//    }
 
 
     /**
@@ -122,7 +122,7 @@ public class Customer extends User /*implements Comparable<Customer>*/{
 
     @Override
     public String toString() {
-        return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";
+        return this.getId() + " : " + this.getName() + " has " + this.getCredit() + " credit. \n";
     }
 }
 

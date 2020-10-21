@@ -59,13 +59,12 @@ public class UserController {
         catch(InvalidDataInput e){
             System.out.println(e.getMessage());
         }
-
-        User customer = new Customer(name, password);
 //        customer.setName(name);
 //        customer.setPassword(password);
-
-        userList.add(customer);
-        System.out.println(customer.toString());
+//
+//        User customer = new Customer(name, password);
+//        userList.add(customer);
+//        System.out.println(customer.toString());
 
     }
 
