@@ -5,6 +5,7 @@ import dart.tools.InvalidDataInput;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.UUID;
 
 public class Item {
@@ -20,6 +21,7 @@ public class Item {
     private LocalDate dateReturned;
     private double totalRentProfit;
     private ArrayList<Value> rating = new ArrayList<>();
+    private int counter;
 
 //case 6 -> most profitable
             //case 7 -> most popular
@@ -31,6 +33,8 @@ public class Item {
         this.title = title;
         this.dailyRent = dailyRent;
         this.releaseYear= releaseYear;
+        this.totalRentProfit = 0.0;
+        this.counter = 0;
         if (title.isEmpty() && dailyRent < 0){
             throw new InvalidDataInput("Invalid data. Title cannot be empty and daily rent cannot be negative.");
         }
@@ -56,8 +60,16 @@ public class Item {
         return totalRentProfit;
     }
 
+    public int getCounter() {
+        return this.counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter + this.counter;
+    }
+
     public void setTotalRentProfit(double totalRentProfit) {
-        this.totalRentProfit = totalRentProfit;
+        this.totalRentProfit = totalRentProfit + this.totalRentProfit;
     }
 
     public void setDateRented(LocalDate dateRented) {
@@ -122,6 +134,7 @@ public class Item {
         rating.add(value);
     }
 
+
     public double findAverageRating() {
         double averageRating = 0;
         int totalRating = 0;
@@ -132,11 +145,12 @@ public class Item {
     }
 
 
-
     protected void rent(LocalDate dateRented) {
         rentStatus = "rented";
         this.dateRented = dateRented; // date of rent is changing when item changes its status from available to rented
     }
+
+
     public void makeAvailableAgain(LocalDate dateReturned) {
         rentStatus = "available";this.dateReturned =dateReturned;
     }
@@ -154,16 +168,34 @@ public class Item {
     public String toString() {
         String review = ".\nReviews: \n"; //empty String for further use adding all reviews
         for (Value value : rating) {
-            review = review + " "+ value + ";\n";
+            review = review + " " + value + ";\n";
 
-        }
-        return review+"\nAverage user rating: "+findAverageRating();
 //        return ID + ": " + title + ". Price: " + dailyRent + " SEK. Status: " + rentStatus +
 //                "\nAverage user rating: "+findAverageRating()+"\nReviews:\n"+review+"";
-
+        }
+        return review + "\nAverage user rating: " + findAverageRating();
     }
 
 
+    public static Comparator<Item> rentCompare() {
+        return new Comparator<Item>() {
+            @Override
+            public int compare(Item item1, Item item2) {
+                    double rating1 = item1.getTotalRentProfit();
+                    double rating2 = item2.getTotalRentProfit();
+                    return (int) (rating2 - rating1);
+                }
+            };
     }
 
-
+    public static Comparator<Item> frequencyCompare() {
+        return new Comparator<Item>() {
+            @Override
+            public int compare(Item item1, Item item2) {
+                double rating1 = item1.getTotalRentProfit();
+                double rating2 = item2.getTotalRentProfit();
+                return (int) (rating2 - rating1);
+            }
+        };
+    }
+}
