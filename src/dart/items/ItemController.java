@@ -1,5 +1,6 @@
 package dart.items;
 
+import java.util.*;
 import dart.tools.InvalidDataInput;
 import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
@@ -15,7 +16,7 @@ import java.util.*;
 public class ItemController {
 
 
-    private ArrayList<Item> dartProducts = new ArrayList<>();
+    private ArrayList<Item> dartProducts = new ArrayList<Item>();
 //    private ArrayList<String> historyList = new ArrayList<>();
     private ArrayList<Transaction> transactionList = new ArrayList<>(); // We add values to this arrayList in rateItem
     double totalRentProfit = 0;
@@ -233,6 +234,8 @@ public class ItemController {
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
         customer.setTotalPaidRent(finalTotalRent);
+        item.setTotalRentProfit(finalTotalRent);
+        item.setCounter(1);
 
 //        getCurrentTransaction().setDaysRented(item.daysBetween());
 //        getCurrentTransaction().setItemId(item.getID());
@@ -265,8 +268,6 @@ public class ItemController {
 //        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
 //    }
 //
-
-
     public void rateItem(Item item, Customer customer) {
         //We should also make a transaction here to store in the transactionList arrayList above.
         Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
@@ -306,8 +307,6 @@ public class ItemController {
         }
         transactionList.add(currentTransaction);
     }
-
-
 
 //    public double dartDailyRent() {
 //        double totalRentProfit = 0;
@@ -447,36 +446,43 @@ public class ItemController {
 
     public void profitableItems() {
 
-        ArrayList <Item> profitableItems = new ArrayList<>(); // We make an arrayList and store the Items that were rented during running Dart.
-        for (int i = 0; i < transactionList.size(); i++) {
-            Item item = transactionList.get(i).getItem();
-            profitableItems.add(item);
+        Collections.sort(dartProducts, Item.rentCompare());
+
+        for (int i = 0; i < dartProducts.size(); i++) {
+            System.out.println(dartProducts.get(i) + "\nTotal profit: " + dartProducts.get(i).getTotalRentProfit() + "/n");
         }
+//        ArrayList <Item> profitableItems = new ArrayList<>(); // We make an arrayList and store the Items that were rented during running Dart.
+//        for (int i = 0; i < transactionList.size(); i++) {
+//            Item item = transactionList.get(i).getItem();
+//            profitableItems.add(item);
+//        }
 
         //Then we sort the arrayList so that the item with the highest profit goes in the first position.
-        for (int i = 0; i < profitableItems.size(); i++) { //firstly we search for i in array
-            for (int j = i + 1; i < profitableItems.size(); i++) { //then we search for j, which stands next to  i and compare them
-                if (profitableItems.get(j).getTotalRentProfit() > profitableItems.get(i).getTotalRentProfit()) {//compare them
-                    Item buffer = profitableItems.get(i); //temporary value which keep the number of index should be replaced
-                    profitableItems.set(i, profitableItems.get(j)); //replace i to j
-                    profitableItems.set(j, buffer);//replace j to i
-                }
-            }
-        }
-
-        System.out.println(profitableItems.get(0)); //We display the first element of the List which is he highest.
+//        for (int i = 0; i < dartProducts.size(); i++) { //firstly we search for i in array
+//            for (int j = i + 1; i < dartProducts.size(); i++) { //then we search for j, which stands next to  i and compare them
+//                if (dartProducts.get(j).getTotalRentProfit() > dartProducts.get(i).getTotalRentProfit()) {//compare them
+//                    Item buffer = dartProducts.get(i); //temporary value which keep the number of index should be replaced
+//                    dartProducts.set(i, dartProducts.get(j)); //replace i to j
+//                    dartProducts.set(j, buffer);//replace j to i
+//                }
+//            }
+//        }
     }
 
 
     public void rentFrequency() {
 
-        ArrayList<Item> rentFrequency = new ArrayList<>();
-        for (int i = 0; i < transactionList.size(); i++) {
-            Item item = transactionList.get(i).getItem();
-            rentFrequency.add(item);
+
+        Collections.sort(dartProducts, Item.frequencyCompare());
+
+        for(int i = 0; i < dartProducts.size(); i++) {
+            if (dartProducts.get(i).getCounter() != 0) {
+                System.out.println("Item: " + dartProducts.get(i) + "\nFrequency of rent:  " + dartProducts.get(i).getCounter() + "\n");
+            }
         }
 
-        ArrayList<Integer> itemFrequency = new ArrayList<>();
+
+       /* ArrayList<Integer> itemFrequency = new ArrayList<>();
 
         for (int i = 0; i < rentFrequency.size(); i++) {
             int counter = 1;
@@ -489,30 +495,34 @@ public class ItemController {
             }
         }
         int maxValue = Collections.max(itemFrequency);
-        int maxIndex = itemFrequency.indexOf(maxValue);
-        System.out.println(rentFrequency.get(maxIndex));
+        int maxIndex = itemFrequency.indexOf(maxValue);*/
+
     }
 
 
     public void myFavoriteCustomer() {
+
         ArrayList<Customer> activeCustomers = new ArrayList<>();
+
         for (int i = 0; i < transactionList.size(); i++) {
             Customer activeCustomer = transactionList.get(i).getCustomer();
             activeCustomers.add(activeCustomer);
         }
 
-        for (int i = 0; i < activeCustomers.size(); i++) {
+        for( int i = 0; i < activeCustomers.size(); i++) {
+
             for (int j = i + 1; i < activeCustomers.size(); i++) {
-                if (activeCustomers.get(j).getTotalPaidRent() > activeCustomers.get(i).getTotalPaidRent()) {
-                    Customer buffer = activeCustomers.get(i);
-                    activeCustomers.set(i, activeCustomers.get(j));
-                    activeCustomers.set(j, buffer);
+                if (activeCustomers.get(j).getId().equals(activeCustomers.get(i).getId())) {
+                activeCustomers.remove(activeCustomers.get(j));
                 }
             }
         }
 
-        System.out.println(activeCustomers.get(0));
+        Collections.sort(activeCustomers, Customer.activityCompare());
 
+        for( int i = 0; i < activeCustomers.size(); i++){
+        System.out.println(activeCustomers.get(i) + "\nPaid amount of rent: " + activeCustomers.get(i).getTotalPaidRent() + "\n");
+        }
 
     }
 

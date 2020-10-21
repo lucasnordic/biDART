@@ -1,8 +1,11 @@
 package dart.users;
 
 
+import dart.items.Item;
 import dart.tools.InvalidDataInput;
 import dart.users.membership.*;
+
+import java.util.Comparator;
 
 /**
  * This class handles a single customer and the methods required:
@@ -123,6 +126,17 @@ public class Customer extends User /*implements Comparable<Customer>*/{
     @Override
     public String toString() {
         return this.getId() + " ----> " + this.getName() + " has " + this.getCredit() + " credit. \n";
+    }
+
+    public static Comparator<Customer> activityCompare() {
+        return new Comparator<Customer>() {
+            @Override
+            public int compare(Customer person1, Customer person2) {
+                double rating1 = person1.getTotalPaidRent();
+                double rating2 = person2.getTotalPaidRent();
+                return (int) (rating2 - rating1);
+            }
+        };
     }
 }
 
