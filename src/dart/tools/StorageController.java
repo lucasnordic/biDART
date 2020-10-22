@@ -1,7 +1,11 @@
 package dart.tools;
 
+import dart.items.Game;
+import dart.items.Item;
+import dart.items.Song;
 import dart.users.Customer;
 import dart.users.UserController;
+import dart.items.ItemController;
 import dart.users.membership.Membership;
 
 import java.io.*;
@@ -14,7 +18,7 @@ public class StorageController {
      * Attributes:
      */
 
-    private ArrayList<Customer> customerStorage;
+    private ArrayList<Customer> customerStorage;  // what is this?
     private static String customerFilePath = "./src/customers.csv";
 
 
@@ -31,7 +35,7 @@ public class StorageController {
      * Methods:
      */
 
-    public void importCustomerCSVBuffer(UserController userController) {
+    public void importCustomerCSVBuffer(UserController userController, ItemController itemController) {
         try{
 
             // We create a an object that leads to the location of the customer file:
@@ -61,9 +65,26 @@ public class StorageController {
                     if(userController.getUserWithId(customer.getId()) == null) {
                         userController.addCustomer(customer);
                     }
+
                 } else if(retrievedInfo[0].equals("Employee")) {
-                    System.out.println("code here");
-                } //TODO add more else ifs for Game and Song...
+                    System.out.println("code here");//TODO add more else ifs for Game and Song...
+
+                } else if(retrievedInfo[0].equals("Game")) {
+                    Game game = new Game(retrievedInfo);
+
+                    if(itemController.getItemWithId(game.getID()) == null) {
+                        itemController.addGame(game);
+                    }
+
+                } else if(retrievedInfo[0].equals("Song")) {
+                    Song song = new Song(retrievedInfo);
+
+                    if(itemController.getItemWithId(song.getID()) == null) {
+                        itemController.addSong(song);
+                    }
+
+                }
+
 
 
             }

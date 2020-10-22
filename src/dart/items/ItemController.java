@@ -4,6 +4,7 @@ import dart.tools.InvalidDataInput;
 import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
+import dart.users.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -251,6 +252,7 @@ public class ItemController {
     public void storeDailyRent(double finalTotalRent) {
         totalRentProfit = (totalRentProfit + finalTotalRent);
     }
+
 
     public void rateItem(Item item, Customer customer) {
         //We should also make a transaction here to store in the transactionList arrayList above.
@@ -536,20 +538,10 @@ public class ItemController {
             activeCustomers.add(activeCustomer);
         }
 
-        for (int i = 0; i < activeCustomers.size(); i++) {
-
-            for (int j = i + 1; i < activeCustomers.size(); i++) {
-                if (activeCustomers.get(j).getId().equals(activeCustomers.get(i).getId())) {
-                    activeCustomers.remove(activeCustomers.get(j));
-                }
-            }
-        }
-
         Collections.sort(activeCustomers, Customer.activityCompare());
 
-        for (int i = 0; i < activeCustomers.size(); i++) {
-            System.out.println(activeCustomers.get(i) + "\nPaid amount of rent: " + activeCustomers.get(i).getTotalPaidRent() + "\n");
-        }
+        System.out.println(activeCustomers.get(0) + "\nPaid amount of rent: " + activeCustomers.get(0).getTotalPaidRent());
+
 
     }
 
@@ -557,6 +549,23 @@ public class ItemController {
     /**
      * Search methods
      */
+
+
+    public Item getItemWithId(String itemId) {
+        Item itemFound = null;
+        int index = 0;
+
+        while(itemFound == null && index < dartProducts.size()) {
+            Item item = dartProducts.get(index);
+
+            if (item.getID().equals(itemId)) {
+                itemFound = item;
+            } else {
+                index++;
+            }
+        }
+        return itemFound;
+    }
 
 
     public void findGame(String genre) {
