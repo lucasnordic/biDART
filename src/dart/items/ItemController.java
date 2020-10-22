@@ -1,23 +1,22 @@
 package dart.items;
 
-import java.util.*;
 import dart.tools.InvalidDataInput;
 import dart.tools.Transaction;
 import dart.tools.UserInputHandler;
 import dart.users.Customer;
-import dart.users.Employee;
-import dart.users.User;
-import dart.users.UserController;
-//import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+//import org.jetbrains.annotations.NotNull;
 
 public class ItemController {
 
 
     private ArrayList<Item> dartProducts = new ArrayList<Item>();
-//    private ArrayList<String> historyList = new ArrayList<>();
+    //    private ArrayList<String> historyList = new ArrayList<>();
     private ArrayList<Transaction> transactionList = new ArrayList<>(); // We add values to this arrayList in rateItem
     double totalRentProfit = 0;
     private final int coolCredit = 5;
@@ -34,11 +33,9 @@ public class ItemController {
 //    }
 
 
-
     public ItemController() {
         mockData();
     }
-
 
 
     /**
@@ -67,7 +64,7 @@ public class ItemController {
             dartProducts.add(song);
 
             System.out.println(song.toString());
-        } catch (InvalidDataInput e){
+        } catch (InvalidDataInput e) {
             System.out.println(e.getMessage());
         }
     }
@@ -196,7 +193,7 @@ public class ItemController {
             // double payablePercent = ((Customer) user).payablePercent();
             double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
             returnItem(returnee, payablePercent, customer);
-            rateItem(returnee,customer);
+            rateItem(returnee, customer);
 
         } else {
             System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
@@ -212,16 +209,16 @@ public class ItemController {
             // ((Customer) user).setCredit(credit - 5);
             //returnee.makeAvailableAgain();
 
-   //         returnee.storeDailyRent(0);
+            //         returnee.storeDailyRent(0);
 
-            rateItem(returnee,customer);
+            rateItem(returnee, customer);
         }
 
     }
 
 
-    public void returnItem( Item item, double payablePercent, Customer customer) {
-      
+    public void returnItem(Item item, double payablePercent, Customer customer) {
+
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
         System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
@@ -240,11 +237,12 @@ public class ItemController {
 //        getCurrentTransaction().setDaysRented(item.daysBetween());
 //        getCurrentTransaction().setItemId(item.getID());
 
-        try {System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
-       // item.makeAvailableAgain(dateReturned);
-        storeDailyRent(finalTotalRent);
+        try {
+            System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
+            // item.makeAvailableAgain(dateReturned);
+            storeDailyRent(finalTotalRent);
 //        item.storeDailyRent(finalTotalRent);
-        } catch (InvalidDataInput e){
+        } catch (InvalidDataInput e) {
             System.out.println(e.getMessage());
         }
     }
@@ -253,6 +251,33 @@ public class ItemController {
     public void storeDailyRent(double finalTotalRent) {
         totalRentProfit = (totalRentProfit + finalTotalRent);
     }
+
+    public void rateItem(Item item, Customer customer) {
+        //We should also make a transaction here to store in the transactionList arrayList above.
+        Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
+
+        System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
+        String input = UserInputHandler.inputString();
+
+        if (input.equalsIgnoreCase("Y")) {
+            System.out.print("Please give any number between 0 and 5: ");
+            int userRating = UserInputHandler.inputInt();
+            Value value = new Value(userRating, null);
+            System.out.print("Do you want to write a review? Answer Y for yes or N for no: ");
+            input = UserInputHandler.inputString();
+            item.addValue(value);
+            currentTransaction.setRatingScore(userRating);
+            if (input.equalsIgnoreCase("Y")) {
+                System.out.print("Please write a review: ");
+                String review = UserInputHandler.inputString();
+
+                currentTransaction.setReview(review);
+            }
+
+        }
+        transactionList.add(currentTransaction);
+    }
+
 
 //    public double dartDailyRent() {
 //        double totalRentProfit = 0;
@@ -268,45 +293,45 @@ public class ItemController {
 //        System.out.println("Total Daily rent is :  " +/* itemController.*/dartDailyRent());
 //    }
 //
-    public void rateItem(Item item, Customer customer) {
-        //We should also make a transaction here to store in the transactionList arrayList above.
-        Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
-
-//    public void transactionSetUp() {
-//        transactions.add(currentTransaction);
-//        getCurrentTransaction().setReview(null);
-//        getCurrentTransaction().setRatingScore(0);
+//    public void rateItem(Item item, Customer customer) {
+//        //We should also make a transaction here to store in the transactionList arrayList above.
+//        Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
+//
+////    public void transactionSetUp() {
+////        transactions.add(currentTransaction);
+////        getCurrentTransaction().setReview(null);
+////        getCurrentTransaction().setRatingScore(0);
+////    }
+//
+//
+////    public void showTransaction() {
+////        System.out.println(transactions);
+////    }
+//
+//
+//        System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
+//        String input = UserInputHandler.inputString();
+//
+//        if (input.equalsIgnoreCase("Y")) {
+//            System.out.print("Please give any number between 0 and 5: ");
+//            int userRating = UserInputHandler.inputInt();
+//
+//            //getCurrentTransaction().setRatingScore(userRating);
+//            //System.out.println("Do you want to write a review? Answer Y for yes or N for no: ");
+//
+//            System.out.print("Please write a review: ");
+//            String review = UserInputHandler.inputString();
+//
+//            //getCurrentTransaction().setReview(review);
+//
+//            Value value = new Value(userRating, review);
+//            item.addValue(value);
+//
+//            currentTransaction.setRatingScore(userRating);
+//            currentTransaction.setReview(review);
+//        }
+//        transactionList.add(currentTransaction);
 //    }
-
-
-//    public void showTransaction() {
-//        System.out.println(transactions);
-//    }
-
-
-        System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
-        String input = UserInputHandler.inputString();
-
-        if (input.equalsIgnoreCase("Y")) {
-            System.out.print("Please give any number between 0 and 5: ");
-            int userRating = UserInputHandler.inputInt();
-
-            //getCurrentTransaction().setRatingScore(userRating);
-            //System.out.println("Do you want to write a review? Answer Y for yes or N for no: ");
-
-            System.out.print("Please write a review: ");
-            String review = UserInputHandler.inputString();
-
-            //getCurrentTransaction().setReview(review);
-
-            Value value = new Value(userRating, review);
-            item.addValue(value);
-
-            currentTransaction.setRatingScore(userRating);
-            currentTransaction.setReview(review);
-        }
-        transactionList.add(currentTransaction);
-    }
 
 //    public double dartDailyRent() {
 //        double totalRentProfit = 0;
@@ -338,7 +363,9 @@ public class ItemController {
 //    }
 
     public void showTransaction() {
-        System.out.println(transactionList);
+        for (Transaction transaction : transactionList) {
+            System.out.println(transaction);
+        }
     }
 //    public void addTransaction (Item item, Customer customer){
 //        Transaction currentTransaction = new Transaction(item.getID(), customer.getId(), item.daysBetween());
@@ -475,7 +502,7 @@ public class ItemController {
 
         Collections.sort(dartProducts, Item.frequencyCompare());
 
-        for(int i = 0; i < dartProducts.size(); i++) {
+        for (int i = 0; i < dartProducts.size(); i++) {
             if (dartProducts.get(i).getCounter() != 0) {
                 System.out.println("Item: " + dartProducts.get(i) + "\nFrequency of rent:  " + dartProducts.get(i).getCounter() + "\n");
             }
@@ -509,10 +536,20 @@ public class ItemController {
             activeCustomers.add(activeCustomer);
         }
 
+        for (int i = 0; i < activeCustomers.size(); i++) {
+
+            for (int j = i + 1; i < activeCustomers.size(); i++) {
+                if (activeCustomers.get(j).getId().equals(activeCustomers.get(i).getId())) {
+                    activeCustomers.remove(activeCustomers.get(j));
+                }
+            }
+        }
+
         Collections.sort(activeCustomers, Customer.activityCompare());
 
-        System.out.println(activeCustomers.get(0) + "\nPaid amount of rent: " + activeCustomers.get(0).getTotalPaidRent());
-
+        for (int i = 0; i < activeCustomers.size(); i++) {
+            System.out.println(activeCustomers.get(i) + "\nPaid amount of rent: " + activeCustomers.get(i).getTotalPaidRent() + "\n");
+        }
 
     }
 
@@ -566,6 +603,7 @@ public class ItemController {
     public void addGame(Game game) {
         dartProducts.add(game);
     }
+
     public void addSong(Song song) {
         dartProducts.add(song);
     }
