@@ -476,7 +476,7 @@ public class ItemController {
         Collections.sort(dartProducts, Item.rentCompare());
 
         for (int i = 0; i < dartProducts.size(); i++) {
-            System.out.println(dartProducts.get(i) + "\nTotal profit: " + dartProducts.get(i).getTotalRentProfit() + "/n");
+            System.out.println(dartProducts.get(i) + "\nTotal profit: " + dartProducts.get(i).getTotalRentProfit() + "\n");
         }
 //        ArrayList <Item> profitableItems = new ArrayList<>(); // We make an arrayList and store the Items that were rented during running Dart.
 //        for (int i = 0; i < transactionList.size(); i++) {
