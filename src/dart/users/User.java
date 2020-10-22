@@ -2,6 +2,7 @@ package dart.users;
 
 import dart.tools.Message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -9,9 +10,9 @@ import java.util.UUID;
  * This class is only a blueprint for sub-classes Employee, Customer etc.
  */
 
-public abstract class User {
+public abstract class User implements Serializable {
 
-    private final String id = UUID.randomUUID().toString();
+    protected String id = UUID.randomUUID().toString();
     private String name;
     private String password;
     private final String type = "User";

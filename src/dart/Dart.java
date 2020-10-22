@@ -6,6 +6,7 @@ package dart;
 
 import dart.items.ItemController;
 import dart.tools.Message;
+import dart.tools.StorageController;
 import dart.tools.UserInputHandler;
 import dart.users.*;
 import dart.tools.MessageController;
@@ -19,6 +20,7 @@ public class Dart {
     private ItemController itemController = new ItemController();
     public UserController userController = new UserController();
     private MessageController messageController = new MessageController();
+    private StorageController storageController = new StorageController();
 
 
     /**
@@ -127,6 +129,7 @@ public class Dart {
                 "Most profitable items",
                 "Most popular items",
                 "Best customers",
+                "Import or export a file",
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
@@ -134,9 +137,7 @@ public class Dart {
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
-
-        // Here we go to different menus based on user input:
-        switch (menuChoice) {
+        switch (menuChoice) { // Here we go to different menus based on user input:
             case 1 -> userController.addEmployee();
             case 2 -> userController.showEmployeeList();
             case 3 -> userController.removeEmployee();
@@ -145,7 +146,8 @@ public class Dart {
             case 6 -> itemController.profitableItems();
             case 7 -> itemController.rentFrequency();
             case 8 -> itemController.myFavoriteCustomer();
-            case 9 -> mainMenu();
+            case 9 -> menuImportOrExportFile();
+            case 10 -> mainMenu();
         }
         menuManager();
     }
@@ -157,6 +159,26 @@ public class Dart {
         UserInputHandler.pressAnyKeyCon();
     }
 
+    public void menuImportOrExportFile() {
+
+        String title = "Import/Export menu";
+        String[] menuItems = {
+                "Import a file",
+                "Export a file",
+                "Go back"
+        };
+        String inputPrompt = "Enter choice: ";
+        printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send this content to be printed:
+
+        // Here we let the user input a number between the choices available based on the size of the menuItems array:
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
+        switch (menuChoice) { // Here we go to different menus based on user input:
+            case 1 -> storageController.importCustomerCSVBuffer(this.userController);
+//            case 2 -> storageController.importCustomerCSVBuffer();
+            case 3 -> menuManager();
+        }
+        menuManager();
+    }
 
     public void menuRentHistory() {
         /**
@@ -185,26 +207,18 @@ public class Dart {
                 "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
-
-        //  Here we store the max and min choice based on "menuItems":
-        int minMenuChoice = 1;
-        int maxMenuChoice = menuItems.length;
-
-        // Here we send the menu content to be printed:
-        printMenuItems(title, menuItems, inputPrompt, "yes");
+        printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send the menu content to be printed.
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
-        int menuChoice = UserInputHandler.inputIntMinMax(minMenuChoice, maxMenuChoice);
-
-        // Here we go to different menus based on users input.
-        switch (menuChoice) {
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
+        switch (menuChoice) { // Here we go to different menus based on users input.
             case 1 -> itemController.registerAGame();
             case 2 -> itemController.removeAGame();
             case 3 -> userController.registration();
             case 4 -> userController.cancellation();
             case 5 -> itemController.addSong();
             case 6 -> itemController.deleteSong();
-           // case 7 -> itemController.menuShowTotalRentProfit();
+            case 7 -> itemController.menuShowTotalRentProfit();
             case 8 -> itemController.showAll();
             case 9 -> menuUpgradeCustomer();
             case 10 -> mainMenu();

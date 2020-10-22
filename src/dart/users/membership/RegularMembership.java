@@ -1,6 +1,8 @@
 package dart.users.membership;
 
-public class RegularMembership implements Membership {
+import java.io.Serializable;
+
+public class RegularMembership implements Membership, Serializable {
 
 
     /**
