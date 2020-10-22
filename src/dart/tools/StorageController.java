@@ -4,12 +4,14 @@ import dart.items.Game;
 import dart.items.Item;
 import dart.items.Song;
 import dart.users.Customer;
+import dart.users.User;
 import dart.users.UserController;
 import dart.items.ItemController;
 import dart.users.membership.Membership;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class StorageController {
@@ -64,6 +66,7 @@ public class StorageController {
                     // then we add the customer to the list in usercontroller;
                     if(userController.getUserWithId(customer.getId()) == null) {
                         userController.addCustomer(customer);
+                        System.out.println("Added: " + Arrays.toString(retrievedInfo));
                     }
 
                 } else if(retrievedInfo[0].equals("Employee")) {
@@ -74,6 +77,7 @@ public class StorageController {
 
                     if(itemController.getItemWithId(game.getID()) == null) {
                         itemController.addGame(game);
+                        System.out.println("Added: " + Arrays.toString(retrievedInfo));
                     }
 
                 } else if(retrievedInfo[0].equals("Song")) {
@@ -81,12 +85,9 @@ public class StorageController {
 
                     if(itemController.getItemWithId(song.getID()) == null) {
                         itemController.addSong(song);
+                        System.out.println("Added: " + Arrays.toString(retrievedInfo));
                     }
-
                 }
-
-
-
             }
             bufferedReader.close();
 //          }
