@@ -37,27 +37,38 @@ public class StorageController {
             // We create a an object that leads to the location of the customer file:
             File customerFile = new File(customerFilePath);
 
-//            if (customerFile.exists()) {
-                // This fileReader and bufferedReader connects to our customer file
-                FileReader fileReader = new FileReader(customerFile);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
+//          if (customerFile.exists()) {
+            // This fileReader and bufferedReader connects to our customer file
+            FileReader fileReader = new FileReader(customerFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-                // This variable holds each line as the line
-                String line = null;
+            // This String variable holds each line as the line is read.
+            String line = null;
 
-                while ((line = bufferedReader.readLine()) != null) {
-                    String[] userInfo = line.split(";");
+            // While there is something to read, keep reading.
+            while ((line = bufferedReader.readLine()) != null) {
 
-                    if (userInfo[0].equals("Customer")) {
-                        Customer customer = new Customer(userInfo);
+                // here we split the line into separate strings and store it in an array.
+                String[] retrievedInfo = line.split(";");
 
-                        if(userController.getUserWithId(customer.getId()) == null) {
-                            userController.addCustomer(customer);
-                        }
+                // If the first index position in the array equals to "",
+                // then we create a customer with the retrievedInfo.
+                if (retrievedInfo[0].equals("Customer")) {
+                    Customer customer = new Customer(retrievedInfo);
+
+                    // If the customer does not exist already,
+                    // then we add the customer to the list in usercontroller;
+                    if(userController.getUserWithId(customer.getId()) == null) {
+                        userController.addCustomer(customer);
                     }
-                }
-                bufferedReader.close();
-//            }
+                } else if(retrievedInfo[0].equals("Employee")) {
+                    System.out.println("code here");
+                } //TODO add more else ifs for Game and Song...
+
+
+            }
+            bufferedReader.close();
+//          }
         } catch(IOException ex) {
             ex.printStackTrace();
         }

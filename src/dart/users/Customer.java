@@ -135,11 +135,6 @@ public class Customer extends User /* implements Comparable<Customer> */ {
     }
 
 
-//    private int credit;
-//    private Membership membership;
-//    private final String type = "Customer";
-//    private double totalPaidRent;
-//        super(name, password);
     /**
      * Overrides
      */
