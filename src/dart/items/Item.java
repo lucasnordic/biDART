@@ -29,7 +29,7 @@ public class Item {
     //Constructor:
 
     public Item( String title, double dailyRent,int releaseYear) {
-        this.id = String.valueOf(UUID.randomUUID());
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.dailyRent = dailyRent;
         this.releaseYear= releaseYear;

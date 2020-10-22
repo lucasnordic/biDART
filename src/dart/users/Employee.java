@@ -1,6 +1,10 @@
 package dart.users;
 
 import dart.tools.InvalidDataInput;
+import dart.users.membership.GoldMembership;
+import dart.users.membership.PlatinumMembership;
+import dart.users.membership.SilverMembership;
+
 import java.util.Calendar;
 
 
@@ -36,6 +40,13 @@ public class Employee extends User {
 
     public Employee() {
         super();
+    }
+
+
+    public Employee (String[] savedAttributes) {
+        super(savedAttributes);
+        this.birthYear = Integer.parseInt(savedAttributes[4]);
+        this.grossSalary = Double.parseDouble(savedAttributes[5]);
     }
 
 
