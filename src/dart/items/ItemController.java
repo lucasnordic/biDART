@@ -509,20 +509,10 @@ public class ItemController {
             activeCustomers.add(activeCustomer);
         }
 
-        for( int i = 0; i < activeCustomers.size(); i++) {
-
-            for (int j = i + 1; i < activeCustomers.size(); i++) {
-                if (activeCustomers.get(j).getId().equals(activeCustomers.get(i).getId())) {
-                activeCustomers.remove(activeCustomers.get(j));
-                }
-            }
-        }
-
         Collections.sort(activeCustomers, Customer.activityCompare());
 
-        for( int i = 0; i < activeCustomers.size(); i++){
-        System.out.println(activeCustomers.get(i) + "\nPaid amount of rent: " + activeCustomers.get(i).getTotalPaidRent() + "\n");
-        }
+        System.out.println(activeCustomers.get(0) + "\nPaid amount of rent: " + activeCustomers.get(0).getTotalPaidRent());
+
 
     }
 
