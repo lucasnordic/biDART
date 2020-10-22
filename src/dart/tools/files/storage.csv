@@ -1,0 +1,13 @@
+#Employee;id;name;password;birthyear;grosssalary
+#Customer;id;name;password;credit;totalpaidrent;membership
+#Game;id;title;dailyrent;releaseyear;genre
+#Song;id;title;dailyrent;releaseyear;artist
+
+Employee;ec1edc27-6255-45f7-a5db-f1c7b672c156;lucas;123;1995;20000.0
+
+Customer;48f6baf5-959c-4682-833c-e7449ce973b8;maryam;234;;0;0;Regular
+
+Game;58f6baf5-959c-4682-833c-e7449ce973b8;Mario Kart;10;1996;Racer
+
+Song;68f6baf5-959c-4682-833c-e7449ce973b8;Pink Dreams;15;1998;Mr Ja
+

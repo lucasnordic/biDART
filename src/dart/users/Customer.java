@@ -11,7 +11,7 @@ import java.util.Comparator;
  * This class handles a single customer and the methods required:
  */
 
-public class Customer extends User /*implements Comparable<Customer>*/{
+public class Customer extends User /* implements Comparable<Customer> */ {
 
   
     /**
