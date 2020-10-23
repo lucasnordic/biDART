@@ -4,6 +4,7 @@ import dart.items.Game;
 import dart.items.Item;
 import dart.items.Song;
 import dart.users.Customer;
+import dart.users.Employee;
 import dart.users.User;
 import dart.users.UserController;
 import dart.items.ItemController;
@@ -20,16 +21,16 @@ public class StorageController {
      * Attributes:
      */
 
-    private ArrayList<Customer> customerStorage;  // what is this?
-    private static String customerFilePath = "./src/customers.csv";
+    private ArrayList storage;  // what is this?
+    private static String storageFilePath = "./src/customers.csv";
 
 
     /**
      * Controller:
-     */
+     *
 
     public StorageController() {
-        this.customerStorage = new ArrayList<>();
+        this.storage = new ArrayList<>();
     }
 
 
@@ -41,7 +42,7 @@ public class StorageController {
         try{
 
             // We create a an object that leads to the location of the customer file:
-            File customerFile = new File(customerFilePath);
+            File customerFile = new File(storageFilePath);
 
 //          if (customerFile.exists()) {
             // This fileReader and bufferedReader connects to our customer file
@@ -70,7 +71,10 @@ public class StorageController {
                     }
 
                 } else if(retrievedInfo[0].equals("Employee")) {
-                    System.out.println("code here");//TODO add more else ifs for Game and Song...
+                    Employee employee = new Employee(retrievedInfo);
+                    if(userController.getUserWithId(employee.getId()) == null) {
+                        userController.addEmployee(employee);
+                    }
 
                 } else if(retrievedInfo[0].equals("Game")) {
                     Game game = new Game(retrievedInfo);

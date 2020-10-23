@@ -32,6 +32,12 @@ public abstract class User implements Serializable {
 
     }
 
+    public User(String[] savedAttributes) {
+        this.id = savedAttributes[1];
+        this.name = savedAttributes[2];
+        this.password= savedAttributes[3];
+    }
+
 
     /**
      *  Getters and Setters:

@@ -51,8 +51,7 @@ public class Customer extends User /* implements Comparable<Customer> */ {
 
     // This is for creating a customer from a file:
     public Customer (String[] savedAttributes) {
-        this(savedAttributes[2], savedAttributes[3]);
-        this.id = savedAttributes[1];
+        super(savedAttributes);
         switch (savedAttributes[4]) {
             case "Silver" -> this.membership = new SilverMembership();
             case "Gold" -> this.membership = new GoldMembership();
