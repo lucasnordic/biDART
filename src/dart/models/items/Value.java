@@ -1,4 +1,4 @@
-package dart.model.items;
+package dart.models.items;
 
 public class Value {
     private int userRating;

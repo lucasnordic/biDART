@@ -1,4 +1,4 @@
-package dart.model.items;
+package dart.models.items;
 
 public class Song extends Item {
 

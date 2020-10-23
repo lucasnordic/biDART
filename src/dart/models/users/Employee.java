@@ -1,4 +1,4 @@
-package dart.model.users;
+package dart.models.users;
 
 import dart.tools.InvalidDataInput;
 

@@ -1,13 +1,13 @@
 package dart.controllers;
 
-import dart.model.items.Game;
-import dart.model.items.Item;
-import dart.model.items.Song;
-import dart.model.items.Value;
+import dart.models.items.Game;
+import dart.models.items.Item;
+import dart.models.items.Song;
+import dart.models.items.Value;
 import dart.tools.InvalidDataInput;
-import dart.model.Transaction;
+import dart.models.Transaction;
 import dart.tools.UserInputHandler;
-import dart.model.users.Customer;
+import dart.models.users.Customer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

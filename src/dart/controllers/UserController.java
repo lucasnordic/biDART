@@ -1,10 +1,10 @@
 package dart.controllers;
 
-import dart.model.users.User;
+import dart.models.users.User;
 import dart.tools.InvalidDataInput;
 import dart.tools.UserInputHandler;
-import dart.model.users.Customer;
-import dart.model.users.Employee;
+import dart.models.users.Customer;
+import dart.models.users.Employee;
 
 import java.util.ArrayList;
 

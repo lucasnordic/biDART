@@ -1,4 +1,4 @@
-package dart.model.items;
+package dart.models.items;
 
 import dart.tools.InvalidDataInput;
 

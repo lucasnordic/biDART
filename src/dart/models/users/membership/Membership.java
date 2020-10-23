@@ -1,4 +1,4 @@
-package dart.model.users.membership;
+package dart.models.users.membership;
 
 public interface Membership {
     double getDiscount();

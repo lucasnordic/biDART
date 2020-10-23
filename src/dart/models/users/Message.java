@@ -1,4 +1,4 @@
-package dart.model.users;
+package dart.models.users;
 
 import java.util.UUID;
 

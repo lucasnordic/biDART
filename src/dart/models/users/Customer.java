@@ -1,7 +1,7 @@
-package dart.model.users;
+package dart.models.users;
 
 
-import dart.model.users.membership.*;
+import dart.models.users.membership.*;
 import dart.tools.InvalidDataInput;
 
 import java.util.Comparator;

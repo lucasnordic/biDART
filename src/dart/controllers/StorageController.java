@@ -1,11 +1,9 @@
 package dart.controllers;
 
-import dart.model.items.Game;
-import dart.model.items.Song;
-import dart.model.users.Customer;
-import dart.model.users.Employee;
-import dart.controllers.UserController;
-import dart.controllers.ItemController;
+import dart.models.items.Game;
+import dart.models.items.Song;
+import dart.models.users.Customer;
+import dart.models.users.Employee;
 
 import java.io.*;
 import java.util.ArrayList;
