@@ -243,6 +243,8 @@ public class ItemController {
         LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
         item.makeAvailableAgain(dateReturned);
 
+        //TODO change payable percent to useCalculatePrice in memebership
+
         double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
 
         double dailyRent = item.getDailyRent(); //This is Item's price without discount implementation'
@@ -250,7 +252,8 @@ public class ItemController {
 
         double totalRent = dailyRent * item.daysBetween();
         double finalTotalRent = payablePercent * totalRent;
-        customer.setTotalPaidRent(finalTotalRent);
+
+        customer.setTotalPaidRent(finalTotalRent); //
         item.setTotalRentProfit(finalTotalRent);
         item.setCounter(1);
 
