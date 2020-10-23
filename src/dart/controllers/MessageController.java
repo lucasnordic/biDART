@@ -1,8 +1,10 @@
-package dart.tools;
+package dart.controllers;
 
-import dart.users.Customer;
-import dart.users.Employee;
-import dart.users.User;
+import dart.model.users.Customer;
+import dart.model.users.Employee;
+import dart.model.users.User;
+import dart.model.users.Message;
+import dart.tools.UserInputHandler;
 
 import java.util.ArrayList;
 

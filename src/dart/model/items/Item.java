@@ -1,4 +1,4 @@
-package dart.items;
+package dart.model.items;
 
 import dart.tools.InvalidDataInput;
 
@@ -97,37 +97,37 @@ public class Item {
 
     public String getID() {return this.id; }
 
-    protected String getTitle() {
+    public String getTitle() {
         return this.title;
     }
 
-    protected double getDailyRent() {
+    public double getDailyRent() {
         return this.dailyRent;
     }
 
-    protected String getRentStatus() {
+    public String getRentStatus() {
         return this.rentStatus;
     }
 
-    protected void setID(String ID) {
+    public void setID(String ID) {
         this.id = ID;
     }
 
-    protected void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    protected void setDailyRent(double dailyRent) {
+    public void setDailyRent(double dailyRent) {
         this.dailyRent = dailyRent;
     }
 
-    protected void setRentStatus(String rentStatus) {
+    public void setRentStatus(String rentStatus) {
         this.rentStatus = rentStatus;
     }
 
     //Methods:
 
-    protected void rent() {
+    public void rent() {
         rentStatus = "rented";
     }
 
@@ -151,7 +151,7 @@ public class Item {
     }
 
 
-    protected void rent(LocalDate dateRented) {
+    public void rent(LocalDate dateRented) {
         rentStatus = "rented";
         this.dateRented = dateRented; // date of rent is changing when item changes its status from available to rented
     }

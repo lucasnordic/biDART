@@ -1,10 +1,10 @@
-package dart.items;
+package dart.model.items;
 
 public class Value {
     private int userRating;
     private String review;
 
-    Value(int userRating, String review) {
+    public Value(int userRating, String review) {
         this.userRating = userRating;
         this.review = review;
     }

@@ -1,6 +1,4 @@
-package dart.users;
-
-import dart.tools.Message;
+package dart.model.users;
 
 import java.io.Serializable;
 import java.util.ArrayList;

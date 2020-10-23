@@ -1,9 +1,7 @@
-package dart.tools;
+package dart.model;
 
-import dart.items.Item;
-import dart.users.Customer;
-
-import java.util.UUID;
+import dart.model.items.Item;
+import dart.model.users.Customer;
 
 public class Transaction {
 

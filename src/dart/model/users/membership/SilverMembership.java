@@ -1,18 +1,18 @@
-package dart.users.membership;
+package dart.model.users.membership;
 
 import java.io.Serializable;
 
-public class PlatinumMembership implements Membership, Serializable {
+public class SilverMembership implements Membership, Serializable {
 
 
     /**
      * Attributes:
      */
 
-    private final double discount = 0.25;
-    private final int maxAllowedRent = 7;
-    private final int additionalCredit = 3;
-    private final String membershipClass = "Platinum";
+    private final double discount = 0.1;
+    private final int maxAllowedRent = 3;
+    private final int additionalCredit = 1;
+    private final String membershipClass = "Silver";
 
 
     /**
