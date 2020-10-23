@@ -313,9 +313,8 @@ public class Dart {
 //        System.out.println(userController.getCurrentUser());
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {
-                "Rent a game",
+                "Rent an item",
                 "Return a game",
-                "Rent a song album",
                 "Return a song album",
                 "Search for game or song album",
                 "Sort",
@@ -332,14 +331,13 @@ public class Dart {
 
         switch (menuChoice) {  // Here we go to different menus based on user input.
 
-            case 1 -> rentUserTeleport();
+            case 1 -> subMenuCustomer();
             case 2 -> returnUserTeleport();
-            case 3 -> rentUserTeleport();
-            case 4 -> returnUserTeleport();
-            case 5 -> findItem();
-            case 6 -> sort();
-            case 7 -> messageCenterMenu();
-            case 8 -> mainMenu();
+            case 3 -> returnUserTeleport();
+            case 4 -> findItem();
+            case 5 -> sort();
+            case 6 -> messageCenterMenu();
+            case 7 -> mainMenu();
             //default -> System.exit(0);
             // default -> throw new IllegalStateException("Unexpected value: " + menuChoice);
         }
@@ -347,10 +345,36 @@ public class Dart {
     }
 
 
-    public void rentUserTeleport() {
+    public void subMenuCustomer() {
+        String title = "Do you want to rent a game or album?";
+        String[] menuItems = {
+            "1. Rent a game",
+            "2. Rent a song",
+            "3. Back to customer menu"
+        };
+        String inputPrompt = "Enter choice";
+        printMenuItems(title, menuItems, inputPrompt, "yes");
+
+        int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
+
         User currentUser = userController.getCurrentUser();
-        itemController.rentProcess((Customer) currentUser);
+
+
+        switch (menuChoice) {  // Here we go to different menus based on user input.
+
+            case 1 -> itemController.rentGame((Customer) currentUser);
+            case 2 -> itemController.rentSong((Customer) currentUser);
+            case 3 -> menuCustomer();
+        }
+        subMenuCustomer();
+
     }
+
+
+//    public void rentUserTeleport() {
+//        User currentUser = userController.getCurrentUser();
+//        itemController.rentProcess((Customer) currentUser);
+//    }
 
 
     public void returnUserTeleport() {
