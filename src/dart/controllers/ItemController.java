@@ -144,20 +144,45 @@ public class ItemController {
 //            ((Customer) user).addCredit();
 //        }
 //    }
+
+    public void rentGame(Customer customer) {
+        showAllGames();
+        rentProcess(customer);
+    }
+
+    public void rentSong(Customer customer) {
+        showAllAlbums();
+        rentProcess(customer);
+    }
+
+
+
     public void rentProcess(Customer customer) {
-        int maxAllowedRent = customer.getMaxAllowedRent(); //here we get the maximum number of items each customer is allowed to rent depending on their type of membership.
-        for (int i = 0; i < maxAllowedRent; i++) {
-            rentItem();
-            customer.addCredit();
+        int maxAllowedRent = customer.getMaxAllowedRent();
+
+        if (maxAllowedRent == 1) {
+            rentItem(customer);
+        }else {
+            int counter;
+            String yesOrNo = "";
+            do {
+                counter = 0;
+                rentItem(customer);
+                System.out.println("Do you wish to rent again? press 'Y' for yes and 'N' for no: ");
+                yesOrNo = UserInputHandler.inputString();
+                counter = counter + 1;
+
+            } while(yesOrNo.equalsIgnoreCase("y") && counter < maxAllowedRent);
         }
     }
 
 
-    public void rentItem() {
-        showAllAvailable();
+    public void rentItem(Customer customer) {
+
         System.out.print("Please enter ID of the item that you want to rent: ");
         String id = UserInputHandler.inputString();
         Item item = findItem(id);
+
         if (item.getRentStatus().equalsIgnoreCase("rented")) {
             System.out.println("Product ID" + id + " is already rented");
         } else {
@@ -166,20 +191,9 @@ public class ItemController {
             //dartProducts.get(i).rent(dateRented);//sending date of rent in method rent()
             item.rent(dateRented);
             System.out.println("Yay! Rented!");
+            customer.addCredit();
         }
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//            if (dartProducts.get(i).getID().toString().equals(id)) {
-//                if (dartProducts.get(i).getRentStatus().equals("rented")) {
-//                    System.out.println("Product ID" + id + " is already rented");
-//                    //  return;
-//                }
-//                if (dartProducts.get(i).getRentStatus().equals("available")) {
-//                    dartProducts.get(i).rent();
-//                    System.out.println("Yay! Rented!");
-//                    return;
-//                }
-//            }
-//        }
+
     }
 
 
@@ -195,8 +209,8 @@ public class ItemController {
         // We should check if the customers credit is high enough to rent items for free
         if (credit < coolCredit) {
             // double payablePercent = ((Customer) user).payablePercent();
-            double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
-            returnItem(returnee, payablePercent, customer);
+
+            returnItem(returnee, customer);
             rateItem(returnee, customer);
 
         } else {
@@ -221,13 +235,15 @@ public class ItemController {
     }
 
 
-    public void returnItem(Item item, double payablePercent, Customer customer) {
+    public void returnItem(Item item, Customer customer) {
 
 //        System.out.print("Please enter the number of days in which the game was rented: ");
 //        int days = UserInputHandler.inputInt();
         System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
         LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
         item.makeAvailableAgain(dateReturned);
+
+        double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
 
         double dailyRent = item.getDailyRent(); //This is Item's price without discount implementation'
         double finalDailyRent = payablePercent * dailyRent; // price after discount
@@ -397,6 +413,7 @@ public class ItemController {
 //        UserInputHandler.pressAnyKeyCon();
 
         }
+
     }
 
 
@@ -406,6 +423,7 @@ public class ItemController {
                 System.out.println(item);
             }
         }
+
     }
 
 
@@ -605,6 +623,7 @@ public class ItemController {
             }
         }
         System.out.println("Product with ID " + Id + " not found");
+        // TODO: how to make it not crash after this??
         return null;
     }
 
