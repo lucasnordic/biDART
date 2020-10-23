@@ -1,16 +1,19 @@
 package dart;
 
 /*
-    Todo: A LOT!
+    Todo: FIX REVIEW. IT IS POSTED AS NULL.
  */
 
-import dart.items.ItemController;
-import dart.tools.Message;
-import dart.tools.StorageController;
+import dart.controllers.ItemController;
+import dart.controllers.UserController;
+import dart.model.users.Customer;
+import dart.model.users.Employee;
+import dart.model.users.User;
+import dart.model.users.Message;
+import dart.controllers.StorageController;
 import dart.tools.UserInputHandler;
-import dart.users.*;
-import dart.tools.MessageController;
-import dart.users.membership.Membership;
+import dart.controllers.MessageController;
+import dart.model.users.membership.Membership;
 //import dart.view.ViewManager;
 
 import java.util.ArrayList;
@@ -249,7 +252,7 @@ public class Dart {
         };
         String inputPrompt = "Enter choice: ";
         printMenuItems(title, menuItems, inputPrompt, "yes");
-        // TODO: I have to check if no upgrade
+
 
         //  Here we store the max and min choice based on "menuItems" size:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
@@ -264,7 +267,6 @@ public class Dart {
         System.out.println(" ");    // printing an empty line
 
         Customer customer = (Customer) userController.getUserWithId(customerId);
-        // TODO: main menu or employee menu??
         if (customer != null) {
             switch (menuChoice) {
                 case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
@@ -283,7 +285,7 @@ public class Dart {
     public void menuManageCustomerUpgrade(Customer customer){
         Membership membership = customer.getMembership();
 
-        // TODO Use enum???
+
         if (membership.getMembershipClass().equals("Platinum")) {
             System.out.println("Customer is already Platinum!");
 
@@ -307,7 +309,6 @@ public class Dart {
 
 
     public void menuCustomer() {
-        // TODO: Print out the current users membership type.
 //        Customer customer = (Customer) userController.getCurrentUser().;
 //        System.out.println(userController.getCurrentUser());
         String title = "Customer Screen - Type one of the options below:";

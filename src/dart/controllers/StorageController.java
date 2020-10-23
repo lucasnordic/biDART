@@ -1,19 +1,15 @@
-package dart.tools;
+package dart.controllers;
 
-import dart.items.Game;
-import dart.items.Item;
-import dart.items.Song;
-import dart.users.Customer;
-import dart.users.Employee;
-import dart.users.User;
-import dart.users.UserController;
-import dart.items.ItemController;
-import dart.users.membership.Membership;
+import dart.model.items.Game;
+import dart.model.items.Song;
+import dart.model.users.Customer;
+import dart.model.users.Employee;
+import dart.controllers.UserController;
+import dart.controllers.ItemController;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class StorageController {
 

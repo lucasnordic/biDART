@@ -1,9 +1,6 @@
-package dart.users;
+package dart.model.users;
 
 import dart.tools.InvalidDataInput;
-import dart.users.membership.GoldMembership;
-import dart.users.membership.PlatinumMembership;
-import dart.users.membership.SilverMembership;
 
 import java.util.Calendar;
 
