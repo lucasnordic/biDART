@@ -18,9 +18,9 @@ public class Customer extends User /* implements Comparable<Customer> */ {
      * Attributes
      */
 
+    private final String type = "Customer";
     private int credit;
     private Membership membership;
-    private final String type = "Customer";
     private double totalPaidRent;
 
   
@@ -49,9 +49,18 @@ public class Customer extends User /* implements Comparable<Customer> */ {
         this(name, password, new RegularMembership());
     }
 
-//    public Customer() {
-//
-//    }
+    // This is for creating a customer from a file:
+    public Customer (String[] savedAttributes) {
+        this(savedAttributes[2], savedAttributes[3]);
+        this.id = savedAttributes[1];
+        switch (savedAttributes[4]) {
+            case "Silver" -> this.membership = new SilverMembership();
+            case "Gold" -> this.membership = new GoldMembership();
+            case "Platinum" -> this.membership = new PlatinumMembership();
+        }
+        this.credit = Integer.parseInt(savedAttributes[5]);
+        this.totalPaidRent = Double.parseDouble(savedAttributes[6]);
+    }
 
 
     /**
@@ -111,6 +120,18 @@ public class Customer extends User /* implements Comparable<Customer> */ {
         // If it is in this instance a PlatinumMembership it won't go into any of the "ifs",
         // Thus it will stay "Platinum".
         return membership;
+    }
+
+    public String saveCustomer() {
+        return String.join(";",
+            getType(),
+            getId(),
+            getName(),
+            getPassword(),
+            getMembership().getMembershipClass(),
+            String.valueOf(credit),
+            String.valueOf(getTotalPaidRent())
+        );
     }
 
 

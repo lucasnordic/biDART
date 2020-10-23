@@ -1,6 +1,8 @@
 package dart.users.membership;
 
-public class SilverMembership implements Membership {
+import java.io.Serializable;
+
+public class SilverMembership implements Membership, Serializable {
 
 
     /**

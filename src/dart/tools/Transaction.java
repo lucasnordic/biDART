@@ -10,14 +10,14 @@ public class Transaction {
     //private UUID id;
     private String customerId;
     private long daysRented;
-    private UUID itemId;
+    private String itemId;
     private Integer ratingScore;
     private String review;
     private Item item;
     private Customer customer;
 
 
-    public Transaction(String customerId, long daysRented, UUID itemId, Customer customer, Item item) {
+    public Transaction(String customerId, long daysRented, String itemId, Customer customer, Item item) {
         //this.id = UUID.randomUUID();
         this.customerId = customerId;
         this.daysRented = daysRented;
@@ -37,7 +37,7 @@ public class Transaction {
         return daysRented;
     }
 
-    public UUID getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
@@ -58,7 +58,7 @@ public class Transaction {
         this.daysRented = daysRented;
     }
 
-    public void setItemId(UUID itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 

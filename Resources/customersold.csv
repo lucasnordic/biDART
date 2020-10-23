@@ -1,5 +1,5 @@
 #Customer;id;name;password;credit;totalpaidrent;membership
-Customer;48f6baf5-959c-4682-833c-e7449ce973b8;maryam;234;0;0;Regular
+Customer ; 48f6baf5-959c-4682-833c-e7449ce973b8 ; maryam ; 234 ; 0 ; 0 ; Regular
 Customer;58f6baf5-959c-4682-833c-e7449ce973b8;lucas;234;0;0;Regular
 Customer;68f6baf5-959c-4682-833c-e7449ce973b8;olga;234;0;0;Regular
 Customer;78f6baf5-959c-4682-833c-e7449ce973b8;anwar;234;0;0;Regular

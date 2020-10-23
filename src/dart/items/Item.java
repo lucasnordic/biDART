@@ -12,7 +12,7 @@ public class Item {
 
     //Mutual attributes of all rented Objects:
 
-    private UUID id;
+    private String id;
     private String title;
     private double dailyRent;
     private int releaseYear;
@@ -29,7 +29,7 @@ public class Item {
     //Constructor:
 
     public Item( String title, double dailyRent,int releaseYear) {
-        this.id = UUID.randomUUID();
+        this.id = String.valueOf(UUID.randomUUID());
         this.title = title;
         this.dailyRent = dailyRent;
         this.releaseYear= releaseYear;
@@ -47,9 +47,15 @@ public class Item {
         }
       else{
         }}
-    public Item() {
 
+
+    public Item (String[] savedAttributes) {
+        this.id = savedAttributes[1];
+        this.title = savedAttributes[2];
+        this.releaseYear = Integer.parseInt(savedAttributes[4]);
+        this.dailyRent = Double.parseDouble(savedAttributes[5]);
     }
+
 
     //Getters & setters:
     public LocalDate getDateRented() {
@@ -89,7 +95,7 @@ public class Item {
         return releaseYear;
     }
 
-    protected UUID getID() {return this.id; }
+    public String getID() {return this.id; }
 
     protected String getTitle() {
         return this.title;
@@ -103,7 +109,7 @@ public class Item {
         return this.rentStatus;
     }
 
-    protected void setID(UUID ID) {
+    protected void setID(String ID) {
         this.id = ID;
     }
 

@@ -16,6 +16,11 @@ public class Song extends Item {
         //this.releaseYear = releaseYear;
     }
 
+    public Song (String[] savedAttributes) {
+        super(savedAttributes);
+        this.artist = savedAttributes[3];
+    }
+
     //Getters & setters:
 
     protected String getArtist() { return this.artist; }
