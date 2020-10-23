@@ -1,9 +1,9 @@
-package dart.controllers;
+package dart.controller;
 
-import dart.models.items.Game;
-import dart.models.items.Song;
-import dart.models.users.Customer;
-import dart.models.users.Employee;
+import dart.model.item.Game;
+import dart.model.item.Song;
+import dart.model.user.Customer;
+import dart.model.user.Employee;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class StorageController {
      */
 
     private ArrayList storage;  // what is this?
-    private static String storageFilePath = "./src/customers.csv";
+    private static String storageFilePath = "./src/dart.file.customers.csv";
 
 
     /**
@@ -60,7 +60,7 @@ public class StorageController {
                     // If the customer does not exist already,
                     // then we add the customer to the list in usercontroller;
                     if(userController.getUserWithId(customer.getId()) == null) {
-                        userController.addCustomer(customer);
+                        userController.registerCustomer(customer);
                         System.out.println("Added: " + Arrays.toString(retrievedInfo));
                     }
 

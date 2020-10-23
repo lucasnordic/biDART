@@ -1,4 +1,4 @@
-package dart.models.items;
+package dart.model.item;
 
 public class Value {
     private int userRating;
@@ -26,7 +26,7 @@ public class Value {
     }
 
    public  String toString() {
-        return userRating+" "+review;
+        return userRating+" "+(review==null ? "" : review);
 
     }
 }

@@ -1,7 +1,8 @@
 package dart;
 
 
-import dart.tools.UserInputHandler;
+import dart.tool.UserInputHandler;
+import dart.view.DartView;
 
 
 /**
@@ -17,10 +18,10 @@ import dart.tools.UserInputHandler;
 
 public class Main {
     public static void main(String[] args) {
-        Dart dart = new Dart();
+        DartView dart = new DartView();
 
-        Dart.printIntroAscii();
-        dart.mainMenu();
+        DartView.printIntroAscii();
+        //dart.mainMenu();
 
         UserInputHandler.closeScanner();
     }

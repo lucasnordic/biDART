@@ -1,4 +1,4 @@
-package dart.models.users.membership;
+package dart.model.user.membership;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package dart.models.items;
+package dart.model.item;
 
 public class Game extends Item {
 

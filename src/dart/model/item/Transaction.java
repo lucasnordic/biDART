@@ -1,7 +1,6 @@
-package dart.models;
+package dart.model.item;
 
-import dart.models.items.Item;
-import dart.models.users.Customer;
+import dart.model.user.Customer;
 
 public class Transaction {
 

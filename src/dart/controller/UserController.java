@@ -1,10 +1,9 @@
-package dart.controllers;
+package dart.controller;
 
-import dart.models.users.User;
-import dart.tools.InvalidDataInput;
-import dart.tools.UserInputHandler;
-import dart.models.users.Customer;
-import dart.models.users.Employee;
+import dart.model.user.Customer;
+import dart.model.user.Employee;
+import dart.model.user.User;
+import dart.tool.UserInputHandler;
 
 import java.util.ArrayList;
 
@@ -18,9 +17,9 @@ public class UserController {
     private ArrayList<User> userList = new ArrayList<>();
     private User currentUser;
 
-    public UserController() {
-        mockData();
-    }
+//    public UserController() {
+//        mockData();
+//    }
 
 
     /**
@@ -48,39 +47,18 @@ public class UserController {
      * These methods are related to Customers:
      */
 
-    public void registration() {
-
-        System.out.print("Please enter the Customers username: ");
-        String name = UserInputHandler.inputString();
-        System.out.print("Please enter a password for the Customer: ");
-        String password = UserInputHandler.inputString();
-        try {
-            User customer = new Customer(name, password);
-            userList.add(customer);
-            System.out.println(customer.toString());
-        }
-        catch(InvalidDataInput e){
-            System.out.println(e.getMessage());
-        }
-//        customer.setName(name);
-//        customer.setPassword(password);
-//
-//        User customer = new Customer(name, password);
-//        userList.add(customer);
-//        System.out.println(customer.toString());
+    public void registerCustomer(Customer customer) {
+        userList.add(customer);
+        System.out.println(customer.toString());
 
     }
 
-    public void cancellation() {
-        showCustomerListNameId();
-        System.out.print("Which customer should be removed? ID: ");
-        String ID = UserInputHandler.inputString();
-
-        for (int i = 0; i < userList.size(); i++) {
+    public void removeCustomer(String id) {
+  for (int i = 0; i < userList.size(); i++) {
 
             String customerId = (userList.get(i)).getId();
 
-            if (customerId.equals(ID)) {
+            if (customerId.equals(id)) {
                 userList.remove(i);
                 System.out.println("Customer is removed!");
             } else {
@@ -90,9 +68,9 @@ public class UserController {
         UserInputHandler.pressAnyKeyCon();
     }
 
-    public void addCustomer(Customer customer){
-        userList.add(customer);
-    }
+//    public void addCustomer(Customer customer){
+//        userList.add(customer);
+//    }
 
     public void showCustomerList() {
         for (User user : userList) {
@@ -125,44 +103,24 @@ public class UserController {
         UserInputHandler.pressAnyKeyCon();
     }
 
-    public void addEmployee() {
+    public void addEmployee(User newEmployee) {
+        userList.add(newEmployee);
 
-        System.out.print("Type employee's name: ");
-        String employeeName = UserInputHandler.inputString();
-
-        System.out.print("Type employee's birth year: ");
-        int employeeBirthYear = UserInputHandler.inputInt();
-
-        System.out.print("Type employee's gross salary: ");
-        double employeeGrossSalary = UserInputHandler.inputDouble();
-        try {
-        User newEmployee = new Employee(
-                employeeName,
-                "password123",
-                employeeBirthYear,
-                employeeGrossSalary);
-                userList.add(newEmployee);
-
-            System.out.println("You added: " + newEmployee.toString());
-            UserInputHandler.pressAnyKeyCon();
-
-        }catch (InvalidDataInput e){
-            System.out.println(e.getMessage());
-        }
+        System.out.println("You added: " + newEmployee.toString());
+        UserInputHandler.pressAnyKeyCon();
     }
 
-    public void addEmployee(Employee employee){
-        userList.add(employee);
-    }
+//    public void addEmployee(Employee employee){
+//        userList.add(employee);
+//    }
 
     public void removeEmployee() {
 
+        // Here we check if the user exists in the array:
         User user = null;
 
         System.out.println(" ");
         showEmployeeList();
-
-        // Here we check if the user exists in the array:
         while (user == null) {
             System.out.print("Which user should be removed? Please enter a correct ID or NAME: ");
             String input = UserInputHandler.inputString();
@@ -247,19 +205,19 @@ public class UserController {
      * This is "test" data:
      */
 
-    public void mockData() {
-        addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-        addEmployee(new Employee("Lucas","koko", 1990, 10.0));
+   // public void mockData() {
+      //  addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+       // addEmployee(new Employee("Lucas","koko", 1990, 10.0));
 //        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
 //        addEmployee(new Employee("Deba","koko", 309, 10.0));
 //        addEmployee(new Employee("Olga","koko", 1769, 10.0));
 //
-        addCustomer(new Customer("lucas", "123"));
-        addCustomer(new Customer("maryam", "234"));
+//        addCustomer(new Customer("lucas", "123"));
+//        addCustomer(new Customer("maryam", "234"));
 //        addCustomer(new Customer("deba", "345"));
 //        addCustomer(new Customer("anwar", "456"));
 //        addCustomer(new Customer("olga", "567"));
-    }
+  //  }
 }
 
 

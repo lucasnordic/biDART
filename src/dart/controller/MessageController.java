@@ -1,16 +1,15 @@
-package dart.controllers;
+package dart.controller;
 
-import dart.models.users.Customer;
-import dart.models.users.Employee;
-import dart.models.users.User;
-import dart.models.users.Message;
-import dart.tools.UserInputHandler;
+import dart.model.user.Customer;
+import dart.model.user.Employee;
+import dart.model.user.User;
+import dart.model.user.Message;
+import dart.tool.UserInputHandler;
 
 import java.util.ArrayList;
 
 public class MessageController {
     private ArrayList<Message> messageList = new ArrayList<>();
-//    private ArrayList<Message> upgradeList = new ArrayList<>();
 
     public ArrayList<Message> getMessageListForUser(User user) {
         ArrayList<Message> userMessages = new ArrayList<>();

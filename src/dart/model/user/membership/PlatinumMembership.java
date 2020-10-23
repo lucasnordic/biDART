@@ -1,22 +1,18 @@
-package dart.models.users.membership;
+package dart.model.user.membership;
 
 import java.io.Serializable;
 
-public class RegularMembership implements Membership, Serializable {
+public class PlatinumMembership implements Membership, Serializable {
 
 
     /**
      * Attributes:
-     * (Question, is it better to declare them like this?
-     * I think it is better to keep the numbers upp here since,
-     * if this class were to become very long then we can still change
-     * these numbers easily.
      */
 
-    private final double discount = 0;
-    private final int maxAllowedRent = 1;
-    private final int additionalCredit = 0;
-    private final String membershipClass = "Regular";
+    private final double discount = 0.25;
+    private final int maxAllowedRent = 7;
+    private final int additionalCredit = 3;
+    private final String membershipClass = "Platinum";
 
 
     /**
