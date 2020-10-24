@@ -21,8 +21,7 @@ public class EmployeeView {
     private ItemController itemController;
     private MessageController messageController;
     private UserController userController;
-
-    private User user;
+    private final User user;
 
 
     public EmployeeView(User user, ItemController itemController, MessageController messageController, UserController userController) {
@@ -111,11 +110,12 @@ public class EmployeeView {
     }
 
     public void removeCustomer() {
-       userController.showCustomerListNameId();
+        userController.showCustomerListNameId();
         System.out.print("Which customer should be removed? ID: ");
         String id = UserInputHandler.inputString();
-       String result= userController.removeUser(id);
+        String result = userController.removeUserByPartialInput(id);
         System.out.println(result);
+        UserInputHandler.pressAnyKeyCon();
     }
 
     public void registerAlbum() {

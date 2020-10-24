@@ -18,10 +18,8 @@ import dart.view.DartView;
 
 public class Main {
     public static void main(String[] args) {
-        DartView dart = new DartView();
-
         DartView.printIntroAscii();
-        //dart.mainMenu();
+        DartView dart = new DartView();
 
         UserInputHandler.closeScanner();
     }

@@ -33,7 +33,7 @@ public class Song extends Item {
 
     public String toString() {
      //   return super.toString()+ " by " + this.artist + ". Released in " + this.releaseYear + ".";
-        return  super.getID() + ": " + super.getTitle() + " by " + this.artist +
+        return "ID: " + super.getID() + ". Album: " + super.getTitle() + " by " + this.artist +
                 ". Released in " + super.getReleaseYear() + ". Price: " + super.getDailyRent() +
                 " SEK. Status: " + super.getRentStatus() + super.toString();
                }

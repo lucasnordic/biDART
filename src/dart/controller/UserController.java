@@ -53,72 +53,59 @@ public class UserController {
 
     }
 
-//
 
-    public String removeUser(String id){
+    // With this you only need to input a part of the ID:
+    public String removeUserByPartialInput(String idInput){
+        User user = checkIfInputIsUniqueId(idInput); // We want to check if the user is unique
+
+        if (user != null) { // Remove user depending on result:
+            userList.remove(user);
+
+            return "User removed!";
+        }
+
+        return "ID " + idInput + " is not found";
+    }
+
+    // With this you have to type the whole ID:
+    public String removeUser(String idInput){
         for (int i = 0; i < userList.size(); i++){
-            if(userList.get(i).getId().equals(id)){
+            if(userList.get(i).getId().equals(idInput)){
                 userList.remove(i);
-                return "Removed";
+                return "User removed!";
             }
         }
-        return "ID " + id + " is not found";
+
+        return "ID " + idInput + " is not found";
     }
 
 
-//
-//    public void removeCustomer(String id) {
-//  for (int i = 0; i < userList.size(); i++) {
-//
-//            String customerId = (userList.get(i)).getId();
-//
-//            if (customerId.equals(id)) {
-//                userList.remove(i);
-//                System.out.println("Customer is removed!");
-//            } else {
-//                System.out.println("Customer's ID not found!");
-//            }
-//        }
-//        UserInputHandler.pressAnyKeyCon();
-//    }
+    // Checks only part of input and tries to find if the idInput is unique:
+    public User checkIfInputIsUniqueId(String idInput) {
+        User user = null;
+        while (user == null) {
 
-//    public void removeEmployee() {
-//
-//        // Here we check if the user exists in the array:
-//        User user = null;
-//
-//        System.out.println(" ");
-//        showEmployeeList();
-//        while (user == null) {
-//            System.out.print("Which user should be removed? Please enter a correct ID or NAME: ");
-//            String input = UserInputHandler.inputString();
-//            int foundUsers = 0;
-//
-//            // Here we check if the ID is actually a unique ID.
-//            // On the first run we go through the loop to find the first ID, similar to the users input.
-//            for (int i = 0; i < userList.size() && foundUsers < 2; i++) {
-//                User currentUser = userList.get(i);
-//
-//                // When we find an ID, we increase the foundUsers by "1" and continue checking the Array of Employees:
-//                if (currentUser.getId().startsWith(input) && currentUser instanceof Employee || currentUser.getName().startsWith(input)) {
-//                    foundUsers++;
-//                    user = currentUser;
-//                }
-//            }
-//
-//            // If the foundUsers is greater then one that means we have found more than two ID's matching the users input.
-//            // Then we reset user and we stay in the loop:
-//            if (foundUsers > 1) {
-//                System.out.println("Not a Unique ID, try again. ");
-//                user = null;
-//            }
-//        }
-//
-//        // If we leave the last loop and the count is only "1" by the end, then we remove the "user":
-//        userList.remove(user);
-//        System.out.print("Employee removed! ");
-//        UserInputHandler.pressAnyKeyCon();
-//    }
+            // Here we check if the ID is actually a unique ID.
+            int foundUsers = 0;
+            for (int i = 0; i < userList.size() && foundUsers < 2; i++) {
+                User currentUser = userList.get(i);
+
+                // When we find an ID, we increase the foundUsers by "1" and continue checking the Array of Employees:
+                if (currentUser.getId().startsWith(idInput)) {
+                    foundUsers++;
+                    user = currentUser;
+                }
+            }
+
+            // If the foundUsers is greater then one that means we have found more than two ID's matching the users input.
+            // Then we reset user.
+            if (foundUsers > 1) {
+                System.out.println("ID: " + idInput + ", is not found");
+                user = null;
+            }
+        }
+        return user;
+    }
 
 
 
@@ -164,10 +151,6 @@ public class UserController {
 //    public void addEmployee(Employee employee){
 //        userList.add(employee);
 //    }
-
-
-
-
 
 
     public double calculateNetSalary() {
@@ -217,15 +200,19 @@ public class UserController {
         }
         return userFound;
     }
+}
 
 
-    /**
-     * This is "test" data:
-     */
 
-   // public void mockData() {
-      //  addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
-       // addEmployee(new Employee("Lucas","koko", 1990, 10.0));
+
+
+/**
+ * This is "test" data:
+ */
+
+// public void mockData() {
+//  addEmployee(new Employee("Anwar", "koko", 2010, 10.0));
+// addEmployee(new Employee("Lucas","koko", 1990, 10.0));
 //        addEmployee(new Employee("Maryam","koko", 1930, 10.0));
 //        addEmployee(new Employee("Deba","koko", 309, 10.0));
 //        addEmployee(new Employee("Olga","koko", 1769, 10.0));
@@ -235,26 +222,27 @@ public class UserController {
 //        addCustomer(new Customer("deba", "345"));
 //        addCustomer(new Customer("anwar", "456"));
 //        addCustomer(new Customer("olga", "567"));
-  //  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  }
 
 
 // old methods:
+
+
+//
+//    public void removeCustomer(String id) {
+//  for (int i = 0; i < userList.size(); i++) {
+//
+//            String customerId = (userList.get(i)).getId();
+//
+//            if (customerId.equals(id)) {
+//                userList.remove(i);
+//                System.out.println("Customer is removed!");
+//            } else {
+//                System.out.println("Customer's ID not found!");
+//            }
+//        }
+//        UserInputHandler.pressAnyKeyCon();
+//    }
 
 //    private ArrayList<Customer> customerList = new ArrayList<>();
 //    private ArrayList<Employee> employeeList = new ArrayList<>();
@@ -349,3 +337,14 @@ public class UserController {
 //
 //        }while(newCustomer == null);
 //    }
+
+
+//        for (int i = 0; i < userList.size(); i++){
+//            if(userList.get(i).getId().equals(id)){
+//                userList.remove(i);
+//                return "User removed!";
+//            }
+//        }
+//        return "ID " + id + " is not found";
+
+// Old  || currentUser.getName().startsWith(input) && currentUser instanceof Employee

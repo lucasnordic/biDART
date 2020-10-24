@@ -57,6 +57,7 @@ public class ManagerView {
             case 10 -> {
                 return;
             }
+//            default -> menuManager();
         }
         menuManager();
     }
@@ -80,14 +81,13 @@ public class ManagerView {
         }catch (InvalidDataInput e){
             System.out.println(e.getMessage());
         }
-
     }
 
     public void removeEmployee(){
         userController.showEmployeeList();
         System.out.print("Please enter the ID of the employee you want to remove: ");
         String id = UserInputHandler.inputString();
-        String result = userController.removeUser(id);
+        String result = userController.removeUserByPartialInput(id);
         System.out.println(result);
 
     }

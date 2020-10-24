@@ -7,6 +7,7 @@ import dart.controller.UserController;
 import dart.model.user.Customer;
 import dart.model.user.Message;
 import dart.model.user.User;
+import dart.tool.PrintMenus;
 import dart.tool.UserInputHandler;
 
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ public class CustomerView {
     private ItemController itemController;
     private MessageController messageController;
     private UserController userController;
-
     private Customer customer;
 
     public CustomerView(User user, ItemController itemController, MessageController messageController, UserController userController) {
@@ -39,7 +39,7 @@ public class CustomerView {
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "yes");    // Here we send this content to be printed by the Class "Print"
+        PrintMenus printMenus = new PrintMenus(title, menuItems, inputPrompt, "yes");    // Here we send this content to be printed by the Class "Print"
 
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
