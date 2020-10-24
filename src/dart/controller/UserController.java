@@ -47,6 +47,18 @@ public class UserController {
      * These methods are related to all users:
      */
 
+    // With this you have to type the whole ID:
+    public String removeUser(String idInput){
+        for (int i = 0; i < userList.size(); i++){
+            if(userList.get(i).getId().equals(idInput)){
+                userList.remove(i);
+                return "User removed!";
+            }
+        }
+
+        return "ID " + idInput + " is not found";
+    }
+
     // With this you only need to input a part of the ID:
     public String removeUserByPartialInput(String idInput){
         User user = checkIfInputIsUniqueId(idInput); // We want to check if the user is unique
@@ -55,18 +67,6 @@ public class UserController {
             userList.remove(user);
 
             return "User removed!";
-        }
-
-        return "ID " + idInput + " is not found";
-    }
-
-    // With this you have to type the whole ID:
-    public String removeUser(String idInput){
-        for (int i = 0; i < userList.size(); i++){
-            if(userList.get(i).getId().equals(idInput)){
-                userList.remove(i);
-                return "User removed!";
-            }
         }
 
         return "ID " + idInput + " is not found";
