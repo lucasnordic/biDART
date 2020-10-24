@@ -75,7 +75,7 @@ public class ItemController {
 
 
     public void deleteSong() {
-
+        showAllAlbums();
         System.out.println("Please enter the ID of the song which you wish to delete:");
         String id = UserInputHandler.inputString();
 
@@ -125,6 +125,7 @@ public class ItemController {
 
 
     public void removeAGame() {
+        showAllGames();
         System.out.print("Please enter the ID of the game you want to remove: ");
         String id = UserInputHandler.inputString();
         System.out.println("Game is removed!");
