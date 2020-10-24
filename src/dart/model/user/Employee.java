@@ -39,7 +39,7 @@ public class Employee extends User {
         super();
     }
 
-
+    // For constructing an employee from a file:
     public Employee (String[] savedAttributes) {
         super(savedAttributes);
         this.birthYear = Integer.parseInt(savedAttributes[4]);

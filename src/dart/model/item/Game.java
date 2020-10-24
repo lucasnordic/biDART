@@ -10,6 +10,7 @@ public class Game extends Item {
         this.genre = genre;
     }
 
+    // Construct a game from a file;
     public Game (String[] savedAttributes) {
         super(savedAttributes);
         this.genre = savedAttributes[3];

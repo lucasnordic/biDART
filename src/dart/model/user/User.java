@@ -30,6 +30,7 @@ public abstract class User implements Serializable {
 
     }
 
+    // For constructing a User from a file:
     public User(String[] savedAttributes) {
         this.id = savedAttributes[1];
         this.name = savedAttributes[2];

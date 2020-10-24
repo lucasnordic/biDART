@@ -42,7 +42,7 @@ public class Item {
       else{
         }}
 
-
+    // Construct an Item from a file:
     public Item (String[] savedAttributes) {
         this.id = savedAttributes[1];
         this.title = savedAttributes[2];
