@@ -91,7 +91,7 @@ public class ItemController {
 
     public void returnProcess(Customer customer, String id) { //why we here didnt call just a customer
 
-        int credit = customer.getCredit();
+        try { int credit = customer.getCredit();
 
         Item returnee = getItemWithId(id);
 
@@ -111,11 +111,15 @@ public class ItemController {
             rateItem(returnee, customer);
             item.setCounter(1);
         }
+        }catch (InvalidDataInput e) {
+               System.out.println(e.getMessage());
+           }
+
     }
 
 
     public void returnItem(Item item, Customer customer) {
-        try {
+
             System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
             item.makeAvailableAgain(dateReturned);
@@ -134,9 +138,7 @@ public class ItemController {
 
             System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
             storeDailyRent(finalTotalRent);
-        } catch (InvalidDataInput e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 
 

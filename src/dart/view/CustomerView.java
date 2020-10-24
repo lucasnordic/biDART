@@ -29,9 +29,9 @@ public class CustomerView {
     private void menuCustomer() {
         String title = "Customer Screen - Type one of the options below:";
         String[] menuItems = {
-                "Rent an game",
+                "Rent a game",
                 "Return a game",
-                "Rent an album",
+                "Rent a song album",
                 "Return a song album",
                 "Search for game or song album",
                 "Sort",
