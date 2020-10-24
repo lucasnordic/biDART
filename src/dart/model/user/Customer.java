@@ -52,6 +52,7 @@ public class Customer extends User /* implements Comparable<Customer> */ {
     public Customer (String[] savedAttributes) {
         super(savedAttributes);
         switch (savedAttributes[4]) {
+            case "Regular" -> this.membership = new RegularMembership();
             case "Silver" -> this.membership = new SilverMembership();
             case "Gold" -> this.membership = new GoldMembership();
             case "Platinum" -> this.membership = new PlatinumMembership();

@@ -168,29 +168,30 @@ public class EmployeeView {
         //  Here we store the max and min choice based on "menuItems" size:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
 
-        if (menuChoice == 1) {
-            System.out.print("Enter the ID of the customer you want to Deny: ");
-        } else {
-            System.out.print("Enter the ID of the customer you want to Accept: ");
-        }
+        if (menuChoice == 1 || menuChoice == 2) {
+            System.out.print("Enter the ID of the customer: ");
+            String customerId = UserInputHandler.inputString();
+            System.out.println(" ");
 
-        String customerId = UserInputHandler.inputString();
-        System.out.println(" ");
-
-        Customer customer = (Customer) userController.getUserWithId(customerId);
-        if (customer != null) {
-            switch (menuChoice) {
-                case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
-                case 2 -> menuManageCustomerUpgrade(customer);
-                case 3 -> {
-                    return;
+            Customer customer = (Customer) userController.getUserWithId(customerId);
+            if (customer != null) {
+                switch (menuChoice) {
+                    case 1 -> messageController.removeMessageFromListBasedOnCustomerId(customerId);
+                    case 2 -> menuManageCustomerUpgrade(customer);
+                    case 3 -> {
+                        return;
+                    }
                 }
+            } else {
+                System.out.println("Could not find Customer with ID: " + customerId);
+                UserInputHandler.pressAnyKeyCon();
             }
+            menuEmployee();
         } else {
-            System.out.println("Could not find Customer with ID: " + customerId);
-            UserInputHandler.pressAnyKeyCon();
+            menuEmployee();
         }
-        menuEmployee();
+
+
     }
 
     //  This is a continuation of previous method. It checks if a user is already Platinum.
