@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 public class StorageController {
 
+
     /**
      * Attributes:
      */
@@ -21,6 +22,10 @@ public class StorageController {
     private static final String HISTORY_NAME = "history";
 
 
+    /**
+     * Methods:
+     */
+
     public static boolean saveTranscationToFile(Transaction transaction) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(HISTORY_NAME, true))) {
             writer.append(transaction.getInfo() + "\n");
@@ -29,13 +34,6 @@ public class StorageController {
             return false;
         }
     }
-
-
-
-
-    /**
-     * Methods:
-     */
 
     public void importCustomerCSVBuffer(UserController userController, ItemController itemController) {
         try{
