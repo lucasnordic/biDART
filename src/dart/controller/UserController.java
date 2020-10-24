@@ -44,15 +44,8 @@ public class UserController {
 
 
     /**
-     * These methods are related to Customers:
+     * These methods are related to all users:
      */
-
-    public void registerCustomer(Customer customer) {
-        userList.add(customer);
-        System.out.println(customer.toString());
-
-    }
-
 
     // With this you only need to input a part of the ID:
     public String removeUserByPartialInput(String idInput){
@@ -78,7 +71,6 @@ public class UserController {
 
         return "ID " + idInput + " is not found";
     }
-
 
     // Checks only part of input and tries to find if the idInput is unique:
     public User checkIfInputIsUniqueId(String idInput) {
@@ -108,6 +100,15 @@ public class UserController {
     }
 
 
+    /**
+     * These methods are related to Customers:
+     */
+
+    public void registerCustomer(Customer customer) {
+        userList.add(customer);
+        System.out.println(customer.toString());
+
+    }
 
     public void addCustomer(Customer customer){
         userList.add(customer);
