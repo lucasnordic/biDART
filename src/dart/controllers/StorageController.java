@@ -66,8 +66,10 @@ public class StorageController {
 
                 } else if(retrievedInfo[0].equals("Employee")) {
                     Employee employee = new Employee(retrievedInfo);
+
                     if(userController.getUserWithId(employee.getId()) == null) {
                         userController.addEmployee(employee);
+                        System.out.println("Added " + Arrays.toString(retrievedInfo));
                     }
 
                 } else if(retrievedInfo[0].equals("Game")) {
