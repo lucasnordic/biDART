@@ -5,38 +5,36 @@ import dart.model.user.Customer;
 public class Transaction {
 
     //private UUID id;
-    private String customerId;
-    private long daysRented;
-    private String itemId;
-    private Integer ratingScore;
+//    private String customerId;
+//    private long daysRented;
+//    private String itemId;
+    private Integer ratingScore;  // should this be Integer or int??!
     private String review;
     private Item item;
     private Customer customer;
 
 
-    public Transaction(String customerId, long daysRented, String itemId, Customer customer, Item item) {
+    public Transaction (Customer customer, Item item) {
         //this.id = UUID.randomUUID();
-        this.customerId = customerId;
-        this.daysRented = daysRented;
-        this.itemId = itemId;
+//        this.customerId = customerId;
+//        this.daysRented = daysRented;
+//        this.itemId = itemId;
         this.item = item;
         this.customer = customer;
-        this.review = null;
+        this.review = "";
+        this.ratingScore = 0;
     }
-
-
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public long getDaysRented() {
-        return daysRented;
-    }
-
-    public String getItemId() {
-        return itemId;
-    }
+//    public String getCustomerId() {
+//        return customerId;
+//    }
+//
+//    public long getDaysRented() {
+//        return daysRented;
+//    }
+//
+//    public String getItemId() {
+//        return itemId;
+//    }
 
     public int getRatingScore() {
         return ratingScore;
@@ -47,17 +45,17 @@ public class Transaction {
     }
 
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public void setDaysRented(Long daysRented) {
-        this.daysRented = daysRented;
-    }
-
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
+//    public void setCustomerId(String customerId) {
+//        this.customerId = customerId;
+//    }
+//
+//    public void setDaysRented(Long daysRented) {
+//        this.daysRented = daysRented;
+//    }
+//
+//    public void setItemId(String itemId) {
+//        this.itemId = itemId;
+//    }
 
     public void setRatingScore(int ratingScore) {
         this.ratingScore = ratingScore;
@@ -85,7 +83,9 @@ public class Transaction {
 
 
     public String toString(){
-        String s = "Customer ID: " + this.customerId +", Renting duration: " + this.daysRented + ", Item ID: " + this.itemId;
+        String s = "Customer ID: " + this.customer.getId() +", Renting duration: " + this.item.daysBetween() +
+                ", Item ID: " + this.item.getID();
+
         if(this.ratingScore!=null && review!=null){
             s = s+ " Item score: "+this.ratingScore+" Review: "+this.review+"";
         }
@@ -96,5 +96,5 @@ public class Transaction {
          return s;
     }
     public String getInfo(){
-        return customerId+";"+itemId+";"+item.getTitle()+";"+item.getTotalRentProfit();
+        return customer.getId()+";"+item.getID()+";"+item.getTitle()+";"+item.getTotalRentProfit();
     }}
