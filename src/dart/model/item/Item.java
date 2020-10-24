@@ -1,6 +1,6 @@
-package dart.models.items;
+package dart.model.item;
 
-import dart.tools.InvalidDataInput;
+import dart.tool.InvalidDataInput;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -23,10 +23,6 @@ public class Item {
     private ArrayList<Value> rating = new ArrayList<>();
     private int counter;
 
-//case 6 -> most profitable
-            //case 7 -> most popular
-            //case 8 -> best customer
-    //Constructor:
 
     public Item( String title, double dailyRent,int releaseYear) {
         this.id = UUID.randomUUID().toString();
@@ -35,15 +31,13 @@ public class Item {
         this.releaseYear= releaseYear;
         this.totalRentProfit = 0.0;
         this.counter = 0;
-        if (title.isEmpty() && dailyRent < 0){
+        if (title.isEmpty() && dailyRent<0  ){
             throw new InvalidDataInput("Invalid data. Title cannot be empty and daily rent cannot be negative.");
         }
         if (title.isEmpty()) {
             throw new InvalidDataInput("Invalid data. Item name cannot be empty.");
-            //throw new InvalidDataInput("Invalid data. Item name cannot be empty.");
         } if (dailyRent < 0) {
             throw new InvalidDataInput("Invalid data. Item daily rent cannot be negative.");
-
         }
       else{
         }}
@@ -117,25 +111,16 @@ public class Item {
         this.title = title;
     }
 
-    public void setDailyRent(double dailyRent) {
-        this.dailyRent = dailyRent;
-    }
+//    public void setDailyRent(double dailyRent) {
+//        this.dailyRent = dailyRent;
+//    }
 
-    public void setRentStatus(String rentStatus) {
-        this.rentStatus = rentStatus;
-    }
+//    public void setRentStatus(String rentStatus) {
+//        this.rentStatus = rentStatus;
+//    }
 
     //Methods:
 
-    public void rent() {
-        rentStatus = "rented";
-    }
-
-   // protected void makeAvailableAgain() {
-//        rentStatus = "available";
-//    }
-
-    //here we add rating to arraylist of Values
     public void addValue(Value value) {
         rating.add(value);
     }
@@ -146,14 +131,14 @@ public class Item {
         int totalRating = 0;
         for (Value value : rating) {
             totalRating = value.getUserRating() + totalRating; }
-        averageRating = (double) totalRating / rating.size(); //(double) allows to convert int Userrating into doubles
+        averageRating = (double) totalRating / rating.size();
         return averageRating;
     }
 
 
     public void rent(LocalDate dateRented) {
         rentStatus = "rented";
-        this.dateRented = dateRented; // date of rent is changing when item changes its status from available to rented
+        this.dateRented = dateRented;
     }
 
 
@@ -161,23 +146,18 @@ public class Item {
         rentStatus = "available";this.dateReturned =dateReturned;
     }
 
-//    protected void dateReturned (LocalDate dateReturned){
-//        this.dateReturned=dateReturned;
-//    }
-    public long daysBetween (){
-//        LocalDate dateBefore = dateRented;
-//        LocalDate dateAfter =dateReturned;
+    public long daysBetween () {
+        if (dateReturned.isEqual(getDateRented()) || dateReturned.isBefore(getDateRented())){
+            throw new InvalidDataInput("Invalid operation. Upon returning an item, the number of days rented must be positive.");
+        }
         return ChronoUnit.DAYS.between(dateRented, dateReturned);
     }
 
 
     public String toString() {
-        String review = ".\nReviews: \n"; //empty String for further use adding all reviews
+        String review = ".\nReviews: \n";
         for (Value value : rating) {
             review = review + " " + value + ";\n";
-
-//        return ID + ": " + title + ". Price: " + dailyRent + " SEK. Status: " + rentStatus +
-//                "\nAverage user rating: "+findAverageRating()+"\nReviews:\n"+review+"";
         }
         return review + "\nAverage user rating: " + findAverageRating();
     }

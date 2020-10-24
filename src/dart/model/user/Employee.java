@@ -1,6 +1,6 @@
-package dart.models.users;
+package dart.model.user;
 
-import dart.tools.InvalidDataInput;
+import dart.tool.InvalidDataInput;
 
 import java.util.Calendar;
 
