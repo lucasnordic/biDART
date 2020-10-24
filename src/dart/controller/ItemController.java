@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-//import org.jetbrains.annotations.NotNull;
-
 public class ItemController {
 
 
@@ -27,11 +25,6 @@ public class ItemController {
     private Customer customer;
 
 
-//    public ItemController() {
-//        mockData();
-//    }
-
-
     /**
      * Adding and deleting items
      */
@@ -40,11 +33,17 @@ public class ItemController {
         System.out.println(item);
     }
 
-    public void removeItem(String id) {
-        System.out.println("Removed!");
-        UserInputHandler.pressAnyKeyCon();
-        dartProducts.remove(id);
+    public String removeItem(String id) {
+        for (int i = 0; i < dartProducts.size(); i++) {
+
+            if (dartProducts.get(i).getID().equals(id)) {
+                dartProducts.remove(i);
+                return "Removed";
+            }
+        }
+        return "ID " + id + " is not found";
     }
+
 
 
     /**
@@ -74,12 +73,15 @@ public class ItemController {
 
     public void rentItem(Customer customer, String id) {
         Item item = findItem(id);
+        if (item == null) {
+            return;
+        }
         if (item.getRentStatus().equalsIgnoreCase("rented")) {
             System.out.println("Product ID" + id + " is already rented");
         } else {
             System.out.print("Please enter the date the item was rented (yyyy-mm-dd): ");
             LocalDate dateRented = LocalDate.parse(UserInputHandler.inputString());
-            //dartProducts.get(i).rent(dateRented);//sending date of rent in method rent()
+
             item.rent(dateRented);
             System.out.println("Yay! Rented!");
             customer.addCredit();
@@ -88,6 +90,7 @@ public class ItemController {
 
 
     public void returnProcess(Customer customer, String id) { //why we here didnt call just a customer
+
         int credit = customer.getCredit();
 
         Item returnee = findItem(id);
@@ -107,29 +110,27 @@ public class ItemController {
             customer.setCredit(credit - coolCredit);
             rateItem(returnee, customer);
         }
-
     }
 
 
     public void returnItem(Item item, Customer customer) {
-
-        System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
-        LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
-        item.makeAvailableAgain(dateReturned);
-        //TODO change payable percent to useCalculatePrice in membership
-        double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
-
-        double dailyRent = item.getDailyRent(); //This is Item's price without discount implementation'
-        double finalDailyRent = payablePercent * dailyRent; // price after discount
-
-        double totalRent = dailyRent * item.daysBetween();
-        double finalTotalRent = payablePercent * totalRent;
-
-        customer.setTotalPaidRent(finalTotalRent); //
-        item.setTotalRentProfit(finalTotalRent);
-        item.setCounter(1);
-
         try {
+            System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
+            LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
+            item.makeAvailableAgain(dateReturned);
+            //TODO change payable percent to useCalculatePrice in membership
+            double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
+
+            double dailyRent = item.getDailyRent(); //This is Item's price without discount implementation'
+            double finalDailyRent = payablePercent * dailyRent; // price after discount
+
+            double totalRent = dailyRent * item.daysBetween();
+            double finalTotalRent = payablePercent * totalRent;
+
+            customer.setTotalPaidRent(finalTotalRent); //
+            item.setTotalRentProfit(finalTotalRent);
+            item.setCounter(1);
+
             System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
             storeDailyRent(finalTotalRent);
         } catch (InvalidDataInput e) {
@@ -143,28 +144,34 @@ public class ItemController {
     }
 
     public void rateItem(Item item, Customer customer) {
-        //We should also make a transaction here to store in the transactionList arrayList above.
-        Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
+        try {
+            //We should also make a transaction here to store in the transactionList arrayList above.
+            Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
 
-        System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
-        String input = UserInputHandler.inputString();
+            System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
+            String input = UserInputHandler.inputString();
 
-        if (input.equalsIgnoreCase("Y")) {
-            System.out.print("Please give any number between 0 and 5: ");
-            int userRating = UserInputHandler.inputInt();
-            Value value = new Value(userRating, null);
-            System.out.print("Do you want to write a review? Answer Y for yes or N for no: ");
-            input = UserInputHandler.inputString();
-            item.addValue(value);
-            currentTransaction.setRatingScore(userRating);
             if (input.equalsIgnoreCase("Y")) {
-                System.out.print("Please write a review: ");
-                String review = UserInputHandler.inputString();
-
-                currentTransaction.setReview(review);
+                System.out.print("Please give any number between 0 and 5: ");
+                int userRating = UserInputHandler.inputInt();
+                Value value = new Value(userRating, null);
+                System.out.print("Do you want to write a review? Answer Y for yes or N for no: ");
+                input = UserInputHandler.inputString();
+                item.addValue(value);
+                currentTransaction.setRatingScore(userRating);
+                if (input.equalsIgnoreCase("Y")) {
+                    System.out.print("Please write a review: ");
+                    String review = UserInputHandler.inputString();
+                    value.setReview(review);
+                    currentTransaction.setReview(review);
+                }
             }
+            transactionList.add(currentTransaction);
+            StorageController.saveTranscationToFile(currentTransaction);
+        } catch (InvalidDataInput e) {
+            System.out.println(e.getMessage());
+
         }
-        transactionList.add(currentTransaction);
     }
 
     /**
@@ -246,8 +253,6 @@ public class ItemController {
 //        }
 //        showAll();
 //    }
-
-
     public void sortByAverageRatingUsingInterfaces() {
         Collections.sort(dartProducts, new Comparator<Item>() {
             @Override
@@ -307,11 +312,9 @@ public class ItemController {
 
     }
 
-
     /**
      * Search methods
      */
-
 
     public Item getItemWithId(String itemId) {
         Item itemFound = null;
@@ -329,7 +332,6 @@ public class ItemController {
         return itemFound;
     }
 
-
     public void findGame(String genre) {
 
         for (Item item : dartProducts) {
@@ -343,7 +345,6 @@ public class ItemController {
         }
     }
 
-
     public void findSong(int year) {
         for (Item item : dartProducts) {
             if (item instanceof Song) {
@@ -354,7 +355,6 @@ public class ItemController {
             }
         }
     }
-
 
     public Item findItem(String Id) {
         for (int i = 0; i < dartProducts.size(); i++) {
@@ -380,20 +380,6 @@ public class ItemController {
         dartProducts.add(song);
     }
 
-//
-//    public void mockData() {
-//        addGame(new Game("The Legend of Zelda: Link's Awakening", 5, 1998, "rpg"));
-//        addGame(new Game("Skyrim", 5, 2011, "rpg"));
-//        addGame(new Game("Fallout: New Vegas", 5, 2009, "rpg"));
-//        addGame(new Game("Super Smash Bro's", 5, 1998, "fighting"));
-//        addGame(new Game("Mario Kart", 5, 1998, "racing"));
-//
-//        addSong(new Song("Evening Machines", 8, "Gregory Alan Isakov", 1984));
-//        addSong(new Song("The Lion's Roar", 10, "First Aid Kit", 1974));
-//        addSong(new Song("Soy Pablo", 9, "Boy Pablo", 1982));
-//        addSong(new Song("The Maze To Nowhere", 14, "Lorn", 2016));
-//        addSong(new Song("Wandering", 3, "Yosi Horikawa", 1984));
-//    }
 
 
 }

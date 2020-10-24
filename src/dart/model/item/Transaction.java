@@ -90,22 +90,11 @@ public class Transaction {
             s = s+ " Item score: "+this.ratingScore+" Review: "+this.review+"";
         }
         if(this.ratingScore!=null&& review==null){
-            s=s+ " Item score: "+this.ratingScore+"\n";
+            s=s+ " Item score: "+this.ratingScore+"";
         }
 
          return s;
     }
-
-//    public String toString() {
-//        String s = "Customer ID: " + this.customerId + ", Renting duration: " + this.daysRented + ", Item ID: " + this.itemId;
-//
-//        if (this.ratingScore == null) {
-//            return s + "\n";
-//        } else if (this.review == null) {
-//            return s + ", Item score: " + this.ratingScore + "\n";
-//        } else {
-//            return s + ", Item score: " + this.ratingScore + ", Item review: " + this.review + "\n";
-//        }
-//
-//    }
-}
+    public String getInfo(){
+        return customerId+";"+itemId+";"+item.getTitle()+";"+item.getTotalRentProfit();
+    }}

@@ -111,19 +111,15 @@ public class Item {
         this.title = title;
     }
 
-    public void setDailyRent(double dailyRent) {
-        this.dailyRent = dailyRent;
-    }
+//    public void setDailyRent(double dailyRent) {
+//        this.dailyRent = dailyRent;
+//    }
 
-    public void setRentStatus(String rentStatus) {
-        this.rentStatus = rentStatus;
-    }
+//    public void setRentStatus(String rentStatus) {
+//        this.rentStatus = rentStatus;
+//    }
 
     //Methods:
-
-    public void rent() {
-        rentStatus = "rented";
-    }
 
     public void addValue(Value value) {
         rating.add(value);
@@ -150,7 +146,10 @@ public class Item {
         rentStatus = "available";this.dateReturned =dateReturned;
     }
 
-    public long daysBetween (){
+    public long daysBetween () {
+        if (dateReturned.isEqual(getDateRented()) || dateReturned.isBefore(getDateRented())){
+            throw new InvalidDataInput("Invalid operation. Upon returning an item, the number of days rented must be positive.");
+        }
         return ChronoUnit.DAYS.between(dateRented, dateReturned);
     }
 

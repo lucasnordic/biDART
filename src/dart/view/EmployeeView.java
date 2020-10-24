@@ -90,10 +90,11 @@ public class EmployeeView {
     }
 
     public void removeGame() {
+        itemController.showAllGames();
         System.out.print("Please enter the ID of the game you want to remove: ");
         String id = UserInputHandler.inputString();
-        itemController.removeItem(id);
-
+        String result = itemController.removeItem(id);
+        System.out.println(result);
     }
 
     public void registerCustomer() {
@@ -113,7 +114,8 @@ public class EmployeeView {
        userController.showCustomerListNameId();
         System.out.print("Which customer should be removed? ID: ");
         String id = UserInputHandler.inputString();
-        userController.removeCustomer(id);
+       String result= userController.removeUser(id);
+        System.out.println(result);
     }
 
     public void registerAlbum() {
@@ -136,12 +138,12 @@ public class EmployeeView {
     }
 
     public void removeAlbum() {
-        System.out.println("Please enter the ID of the song which you wish to delete:");
+        itemController.showAllAlbums();
+        System.out.print("Please enter the ID of the song which you wish to delete:");
         String id = UserInputHandler.inputString();
-        itemController.removeItem(id);
-
+        String result = itemController.removeItem(id);
+        System.out.println(result);
     }
-
 
     //  These menu's handles upgrading a customer:
     public void menuUpgradeCustomer() {

@@ -84,11 +84,13 @@ public class ManagerView {
     }
 
     public void removeEmployee(){
-       userController.removeEmployee();
+        userController.showEmployeeList();
+        System.out.print("Please enter the ID of the employee you want to remove: ");
+        String id = UserInputHandler.inputString();
+        String result = userController.removeUser(id);
+        System.out.println(result);
+
     }
-
-
-
 
 
 
@@ -103,7 +105,7 @@ public class ManagerView {
         String title = "Import/Export menu";
         String[] menuItems = {
                 "Import a file",
-                "Export a file",
+                "Export a file( you do not need to press anything, it is generated automatically :) ) ",
                 "Go back"
         };
         String inputPrompt = "Enter choice: ";

@@ -2,6 +2,7 @@ package dart.controller;
 
 import dart.model.item.Game;
 import dart.model.item.Song;
+import dart.model.item.Transaction;
 import dart.model.user.Customer;
 import dart.model.user.Employee;
 
@@ -16,16 +17,20 @@ public class StorageController {
      */
 
     private ArrayList storage;  // what is this?
-    private static String storageFilePath = "./src/dart.file.customers.csv";
+    private static String storageFilePath = "./src/customers.csv";
+    private static final String HISTORY_NAME = "history";
 
 
-    /**
-     * Controller:
-     *
-
-    public StorageController() {
-        this.storage = new ArrayList<>();
+    public static boolean saveTranscationToFile(Transaction transaction) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(HISTORY_NAME, true))) {
+            writer.append(transaction.getInfo() + "\n");
+            return true;
+        } catch (IOException a) {
+            return false;
+        }
     }
+
+
 
 
     /**
@@ -60,7 +65,7 @@ public class StorageController {
                     // If the customer does not exist already,
                     // then we add the customer to the list in usercontroller;
                     if(userController.getUserWithId(customer.getId()) == null) {
-                        userController.registerCustomer(customer);
+                        userController.addCustomer(customer);
                         System.out.println("Added: " + Arrays.toString(retrievedInfo));
                     }
 
@@ -68,6 +73,7 @@ public class StorageController {
                     Employee employee = new Employee(retrievedInfo);
                     if(userController.getUserWithId(employee.getId()) == null) {
                         userController.addEmployee(employee);
+                        System.out.println("Added: " + Arrays.toString(retrievedInfo));
                     }
 
                 } else if(retrievedInfo[0].equals("Game")) {
@@ -88,7 +94,7 @@ public class StorageController {
                 }
             }
             bufferedReader.close();
-//          }
+
         } catch(IOException ex) {
             ex.printStackTrace();
         }
