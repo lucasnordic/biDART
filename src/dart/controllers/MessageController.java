@@ -18,6 +18,7 @@ public class MessageController {
         for (Message message : messageList) {
             if (message.isOfType("employee") && user instanceof Employee) {
                 userMessages.add(message);
+
             } else if (message.isOfType("personal") && user instanceof Customer) {
                 if (message.getMessageTo().equals(user.getId())) {
                     userMessages.add(message);

@@ -287,7 +287,7 @@ public class Dart {
 
 
         if (membership.getMembershipClass().equals("Platinum")) {
-            System.out.println("Customer is already Platinum!");
+            System.out.println("You rock already!");
 
             messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
         } else {
