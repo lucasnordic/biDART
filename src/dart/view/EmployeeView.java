@@ -189,7 +189,8 @@ public class EmployeeView {
                 menuEmployee();
             }
         } else {
-            menuEmployee();
+//            menuEmployee();
+            return;
         }
     }
 

@@ -103,6 +103,10 @@ public class Item {
         return this.rentStatus;
     }
 
+    public ArrayList<Value> getRating() {
+        return rating;
+    }
+
     public void setID(String ID) {
         this.id = ID;
     }

@@ -251,24 +251,14 @@ try{
     }
 
 
+
+
     /**
      * Sort related methods
      */
 
 
-//    public void sortByAverageRating() {
-//        for (int i = 0; i < dartProducts.size(); i++) { //firstly we search for i in array
-//            for (int j = i + 1; i < dartProducts.size(); i++) { //then we search for j, which stands next to  i and compare them
-//                if (dartProducts.get(j).findAverageRating() > dartProducts.get(i).findAverageRating()) {//compare them
-//                    Item buffer = dartProducts.get(i); //temporary value which keep the number of index should be replaced
-//                    dartProducts.set(i, dartProducts.get(j)); //replace i to j
-//                    dartProducts.set(j, buffer);//replace j to i
-//                }
-//            }
-//        }
-//        showAll();
-//    }
-    public void sortByAverageRatingUsingInterfaces() {
+    public void sortByAverageRating() {
         Collections.sort(dartProducts, new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
@@ -279,7 +269,7 @@ try{
     }
 
 
-    public void sortByYearUsingInterfaces() {
+    public void sortByYear() {
         Collections.sort(dartProducts, new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {

@@ -93,11 +93,11 @@ public class CustomerView {
     public void findItem() {
         System.out.print("Please enter S for song album search or G for game search: ");
         String input = UserInputHandler.inputString();
-        if (input.equals("S")) {
+        if (input.equalsIgnoreCase("S")) {
             System.out.print("Please enter the year of a song album: ");
             int year = UserInputHandler.inputInt();
             itemController.findSong(year);
-        } else if (input.equals("G")) {
+        } else if (input.equalsIgnoreCase("G")) {
             System.out.print("Please enter the genre of a game:  ");
             String genre = UserInputHandler.inputString();
             itemController.findGame(genre);
@@ -114,24 +114,24 @@ public class CustomerView {
             System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
             String choiceG = UserInputHandler.inputString();
             if (choiceG.equalsIgnoreCase("Y")) {
-                itemController.sortByYearUsingInterfaces();
+                itemController.sortByYear();
                 itemController.showAllGames();
             }
             if (choiceG.equalsIgnoreCase("R")) {
-                itemController.sortByAverageRatingUsingInterfaces();
+                itemController.sortByAverageRating();
                 itemController.showAllGames();
             }
             return;
         }
-        if (choice.equals("S")) {
+        if (choice.equalsIgnoreCase("S")) {
             System.out.println("Please press Y for sort by year and R for sort by average user rating: ");
             String choiceS = UserInputHandler.inputString();
             if (choiceS.equalsIgnoreCase("Y")) {
-                itemController.sortByYearUsingInterfaces();
+                itemController.sortByYear();
                 itemController.showAllAlbums();
             }
             if (choiceS.equalsIgnoreCase("R")) {
-                itemController.sortByAverageRatingUsingInterfaces();
+                itemController.sortByAverageRating();
                 itemController.showAllAlbums();
             }
             return;
