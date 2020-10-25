@@ -107,6 +107,7 @@ try{
         if (credit < coolCredit) {
 
             returnItem(returnee, customer);
+            item.setCounter(1);
             rateItem(returnee, customer);
 
         } else {
