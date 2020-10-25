@@ -14,7 +14,7 @@ public abstract class User implements Serializable {
     private String name;
     private String password;
     private final String type = "User";
-    private ArrayList<Message> messageList = new ArrayList<>();
+//    private ArrayList<Message> messageList = new ArrayList<>();
 
   
     /**
