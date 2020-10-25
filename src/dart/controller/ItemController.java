@@ -23,8 +23,8 @@ public class ItemController {
     private ArrayList<Transaction> transactionList = new ArrayList<>(); // We add values to this arrayList in rateItem
     double totalRentProfit = 0;
     private final int coolCredit = 5;
-    private Item item;
-    private Customer customer;
+//    private Item item;
+//    private Customer customer;
     int counter = 0;
 
 
@@ -54,22 +54,23 @@ public class ItemController {
      */
 
 
-    public void rentProcess(Customer customer, String id) {
+    public void rentProcess(Customer customer,Item item) {
 
         int maxAllowedRent = customer.getMaxAllowedRent();
 
         if (maxAllowedRent == 1 || (maxAllowedRent > 1 && counter == maxAllowedRent - 1)) {
-            rentItem(customer, id);
+            rentItem(customer, item);
         } else {
             String yesOrNo = "";
-            rentItem(customer, id);
+            rentItem(customer, item);
             System.out.println("Do you wish to rent again? press 'Y' for yes and 'N' for no: ");
             yesOrNo = UserInputHandler.inputString();
             if (yesOrNo.equalsIgnoreCase("y") && counter < (maxAllowedRent - 1)) {
                 System.out.println("Please insert the ID of the item you wish to rent: ");
                 String nextId = UserInputHandler.inputString();
+                Item nextItem = getItemWithId(nextId);
                 counter ++;
-                rentProcess(customer, nextId);
+                rentProcess(customer, nextItem);
 
             }
 
@@ -79,13 +80,13 @@ public class ItemController {
 
 
 
-    public void rentItem(Customer customer, String id) {
-        Item item = getItemWithId(id);
+    public void rentItem(Customer customer, Item item) {
+
         if (item == null) {
             return;
         }
         if (item.getRentStatus().equalsIgnoreCase("rented")) {
-            System.out.println("Product ID" + id + " is already rented");
+            System.out.println("Product ID" + item.getID() + " is already rented");
         } else {
             System.out.print("Please enter the date the item was rented (yyyy-mm-dd): ");
             LocalDate dateRented = LocalDate.parse(UserInputHandler.inputString());
@@ -97,27 +98,26 @@ public class ItemController {
     }
 
 
-    public void returnProcess(Customer customer, String id) { //why we here didnt call just a customer
+    public void returnProcess(Customer customer, Item item) { //why we here didnt call just a customer
 try{
     int credit = customer.getCredit();
 
-        Item returnee = getItemWithId(id);
 
         // We should check if the customers credit is high enough to rent items for free
         if (credit < coolCredit) {
 
-            returnItem(returnee, customer);
-            rateItem(returnee, customer);
+            returnItem(item, customer);
+            rateItem(item, customer);
 
         } else {
             System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
 
-            returnee.makeAvailableAgain(dateReturned);
+            item.makeAvailableAgain(dateReturned);
             item.setCounter(1);
             System.out.println("The item is free because your credit is more than 5.");
             customer.setCredit(credit - coolCredit);
-            rateItem(returnee, customer);
+            rateItem(item, customer);
         }
 } catch (InvalidDataInput e) {
     System.out.println(e.getMessage());

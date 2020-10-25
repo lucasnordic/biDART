@@ -4,6 +4,7 @@ package dart.view;
 import dart.controller.ItemController;
 import dart.controller.MessageController;
 import dart.controller.UserController;
+import dart.model.item.Item;
 import dart.model.user.Customer;
 import dart.model.user.Message;
 import dart.model.user.User;
@@ -64,14 +65,16 @@ public class CustomerView {
         itemController.showAllAvailableGames();
         System.out.print("Please enter ID of the game that you want to rent: ");
         String id = UserInputHandler.inputString();
-        itemController.rentProcess(customer, id);
+        Item item = itemController.getItemWithId(id);
+        itemController.rentProcess(customer, item);
     }
 
     public void rentAnAlbum() {
         itemController.showAllAvailableAlbums();
         System.out.print("Please enter ID of the album that you want to rent: ");
         String id = UserInputHandler.inputString();
-        itemController.rentProcess(customer, id);
+        Item item = itemController.getItemWithId(id);
+        itemController.rentProcess(customer, item);
 
     }
 
@@ -79,14 +82,16 @@ public class CustomerView {
         itemController.showAllGames();
         System.out.print("Insert the ID of the game you wish to return:");
         String id = UserInputHandler.inputString();
-        itemController.returnProcess(customer, id);
+        Item item = itemController.getItemWithId(id);
+        itemController.returnProcess(customer, item);
     }
 
     public void returnAnAlbum() {
         itemController.showAllAlbums();
         System.out.print("Insert the ID of the album you wish to return:");
         String id = UserInputHandler.inputString();
-        itemController.returnProcess(customer, id);
+        Item item = itemController.getItemWithId(id);
+        itemController.returnProcess(customer, item);
 
     }
 
