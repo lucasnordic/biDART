@@ -114,13 +114,16 @@ public class ManagerView {
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
-        System.out.println("\nImported objects from file:");
+
         switch (menuChoice) { // Here we go to different menus based on user input:
-            case 1 -> storageController.importCustomerCSVBuffer(this.userController, this.itemController);
+            case 1 -> {
+                System.out.println("\nImported objects from file:");
+                storageController.importCustomerCSVBuffer(this.userController, this.itemController);
+            }
 //            case 2 -> storageController.importCustomerCSVBuffer();
-            case 3 -> menuManager();
+            case 3 -> {
+                return;
+            }
         }
-        UserInputHandler.pressAnyKeyCon();
-        menuManager();
     }
 }

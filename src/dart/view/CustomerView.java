@@ -55,7 +55,7 @@ public class CustomerView {
             case 5 -> findItem();
             case 6 -> sort();
             case 7 -> messageCenterMenu();
-            case 8 -> { return; }
+            case 8 -> {return;}
         }
         menuCustomer();
     }
