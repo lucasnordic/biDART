@@ -18,8 +18,8 @@ public class StorageController {
      */
 
     private ArrayList storage;  // what is this?
-    private static String storageFilePath = "./src/customers.csv";
-    private static final String HISTORY_NAME = "history";
+    private static String storageFilePath = "./src/models.csv";
+    private static final String HISTORY_NAME = "./src/history";
 
 
     /**
