@@ -8,6 +8,8 @@ import dart.tool.InvalidDataInput;
 import dart.model.item.Transaction;
 import dart.tool.UserInputHandler;
 import dart.model.user.Customer;
+import dart.view.CustomerView;
+import dart.view.DartView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
