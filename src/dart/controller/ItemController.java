@@ -25,6 +25,7 @@ public class ItemController {
     private final int coolCredit = 5;
     private Item item;
     private Customer customer;
+    int counter = 0;
 
 
     /**
@@ -54,27 +55,32 @@ public class ItemController {
 
 
     public void rentProcess(Customer customer, String id) {
+
         int maxAllowedRent = customer.getMaxAllowedRent();
 
         if (maxAllowedRent == 1) {
             rentItem(customer, id);
         } else {
-            int counter;
             String yesOrNo = "";
-            do {
-                counter = 0;
-                rentItem(customer, id);
-                System.out.println("Do you wish to rent again? press 'Y' for yes and 'N' for no: ");
-                yesOrNo = UserInputHandler.inputString();
-                counter = counter + 1;
+            rentItem(customer, id);
+            System.out.println("Do you wish to rent again? press 'Y' for yes and 'N' for no: ");
+            yesOrNo = UserInputHandler.inputString();
+            if (yesOrNo.equalsIgnoreCase("y") && counter < (maxAllowedRent - 1)) {
+                System.out.println("Please insert the ID of the item you wish to rent: ");
+                String nextId = UserInputHandler.inputString();
+                counter ++;
+                rentProcess(customer, nextId);
 
-            } while (yesOrNo.equalsIgnoreCase("y") && counter < maxAllowedRent);
+            }
+
         }
+        counter = 0;
     }
 
 
+
     public void rentItem(Customer customer, String id) {
-        Item item = findItem(id);
+        Item item = getItemWithId(id);
         if (item == null) {
             return;
         }
@@ -95,7 +101,7 @@ public class ItemController {
 try{
     int credit = customer.getCredit();
 
-        Item returnee = findItem(id);
+        Item returnee = getItemWithId(id);
 
         // We should check if the customers credit is high enough to rent items for free
         if (credit < coolCredit) {
@@ -108,7 +114,7 @@ try{
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
 
             returnee.makeAvailableAgain(dateReturned);
-            System.out.println("The total rent is 0. ");
+            System.out.println("The item is free because your credit is more than 5.");
             customer.setCredit(credit - coolCredit);
             rateItem(returnee, customer);
         }
@@ -123,7 +129,7 @@ try{
             System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
             item.makeAvailableAgain(dateReturned);
-            //TODO change payable percent to useCalculatePrice in membership
+
             double payablePercent = customer.payablePercent();  //In this line we use a method from membership classes to reduce the price of each item depending on customer membership discount.
 
             double dailyRent = item.getDailyRent(); //This is Item's price without discount implementation'
@@ -156,14 +162,19 @@ try{
 
             if (input.equalsIgnoreCase("Y")) {
                 System.out.print("Please give any number between 0 and 5: ");
-                int userRating = UserInputHandler.inputInt();
+
+                Integer userRating = UserInputHandler.inputInt();
                 Value value = new Value(userRating, null);
+
                 System.out.print("Do you want to write a review? Answer Y for yes or N for no: ");
+
                 input = UserInputHandler.inputString();
                 item.addValue(value);
                 currentTransaction.setRatingScore(userRating);
+
                 if (input.equalsIgnoreCase("Y")) {
                     System.out.print("Please write a review: ");
+
                     String review = UserInputHandler.inputString();
                     value.setReview(review);
                     currentTransaction.setReview(review);
@@ -359,17 +370,17 @@ try{
         }
     }
 
-    public Item findItem(String Id) {
-        for (int i = 0; i < dartProducts.size(); i++) {
-            if (Id.equals(dartProducts.get(i).getID().toString())) {
-
-                return dartProducts.get(i);
-            }
-        }
-        System.out.println("Product with ID " + Id + " not found");
-        // TODO: how to make it not crash after this??
-        return null;
-    }
+//    public Item findItem(String Id) {
+//        for (int i = 0; i < dartProducts.size(); i++) {
+//            if (Id.equals(dartProducts.get(i).getID().toString())) {
+//
+//                return dartProducts.get(i);
+//            }
+//        }
+//        System.out.println("Product with ID " + Id + " not found");
+//        // TODO: how to make it not crash after this??
+//        return null;
+//    }
 
 
     // I added these for mockdata purposes, since they don't have any menu's.
