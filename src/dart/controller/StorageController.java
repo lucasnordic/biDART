@@ -17,9 +17,8 @@ public class StorageController {
      * Attributes:
      */
 
-    private ArrayList storage;  // what is this?
-    private static String storageFilePath = "./src/customers.csv";
-    private static final String HISTORY_NAME = "history";
+    private static String STORAGE_ITEMS_USERS = "./src/models.csv";
+    private static final String HISTORY_NAME = "./src/history.txt";
 
 
     /**
@@ -39,7 +38,7 @@ public class StorageController {
         try{
 
             // We create a an object that leads to the location of the customer file:
-            File customerFile = new File(storageFilePath);
+            File customerFile = new File(STORAGE_ITEMS_USERS);
 
 //          if (customerFile.exists()) {
             // This fileReader and bufferedReader connects to our customer file
