@@ -107,7 +107,6 @@ try{
         if (credit < coolCredit) {
 
             returnItem(returnee, customer);
-            item.setCounter(1);
             rateItem(returnee, customer);
 
         } else {
@@ -115,6 +114,7 @@ try{
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
 
             returnee.makeAvailableAgain(dateReturned);
+            item.setCounter(1);
             System.out.println("The item is free because your credit is more than 5.");
             customer.setCredit(credit - coolCredit);
             rateItem(returnee, customer);
