@@ -4,7 +4,7 @@ import dart.model.user.Customer;
 
 public class Transaction {
 
-    //private UUID id;
+
 //    private String customerId;
 //    private long daysRented;
 //    private String itemId;
