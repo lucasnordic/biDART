@@ -104,14 +104,17 @@ public class UserController {
      * These methods are related to Customers:
      */
 
-    public void registerCustomer(Customer customer) {
-        userList.add(customer);
-        System.out.println(customer.toString());
-
+    public void registerUSer(User user) {  //TODO change to User. only use this to add users
+        userList.add(user);
+        System.out.println(user);
     }
 
     public void addCustomer(Customer customer){
         userList.add(customer);
+    }
+
+    public void addEmployee(User newEmployee) {
+        userList.add(newEmployee);
     }
 
     public void showCustomerList() {
@@ -145,9 +148,7 @@ public class UserController {
         UserInputHandler.pressAnyKeyCon();
     }
 
-    public void addEmployee(User newEmployee) {
-        userList.add(newEmployee);
-    }
+
 
 //    public void addEmployee(Employee employee){
 //        userList.add(employee);

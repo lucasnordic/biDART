@@ -92,8 +92,8 @@ public class ItemController {
 
 
     public void returnProcess(Customer customer, String id) { //why we here didnt call just a customer
-
-        int credit = customer.getCredit();
+try{
+    int credit = customer.getCredit();
 
         Item returnee = findItem(id);
 
@@ -112,11 +112,14 @@ public class ItemController {
             customer.setCredit(credit - coolCredit);
             rateItem(returnee, customer);
         }
+} catch (InvalidDataInput e) {
+    System.out.println(e.getMessage());
+}
     }
 
 
     public void returnItem(Item item, Customer customer) {
-        try {
+
             System.out.print("Please enter the date the item was returned (yyyy-mm-dd): ");
             LocalDate dateReturned = LocalDate.parse(UserInputHandler.inputString());
             item.makeAvailableAgain(dateReturned);
@@ -135,9 +138,7 @@ public class ItemController {
 
             System.out.println("The total rent is " + finalDailyRent + " * " + item.daysBetween() + " = " + finalTotalRent);
             storeDailyRent(finalTotalRent);
-        } catch (InvalidDataInput e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 
 
@@ -146,9 +147,9 @@ public class ItemController {
     }
 
     public void rateItem(Item item, Customer customer) {
-        try {
+        // try {
             //We should also make a transaction here to store in the transactionList arrayList above.
-            Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
+            Transaction currentTransaction = new Transaction(customer, item);
 
             System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
             String input = UserInputHandler.inputString();
@@ -170,10 +171,10 @@ public class ItemController {
             }
             transactionList.add(currentTransaction);
             StorageController.saveTranscationToFile(currentTransaction);
-        } catch (InvalidDataInput e) {
-            System.out.println(e.getMessage());
+     //   } catch (InvalidDataInput e) {
+       //     System.out.println(e.getMessage());
 
-        }
+      //  }
     }
 
     /**

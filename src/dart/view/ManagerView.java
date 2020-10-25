@@ -46,7 +46,7 @@ public class ManagerView {
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
         switch (menuChoice) { // Here we go to different menus based on user input:
-            case 1 -> addEmployee();
+            case 1 -> registerEmployee();
             case 2 -> removeEmployee();
             case 3 -> userController.showEmployeeList();
             case 4 -> menuShowNetSalary();
@@ -63,7 +63,7 @@ public class ManagerView {
         menuManager();
     }
 
-    public void addEmployee(){
+    public void registerEmployee(){
         System.out.print("Type employee's name: ");
         String employeeName = UserInputHandler.inputString();
 
@@ -78,7 +78,7 @@ public class ManagerView {
                     "password123",
                     employeeBirthYear,
                     employeeGrossSalary);
-            userController.addEmployee(newEmployee);
+            userController.registerUSer(newEmployee);
         }catch (InvalidDataInput e){
             System.out.println(e.getMessage());
         }

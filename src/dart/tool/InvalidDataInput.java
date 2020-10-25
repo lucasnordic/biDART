@@ -1,6 +1,6 @@
 package dart.tool;
 
-public class InvalidDataInput extends RuntimeException {
+public class InvalidDataInput extends  RuntimeException {
     private String message;
 
 

@@ -104,7 +104,7 @@ public class EmployeeView {
         String password = UserInputHandler.inputString();
         try {
             Customer customer = new Customer(name, password);
-            userController.registerCustomer(customer);
+            userController.registerUSer(customer);
         } catch (InvalidDataInput e) {
             System.out.println(e.getMessage());
         }
