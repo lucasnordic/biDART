@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>dart</OriginalElement>
+  <nodes>
+    <node x="840.0" y="997.0">dart.model.user.membership.GoldMembership</node>
+    <node x="1040.0" y="1557.0">dart.tool.InvalidDataInput</node>
+    <node x="824.0" y="282.0">dart.model.user.Employee</node>
+    <node x="1411.0" y="0.0">dart.view.CustomerView</node>
+    <node x="1067.0" y="997.0">dart.model.user.membership.RegularMembership</node>
+    <node x="613.0" y="1557.0">dart.controller.MessageController</node>
+    <node x="365.0" y="804.0">dart.view.EmployeeView</node>
+    <node x="0.0" y="0.0">dart.controller.ItemController</node>
+    <node x="974.0" y="0.0">dart.model.user.User</node>
+    <node x="1294.0" y="997.0">dart.model.user.membership.SilverMembership</node>
+    <node x="1087.0" y="282.5">dart.model.user.Customer</node>
+    <node x="1521.0" y="997.0">dart.model.user.membership.PlatinumMembership</node>
+    <node x="319.0" y="547.0">dart.model.item.Game</node>
+    <node x="1165.0" y="1235.0">dart.tool.UserInputHandler</node>
+    <node x="1626.0" y="1557.0">dart.Main</node>
+    <node x="561.0" y="525.0">dart.model.item.Song</node>
+    <node x="0.0" y="1557.0">dart.controller.StorageController</node>
+    <node x="417.0" y="0.0">dart.model.item.Item</node>
+    <node x="0.0" y="1235.0">dart.model.user.Message</node>
+    <node x="0.0" y="804.0">dart.controller.UserController</node>
+    <node x="625.0" y="1235.0">dart.view.ManagerView</node>
+    <node x="1180.5" y="804.0">dart.model.user.membership.Membership</node>
+    <node x="428.0" y="1557.0">dart.model.item.Value</node>
+    <node x="330.0" y="1235.0">dart.view.DartView</node>
+    <node x="1263.0" y="1557.0">dart.tool.PrintMenus</node>
+    <node x="1425.0" y="1235.0">dart.model.item.Transaction</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="dart.model.user.membership.GoldMembership" target="dart.model.user.membership.Membership">
+      <point x="0.0" y="-71.5" />
+      <point x="943.5" y="967.0" />
+      <point x="1206.375" y="967.0" />
+      <point x="-77.625" y="71.5" />
+    </edge>
+    <edge source="dart.model.item.Game" target="dart.model.item.Item">
+      <point x="0.0" y="-61.0" />
+      <point x="430.0" y="500.0" />
+      <point x="483.5" y="500.0" />
+      <point x="-66.5" y="237.5" />
+    </edge>
+    <edge source="dart.model.user.membership.PlatinumMembership" target="dart.model.user.membership.Membership">
+      <point x="0.0" y="-71.5" />
+      <point x="1624.5" y="967.0" />
+      <point x="1361.625" y="967.0" />
+      <point x="77.625" y="71.5" />
+    </edge>
+    <edge source="dart.model.user.Customer" target="dart.model.user.User">
+      <point x="0.0" y="-171.0" />
+      <point x="1226.5" y="257.0" />
+      <point x="1142.0" y="257.0" />
+      <point x="56.0" y="116.0" />
+    </edge>
+    <edge source="dart.model.user.membership.SilverMembership" target="dart.model.user.membership.Membership">
+      <point x="0.0" y="-71.5" />
+      <point x="1397.5" y="977.0" />
+      <point x="1309.875" y="977.0" />
+      <point x="25.875" y="71.5" />
+    </edge>
+    <edge source="dart.model.user.membership.RegularMembership" target="dart.model.user.membership.Membership">
+      <point x="0.0" y="-71.5" />
+      <point x="1170.5" y="977.0" />
+      <point x="1258.125" y="977.0" />
+      <point x="-25.875" y="71.5" />
+    </edge>
+    <edge source="dart.model.user.Employee" target="dart.model.user.User">
+      <point x="0.0" y="-171.5" />
+      <point x="945.5" y="257.0" />
+      <point x="1030.0" y="257.0" />
+      <point x="-56.0" y="116.0" />
+    </edge>
+    <edge source="dart.model.item.Song" target="dart.model.item.Item">
+      <point x="0.0" y="-83.0" />
+      <point x="670.0" y="500.0" />
+      <point x="616.5" y="500.0" />
+      <point x="66.5" y="237.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.46674606955693193" x="1148.5815547033346" y="2127.5465025736735" />
+  <SelectedNodes>
+    <node>dart.Main</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
