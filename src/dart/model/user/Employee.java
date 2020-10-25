@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 public class Employee extends User {
 
-    private final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    private final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
     private int birthYear;
     private double grossSalary;
     private String type = "Employee";
@@ -79,13 +79,13 @@ public class Employee extends User {
      */
 
     public int calculateAge() {
-        return currentYear - birthYear;
+        return CURRENT_YEAR - birthYear;
     }
 
     public double calculateBonus() {
-        if ((currentYear - birthYear) < 22) {
+        if ((CURRENT_YEAR - birthYear) < 22) {
             return 4000.0;
-        } else if ((currentYear - birthYear) <= 30) {
+        } else if ((CURRENT_YEAR - birthYear) <= 30) {
             return 6000.0;
         } else {
             return 7500.0;

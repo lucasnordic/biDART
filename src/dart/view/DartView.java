@@ -11,6 +11,7 @@ import dart.controller.UserController;
 import dart.model.user.Customer;
 import dart.model.user.Employee;
 import dart.model.user.User;
+import dart.tool.PrintMenus;
 import dart.tool.UserInputHandler;
 
 public class DartView {
@@ -36,7 +37,7 @@ public class DartView {
                 "Enter “X” to exit system"
         };
         String inputPrompt = "Choose menu: ";
-        printMenuItems(title, subMenus, inputPrompt, "yes"); // We print the menu.
+        PrintMenus.printMenuItems(title, subMenus, inputPrompt, "yes"); // We print the menu.
 
         String[] validMenuChoice = {"M", "E", "C", "X"}; //Valid choices for user while in main menu:
         String menuChoice = UserInputHandler.inputValidString(validMenuChoice); // We store the choice the user is going to take:
@@ -107,28 +108,6 @@ public class DartView {
             UserInputHandler.pressAnyKeyCon();
             mainMenu();
         }
-    }
-
-
-    public void menuRentHistory() {
-        /**
-         * See
-         */
-    }
-
-
-    private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
-        if (line.equalsIgnoreCase("yes")) {
-            System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
-        }
-        System.out.println(title);
-
-        // This loop prints out all the menu options that are stored in the "menuItems" array.
-        for (int i = 0; i < subMenus.length; i++) {
-            System.out.println((i + 1) + ". " + subMenus[i]);
-        }
-        System.out.println("");
-        System.out.print(inputPrompt);
     }
 
     public static void printIntroAscii() {

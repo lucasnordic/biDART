@@ -72,7 +72,7 @@ public class ItemController {
 
 
     public void rentItem(Customer customer, String id) {
-        Item item = getItemWithId(id);
+        Item item = findItem(id);
         if (item == null) {
             return;
         }
@@ -93,7 +93,7 @@ public class ItemController {
 
         int credit = customer.getCredit();
 
-        Item returnee = getItemWithId(id);
+        Item returnee = findItem(id);
 
         // We should check if the customers credit is high enough to rent items for free
         if (credit < coolCredit) {
@@ -109,7 +109,6 @@ public class ItemController {
             System.out.println("The total rent is 0. ");
             customer.setCredit(credit - coolCredit);
             rateItem(returnee, customer);
-            item.setCounter(1);
         }
     }
 
@@ -147,24 +146,19 @@ public class ItemController {
     public void rateItem(Item item, Customer customer) {
         try {
             //We should also make a transaction here to store in the transactionList arrayList above.
-
-            Transaction currentTransaction = new Transaction( customer, item);
+            Transaction currentTransaction = new Transaction(customer.getId(), item.daysBetween(), item.getID(), customer, item);
 
             System.out.print("Do you want to give a rating or write a review? Answer Y for yes or N for no: ");
             String input = UserInputHandler.inputString();
 
             if (input.equalsIgnoreCase("Y")) {
                 System.out.print("Please give any number between 0 and 5: ");
-
-                Integer userRating = UserInputHandler.inputInt();
+                int userRating = UserInputHandler.inputInt();
                 Value value = new Value(userRating, null);
-                currentTransaction.setRatingScore(userRating);
-
                 System.out.print("Do you want to write a review? Answer Y for yes or N for no: ");
-
                 input = UserInputHandler.inputString();
-                item.addValue(value);menuShowTotalRentProfit();
-
+                item.addValue(value);
+                currentTransaction.setRatingScore(userRating);
                 if (input.equalsIgnoreCase("Y")) {
                     System.out.print("Please write a review: ");
                     String review = UserInputHandler.inputString();
@@ -172,8 +166,6 @@ public class ItemController {
                     currentTransaction.setReview(review);
                 }
             }
-
-
             transactionList.add(currentTransaction);
             StorageController.saveTranscationToFile(currentTransaction);
         } catch (InvalidDataInput e) {
@@ -190,7 +182,6 @@ public class ItemController {
     public void menuShowTotalRentProfit() {
         System.out.println("Total rent profit is " + totalRentProfit);
     }
-
 
     public void showTransaction() {
         for (Transaction transaction : transactionList) {
@@ -365,17 +356,18 @@ public class ItemController {
         }
     }
 
-//    public Item findItem(String Id) {
-//        for (int i = 0; i < dartProducts.size(); i++) {
-//            if (Id.equals(dartProducts.get(i).getID().toString())) {
-//
-//                return dartProducts.get(i);
-//            }
-//        }
-//        System.out.println("Product with ID " + Id + " not found");
-//        // TODO: how to make it not crash after this??
-//        return null;
-//    }
+    public Item findItem(String Id) {
+        for (int i = 0; i < dartProducts.size(); i++) {
+            if (Id.equals(dartProducts.get(i).getID().toString())) {
+
+                return dartProducts.get(i);
+            }
+        }
+        System.out.println("Product with ID " + Id + " not found");
+        // TODO: how to make it not crash after this??
+        return null;
+    }
+
 
     // I added these for mockdata purposes, since they don't have any menu's.
     // The prints should be separated from the other "addSong" and "registerAGame",

@@ -13,6 +13,7 @@ import dart.model.user.Message;
 import dart.model.user.User;
 import dart.model.user.membership.Membership;
 import dart.tool.InvalidDataInput;
+import dart.tool.PrintMenus;
 import dart.tool.UserInputHandler;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class EmployeeView {
                 "Return to Main Menu",
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send the menu content to be printed.
+        PrintMenus.printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send the menu content to be printed.
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
@@ -162,7 +163,7 @@ public class EmployeeView {
                 "Return to main menu"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "yes");
+        PrintMenus.printMenuItems(title, menuItems, inputPrompt, "yes");
 
 
         //  Here we store the max and min choice based on "menuItems" size:
@@ -185,20 +186,17 @@ public class EmployeeView {
             } else {
                 System.out.println("Could not find Customer with ID: " + customerId);
                 UserInputHandler.pressAnyKeyCon();
+                menuEmployee();
             }
-            menuEmployee();
         } else {
             menuEmployee();
         }
-
-
     }
 
     //  This is a continuation of previous method. It checks if a user is already Platinum.
     //  If he is not, then he will be upgraded.
     public void menuManageCustomerUpgrade(Customer customer) {
         Membership membership = customer.getMembership();
-
 
         if (membership.getMembershipClass().equals("Platinum")) {
             System.out.println("Customer is already Platinum!");
@@ -214,21 +212,4 @@ public class EmployeeView {
         }
         menuEmployee();
     }
-
-    private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
-        if (line.equalsIgnoreCase("yes")) {
-            System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
-        }
-        System.out.println(title);
-
-        // This loop prints out all the menu options that are stored in the "menuItems" array.
-        for (int i = 0; i < subMenus.length; i++) {
-            System.out.println((i + 1) + ". " + subMenus[i]);
-        }
-
-        System.out.println("");
-        System.out.print(inputPrompt);
-    }
-
-
 }

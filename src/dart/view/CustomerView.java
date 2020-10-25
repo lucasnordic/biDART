@@ -39,7 +39,7 @@ public class CustomerView {
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
-        PrintMenus printMenus = new PrintMenus(title, menuItems, inputPrompt, "yes");    // Here we send this content to be printed by the Class "Print"
+        PrintMenus.printMenuItems(title, menuItems, inputPrompt, "yes");    // Here we send this content to be printed by the Class "Print"
 
         //  Here we store the max and min choice based on "menuItems":
         int minMenuChoice = 1;
@@ -107,7 +107,6 @@ public class CustomerView {
         }
     }
 
-
     private void sort() {
         System.out.println("Please press G for games and S for song albums: ");
         String choice = UserInputHandler.inputString();
@@ -155,7 +154,7 @@ public class CustomerView {
                 "Go back"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "yes");
+        PrintMenus.printMenuItems(title, menuItems, inputPrompt, "yes");
 
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
         switch (menuChoice) {
@@ -194,7 +193,6 @@ public class CustomerView {
 
 
     private void sendMessage() {
-
         System.out.println("Here is a list of all Customers: ");
         userController.showCustomerListNameId();// fixed here to show all customers Names and Id only
         System.out.print("Please enter the recipients ID: ");
@@ -218,20 +216,6 @@ public class CustomerView {
         messageController.removeMessageFromListBasedOnCustomerId(userID);
 
         UserInputHandler.pressAnyKeyCon();
-    }
-
-    private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
-        if (line.equalsIgnoreCase("yes")) {
-            System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
-        }
-        System.out.println(title);
-
-        // This loop prints out all the menu options that are stored in the "menuItems" array.
-        for (int i = 0; i < subMenus.length; i++) {
-            System.out.println((i + 1) + ". " + subMenus[i]);
-        }
-        System.out.println("");
-        System.out.print(inputPrompt);
     }
 
 }

@@ -7,6 +7,7 @@ import dart.controller.UserController;
 import dart.model.user.Employee;
 import dart.model.user.User;
 import dart.tool.InvalidDataInput;
+import dart.tool.PrintMenus;
 import dart.tool.UserInputHandler;
 
 public class ManagerView {
@@ -40,7 +41,7 @@ public class ManagerView {
                 "Return to Main Menu"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send this content to be printed:
+        PrintMenus.printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send this content to be printed:
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
@@ -109,7 +110,7 @@ public class ManagerView {
                 "Go back"
         };
         String inputPrompt = "Enter choice: ";
-        printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send this content to be printed:
+        PrintMenus.printMenuItems(title, menuItems, inputPrompt, "yes"); // Here we send this content to be printed:
 
         // Here we let the user input a number between the choices available based on the size of the menuItems array:
         int menuChoice = UserInputHandler.inputIntMinMax(1, menuItems.length);
@@ -122,19 +123,4 @@ public class ManagerView {
         UserInputHandler.pressAnyKeyCon();
         menuManager();
     }
-
-    private void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
-        if (line.equalsIgnoreCase("yes")) {
-            System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
-        }
-        System.out.println(title);
-
-        // This loop prints out all the menu options that are stored in the "menuItems" array.
-        for (int i = 0; i < subMenus.length; i++) {
-            System.out.println((i + 1) + ". " + subMenus[i]);
-        }
-        System.out.println("");
-        System.out.print(inputPrompt);
-    }
-
 }

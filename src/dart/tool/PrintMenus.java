@@ -6,11 +6,11 @@ package dart.tool;
 
 public class PrintMenus {
 
-    public PrintMenus(String title, String[] subMenus, String inputPrompt, String line) {
-        printMenuItems(title, subMenus, inputPrompt, line);
-    }
+//    public PrintMenus(String title, String[] subMenus, String inputPrompt, String line) {
+//        printMenuItems(title, subMenus, inputPrompt, line);
+//    }
 
-    public void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
+    public static void printMenuItems(String title, String[] subMenus, String inputPrompt, String line) {
         if (line.equalsIgnoreCase("yes")) {
             System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
         }
