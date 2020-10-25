@@ -58,7 +58,7 @@ public class ItemController {
 
         int maxAllowedRent = customer.getMaxAllowedRent();
 
-        if (maxAllowedRent == 1) {
+        if (maxAllowedRent == 1 || (maxAllowedRent > 1 && counter == maxAllowedRent - 1)) {
             rentItem(customer, id);
         } else {
             String yesOrNo = "";
