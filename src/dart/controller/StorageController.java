@@ -17,7 +17,7 @@ public class StorageController {
      * Attributes:
      */
 
-    private static String STORAGE_ITEMS_USERS = "./src/models.csv";
+    private static final String STORAGE_ITEMS_USERS = "./src/models.csv";
     private static final String HISTORY_NAME = "./src/history.txt";
 
 
