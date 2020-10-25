@@ -21,8 +21,8 @@ public class Transaction {
 //        this.itemId = itemId;
         this.item = item;
         this.customer = customer;
-        this.review = "";
-        this.ratingScore = 0;
+        this.review = null;
+        this.ratingScore = null;
     }
 //    public String getCustomerId() {
 //        return customerId;
