@@ -114,7 +114,7 @@ public class EmployeeView {
         userController.showCustomerListNameId();
         System.out.print("Which customer should be removed? ID: ");
         String id = UserInputHandler.inputString();
-        String result = userController.removeUserByPartialInput(id);
+        String result = userController.removeUser(id);
         System.out.println(result);
         UserInputHandler.pressAnyKeyCon();
     }
@@ -190,7 +190,7 @@ public class EmployeeView {
             }
         } else {
 //            menuEmployee();
-            return;
+//            return;
         }
     }
 

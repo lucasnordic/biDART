@@ -88,7 +88,7 @@ public class ManagerView {
         userController.showEmployeeList();
         System.out.print("Please enter the ID of the employee you want to remove: ");
         String id = UserInputHandler.inputString();
-        String result = userController.removeUserByPartialInput(id);
+        String result = userController.removeUser(id);
         System.out.println(result);
 
     }
