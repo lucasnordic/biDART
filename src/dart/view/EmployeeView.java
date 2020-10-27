@@ -186,7 +186,7 @@ public class EmployeeView {
             } else {
                 System.out.println("Could not find Customer with ID: " + customerId);
                 UserInputHandler.pressAnyKeyCon();
-                menuEmployee();
+                return;
             }
         } else {
 //            menuEmployee();
@@ -211,6 +211,7 @@ public class EmployeeView {
 
             messageController.removeMessageFromListBasedOnCustomerId(customer.getId());
         }
-        menuEmployee();
+//        menuEmployee();
+//        return;
     }
 }
