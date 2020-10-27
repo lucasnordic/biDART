@@ -70,6 +70,7 @@ public class DartView {
             userController.setCurrentUser(null);
             new ManagerView(itemController, messageController, userController, storageController);
         }
+        mainMenu();
     }
 
 
@@ -89,6 +90,7 @@ public class DartView {
             userController.setCurrentUser(employee);
             new EmployeeView(employee, itemController, messageController, userController);
         }
+        mainMenu();
     }
 
 
@@ -108,6 +110,7 @@ public class DartView {
             UserInputHandler.pressAnyKeyCon();
             mainMenu();
         }
+        mainMenu();
     }
 
     public static void printIntroAscii() {
